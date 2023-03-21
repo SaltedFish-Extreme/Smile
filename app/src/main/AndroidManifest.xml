@@ -2,14 +2,98 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- 网络相关 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+
+    <!-- 震动权限 -->
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <!-- 外部存储 -->
+    <uses-permission
+        android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <!-- 拍照权限 -->
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <!-- 安装权限 -->
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+
+    <!-- 定位权限 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
     <application
-        android:allowBackup="true"
-        android:dataExtractionRules="@xml/data_extraction_rules"
-        android:fullBackupContent="@xml/backup_rules"
+        android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:requestLegacyExternalStorage="true"
         android:supportsRtl="true"
         android:theme="@style/Theme.Smile"
-        tools:targetApi="31" />
+        android:usesCleartextTraffic="true"
+        tools:ignore="AllowBackup,DataExtractionRules,LockedOrientationActivity"
+        tools:replace="android:allowBackup,android:supportsRtl">
 
+        <!-- 表示当前已经适配了分区存储 -->
+        <meta-data
+            android:name="ScopedStorage"
+            android:value="true" />
+
+        <!-- 适配 Android 7.0 文件意图 -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+    </application>
+
+    <!-- Android 11 软件包可见性适配：https://www.jianshu.com/p/d1ccd425c4ce -->
+    <queries>
+        <!-- 拍照意图：MediaStore.ACTION_IMAGE_CAPTURE -->
+        <intent>
+            <action android:name="android.media.action.IMAGE_CAPTURE" />
+        </intent>
+
+        <!-- 拍摄意图：MediaStore.ACTION_VIDEO_CAPTURE -->
+        <intent>
+            <action android:name="android.media.action.VIDEO_CAPTURE" />
+        </intent>
+
+        <!-- 图片裁剪意图 -->
+        <intent>
+            <action android:name="com.android.camera.action.CROP" />
+        </intent>
+
+        <!-- 打电话意图：Intent.ACTION_DIAL -->
+        <intent>
+            <action android:name="android.intent.action.DIAL" />
+        </intent>
+
+        <!-- 调起分享意图：Intent.ACTION_SEND -->
+        <intent>
+            <action android:name="android.intent.action.SEND" />
+        </intent>
+
+        <!-- 调起其他页面意图：Intent.ACTION_VIEW -->
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+        </intent>
+
+        <!-- 调起系统文件选择器：Intent.ACTION_GET_CONTENT -->
+        <intent>
+            <action android:name="android.intent.action.GET_CONTENT" />
+        </intent>
+    </queries>
 </manifest>

@@ -4,3 +4,17 @@ plugins {
     id 'com.android.library' version '7.4.2' apply false
     id 'org.jetbrains.kotlin.android' version '1.8.0' apply false
 }
+tasks.withType(JavaCompile) {
+    // 设置全局编码
+    options.encoding = 'UTF-8'
+}
+tasks.withType(Javadoc) {
+    // 设置文档编码
+    options {
+        encoding 'UTF-8'
+        charSet 'UTF-8'
+        links 'http://docs.oracle.com/javase/7/docs/api'
+    }
+}
+// 将构建文件统一输出到项目根目录下的 build 文件夹
+setBuildDir(new File(rootDir, "build/${path.replaceAll(':', '/')}"))

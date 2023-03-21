@@ -15,17 +15,28 @@ android {
         targetSdk 33
         versionCode 1
         versionName "1.0"
-
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    // Apk 签名的那些事：https://www.jianshu.com/p/a1f8e5896aa2
+    signingConfigs {
+        config {
+            storeFile file(StoreFile)
+            storePassword StorePassword
+            keyAlias KeyAlias
+            keyPassword KeyPassword
+        }
+    }
+
+    // 构建配置：https://developer.android.google.cn/studio/build/build-variants
     buildTypes {
+
         debug {
             // 调试模式下只保留一种架构的 so 库，提升打包速度
             ndk {
                 abiFilters 'armeabi-v7a'
             }
         }
+
         release {
             // 调试模式开关
             debuggable false
@@ -36,6 +47,9 @@ android {
             shrinkResources true
             // 压缩对齐开关
             zipAlignEnabled true
+            // 签名信息配置
+            signingConfig signingConfigs.config
+            // 混淆配置
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             // 仅保留两种架构的 so 库，根据 Bugly 统计得出
             ndk {
@@ -45,40 +59,54 @@ android {
                 abiFilters 'armeabi-v7a', 'arm64-v8a'
             }
         }
+
+        // 代码警告配置
+        lintOptions {
+            // 禁用文本硬编码警告
+            disable 'HardcodedText'
+            // 禁用图片描述警告
+            disable 'ContentDescription'
+        }
     }
+
+    // 支持 Java JDK 8
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    // kotlin解释器版本
     kotlinOptions {
         jvmTarget = '1.8'
     }
 
-    //BRV限定，BindingAdapter使用
-    buildFeatures.dataBinding = true
-
-    namespace 'com.example.smile'
+    // 设置存放 so 文件的目录
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
 }
 
 dependencies {
 
     //导入libs目录下所有jar包&aar包
-    //implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
+    //implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
 
-    //默认
-    implementation 'androidx.core:core-ktx:1.9.0'
+    //AndroidX库 https://github.com/androidx/androidx
     implementation 'androidx.appcompat:appcompat:1.6.1'
+    //Material库 https://github.com/material-components/material-components-android
     implementation 'com.google.android.material:material:1.8.0'
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
-    //lifecycle及ViewModel扩展
+    //kotlin核心包
+    implementation 'androidx.core:core-ktx:1.9.0'
+    //Kotlin协程 https://github.com/Kotlin/kotlinx.coroutines
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.6.0'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.0'
     //navigation支持
     implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
     implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
-    //协程
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
     //OkHttp
     //noinspection GradleDependency
     implementation 'com.squareup.okhttp3:okhttp:4.10.0'
@@ -99,6 +127,7 @@ dependencies {
     //ViewPager指示器 https://github.com/hackware1993/MagicIndicator
     implementation 'com.github.hackware1993:MagicIndicator:1.7.0'
     //图片加载 https://github.com/bumptech/glide
+    //noinspection GradleDependency
     implementation 'com.github.bumptech.glide:glide:4.15.0'
     //轮播图 https://github.com/youth5201314/banner
     implementation 'io.github.youth5201314:banner:2.2.2'
@@ -123,8 +152,8 @@ dependencies {
     //kotlin扩展（可选）
     implementation 'com.geyifeng.immersionbar:immersionbar-ktx:3.2.2'
     //弹窗框架 https://github.com/javakam/DialogManager
-    implementation 'com.github.javakam:dialog.core:5.0.0@aar'        //15KB, 核心
-    implementation 'com.github.javakam:dialog.usage:5.0.0@aar'       //25KB, 常用样式(如: 加载中弹窗)
-    implementation 'com.github.javakam:dialog.bottomsheet:5.0.0@aar' //23KB, 底部弹窗, 可以单独使用
-    implementation 'com.github.javakam:widget.optionview:5.1.0@aar'  //RecyclerView实现的单选/多选列表
+    //implementation 'com.github.javakam:dialog.core:5.0.0@aar'        //15KB, 核心
+    //implementation 'com.github.javakam:dialog.usage:5.0.0@aar'       //25KB, 常用样式(如: 加载中弹窗)
+    //implementation 'com.github.javakam:dialog.bottomsheet:5.0.0@aar' //23KB, 底部弹窗, 可以单独使用
+    //implementation 'com.github.javakam:widget.optionview:5.1.0@aar'  //RecyclerView实现的单选/多选列表
 }
