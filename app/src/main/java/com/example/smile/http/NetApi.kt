@@ -1,0 +1,14 @@
+package com.example.smile.http
+
+/**
+ * Created by 咸鱼至尊 on 2022/1/8
+ *
+ * desc: 网络请求API类
+ */
+object NetApi {
+    /** 全局根路径 */
+    const val BaseURL = "http://tools.cretinzp.com/jokes/"
+
+    /** 根据昵称生成头像API根路径 */
+    const val GenerateAvatarAPI = "https://api.multiavatar.com"
+}
