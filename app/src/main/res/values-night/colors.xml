@@ -1,21 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?><!--夜间主题差异型编程-->
 <resources>
-    <!--悬浮按钮颜色--><color name="color_floating_button">@color/gray_8f</color>
-    <!--重要文字颜色--><color name="color_important">@color/orange_red</color>
-    <!--标签文字颜色--><color name="color_tag">@color/super_blue</color>
-    <!--文章作者颜色--><color name="color_article_author">@color/pale_grey</color>
-    <!--文章章节颜色--><color name="color_article_chapter">@color/light_grey</color>
+    <!--底部导航栏颜色--><color name="color_navigation_bar">@color/black</color>
+    <!--底部选项卡容器颜色--><color name="color_bottom_navigation_surface">@color/medium_orchid</color>
+    <!--底部选项卡内容颜色--><color name="color_bottom_navigation_on_surface">@color/orchid</color>
+    <!--标题栏颜色--><color name="color_title_bar">@color/gray_8f</color>
     <!--viewpager指示器选中颜色--><color name="color_viewpager_selected">@color/white</color>
     <!--viewpager指示器未选中颜色--><color name="color_viewpager_unselected">@color/white_smoke</color>
-    <!--垂直标签布局填充颜色--><color name="color_vertical_tab_layout_fill">@color/tundra</color>
-    <!--垂直标签布局文字颜色--><color name="color_vertical_tab_layout_text">@color/orchid</color>
-    <!--分割线颜色--><color name="color_line_divider_bg">@color/boulder</color>
-    <!--标签item填充颜色--><color name="color_tab_item_fill">@color/silver</color>
+    <!--圆形按钮颜色--><color name="color_circle_button_selector">@color/orchid</color>
+    <!--圆形按钮禁用状态颜色--><color name="color_circle_button_selector_disabled">@color/tundra</color>
+    <!--分割线颜色--><color name="color_line_divider">@color/boulder</color>
     <!--图标背景色调--><color name="color_ic_bg_tint">@color/white</color>
-    <!--可绘制背景色调--><color name="color_drawable_bg_tint">@color/medium_orchid</color>
-    <!--web页面背景绘制颜色--><color name="color_web_bg_draw">@color/black</color>
-    <!--搜索框背景颜色--><color name="color_search_bg">@color/light_inky_grey</color>
-    <!--自定义悬浮按钮颜色--><color name="color_fab">@color/dove_gray</color>
-    <!--自定义悬浮按钮按下颜色--><color name="color_fab_pressed">@color/dusty_gray</color>
-    <!--教程标题颜色--><color name="color_course_title">@color/night_blue</color>
 </resources>

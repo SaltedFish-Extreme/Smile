@@ -14,9 +14,9 @@ import androidx.annotation.NonNull;
  */
 public class DynamicTimeFormat extends SimpleDateFormat {
 
-    private static Locale locale = Locale.CHINA;
-    private static String weeks[] = {"周日", "周一", "周二", "周三", "周四", "周五", "周六"};
-    private static String moments[] = {"中午", "凌晨", "早上", "下午", "晚上"};
+    private static final Locale locale = Locale.CHINA;
+    private static final String[] weeks = {"周日", "周一", "周二", "周三", "周四", "周五", "周六"};
+    private static final String[] moments = {"中午", "凌晨", "早上", "下午", "晚上"};
 
     private String mFormat = "%s";
 
@@ -38,6 +38,7 @@ public class DynamicTimeFormat extends SimpleDateFormat {
         this.mFormat = format;
     }
 
+    @NonNull
     @Override
     public StringBuffer format(@NonNull Date date, @NonNull StringBuffer toAppendTo, @NonNull FieldPosition pos) {
         toAppendTo = super.format(date, toAppendTo, pos);
@@ -61,21 +62,16 @@ public class DynamicTimeFormat extends SimpleDateFormat {
             if (todayMonth == otherMonth) {//表示是同一个月
                 int temp = todayCalendar.get(Calendar.DATE) - otherCalendar.get(Calendar.DATE);
                 switch (temp) {
-                    case 0:
-                        toAppendTo.append(timeFormat);
-                        break;
-                    case 1:
+                    case 0 -> toAppendTo.append(timeFormat);
+                    case 1 -> {
                         toAppendTo.append("昨天 ");
                         toAppendTo.append(timeFormat);
-                        break;
-                    case 2:
+                    }
+                    case 2 -> {
                         toAppendTo.append("前天 ");
                         toAppendTo.append(timeFormat);
-                        break;
-                    case 3:
-                    case 4:
-                    case 5:
-                    case 6:
+                    }
+                    case 3, 4, 5, 6 -> {
                         int dayOfMonth = otherCalendar.get(Calendar.WEEK_OF_MONTH);
                         int todayOfMonth = todayCalendar.get(Calendar.WEEK_OF_MONTH);
                         if (dayOfMonth == todayOfMonth) {//表示是同一周
@@ -90,10 +86,8 @@ public class DynamicTimeFormat extends SimpleDateFormat {
                         } else {
                             toAppendTo.append(dateFormat);
                         }
-                        break;
-                    default:
-                        toAppendTo.append(dateFormat);
-                        break;
+                    }
+                    default -> toAppendTo.append(dateFormat);
                 }
             } else {
                 toAppendTo.append(dateFormat);
@@ -103,7 +97,7 @@ public class DynamicTimeFormat extends SimpleDateFormat {
         }
 
         int length = toAppendTo.length();
-        toAppendTo.append(String.format(locale, mFormat, toAppendTo.toString()));
+        toAppendTo.append(String.format(locale, mFormat, toAppendTo));
         toAppendTo.delete(0, length);
         return toAppendTo;
     }

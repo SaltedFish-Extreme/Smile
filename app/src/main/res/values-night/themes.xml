@@ -1,22 +1,28 @@
 <!--夜间主题差异型编程-->
 <resources>
+    <!-- 应用主题样式 -->
+    <style name="Theme.Smile" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- 应用的主要色调，ActionBar Toolbar 默认使用该颜色 -->
+        <item name="colorPrimary">@color/medium_orchid</item>
+        <!-- 应用的强调色，CheckBox RadioButton Switch 等一般控件的选中效果默认采用该颜色 -->
+        <item name="colorAccent">@color/orchid</item>
+    </style>
+
+    <!--闪屏页主题-->
     <style name="Theme.Smile.SplashTheme">
         <!--启动页背景-->
         <item name="android:windowBackground">@drawable/bg_launcher_night</item>
         <!--全屏-->
         <item name="android:windowFullscreen">true</item>
     </style>
-    <!-- 应用主题样式 -->
-    <style name="Theme.Smile" parent="Theme.MaterialComponents.DayNight.NoActionBar.Bridge">
-        <!-- 应用的强调色，CheckBox RadioButton Switch 等一般控件的选中效果默认采用该颜色 -->
-        <item name="colorAccent">@color/orchid</item>
-        <!--图标填充颜色-->
-        <item name="iconTint">@color/white</item>
-        <!--位图填充颜色-->
-        <item name="drawableTint">@color/white</item>
-        <!--子图标填充颜色-->
-        <item name="itemIconTint">@color/selector_color_bottom_navigation_night</item>
-        <!--子文本填充颜色-->
-        <item name="itemTextColor">@color/selector_color_bottom_navigation_night</item>
+
+    <!--底部导航栏主题-->
+    <style name="BottomNavigationViewStyle" parent="Widget.Material3.BottomNavigationView">
+        <item name="materialThemeOverlay">@style/BottomNavigationViewOverlay</item>
+    </style>
+    <!--覆盖主题颜色-->
+    <style name="BottomNavigationViewOverlay" parent="">
+        <item name="colorOnSurface">@color/medium_orchid</item>
+        <item name="colorOnSurfaceVariant">@color/orchid</item>
     </style>
 </resources>

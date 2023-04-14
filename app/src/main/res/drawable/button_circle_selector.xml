@@ -5,7 +5,7 @@
     <item android:state_enabled="false">
         <shape android:shape="rectangle">
             <corners android:radius="@dimen/dp_999" />
-            <solid android:color="@color/color_vertical_tab_layout_fill" />
+            <solid android:color="@color/color_circle_button_selector_disabled" />
         </shape>
     </item>
 
@@ -13,7 +13,7 @@
     <item android:state_pressed="true">
         <shape android:shape="rectangle">
             <corners android:radius="@dimen/dp_999" />
-            <solid android:color="@color/color_vertical_tab_layout_text" />
+            <solid android:color="@color/color_circle_button_selector" />
         </shape>
     </item>
 
@@ -21,7 +21,7 @@
     <item android:state_focused="true">
         <shape android:shape="rectangle">
             <corners android:radius="@dimen/dp_999" />
-            <solid android:color="@color/color_vertical_tab_layout_text" />
+            <solid android:color="@color/color_circle_button_selector" />
         </shape>
     </item>
 
@@ -29,7 +29,7 @@
     <item>
         <shape android:shape="rectangle">
             <corners android:radius="@dimen/dp_999" />
-            <solid android:color="@color/color_drawable_bg_tint" />
+            <solid android:color="@color/color_bottom_navigation_surface" />
         </shape>
     </item>
 

@@ -20,9 +20,10 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.lifecycleScope
-import com.example.smile.BuildConfig
 import com.example.smile.R
 import com.example.smile.app.AppActivity
+import com.example.smile.app.AppConfig.getVersionCode
+import com.example.smile.app.AppConfig.getVersionName
 import com.example.smile.util.KLog
 import com.example.smile.widget.setOnclickNoRepeat
 import com.gyf.immersionbar.ImmersionBar
@@ -96,6 +97,7 @@ class CrashActivity : AppActivity() {
                 R.id.iv_crash_info -> {
                     drawerLayout?.openDrawer(GravityCompat.START)
                 }
+
                 R.id.iv_crash_share -> {
                     // 分享文本
                     val intent = Intent(Intent.ACTION_SEND)
@@ -103,6 +105,7 @@ class CrashActivity : AppActivity() {
                     intent.putExtra(Intent.EXTRA_TEXT, stackTrace)
                     startActivity(Intent.createChooser(intent, ""))
                 }
+
                 R.id.iv_crash_restart -> {
                     onBackPressed()
                 }
@@ -165,18 +168,23 @@ class CrashActivity : AppActivity() {
             displayMetrics.densityDpi > 480 -> {
                 targetResource = "xxxhdpi"
             }
+
             displayMetrics.densityDpi > 320 -> {
                 targetResource = "xxhdpi"
             }
+
             displayMetrics.densityDpi > 240 -> {
                 targetResource = "xhdpi"
             }
+
             displayMetrics.densityDpi > 160 -> {
                 targetResource = "hdpi"
             }
+
             displayMetrics.densityDpi > 120 -> {
                 targetResource = "mdpi"
             }
+
             else -> {
                 targetResource = "ldpi"
             }
@@ -185,14 +193,14 @@ class CrashActivity : AppActivity() {
         builder.append("设备品牌：\t").append(Build.BRAND).append("\n设备型号：\t").append(Build.MODEL).append("\n设备类型：\t")
             .append(if (isTablet()) "平板" else "手机")
 
-        builder.append("\n屏幕宽高：\t").append(screenWidth).append(" x ").append(screenHeight).append("\n屏幕密度：\t").append(displayMetrics.densityDpi)
-            .append("\n密度像素：\t").append(displayMetrics.density).append("\n目标资源：\t").append(targetResource).append("\n最小宽度：\t")
-            .append(smallestWidth.toInt())
+        builder.append("\n屏幕宽高：\t").append(screenWidth).append(" x ").append(screenHeight).append("\n屏幕密度：\t")
+            .append(displayMetrics.densityDpi).append("\n密度像素：\t").append(displayMetrics.density).append("\n目标资源：\t").append(targetResource)
+            .append("\n最小宽度：\t").append(smallestWidth.toInt())
 
         builder.append("\n安卓版本：\t").append(Build.VERSION.RELEASE).append("\nAPI 版本：\t").append(Build.VERSION.SDK_INT).append("\nCPU 架构：\t")
             .append(Build.SUPPORTED_ABIS[0])
 
-        builder.append("\n应用版本：\t").append(BuildConfig.VERSION_NAME).append("\n版本代码：\t").append(BuildConfig.VERSION_CODE)
+        builder.append("\n应用版本：\t").append(getVersionName()).append("\n版本代码：\t").append(getVersionCode())
 
         try {
             val dateFormat = SimpleDateFormat("MM-dd HH:mm", Locale.getDefault())
@@ -214,9 +222,11 @@ class CrashActivity : AppActivity() {
                         XXPermissions.isGranted(this, Permission.ACCESS_FINE_LOCATION) -> {
                             builder.append("精确")
                         }
+
                         XXPermissions.isGranted(this, Permission.ACCESS_COARSE_LOCATION) -> {
                             builder.append("粗略")
                         }
+
                         else -> {
                             builder.append("未获得")
                         }
@@ -263,6 +273,7 @@ class CrashActivity : AppActivity() {
         }
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
         // 重启应用
         RestartActivity.restart(this)

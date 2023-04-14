@@ -12,10 +12,12 @@ import com.example.smile.R
 import com.example.smile.http.GsonConvert
 import com.example.smile.http.NetApi.BaseURL
 import com.example.smile.util.DynamicTimeFormat
+import com.google.android.material.color.DynamicColors
 import com.hjq.toast.Toaster
 import com.scwang.smart.refresh.footer.ClassicsFooter
 import com.scwang.smart.refresh.header.ClassicsHeader
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
+import com.tencent.mmkv.MMKV
 import org.litepal.LitePal
 import per.goweii.swipeback.SwipeBack
 import per.goweii.swipeback.SwipeBackDirection
@@ -40,6 +42,10 @@ class AppApplication : Application() {
         super.onCreate()
         //延迟初始化全局context对象
         context = applicationContext
+        //初始化数据序列化框架
+        MMKV.initialize(this)
+        //启用动态主题颜色
+        DynamicColors.applyToActivitiesIfAvailable(this)
         //本地异常捕捉
         CrashHandler.register(this)
         //初始化数据库

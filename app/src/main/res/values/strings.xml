@@ -1,6 +1,11 @@
 <resources>
     <!--主页-->
     <string name="app_name">开口笑</string>
+    <string name="home_fragment">首页</string>
+    <string name="evenly_fragment">划一划</string>
+    <string name="release_fragment">发布</string>
+    <string name="information_fragment">消息</string>
+    <string name="profile_fragment">我的</string>
     <string name="crash_title">应用程序发生崩溃</string>
     <string name="crash_message">我是错误信息</string>
     <string name="details">详细信息</string>
@@ -123,4 +128,12 @@
     <string name="course_desc">Android从入门到入土Android从入门到入土Android从入门到入土Android从入门到入土Android从入门到入土</string>
     <string name="course_copyright">知识共享 署名-相同方式共享 3.0协议</string>
     <string name="common_crash_hint">应用出了点小意外，正在重新启动…</string>
+    <!--主页底部导航栏item标题列表-->
+    <string-array name="bottom_navigation_title">
+        <item>首页</item>
+        <item>划一划</item>
+        <item>发布</item>
+        <item>消息</item>
+        <item>我的</item>
+    </string-array>
 </resources>

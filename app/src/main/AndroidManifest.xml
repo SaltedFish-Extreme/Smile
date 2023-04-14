@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" >
+    xmlns:tools="http://schemas.android.com/tools">
     <!-- 网络相关 -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -70,7 +70,7 @@
         android:theme="@style/Theme.Smile"
         android:usesCleartextTraffic="true"
         tools:ignore="AllowBackup,DataExtractionRules,LockedOrientationActivity"
-        tools:replace="android:allowBackup,android:supportsRtl" >
+        tools:replace="android:allowBackup,android:supportsRtl">
         <!-- 状态栏沉浸框架 -->
         <!-- 适配华为（huawei）刘海屏 -->
         <meta-data
@@ -90,8 +90,8 @@
             android:exported="false" />
         <activity
             android:name=".ui.activity.SplashActivity"
-            android:theme="@style/Theme.Smile.SplashTheme"
-            android:exported="true" >
+            android:exported="true"
+            android:theme="@style/Theme.Smile.SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -115,7 +115,7 @@
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"
             android:exported="false"
-            android:grantUriPermissions="true" >
+            android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />

@@ -1,12 +1,10 @@
 <resources>
     <!-- 应用主题样式 -->
-    <style name="Theme.Smile" parent="Theme.MaterialComponents.DayNight.NoActionBar.Bridge">
+    <style name="Theme.Smile" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- 应用的主要色调，ActionBar Toolbar 默认使用该颜色 -->
         <item name="colorPrimary">@color/super_blue</item>
         <!-- 应用的强调色，CheckBox RadioButton Switch 等一般控件的选中效果默认采用该颜色 -->
         <item name="colorAccent">@color/deep_sky_blue</item>
-        <!-- 应用的主要暗色调，状态栏默认使用该颜色 -->
-        <item name="colorPrimaryDark">@android:color/transparent</item>
     </style>
 
     <!--闪屏页主题-->
@@ -17,25 +15,20 @@
         <item name="android:windowFullscreen">true</item>
     </style>
 
+    <!--底部导航栏主题-->
+    <style name="BottomNavigationViewStyle" parent="Widget.Material3.BottomNavigationView">
+        <item name="materialThemeOverlay">@style/BottomNavigationViewOverlay</item>
+    </style>
+    <!--覆盖主题颜色-->
+    <style name="BottomNavigationViewOverlay" parent="">
+        <item name="colorOnSurface">@color/super_blue</item>
+        <item name="colorOnSurfaceVariant">@color/deep_sky_blue</item>
+    </style>
+
     <!--弹出菜单主题-->
     <style name="PopupMenuStyle" parent="@style/Widget.AppCompat.PopupMenu.Overflow">
         <!--使弹出菜单和标题栏不重叠-->
         <item name="overlapAnchor">false</item>
-    </style>
-
-    <!--自定义Toolbar样式-->
-    <style name="KToolbarStyle" parent="@style/Widget.AppCompat.Toolbar">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">?attr/actionBarSize</item>
-        <!--导航按钮图标，这里注释，在代码中定义ActionBarDrawerToggle-->
-        <!--<item name="navigationIcon">@drawable/ic_menu</item>-->
-        <item name="titleTextAppearance">@style/KToolbarTitleAppearance</item>
-    </style>
-    <!--自定义Toolbar标题-->
-    <style name="KToolbarTitleAppearance" parent="@style/TextAppearance.Widget.AppCompat.Toolbar.Title">
-        <item name="android:textSize">@dimen/sp_18</item>
-        <!--标题文本颜色，这里注释，为了适配夜间主题自动切换颜色-->
-        <!--<item name="android:textColor">@android:color/black</item>-->
     </style>
 
     <!--标签框通用样式-->
@@ -45,15 +38,13 @@
         <item name="android:layout_marginStart">@dimen/dp_8</item>
         <item name="android:padding">@dimen/dp_4</item>
         <item name="android:textSize">@dimen/sp_10</item>
-        <item name="shape_radius">@dimen/dp_2</item>
-        <item name="shape_strokeWidth">@dimen/dp_0.5</item>
     </style>
 
     <!--标题栏通用样式-->
     <style name="TitleBar">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:background">@color/color_floating_button</item>
+        <item name="android:background">@color/color_title_bar</item>
         <item name="android:paddingTop">@dimen/dp_20</item>
         <item name="leftIcon">@drawable/ic_back</item>
         <item name="leftIconTint">@color/color_ic_bg_tint</item>
@@ -73,7 +64,7 @@
         <item name="bar_leftTextSize">@dimen/sp_16</item>
         <item name="bar_leftTextColor">?android:attr/textColorPrimary</item>
         <item name="bar_leftDrawablePadding">@dimen/dp_20</item>
-        <item name="bar_leftDrawableTint">@color/color_drawable_bg_tint</item>
+        <item name="bar_leftDrawableTint">@color/color_bottom_navigation_surface</item>
         <item name="bar_rightTextColor">?android:attr/textColorSecondary</item>
         <item name="bar_rightDrawable">@drawable/ic_arrows_right</item>
         <item name="bar_rightDrawableTint">@color/color_ic_bg_tint</item>

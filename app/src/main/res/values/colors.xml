@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!--首要颜色--><color name="color_primary">#00bcd4</color>
-    <!--首要颜色暗色--><color name="color_primary_dark">#03a9f4</color>
-    <!--色彩强调--><color name="color_accent">#2196F3</color>
-
     <!--黑色 --><color name="black">#000000</color>
     <!--象牙黑 --><color name="black_ivory">#292421</color>
     <!--白色 --><color name="white">#FFFFFF</color>
@@ -132,6 +128,8 @@
     <!--皇家蓝 --><color name="royal_blue">#4169e1</color>
     <!--天蓝色 --><color name="azure">#f0ffff</color>
     <!--天蓝色 --><color name="sky_blue">#87ceeb</color>
+    <!--生动蓝色--><color name="vivid_blue">#03a9f4</color>
+    <!--材料蓝色--><color name="material_blue">#2196F3</color>
     <!--深天蓝色 --><color name="deep_sky_blue">#00bfff</color>
     <!--亮天蓝色 --><color name="light_sky_blue">#87cefa</color>
     <!--超级蓝色 --><color name="super_blue">#38ACFF</color>
@@ -176,22 +174,14 @@
     <!--黑色阴影--><color name="black_shadow">#44000000</color>
 
     <!--                    自定义适配主题颜色                    -->
-    <!--悬浮按钮颜色--><color name="color_floating_button">@color/super_blue</color>
-    <!--重要文字颜色--><color name="color_important">@color/red</color>
-    <!--标签文字颜色--><color name="color_tag">@color/color_primary_dark</color>
-    <!--文章作者颜色--><color name="color_article_author">@color/dove_gray</color>
-    <!--文章章节颜色--><color name="color_article_chapter">@color/gray_8f</color>
+    <!--底部导航栏颜色--><color name="color_navigation_bar">@color/white_smoke</color>
+    <!--底部选项卡容器颜色--><color name="color_bottom_navigation_surface">@color/super_blue</color>
+    <!--底部选项卡内容颜色--><color name="color_bottom_navigation_on_surface">@color/deep_sky_blue</color>
+    <!--标题栏颜色--><color name="color_title_bar">@color/super_blue</color>
     <!--viewpager指示器选中颜色--><color name="color_viewpager_selected">@color/black</color>
     <!--viewpager指示器未选中颜色--><color name="color_viewpager_unselected">@color/black_ivory</color>
-    <!--垂直标签布局填充颜色--><color name="color_vertical_tab_layout_fill">@color/light_alto</color>
-    <!--垂直标签布局文字颜色--><color name="color_vertical_tab_layout_text">@color/deep_sky_blue</color>
-    <!--分割线背景色--><color name="color_line_divider_bg">@color/dusty_gray</color>
-    <!--标签item填充颜色--><color name="color_tab_item_fill">@color/light_grey</color>
+    <!--圆形按钮颜色--><color name="color_circle_button_selector">@color/deep_sky_blue</color>
+    <!--圆形按钮禁用状态颜色--><color name="color_circle_button_selector_disabled">@color/light_alto</color>
+    <!--分割线颜色--><color name="color_line_divider">@color/dusty_gray</color>
     <!--图标背景色调--><color name="color_ic_bg_tint">@color/black</color>
-    <!--可绘制背景色调--><color name="color_drawable_bg_tint">@color/color_accent</color>
-    <!--web页面背景绘制颜色--><color name="color_web_bg_draw">@color/transparent</color>
-    <!--搜索框背景颜色--><color name="color_search_bg">@color/light_inky_black</color>
-    <!--自定义悬浮按钮颜色--><color name="color_fab">@color/color_primary_dark</color>
-    <!--自定义悬浮按钮按下颜色--><color name="color_fab_pressed">@color/color_accent</color>
-    <!--教程标题颜色--><color name="color_course_title">@color/daytime_blue</color>
 </resources>

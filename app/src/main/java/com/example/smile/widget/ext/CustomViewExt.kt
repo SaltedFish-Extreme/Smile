@@ -11,8 +11,10 @@ import android.view.ViewGroup
 import android.view.animation.AccelerateInterpolator
 import android.view.animation.DecelerateInterpolator
 import android.view.inputmethod.InputMethodManager
-import androidx.annotation.*
+import androidx.annotation.ColorInt
+import androidx.annotation.FloatRange
 import androidx.annotation.IntRange
+import androidx.annotation.LayoutRes
 import androidx.core.view.get
 import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
@@ -33,7 +35,7 @@ import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.CommonNav
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.IPagerIndicator
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.IPagerTitleView
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.indicators.LinePagerIndicator
-import java.util.*
+import java.util.Random
 
 /**
  * Created by 咸鱼至尊 on 2021/12/10
@@ -338,4 +340,21 @@ fun NestedScrollView.cancelFloatBtn(floatBtn: FloatingActionButton) {
     floatBtn.hide()
     //清除悬浮按钮点击事件
     floatBtn.setOnClickListener(null)
+}
+
+/**
+ * 视图扩展函数，设置边距
+ *
+ * @param l 左
+ * @param t 上
+ * @param r 右
+ * @param b 下
+ * @param v view，默认该视图
+ */
+fun FloatingActionButton.setMargins(l: Int, t: Int, r: Int, b: Int, v: View = this) {
+    if (v.layoutParams is ViewGroup.MarginLayoutParams) {
+        val p = v.layoutParams as ViewGroup.MarginLayoutParams
+        p.setMargins(l, t, r, b)
+        v.requestLayout()
+    }
 }

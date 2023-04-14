@@ -1,9 +1,51 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<?xml version="1.0" encoding="utf-8"?><!--主页--><!--监听子控件事件的FrameLayout-->
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.activity.MainActivity">
+    android:layout_height="match_parent">
 
-  </androidx.constraintlayout.widget.ConstraintLayout>
+    <!--应用栏滚动手势-->
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <!--官方居中标题工具栏-->
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:titleCentered="true" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!--给 Fragment管理容器 底部导航栏 设置layout_behavior视图滚动行为-->
+    <!--Fragment管理容器
+    name指定NavHost实现类名称，默认androidx.navigation.fragment.NavHostFragment，
+    defaultNavHost为false表示不拦截系统返回按钮，否则按返回键切换回主页Fragment，
+    navGraph指定要绑定的导航图，可在代码中配置，这里在xml里配置
+    不使用navGraph时需添加layout使用页面占位，屏蔽预览图警告-->
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/nav_host_fragment"
+        android:name="com.example.smile.widget.navigation.MyNavHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:defaultNavHost="false"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:navGraph="@navigation/nav_bottom" />
+
+    <!--底部导航栏
+    当background设置为透明色时，
+    需要设置outlineProvider="none"不为view绘制阴影，
+    否则需要设置outlineSpotShadowColor绘制阴影颜色，需api>=28-->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation_view"
+        style="@style/BottomNavigationViewStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@color/color_navigation_bar"
+        android:outlineProvider="none"
+        app:itemIconSize="@dimen/dp_40" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

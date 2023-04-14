@@ -22,9 +22,11 @@ open class AppActivity : AppCompatActivity() {
             Configuration.UI_MODE_NIGHT_YES -> {
                 AppConfig.DarkTheme = true
             }
+
             Configuration.UI_MODE_NIGHT_NO -> {
                 AppConfig.DarkTheme = false
             }
+
             Configuration.UI_MODE_NIGHT_UNDEFINED -> {
                 AppConfig.DarkTheme = false
             }
@@ -37,11 +39,11 @@ open class AppActivity : AppCompatActivity() {
         //状态栏沉浸
         when (AppConfig.DarkTheme) {
             false -> immersionBar {
-                navigationBarColor(R.color.white)
+                navigationBarColor(R.color.white_smoke)
                 statusBarDarkFont(true, 0.2f)
                 navigationBarDarkIcon(true, 0.2f)
-                navigationBarAlpha(0.1f)
             }
+
             true -> immersionBar {}
         }
         //强制页面竖屏显示

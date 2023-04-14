@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.ImageView
 
 /** view扩展函数 */
+
 /** 设置view显示 */
 fun View.visible() {
     visibility = View.VISIBLE

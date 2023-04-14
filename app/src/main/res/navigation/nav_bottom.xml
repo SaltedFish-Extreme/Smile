@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?><!--导航图，navigation父标签，
+id用来和管理容器的navGraph标签绑定，startDestination指定默认显示的fragment-->
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_bottom"
+    app:startDestination="@id/home_page">
+
+    <!--可包含多个子fragment，
+    这里使用自定义fixFragment标签，在MyFragmentNavigator中注解
+    id用来导航跳转，这里需和对应的menu菜单中itemId保持一致，
+    name指定对应Fragment类，label指定名称，layout可预览指定视图-->
+    <fixFragment
+        android:id="@+id/home_page"
+        android:name="com.example.smile.ui.fragment.HomeFragment"
+        android:label="HomeFragment"
+        tools:layout="@layout/fragment_home" />
+    <fixFragment
+        android:id="@+id/evenly_page"
+        android:name="com.example.smile.ui.fragment.EvenlyFragment"
+        android:label="EvenlyFragment"
+        tools:layout="@layout/fragment_evenly" />
+
+    <fixFragment
+        android:id="@+id/release_page"
+        android:name="com.example.smile.ui.fragment.ReleaseFragment"
+        android:label="ReleaseFragment"
+        tools:layout="@layout/fragment_release" />
+
+    <fixFragment
+        android:id="@+id/information_page"
+        android:name="com.example.smile.ui.fragment.InformationFragment"
+        android:label="InformationFragment"
+        tools:layout="@layout/fragment_information" />
+
+    <fixFragment
+        android:id="@+id/profile_page"
+        android:name="com.example.smile.ui.fragment.ProfileFragment"
+        android:label="ProfileFragment"
+        tools:layout="@layout/fragment_profile" />
+
+    <!--子action标签用来执行跳转操作，指定id，以及destination要跳转到哪个fragment-->
+</navigation>

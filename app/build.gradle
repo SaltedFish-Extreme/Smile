@@ -15,6 +15,12 @@ android {
         targetSdk 33
         versionCode 1
         versionName "1.0"
+
+        // 仅保留中文语种的资源
+        resConfigs 'zh'
+
+        // 仅保留 xxhdpi 图片资源（目前主流分辨率 1920 * 1080）
+        resConfigs 'xxhdpi'
     }
 
     // Apk 签名的那些事：https://www.jianshu.com/p/a1f8e5896aa2
@@ -33,6 +39,7 @@ android {
         debug {
             // 调试模式下只保留一种架构的 so 库，提升打包速度
             ndk {
+                //noinspection ChromeOsAbiSupport
                 abiFilters 'armeabi-v7a'
             }
         }
@@ -56,28 +63,20 @@ android {
                 // armeabi：万金油架构平台（占用率：0%）
                 // armeabi-v7a：曾经主流的架构平台（占用率：10%）
                 // arm64-v8a：目前主流架构平台（占用率：95%）
+                //noinspection ChromeOsAbiSupport
                 abiFilters 'armeabi-v7a', 'arm64-v8a'
             }
         }
-
-        // 代码警告配置
-        lintOptions {
-            // 禁用文本硬编码警告
-            disable 'HardcodedText'
-            // 禁用图片描述警告
-            disable 'ContentDescription'
-        }
     }
 
-    // 支持 Java JDK 8
+    // 支持 Java JDK 17
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
-
     // kotlin解释器版本
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = '17'
     }
 
     // 设置存放 so 文件的目录
@@ -98,15 +97,17 @@ dependencies {
     //Material库 https://github.com/material-components/material-components-android
     implementation 'com.google.android.material:material:1.8.0'
     //kotlin核心包
-    implementation 'androidx.core:core-ktx:1.9.0'
+    implementation 'androidx.core:core-ktx:1.10.0'
     //Kotlin协程 https://github.com/Kotlin/kotlinx.coroutines
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
-    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.6.0'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.0'
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.6.1'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1'
     //navigation支持
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
+    //noinspection GradleDependency
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.5'
+    //noinspection GradleDependency
+    implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
     //OkHttp
     //noinspection GradleDependency
     implementation 'com.squareup.okhttp3:okhttp:4.10.0'
@@ -140,8 +141,6 @@ dependencies {
     implementation 'com.github.getActivity:Toaster:12.0'
     //权限请求 https://github.com/getActivity/XXPermissions
     implementation 'com.github.getActivity:XXPermissions:16.8'
-    //Shape https://github.com/getActivity/ShapeView
-    implementation 'com.github.getActivity:ShapeView:8.5'
     //揭示效果 https://github.com/goweii/RevealLayout
     implementation 'com.github.goweii:RevealLayout:1.3.4'
     //伸缩布局 https://github.com/google/flexbox-layout
@@ -152,4 +151,6 @@ dependencies {
     implementation 'com.geyifeng.immersionbar:immersionbar:3.2.2'
     //kotlin扩展（可选）
     implementation 'com.geyifeng.immersionbar:immersionbar-ktx:3.2.2'
+    //动画解析库 https://github.com/airbnb/lottie-android
+    implementation 'com.airbnb.android:lottie:6.0.0'
 }
