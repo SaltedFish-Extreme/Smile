@@ -19,10 +19,16 @@
     <style name="BottomNavigationViewStyle" parent="Widget.Material3.BottomNavigationView">
         <item name="materialThemeOverlay">@style/BottomNavigationViewOverlay</item>
     </style>
-    <!--覆盖主题颜色-->
+    <!--覆盖默认主题 选中及未选中时文字颜色 遮罩样式-->
     <style name="BottomNavigationViewOverlay" parent="">
         <item name="colorOnSurface">@color/super_blue</item>
         <item name="colorOnSurfaceVariant">@color/deep_sky_blue</item>
+        <item name="shapeCornerFamily">cut</item>
+    </style>
+
+    <!--覆盖item选中时主题 遮罩颜色-->
+    <style name="ActiveIndicatorStyle" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">@color/color_navigation_bar_ripple</item>
     </style>
 
     <!--弹出菜单主题-->

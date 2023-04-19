@@ -169,12 +169,11 @@
     <!--日间蓝色--><color name="daytime_blue">#007fff</color>
     <!--夜间蓝色--><color name="night_blue">#33a3ff</color>
 
-    <!--默认mipmap前景色--><color name="mipmap_foreground_color">#33FFFFFF</color>
-    <!--默认mipmap背景色--><color name="mipmap_background_color">#3DDC84</color>
     <!--黑色阴影--><color name="black_shadow">#44000000</color>
 
     <!--                    自定义适配主题颜色                    -->
     <!--底部导航栏颜色--><color name="color_navigation_bar">@color/white_smoke</color>
+    <!--底部选项卡选中遮罩颜色--><color name="color_navigation_bar_ripple">@color/black_translucent</color>
     <!--底部选项卡容器颜色--><color name="color_bottom_navigation_surface">@color/super_blue</color>
     <!--底部选项卡内容颜色--><color name="color_bottom_navigation_on_surface">@color/deep_sky_blue</color>
     <!--标题栏颜色--><color name="color_title_bar">@color/super_blue</color>

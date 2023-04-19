@@ -14,6 +14,7 @@
     <!--缺省页-->
     <string name="no_data">暂无数据，点击重试</string>
     <string name="no_net">网络异常，点击重试</string>
+    <string name="loading">加载中，请稍候</string>
     <!--主页导航栏按钮长按不弹吐司-->
     <string name="navigation_drawer_open" />
     <string name="navigation_drawer_close" />
@@ -60,7 +61,6 @@
     <string name="github">github.com/SaltedFish-Extreme</string>
     <string name="link">saltedfish-extreme.github.io</string>
     <!--网页-->
-    <string name="loading">加载中…</string>
     <string name="text_plan">text/plain</string>
     <string name="web_collect">收藏</string>
     <string name="web_share">分享</string>

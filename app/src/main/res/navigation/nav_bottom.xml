@@ -29,9 +29,9 @@ id用来和管理容器的navGraph标签绑定，startDestination指定默认显
 
     <fixFragment
         android:id="@+id/information_page"
-        android:name="com.example.smile.ui.fragment.InformationFragment"
+        android:name="com.example.smile.ui.fragment.InfoFragment"
         android:label="InformationFragment"
-        tools:layout="@layout/fragment_information" />
+        tools:layout="@layout/fragment_info" />
 
     <fixFragment
         android:id="@+id/profile_page"

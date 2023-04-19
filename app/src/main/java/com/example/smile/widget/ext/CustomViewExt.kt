@@ -343,15 +343,15 @@ fun NestedScrollView.cancelFloatBtn(floatBtn: FloatingActionButton) {
 }
 
 /**
- * 视图扩展函数，设置边距
+ * 视图扩展函数,设置边距
  *
  * @param l 左
  * @param t 上
  * @param r 右
  * @param b 下
- * @param v view，默认该视图
+ * @param v 视图
  */
-fun FloatingActionButton.setMargins(l: Int, t: Int, r: Int, b: Int, v: View = this) {
+fun View.margin(l: Int, t: Int, r: Int, b: Int, v: View = this) {
     if (v.layoutParams is ViewGroup.MarginLayoutParams) {
         val p = v.layoutParams as ViewGroup.MarginLayoutParams
         p.setMargins(l, t, r, b)

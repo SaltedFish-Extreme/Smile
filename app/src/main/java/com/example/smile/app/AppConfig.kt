@@ -43,7 +43,7 @@ object AppConfig {
 
     /** Lottie动画枚举类 */
     enum class LottieAnimation(val value: Int) {
-        HOME(R.raw.home), COMPASS(R.raw.compass), ADD(R.raw.add), MESSAGE(R.raw.message), PROFILE(R.raw.profile)
+        HOME(R.raw.home), COMPASS(R.raw.compass), ADD(R.raw.release), MESSAGE(R.raw.info), PROFILE(R.raw.profile)
     }
 
     /** 导航栏动画列表 */

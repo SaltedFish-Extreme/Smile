@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?><!--夜间主题差异型编程-->
 <resources>
     <!--底部导航栏颜色--><color name="color_navigation_bar">@color/black</color>
+    <!--底部选项卡选中遮罩颜色--><color name="color_navigation_bar_ripple">@color/white_translucent</color>
     <!--底部选项卡容器颜色--><color name="color_bottom_navigation_surface">@color/medium_orchid</color>
     <!--底部选项卡内容颜色--><color name="color_bottom_navigation_on_surface">@color/orchid</color>
     <!--标题栏颜色--><color name="color_title_bar">@color/gray_8f</color>

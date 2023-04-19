@@ -12,14 +12,11 @@ import com.example.smile.app.AppConfig
 import com.example.smile.app.AppConfig.getLottieAnimationList
 import com.example.smile.app.AppConfig.getLottieDrawable
 import com.example.smile.util.vibration
-import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.bottomnavigation.BottomNavigationItemView
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.gyf.immersionbar.ktx.immersionBar
 
 class MainActivity : AppActivity() {
 
-    private val toolbar: MaterialToolbar by lazy { findViewById(R.id.toolbar) }
     private val bottomNavigationView: BottomNavigationView by lazy { findViewById(R.id.bottom_navigation_view) }
     private val navHostFragment: NavHostFragment by lazy { supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment }
 
@@ -31,12 +28,6 @@ class MainActivity : AppActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        //使标题栏和状态栏不重叠
-        immersionBar {
-            titleBar(toolbar)
-        }
-        //使用toolBar并使其外观与功能和actionBar一致
-        setSupportActionBar(toolbar)
         //初始化底部导航栏
         initBottomNavigationView()
     }
@@ -86,9 +77,11 @@ class MainActivity : AppActivity() {
         //默认选中第一个菜单项
         bottomNavigationView.selectedItemId = menuItemIdList[0]
         //处理长按 MenuItem 提示 TooltipText
-        bottomNavigationView.menu.forEach {
-            val menuItemView = findViewById<BottomNavigationItemView>(it.itemId)
+        bottomNavigationView.menu.forEach { item ->
+            val menuItemView = findViewById<BottomNavigationItemView>(item.itemId)
             menuItemView.setOnLongClickListener {
+                //长按菜单项使其执行选中操作事件
+                bottomNavigationView.selectedItemId = item.itemId
                 true
             }
         }

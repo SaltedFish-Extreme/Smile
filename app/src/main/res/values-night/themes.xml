@@ -24,5 +24,6 @@
     <style name="BottomNavigationViewOverlay" parent="">
         <item name="colorOnSurface">@color/medium_orchid</item>
         <item name="colorOnSurfaceVariant">@color/orchid</item>
+        <item name="shapeCornerFamily">cut</item>
     </style>
 </resources>
