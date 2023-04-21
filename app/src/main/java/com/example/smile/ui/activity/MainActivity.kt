@@ -6,6 +6,7 @@ import android.view.MenuItem
 import androidx.core.view.forEach
 import androidx.navigation.fragment.NavHostFragment
 import com.airbnb.lottie.LottieDrawable
+import com.drake.serialize.intent.openActivity
 import com.example.smile.R
 import com.example.smile.app.AppActivity
 import com.example.smile.app.AppConfig
@@ -14,15 +15,17 @@ import com.example.smile.app.AppConfig.getLottieDrawable
 import com.example.smile.util.vibration
 import com.google.android.material.bottomnavigation.BottomNavigationItemView
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class MainActivity : AppActivity() {
 
     private val bottomNavigationView: BottomNavigationView by lazy { findViewById(R.id.bottom_navigation_view) }
     private val navHostFragment: NavHostFragment by lazy { supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment }
+    private val fab: FloatingActionButton by lazy { findViewById(R.id.fab) }
 
     companion object {
         /** 菜单编号(和底部导航图中fixFragment的id保持一致) */
-        private val menuItemIdList = arrayListOf(R.id.home_page, R.id.evenly_page, R.id.release_page, R.id.information_page, R.id.profile_page)
+        private val menuItemIdList = arrayListOf(R.id.home_page, R.id.evenly_page, R.id.release_page, R.id.info_page, R.id.profile_page)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,6 +33,11 @@ class MainActivity : AppActivity() {
         setContentView(R.layout.activity_main)
         //初始化底部导航栏
         initBottomNavigationView()
+        fab.setOnClickListener {
+            //震动一下
+            vibration()
+            openActivity<ReleaseActivity>()
+        }
     }
 
     private fun initBottomNavigationView() {
@@ -53,9 +61,9 @@ class MainActivity : AppActivity() {
      * @param lottieAnimationList lottie动画列表
      */
     private fun Menu.setLottieDrawable(lottieAnimationList: ArrayList<AppConfig.LottieAnimation>) {
-        for (i in 0 until bottomNavigationView.menu.size()) {
-            //遍历底部导航栏菜单列表，将每项图标替换成LottieDrawable
-            findItem(menuItemIdList[i]).icon = getLottieDrawable(lottieAnimationList[i], bottomNavigationView)
+        //遍历底部导航栏菜单列表，将除了中间之外的每项图标替换成LottieDrawable
+        (0 until bottomNavigationView.menu.size()).filter { it != 2 }.forEach {
+            findItem(menuItemIdList[it]).icon = getLottieDrawable(lottieAnimationList[it], bottomNavigationView)
         }
     }
 
@@ -76,6 +84,8 @@ class MainActivity : AppActivity() {
         }
         //默认选中第一个菜单项
         bottomNavigationView.selectedItemId = menuItemIdList[0]
+        //不启用第二个菜单项功能，用悬浮按钮代替
+        bottomNavigationView.menu.findItem(R.id.release_page).isEnabled = false
         //处理长按 MenuItem 提示 TooltipText
         bottomNavigationView.menu.forEach { item ->
             val menuItemView = findViewById<BottomNavigationItemView>(item.itemId)

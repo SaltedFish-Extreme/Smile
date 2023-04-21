@@ -50,17 +50,17 @@ open class AppActivity : AppCompatActivity() {
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
     }
 
-    @Deprecated("Deprecated in Java")
     @Suppress("DEPRECATION")
+    @Deprecated("Deprecated in Java")
     override fun startActivityForResult(intent: Intent, requestCode: Int, options: Bundle?) {
         super.startActivityForResult(intent, requestCode, options)
         //转场动画效果
-        overridePendingTransition(R.anim.right_in_activity, R.anim.right_out_activity)
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun finish() {
+        super.finish()
         //转场动画效果
-        overridePendingTransition(R.anim.left_in_activity, R.anim.left_out_activity)
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
     }
 }

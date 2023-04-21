@@ -153,4 +153,10 @@ dependencies {
     implementation 'com.geyifeng.immersionbar:immersionbar-ktx:3.2.2'
     //动画解析库 https://github.com/airbnb/lottie-android
     implementation 'com.airbnb.android:lottie:6.0.0'
+    //弹窗框架 https://github.com/javakam/DialogManager
+    implementation 'com.github.javakam:dialog.core:6.0.0@aar'        //15KB, 核心
+    implementation 'com.github.javakam:dialog.usage:6.0.0@aar'       //25KB, 常用样式(如: 加载中弹窗)
+    implementation 'com.github.javakam:dialog.bottomsheet:6.0.0@aar' //23KB, 底部弹窗, 可以单独使用
+    implementation 'com.github.javakam:widget.optionview:6.0.0@aar'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'//RecyclerView 实现的单/多选列表
 }

@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+
+    <!--程序运行不需要相机硬件功能支持-->
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
     <!-- 网络相关 -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -85,6 +90,9 @@
             android:name="ScopedStorage"
             android:value="true" />
 
+        <activity
+            android:name=".ui.activity.ReleaseActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.activity.MainActivity"
             android:exported="false" />

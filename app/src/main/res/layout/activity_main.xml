@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?><!--主页-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -22,18 +21,39 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         app:navGraph="@navigation/nav_bottom" />
 
-    <!--底部导航栏 itemIconSize设置菜单项图标大小，
-    itemRippleColor设置item触摸时遮罩颜色，
-    itemActiveIndicatorStyle设置item选中时主题-->
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation_view"
-        style="@style/BottomNavigationViewStyle"
+    <!--子控件交互视图-->
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:background="@color/color_navigation_bar"
-        app:itemActiveIndicatorStyle="@style/ActiveIndicatorStyle"
-        app:itemIconSize="@dimen/dp_40"
-        app:itemRippleColor="@null" />
+        android:layout_height="wrap_content">
+        <!--底部导航栏 itemIconSize设置菜单项图标大小，
+        itemRippleColor设置item触摸时遮罩颜色，
+        itemActiveIndicatorStyle设置item选中时主题-->
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_navigation_view"
+            style="@style/BottomNavigationViewStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="@color/color_navigation_bar"
+            app:itemActiveIndicatorStyle="@style/ActiveIndicatorStyle"
+            app:itemIconSize="@dimen/dp_40"
+            app:itemRippleColor="@null" />
+
+        <!--悬浮按钮，使其遮盖掉底部导航栏中间选项
+        layout_anchor设置锚点视图，layout_anchorGravity指定对其方式
+        maxImageSize设置按钮内图标大小，fabCustomSize设置按钮大小-->
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@null"
+            app:backgroundTint="?attr/colorPrimary"
+            app:elevation="4dp"
+            app:layout_anchor="@id/bottom_navigation_view"
+            app:layout_anchorGravity="center"
+            app:maxImageSize="@dimen/dp_50"
+            app:rippleColor="#cccccc"
+            app:srcCompat="@drawable/smile" />
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </LinearLayout>
