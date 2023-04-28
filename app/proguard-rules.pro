@@ -8,7 +8,7 @@
 
 -optimizations !code/simplification/artithmetic,!field/*,!class/merging/*
 
--keep class com.example.wanAndroid.logic.**{ *; }
+-keep class com.example.smile.model.**{ *; }
 
 ################common###############
 

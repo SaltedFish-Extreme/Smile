@@ -4,8 +4,8 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
+import android.widget.FrameLayout
 import android.widget.ImageView
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.res.ResourcesCompat
 import com.drake.serialize.intent.openActivity
 import com.example.smile.R
@@ -16,7 +16,7 @@ import com.example.smile.app.AppConfig
 class SplashActivity : AppActivity() {
 
     private val icon: ImageView by lazy { findViewById(R.id.icon) }
-    private val layoutSplash: ConstraintLayout by lazy { findViewById(R.id.layout_splash) }
+    private val layoutSplash: FrameLayout by lazy { findViewById(R.id.layout_splash) }
     private val alphaAnimation: AlphaAnimation by lazy { AlphaAnimation(0.2F, 1.0F) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,22 +35,20 @@ class SplashActivity : AppActivity() {
                 override fun onAnimationRepeat(p0: Animation?) {}
 
                 override fun onAnimationEnd(p0: Animation?) {
-                    //执行操作
-                    jumpToMain()
+                    //执行操作 跳转主页
+                    openActivity<MainActivity>()
+                    finish()
                 }
 
-                override fun onAnimationStart(p0: Animation?) {
-                }
+                override fun onAnimationStart(p0: Animation?) {}
             })
         }
         //加载内容视图动画效果
         layoutSplash.startAnimation(alphaAnimation)
     }
 
-    /** 跳转主页 */
-    fun jumpToMain() {
-        openActivity<MainActivity>()
-        finish()
+    override fun finish() {
+        super.finish()
         //转场结束动画效果
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
     }

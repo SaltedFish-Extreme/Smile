@@ -55,12 +55,12 @@ open class AppActivity : AppCompatActivity() {
     override fun startActivityForResult(intent: Intent, requestCode: Int, options: Bundle?) {
         super.startActivityForResult(intent, requestCode, options)
         //转场动画效果
-        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+        overridePendingTransition(R.anim.bottom_in, R.anim.bottom_silent)
     }
 
     override fun finish() {
         super.finish()
         //转场动画效果
-        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+        overridePendingTransition(R.anim.bottom_silent, R.anim.bottom_out)
     }
 }

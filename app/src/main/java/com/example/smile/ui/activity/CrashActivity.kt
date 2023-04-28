@@ -3,7 +3,6 @@ package com.example.smile.ui.activity
 import android.Manifest
 import android.app.Application
 import android.content.Intent
-import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.content.res.Configuration
 import android.graphics.Color
@@ -86,6 +85,7 @@ class CrashActivity : AppActivity() {
     private val messageView: TextView? by lazy { findViewById(R.id.tv_crash_message) }
     private var stackTrace: String? = null
 
+    @Suppress("DEPRECATION")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_crash)
@@ -114,6 +114,7 @@ class CrashActivity : AppActivity() {
         initData()
     }
 
+    @Suppress("DEPRECATION")
     private fun initData() {
         val throwable: Throwable = getSerializable(INTENT_KEY_IN_THROWABLE) ?: return
         titleView?.text = throwable.javaClass.simpleName
@@ -204,7 +205,11 @@ class CrashActivity : AppActivity() {
 
         try {
             val dateFormat = SimpleDateFormat("MM-dd HH:mm", Locale.getDefault())
-            val packageInfo: PackageInfo = packageManager.getPackageInfo(packageName, PackageManager.GET_PERMISSIONS)
+            val packageInfo = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                packageManager.getPackageInfo(packageName, PackageManager.PackageInfoFlags.of(0))
+            } else {
+                packageManager.getPackageInfo(packageName, PackageManager.GET_PERMISSIONS)
+            }
             builder.append("\n首次安装：\t").append(dateFormat.format(Date(packageInfo.firstInstallTime))).append("\n最近安装：\t")
                 .append(dateFormat.format(Date(packageInfo.lastUpdateTime))).append("\n崩溃时间：\t").append(dateFormat.format(Date()))
             val permissions: MutableList<String> = mutableListOf(*packageInfo.requestedPermissions)
@@ -285,7 +290,7 @@ class CrashActivity : AppActivity() {
         return ((resources.configuration.screenLayout and Configuration.SCREENLAYOUT_SIZE_MASK) >= Configuration.SCREENLAYOUT_SIZE_LARGE)
     }
 
-    @Suppress("UNCHECKED_CAST")
+    @Suppress("UNCHECKED_CAST", "DEPRECATION", "MemberVisibilityCanBePrivate")
     fun <S : Serializable?> getSerializable(name: String): S? {
         val bundle: Bundle = intent.extras ?: return null
         return (bundle.getSerializable(name)) as S?

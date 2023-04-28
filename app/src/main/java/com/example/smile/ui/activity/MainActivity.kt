@@ -9,9 +9,9 @@ import com.airbnb.lottie.LottieDrawable
 import com.drake.serialize.intent.openActivity
 import com.example.smile.R
 import com.example.smile.app.AppActivity
-import com.example.smile.app.AppConfig
-import com.example.smile.app.AppConfig.getLottieAnimationList
-import com.example.smile.app.AppConfig.getLottieDrawable
+import com.example.smile.util.LottieAnimationUtil
+import com.example.smile.util.LottieAnimationUtil.getLottieAnimationList
+import com.example.smile.util.LottieAnimationUtil.getLottieDrawable
 import com.example.smile.util.vibration
 import com.google.android.material.bottomnavigation.BottomNavigationItemView
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -60,7 +60,7 @@ class MainActivity : AppActivity() {
      *
      * @param lottieAnimationList lottie动画列表
      */
-    private fun Menu.setLottieDrawable(lottieAnimationList: ArrayList<AppConfig.LottieAnimation>) {
+    private fun Menu.setLottieDrawable(lottieAnimationList: ArrayList<LottieAnimationUtil.LottieAnimation>) {
         //遍历底部导航栏菜单列表，将除了中间之外的每项图标替换成LottieDrawable
         (0 until bottomNavigationView.menu.size()).filter { it != 2 }.forEach {
             findItem(menuItemIdList[it]).icon = getLottieDrawable(lottieAnimationList[it], bottomNavigationView)

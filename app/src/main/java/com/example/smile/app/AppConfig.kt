@@ -1,11 +1,11 @@
 package com.example.smile.app
 
-import com.airbnb.lottie.LottieCompositionFactory
-import com.airbnb.lottie.LottieDrawable
+import android.content.Context
+import android.os.Build
+import android.provider.Settings
 import com.drake.serialize.serialize.serialLazy
 import com.example.smile.BuildConfig
-import com.example.smile.R
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import java.util.UUID
 
 /**
  * author : Android 轮子哥
@@ -41,27 +41,37 @@ object AppConfig {
         return BuildConfig.VERSION_CODE
     }
 
-    /** Lottie动画枚举类 */
-    enum class LottieAnimation(val value: Int) {
-        HOME(R.raw.home), COMPASS(R.raw.compass), ADD(R.raw.release), MESSAGE(R.raw.info), PROFILE(R.raw.profile)
+    /** 获取设备序列号 */
+    private fun getSerial(context: Context): String {
+        //return UUID.randomUUID().toString()
+        return Settings.System.getString(context.contentResolver, Settings.Secure.ANDROID_ID)
     }
 
-    /** 导航栏动画列表 */
-    private val NavigationAnimationList = arrayListOf(
-        LottieAnimation.HOME, LottieAnimation.COMPASS, LottieAnimation.ADD, LottieAnimation.MESSAGE, LottieAnimation.PROFILE
-    )
-
-    /** 获取 Lottie Drawable */
-    fun getLottieDrawable(animation: LottieAnimation, bottomNavigationView: BottomNavigationView): LottieDrawable {
-        return LottieDrawable().apply {
-            val result = LottieCompositionFactory.fromRawResSync(
-                bottomNavigationView.context.applicationContext, animation.value
-            )
-            callback = bottomNavigationView
-            composition = result.value
-        }
+    /** 获取UUID */
+    fun getUUID(): String {
+        return UUID.randomUUID().toString()
     }
 
-    /** 获取 Lottie json 文件 */
-    fun getLottieAnimationList() = NavigationAnimationList
+    //region 段子乐API接口相关参数
+    /** 段子乐开放API接口调用凭证 */
+    const val project_token = "E02280DFDD9044B9B24871AC7E938533"
+
+    /** 用户登录成功后返回的token */
+    var token by serialLazy("")
+
+    /** 设备唯一ID */
+    val uk by serialLazy(getSerial(AppApplication.context))
+
+    /** 渠道来源 */
+    const val channel = "cretin_open_api"
+
+    /** app信息 */
+    val app by serialLazy("${getVersionName()};${getVersionCode()};${Build.VERSION.RELEASE}")
+
+    /** 设备信息 */
+    val device by serialLazy("${Build.BRAND};${Build.MODEL}")
+
+    /** AES解析密钥 */
+    const val AesParsingKey = "cretinzp**273846"
+    //endregion
 }

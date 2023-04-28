@@ -3,6 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id "kotlin-kapt"
     id 'kotlin-parcelize'
+    id 'kotlinx-serialization'
 }
 
 android {
@@ -14,7 +15,7 @@ android {
         minSdk 24
         targetSdk 33
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.0"
 
         // 仅保留中文语种的资源
         resConfigs 'zh'
@@ -110,15 +111,13 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
     //OkHttp
     //noinspection GradleDependency
-    implementation 'com.squareup.okhttp3:okhttp:4.10.0'
+    implementation 'com.squareup.okhttp3:okhttp:4.11.0'
     //网络请求 https://github.com/liangjingkanji/Net
-    implementation 'com.github.liangjingkanji:Net:3.5.7'
-    //JSON解析
-    implementation 'com.google.code.gson:gson:2.10.1'
+    implementation 'com.github.liangjingkanji:Net:3.5.8'
     //RecyclerView https://github.com/liangjingkanji/BRV
-    implementation 'com.github.liangjingkanji:BRV:1.3.90'
+    implementation 'com.github.liangjingkanji:BRV:1.4.1'
     //Adapter https://github.com/CymChad/BaseRecyclerViewAdapterHelper
-    implementation "io.github.cymchad:BaseRecyclerViewAdapterHelper:4.0.0-beta04"
+    implementation "io.github.cymchad:BaseRecyclerViewAdapterHelper:4.0.0-beta05"
     //智能刷新 经典刷新头 https://github.com/scwang90/SmartRefreshLayout
     implementation 'io.github.scwang90:refresh-header-classics:2.0.5'
     //序列化数据 https://github.com/liangjingkanji/Serialize
@@ -136,11 +135,11 @@ dependencies {
     //相机相册 https://github.com/HuanTanSheng/EasyPhotos
     implementation 'com.github.HuanTanSheng:EasyPhotos:3.1.5'
     //标题栏 https://github.com/getActivity/TitleBar
-    implementation 'com.github.getActivity:TitleBar:10.0'
+    implementation 'com.github.getActivity:TitleBar:10.3'
     //吐司 https://github.com/getActivity/Toaster
-    implementation 'com.github.getActivity:Toaster:12.0'
+    implementation 'com.github.getActivity:Toaster:12.2'
     //权限请求 https://github.com/getActivity/XXPermissions
-    implementation 'com.github.getActivity:XXPermissions:16.8'
+    implementation 'com.github.getActivity:XXPermissions:18.0'
     //揭示效果 https://github.com/goweii/RevealLayout
     implementation 'com.github.goweii:RevealLayout:1.3.4'
     //伸缩布局 https://github.com/google/flexbox-layout
@@ -154,9 +153,12 @@ dependencies {
     //动画解析库 https://github.com/airbnb/lottie-android
     implementation 'com.airbnb.android:lottie:6.0.0'
     //弹窗框架 https://github.com/javakam/DialogManager
-    implementation 'com.github.javakam:dialog.core:6.0.0@aar'        //15KB, 核心
-    implementation 'com.github.javakam:dialog.usage:6.0.0@aar'       //25KB, 常用样式(如: 加载中弹窗)
-    implementation 'com.github.javakam:dialog.bottomsheet:6.0.0@aar' //23KB, 底部弹窗, 可以单独使用
-    implementation 'com.github.javakam:widget.optionview:6.0.0@aar'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'//RecyclerView 实现的单/多选列表
+    implementation 'com.github.javakam:dialog.core:6.0.0@aar'  //核心库, 2个类
+    implementation 'com.github.javakam:dialog.usage:6.0.0@aar' //常用样式(如: 加载中弹窗)
+    implementation 'com.github.javakam:dialog.bottomsheet:6.0.0@aar' //底部弹窗(必需下面的 widget.option view 框架)
+    implementation 'com.github.javakam:widget.optionview:6.0.0@aar'  //单选/多选的RecyclerView,基于EasyAdapter实现
+    //网络拦截监听器 https://github.com/itkacher/OkHttpProfiler
+    implementation 'com.localebro:okhttpprofiler:1.0.8'
+    //kotlin JSON解析框架 https://github.com/Kotlin/kotlinx.serialization
+    implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0"
 }

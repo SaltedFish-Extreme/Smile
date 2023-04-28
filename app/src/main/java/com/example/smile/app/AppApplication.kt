@@ -5,15 +5,19 @@ import android.app.Application
 import android.content.Context
 import com.drake.brv.PageRefreshLayout
 import com.drake.net.NetConfig
-import com.drake.net.interceptor.LogRecordInterceptor
+import com.drake.net.interceptor.RequestInterceptor
 import com.drake.net.okhttp.setConverter
+import com.drake.net.okhttp.setRequestInterceptor
+import com.drake.net.request.BaseRequest
 import com.drake.statelayout.StateConfig
 import com.example.smile.R
-import com.example.smile.http.GsonConvert
+import com.example.smile.app.AppConfig.isDebug
 import com.example.smile.http.NetApi.BaseURL
+import com.example.smile.http.SerializationConverter
 import com.example.smile.util.DynamicTimeFormat
 import com.google.android.material.color.DynamicColors
 import com.hjq.toast.Toaster
+import com.localebro.okhttpprofiler.OkHttpProfilerInterceptor
 import com.scwang.smart.refresh.footer.ClassicsFooter
 import com.scwang.smart.refresh.header.ClassicsHeader
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
@@ -21,7 +25,7 @@ import com.tencent.mmkv.MMKV
 import org.litepal.LitePal
 import per.goweii.swipeback.SwipeBack
 import per.goweii.swipeback.SwipeBackDirection
-import per.goweii.swipeback.transformer.ParallaxSwipeBackTransformer
+import per.goweii.swipeback.transformer.ShrinkSwipeBackTransformer
 
 /**
  * Created by 咸鱼至尊 on 2021/12/9
@@ -53,7 +57,7 @@ class AppApplication : Application() {
         //初始化Toast框架
         Toaster.init(this)
         //设置吐司调试模式
-        Toaster.setDebugMode(AppConfig.isDebug())
+        Toaster.setDebugMode(isDebug())
         //全局配置侧滑返回activity(有各种骚操作的奇怪BUG，不影响正常使用)
         SwipeBack.getInstance().run {
             //初始化侧滑返回
@@ -62,17 +66,31 @@ class AppApplication : Application() {
             isRootSwipeBackEnable = false
             //强制边缘侧滑返回(横向列表适配器)
             isSwipeBackForceEdge = true
-            //右滑方向
-            swipeBackDirection = SwipeBackDirection.RIGHT
+            //下滑方向
+            swipeBackDirection = SwipeBackDirection.BOTTOM
             //底部activity联动视差效果
-            swipeBackTransformer = ParallaxSwipeBackTransformer()
+            swipeBackTransformer = ShrinkSwipeBackTransformer(0.94f, 1f, 0.5f, 0.5f)
         }
         //网络请求配置全局根路径
         NetConfig.initialize(host = BaseURL, context = this) {
             //设置Gson解析方式
-            setConverter(GsonConvert())
+            setConverter(SerializationConverter("200", "code", "msg"))
             //添加日志拦截器
-            addInterceptor(LogRecordInterceptor(AppConfig.isDebug()))
+            if (isDebug()) addInterceptor(OkHttpProfilerInterceptor())
+            //设置请求拦截器
+            setRequestInterceptor(object : RequestInterceptor {
+                override fun interceptor(request: BaseRequest) {
+                    //添加请求头信息
+                    request.apply {
+                        addHeader("project_token", AppConfig.project_token)
+                        addHeader("token", AppConfig.token)
+                        addHeader("uk", AppConfig.uk)
+                        addHeader("channel", AppConfig.channel)
+                        addHeader("app", AppConfig.app)
+                        addHeader("device", AppConfig.device)
+                    }
+                }
+            })
         }
         //全局缺省页配置 [https://github.com/liangjingkanji/StateLayout]
         StateConfig.apply {
