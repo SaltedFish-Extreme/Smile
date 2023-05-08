@@ -11,7 +11,7 @@ import net.lucode.hackware.magicindicator.buildins.commonnavigator.titles.ColorT
  */
 class ScaleTransitionPagerTitleView(context: Context) : ColorTransitionPagerTitleView(context) {
 
-    private val minScale = 0.7f
+    private val minScale = 0.8f
 
     override fun onEnter(index: Int, totalCount: Int, enterPercent: Float, leftToRight: Boolean) {
         super.onEnter(index, totalCount, enterPercent, leftToRight)    // 实现颜色渐变

@@ -182,7 +182,7 @@ fun MagicIndicator.bindViewPager2(viewPager: ViewPager2, mStringList: List<Strin
                 //设置文本
                 text = mStringList[index].html2Spanned()
                 //字体大小
-                textSize = 18f
+                textSize = 20f
                 //选中颜色
                 selectedColor = resources.getColor(R.color.color_viewpager_selected, null)
                 //未选中颜色

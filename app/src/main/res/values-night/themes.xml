@@ -6,6 +6,8 @@
         <item name="colorPrimary">@color/medium_orchid</item>
         <!-- 应用的强调色，CheckBox RadioButton Switch 等一般控件的选中效果默认采用该颜色 -->
         <item name="colorAccent">@color/orchid</item>
+        <!--图标填充颜色-->
+        <item name="iconTint">@color/color_ic_bg_tint</item>
     </style>
 
     <!--闪屏页主题-->
