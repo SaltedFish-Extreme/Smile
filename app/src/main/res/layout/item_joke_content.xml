@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?><!--适配器段子内容列表-->
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/dp_10"
+    app:cardCornerRadius="@dimen/dp_10"
+    app:cardElevation="@dimen/dp_1">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dp_10"
+            android:layout_marginTop="@dimen/dp_12">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/user_avatar"
+                android:layout_width="@dimen/dp_40"
+                android:layout_height="@dimen/dp_40"
+                android:scaleType="centerCrop"
+                app:shapeAppearance="@style/CircleStyle"
+                tools:srcCompat="@drawable/ic_account" />
+
+            <TextView
+                android:id="@+id/user_nickname"
+                android:layout_width="@dimen/dp_200"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@id/user_avatar"
+                android:layout_marginStart="@dimen/dp_10"
+                android:layout_toEndOf="@id/user_avatar"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="?android:attr/textColorPrimary"
+                android:textSize="@dimen/sp_14"
+                tools:text="咸鱼至尊" />
+
+            <TextView
+                android:id="@+id/user_signature"
+                android:layout_width="@dimen/dp_200"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/user_avatar"
+                android:layout_marginStart="@dimen/dp_10"
+                android:layout_toEndOf="@id/user_avatar"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="?android:attr/textColorSecondary"
+                android:textSize="@dimen/sp_13"
+                tools:text="他正在想一个爆炸的签名..." />
+
+            <ImageView
+                android:id="@+id/hot"
+                android:layout_width="@dimen/dp_18"
+                android:layout_height="@dimen/dp_18"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@id/user_nickname"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/hot"
+                app:tint="@color/color_hot"
+                tools:visibility="visible" />
+
+            <com.example.smile.widget.view.DrawableTextView
+                android:id="@+id/concern"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/dp_14"
+                android:layout_toStartOf="@id/omitted"
+                android:drawablePadding="@dimen/dp_2"
+                android:text="@string/concern"
+                android:textColor="@color/color_concern"
+                android:textSize="@dimen/sp_16"
+                android:visibility="invisible"
+                app:drawableHeight="@dimen/dp_16"
+                app:drawableStartCompat="@drawable/collect"
+                app:drawableTint="@color/color_concern"
+                app:drawableWidth="@dimen/dp_16"
+                tools:ignore="RelativeOverlap"
+                tools:visibility="visible" />
+
+            <com.hjq.shape.view.ShapeTextView
+                android:id="@+id/followed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/dp_14"
+                android:layout_toStartOf="@id/omitted"
+                android:gravity="center"
+                android:paddingVertical="@dimen/dp_1"
+                android:paddingStart="@dimen/dp_2"
+                android:paddingEnd="@dimen/dp_3.5"
+                android:text="已关注"
+                android:textColor="@color/color_concern"
+                android:textSize="@dimen/sp_15"
+                android:visibility="invisible"
+                app:shape="rectangle"
+                app:shape_radius="10dp"
+                app:shape_strokeColor="@color/color_concern"
+                app:shape_strokeWidth="1dp"
+                tools:visibility="invisible" />
+
+            <com.huantansheng.easyphotos.ui.widget.PressedImageView
+                android:id="@+id/omitted"
+                android:layout_width="@dimen/dp_20"
+                android:layout_height="@dimen/dp_20"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                app:srcCompat="@drawable/omitted"
+                app:tint="@color/color_omitted" />
+
+        </RelativeLayout>
+
+        <com.example.smile.widget.view.SmartTextView
+            android:id="@+id/joke_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dp_10"
+            android:layout_marginTop="@dimen/dp_10"
+            android:includeFontPadding="true"
+            android:lineSpacingMultiplier="1.1"
+            android:textColor="?android:attr/textColorPrimary"
+            android:textSize="@dimen/sp_15"
+            tools:text="@string/joke_content_text" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/joke_picture"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dp_5"
+            android:layout_marginTop="@dimen/dp_10"
+            android:contentDescription="@android:string/unknownName"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:spanCount="3"
+            tools:itemCount="1"
+            tools:listitem="@layout/item_joke_picture" />
+
+        <com.example.smile.widget.view.SmartTextView
+            android:id="@+id/release_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_marginEnd="@dimen/dp_10"
+            android:gravity="end"
+            android:text="@string/release_time" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginVertical="@dimen/dp_10"
+            android:layout_marginStart="@dimen/dp_20"
+            android:layout_marginEnd="@dimen/dp_10"
+            android:gravity="center">
+
+            <com.example.smile.widget.view.RevealHappyView
+                android:id="@+id/reveal_happy"
+                android:layout_width="@dimen/dp_25"
+                android:layout_height="@dimen/dp_25" />
+
+            <TextView
+                android:id="@+id/happy_num"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_10"
+                android:layout_weight="1"
+                android:text="0"
+                android:textSize="@dimen/sp_20" />
+
+            <com.example.smile.widget.view.RevealUnHappyView
+                android:id="@+id/reveal_unhappy"
+                android:layout_width="@dimen/dp_25"
+                android:layout_height="@dimen/dp_25" />
+
+            <TextView
+                android:id="@+id/unhappy_num"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_10"
+                android:layout_weight="1"
+                android:text="0"
+                android:textSize="@dimen/sp_20" />
+
+            <com.huantansheng.easyphotos.ui.widget.PressedImageView
+                android:id="@+id/reveal_comment"
+                android:layout_width="@dimen/dp_25"
+                android:layout_height="@dimen/dp_25"
+                app:srcCompat="@drawable/comment"
+                app:tint="@color/color_ic_bg_tint" />
+
+            <TextView
+                android:id="@+id/comment_num"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_10"
+                android:layout_weight="1"
+                android:text="0"
+                android:textSize="@dimen/sp_20" />
+
+            <com.huantansheng.easyphotos.ui.widget.PressedImageView
+                android:id="@+id/reveal_share"
+                android:layout_width="@dimen/dp_25"
+                android:layout_height="@dimen/dp_25"
+                app:srcCompat="@drawable/share"
+                app:tint="@color/color_ic_bg_tint" />
+
+            <TextView
+                android:id="@+id/share_num"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_10"
+                android:layout_weight="1"
+                android:text="0"
+                android:textSize="@dimen/sp_20" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <com.hjq.shape.view.ShapeTextView
+        android:id="@+id/save_picture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dp_10"
+        android:text="@string/save_picture"
+        android:textColor="?android:attr/textColorPrimary"
+        android:textSize="@dimen/sp_18"
+        app:shape="rectangle"
+        app:shape_radius="@dimen/dp_5"
+        app:shape_solidColor="@color/color_popup_fill"
+        app:shape_strokeColor="?android:attr/textColorSecondary"
+        app:shape_strokeWidth="@dimen/dp_1" />
+</FrameLayout>

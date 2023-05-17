@@ -37,6 +37,7 @@
                 android:layout_weight="1"
                 android:gravity="center_horizontal"
                 android:lineSpacingExtra="@dimen/dp_5"
+                android:textColor="@color/black_translucent"
                 android:textSize="@dimen/sp_18"
                 android:textStyle="bold"
                 tools:text="@string/crash_title" />
@@ -54,7 +55,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/dp_10"
                 app:srcCompat="@drawable/ic_reboot" />
-
         </LinearLayout>
 
         <androidx.core.widget.NestedScrollView
@@ -69,10 +69,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:lineSpacingExtra="@dimen/dp_5"
-                android:textColor="#FF4444"
+                android:textColor="@color/red"
                 android:textSize="@dimen/sp_15"
                 tools:text="@string/crash_message" />
-
         </androidx.core.widget.NestedScrollView>
 
     </LinearLayout>

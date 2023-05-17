@@ -4,10 +4,12 @@ package com.example.smile.model
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
+/** 段子信息数据模型 */
 @Serializable
 data class JokeContentModel(
     @SerialName("info") var info: Info = Info(), @SerialName("joke") var joke: Joke = Joke(), @SerialName("user") var user: User = User()
 ) {
+    /** 段子社交信息 */
     @Serializable
     data class Info(
         @SerialName("commentNum") var commentNum: Int = 0,
@@ -19,6 +21,7 @@ data class JokeContentModel(
         @SerialName("shareNum") var shareNum: Int = 0
     )
 
+    /** 段子内容 */
     @Serializable
     data class Joke(
         @SerialName("addTime") var addTime: String = "",
@@ -38,6 +41,7 @@ data class JokeContentModel(
         @SerialName("videoUrl") var videoUrl: String = ""
     )
 
+    /** 所属用户 */
     @Serializable
     data class User(
         @SerialName("avatar") var avatar: String = "",

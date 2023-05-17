@@ -29,7 +29,7 @@ class HomeFragment : Fragment() {
         private val fragments: ArrayList<Fragment> by lazy { arrayListOf() }
 
         /** 分类集合 */
-        private val classifyList: ArrayList<String> by lazy { arrayListOf("关注", "推荐", "新鲜", "纯文", "趣图") }
+        private val classifyList: ArrayList<String> by lazy { arrayListOf("关注", "推荐", "纯文", "趣图") }
     }
 
     init {
@@ -38,7 +38,6 @@ class HomeFragment : Fragment() {
         //将子fragment添加进集合
         fragments.add(HomeFollowFragment())
         fragments.add(HomeRecommendFragment())
-        fragments.add(HomeFreshFragment())
         fragments.add(HomeTextFragment())
         fragments.add(HomePictureFragment())
     }

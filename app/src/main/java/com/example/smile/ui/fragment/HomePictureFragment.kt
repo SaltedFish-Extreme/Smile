@@ -11,7 +11,7 @@ import com.example.smile.R
 class HomePictureFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_home_picture, container, false)
+        return inflater.inflate(R.layout.fragment_home_joke_content, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

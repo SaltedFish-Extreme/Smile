@@ -4,12 +4,14 @@ package com.example.smile.model
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
+/** 用户信息数据模型 */
 @Serializable
 data class UserInfoModel(
     @SerialName("token") var token: String = "",
     @SerialName("type") var type: String = "",
     @SerialName("userInfo") var userInfo: UserInfo = UserInfo()
 ) {
+    /** 用户信息 */
     @Serializable
     data class UserInfo(
         @SerialName("avatar") var avatar: String = "",

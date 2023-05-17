@@ -99,4 +99,15 @@
         <item name="android:background">@drawable/button_circle_selector</item>
         <item name="android:foreground">@null</item>
     </style>
+
+    <!--透明背景弹窗样式-->
+    <style name="transparentBgDialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@color/transparent</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:background">@color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
 </resources>

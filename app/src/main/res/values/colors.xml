@@ -183,4 +183,10 @@
     <!--圆形按钮禁用状态颜色--><color name="color_circle_button_selector_disabled">@color/light_alto</color>
     <!--分割线颜色--><color name="color_line_divider">@color/dusty_gray</color>
     <!--图标背景色调--><color name="color_ic_bg_tint">@color/black</color>
+    <!--标签文字颜色--><color name="color_tag">@color/vivid_blue</color>
+    <!--热门颜色--><color name="color_hot">@color/red</color>
+    <!--省略号颜色--><color name="color_omitted">@color/dove_grey</color>
+    <!--关注颜色--><color name="color_concern">@color/dark_orange</color>
+    <!--弹窗填充颜色--><color name="color_popup_fill">@color/white</color>
+
 </resources>

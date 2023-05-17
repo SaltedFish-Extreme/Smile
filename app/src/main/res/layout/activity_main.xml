@@ -5,7 +5,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <!--给 Fragment管理容器 底部导航栏 设置layout_behavior视图滚动行为-->
     <!--Fragment管理容器
     name指定NavHost实现类名称，默认androidx.navigation.fragment.NavHostFragment，
     defaultNavHost为false表示不拦截系统返回按钮，否则按返回键切换回主页Fragment，
@@ -18,13 +17,13 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         app:defaultNavHost="false"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         app:navGraph="@navigation/nav_bottom" />
 
     <!--子控件交互视图-->
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <!--底部导航栏 itemIconSize设置菜单项图标大小，
         itemRippleColor设置item触摸时遮罩颜色，
         itemActiveIndicatorStyle设置item选中时主题-->
@@ -46,13 +45,13 @@
             android:id="@+id/fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:contentDescription="@null"
+            android:contentDescription="@android:string/unknownName"
             app:backgroundTint="?attr/colorPrimary"
-            app:elevation="4dp"
+            app:elevation="@dimen/dp_4"
             app:layout_anchor="@id/bottom_navigation_view"
             app:layout_anchorGravity="center"
             app:maxImageSize="@dimen/dp_50"
-            app:rippleColor="#cccccc"
+            app:rippleColor="@color/light_silver"
             app:srcCompat="@drawable/smile" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

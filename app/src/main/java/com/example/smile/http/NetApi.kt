@@ -11,4 +11,7 @@ object NetApi {
 
     /** 根据昵称生成头像API根路径 */
     const val GenerateAvatarAPI = "https://api.multiavatar.com"
+
+    /** 首页推荐列表API路径 */
+    const val HomeRecommendAPI = "home/recommend"
 }
