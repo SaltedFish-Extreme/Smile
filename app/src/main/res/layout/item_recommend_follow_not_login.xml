@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?><!--适配器(未登录)推荐关注列表-->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/dp_15"
+    android:layout_marginVertical="@dimen/dp_8">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/user_avatar"
+        android:layout_width="@dimen/dp_50"
+        android:layout_height="@dimen/dp_50"
+        android:scaleType="centerCrop"
+        app:shapeAppearance="@style/CircleStyle"
+        tools:srcCompat="@drawable/ic_account" />
+
+    <TextView
+        android:id="@+id/user_nickname"
+        android:layout_width="@dimen/dp_250"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/user_avatar"
+        android:layout_marginStart="@dimen/dp_15"
+        android:layout_toEndOf="@id/user_avatar"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="?android:attr/textColorPrimary"
+        android:textSize="@dimen/sp_18"
+        android:textStyle="bold"
+        tools:text="咸鱼至尊" />
+
+    <TextView
+        android:id="@+id/user_release_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/user_avatar"
+        android:layout_marginStart="@dimen/dp_15"
+        android:layout_toEndOf="@id/user_avatar"
+        android:textColor="@color/color_omitted"
+        android:textSize="@dimen/sp_14"
+        tools:text="@string/release_num" />
+
+    <TextView
+        android:id="@+id/user_follower_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/user_release_num"
+        android:layout_marginStart="@dimen/dp_20"
+        android:layout_toEndOf="@id/user_release_num"
+        android:textColor="@color/color_omitted"
+        android:textSize="@dimen/sp_14"
+        tools:ignore="RelativeOverlap"
+        tools:text="@string/follower_num" />
+
+    <com.hjq.shape.view.ShapeTextView
+        android:id="@+id/follow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:gravity="center"
+        android:paddingHorizontal="@dimen/dp_15"
+        android:paddingVertical="@dimen/dp_4"
+        android:text="+ 关注"
+        android:textColor="@color/color_concern"
+        android:textSize="@dimen/sp_14"
+        app:shape="rectangle"
+        app:shape_radius="20dp"
+        app:shape_strokeColor="@color/color_concern"
+        app:shape_strokeWidth="1dp" />
+
+</RelativeLayout>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?><!--(已登录状态)首页关注选项卡片段-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_navigation_bar"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_10"
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_marginBottom="@dimen/dp_5"
+        android:gravity="center"
+        android:text="@string/recommend_user"
+        android:textColor="@color/color_ornaments"
+        android:textSize="@dimen/sp_16" />
+
+    <!--智能分页刷新加载布局 关闭下拉加载更多功能，只可上拉刷新 刷新时内容不动-->
+    <com.drake.brv.PageRefreshLayout
+        android:id="@+id/page_recommend_follow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dp_5"
+        app:srlEnableHeaderTranslationContent="false"
+        app:srlEnableLoadMore="false">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_recommend_follow"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:itemCount="1"
+            tools:listitem="@layout/item_recommend_follow_logged_in" />
+    </com.drake.brv.PageRefreshLayout>
+
+</LinearLayout>

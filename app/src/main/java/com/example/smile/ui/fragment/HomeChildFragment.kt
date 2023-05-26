@@ -9,16 +9,29 @@ import androidx.recyclerview.widget.RecyclerView
 import com.drake.brv.PageRefreshLayout
 import com.drake.net.Post
 import com.drake.net.utils.scope
+import com.drake.serialize.intent.bundle
 import com.example.smile.R
 import com.example.smile.http.NetApi
 import com.example.smile.model.JokeContentModel
 import com.example.smile.ui.adapter.JokeContentAdapter
+import com.example.smile.widget.ext.cancelFloatBtn
+import com.example.smile.widget.ext.initFloatBtn
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
-/** 首页推荐选项卡片段 */
-class HomeRecommendFragment : Fragment() {
+/** 首页子选项卡片段 */
+class HomeChildFragment : Fragment() {
 
     private val page: PageRefreshLayout by lazy { requireView().findViewById(R.id.page) }
     private val rv: RecyclerView by lazy { requireView().findViewById(R.id.rv) }
+    private val fab: FloatingActionButton by lazy { requireView().findViewById(R.id.fab) }
+
+    /** 页面类型，从上个页面传递 */
+    private val type: Int by bundle()
+
+    companion object {
+        /** 网络请求API路径 */
+        private lateinit var API: String
+    }
 
     /** 是否初次切换页面 */
     private var first = true
@@ -30,23 +43,42 @@ class HomeRecommendFragment : Fragment() {
     private lateinit var data: ArrayList<JokeContentModel>
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_home_joke_content, container, false)
+        return inflater.inflate(R.layout.fragment_home_child, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        //设置RecycleView的Adapter
-        rv.adapter = adapter
-        //加载数据
-        onRefresh()
+    override fun onResume() {
+        //设置API路径(推荐、纯文、趣图)
+        when (type) {
+            1 -> {
+                API = NetApi.HomeRecommendAPI
+            }
+
+            2 -> {
+                API = NetApi.HomeTextAPI
+            }
+
+            3 -> {
+                API = NetApi.HomePictureAPI
+            }
+        }
+        //初始化rv悬浮按钮扩展函数
+        rv.initFloatBtn(fab)
+        //第一次切换
+        if (first) {
+            //设置RecycleView的Adapter
+            rv.adapter = adapter
+            //刷新数据
+            onRefresh()
+        }
+        super.onResume()
     }
 
     /** 页面刷新加载操作，不设置onLoadMore则都会走onRefresh */
     private fun onRefresh() {
         page.onRefresh {
             scope {
-                //获取首页推荐列表数据
-                data = Post<ArrayList<JokeContentModel>>(NetApi.HomeRecommendAPI).await()
+                //获取首页子列表数据
+                data = Post<ArrayList<JokeContentModel>>(API).await()
                 if (first && data.isEmpty()) {
                     //如果数据为空显示空缺省页
                     showEmpty()
@@ -81,5 +113,11 @@ class HomeRecommendFragment : Fragment() {
                 }
             }
         }.refreshing()
+    }
+
+    override fun onPause() {
+        //取消悬浮按钮
+        rv.cancelFloatBtn(fab)
+        super.onPause()
     }
 }

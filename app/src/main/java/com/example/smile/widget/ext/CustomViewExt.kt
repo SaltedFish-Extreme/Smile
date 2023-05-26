@@ -279,8 +279,8 @@ fun RecyclerView.initFloatBtn(floatBtn: FloatingActionButton) {
     })
     floatBtn.setOnClickListener {
         val layoutManager = layoutManager as LinearLayoutManager
-        //如果当前rv的最后一个视图位置的索引大于等于40，则迅速返回顶部，否则带有滚动动画效果返回到顶部
-        if (layoutManager.findLastVisibleItemPosition() >= 40) {
+        //如果当前rv的最后一个视图位置的索引大于等于20，则迅速返回顶部，否则带有滚动动画效果返回到顶部
+        if (layoutManager.findLastVisibleItemPosition() >= 20) {
             scrollToPosition(0)//没有动画迅速返回到顶部(马上)
         } else {
             smoothScrollToPosition(0)//有滚动动画返回到顶部(有点慢)

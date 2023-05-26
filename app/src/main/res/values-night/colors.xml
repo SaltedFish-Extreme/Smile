@@ -16,5 +16,5 @@
     <!--省略号颜色--><color name="color_omitted">@color/light_grey</color>
     <!--关注颜色--><color name="color_concern">@color/orange</color>
     <!--弹窗填充颜色--><color name="color_popup_fill">@color/black</color>
-
+    <!--装饰颜色--><color name="color_ornaments">@color/light_silver</color>
 </resources>

@@ -42,7 +42,7 @@ public class ShowImagesDialog extends Dialog {
     }
 
     private void initView() {
-        mView = View.inflate(mContext, R.layout.dialog_images_brower, null);
+        mView = View.inflate(mContext, R.layout.dialog_images_preview, null);
         mViewPager = mView.findViewById(R.id.vp_images);
         mIndexText = mView.findViewById(R.id.tv_image_index);
         mTitles = new ArrayList<>();

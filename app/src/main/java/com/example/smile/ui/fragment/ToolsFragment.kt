@@ -7,11 +7,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.smile.R
 
-/** 首页纯文选项卡片段 */
-class HomeTextFragment : Fragment() {
+/** 工具页 */
+class ToolsFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_home_joke_content, container, false)
+        return inflater.inflate(R.layout.fragment_tools, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

@@ -25,7 +25,7 @@ import com.hjq.toast.Toaster
 /**
  * 段子内容适配器
  *
- * @property lifecycleOwner 生命周期对象
+ * @property lifecycleOwner 生命周期对象(Activity/Fragment)
  */
 class JokeContentAdapter(private val lifecycleOwner: LifecycleOwner) : AppAdapter<JokeContentModel>(R.layout.item_joke_content) {
 

@@ -25,7 +25,7 @@ class MainActivity : AppActivity() {
 
     companion object {
         /** 菜单编号(和底部导航图中fixFragment的id保持一致) */
-        private val menuItemIdList = arrayListOf(R.id.home_page, R.id.evenly_page, R.id.release_page, R.id.info_page, R.id.profile_page)
+        private val menuItemIdList = arrayListOf(R.id.home_page, R.id.tools_page, R.id.release_page, R.id.message_page, R.id.profile_page)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

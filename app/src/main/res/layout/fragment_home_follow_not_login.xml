@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?><!--(未登录状态)首页关注选项卡片段-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.example.smile.widget.view.DrawableTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/dp_10"
+        android:drawablePadding="@dimen/dp_20"
+        android:gravity="center"
+        android:text="@string/follow_title_tip"
+        android:textColor="@color/color_ornaments"
+        android:textSize="@dimen/sp_22"
+        app:drawableEndCompat="@drawable/icon_ornaments"
+        app:drawableHeight="@dimen/dp_25"
+        app:drawableStartCompat="@drawable/icon_ornaments"
+        app:drawableWidth="@dimen/dp_25" />
+
+    <!--智能分页刷新加载布局 关闭下拉加载更多功能，上拉及点击下方控件进行刷新-->
+    <com.drake.brv.PageRefreshLayout
+        android:id="@+id/page_recommend_follow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srlEnableLoadMore="false">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_recommend_follow"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:itemCount="6"
+            tools:listitem="@layout/item_recommend_follow_not_login" />
+
+    </com.drake.brv.PageRefreshLayout>
+
+    <!--用来进行刷新操作的控件-->
+    <com.example.smile.widget.view.DrawableTextView
+        android:id="@+id/refresh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/dp_15"
+        android:drawablePadding="@dimen/dp_10"
+        android:drawableTint="@color/color_ornaments"
+        android:paddingHorizontal="@dimen/dp_10"
+        android:text="@string/refresh"
+        android:textColor="@color/color_omitted"
+        android:textSize="@dimen/sp_14"
+        app:drawableHeight="@dimen/dp_14"
+        app:drawableStartCompat="@drawable/ic_refresh"
+        app:drawableWidth="@dimen/dp_14" />
+
+</LinearLayout>

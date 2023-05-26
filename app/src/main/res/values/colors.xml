@@ -188,5 +188,5 @@
     <!--省略号颜色--><color name="color_omitted">@color/dove_grey</color>
     <!--关注颜色--><color name="color_concern">@color/dark_orange</color>
     <!--弹窗填充颜色--><color name="color_popup_fill">@color/white</color>
-
+    <!--装饰颜色--><color name="color_ornaments">@color/silver_chalice</color>
 </resources>

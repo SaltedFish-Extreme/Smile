@@ -16,19 +16,19 @@ id用来和管理容器的navGraph标签绑定，startDestination指定默认显
         android:label="HomeFragment"
         tools:layout="@layout/fragment_home" />
     <fixFragment
-        android:id="@+id/evenly_page"
-        android:name="com.example.smile.ui.fragment.EvenlyFragment"
-        android:label="EvenlyFragment"
-        tools:layout="@layout/fragment_evenly" />
+        android:id="@+id/tools_page"
+        android:name="com.example.smile.ui.fragment.ToolsFragment"
+        android:label="ToolsFragment"
+        tools:layout="@layout/fragment_tools" />
 
     <!--中间的发布页使用悬浮按钮代替，这里用来当作占位符-->
     <fixFragment android:id="@+id/release_page" />
 
     <fixFragment
-        android:id="@+id/info_page"
-        android:name="com.example.smile.ui.fragment.InfoFragment"
-        android:label="InfoFragment"
-        tools:layout="@layout/fragment_info" />
+        android:id="@+id/message_page"
+        android:name="com.example.smile.ui.fragment.MessageFragment"
+        android:label="MessageFragment"
+        tools:layout="@layout/fragment_message" />
 
     <fixFragment
         android:id="@+id/profile_page"

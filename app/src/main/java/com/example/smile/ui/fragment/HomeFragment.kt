@@ -7,11 +7,11 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
+import com.drake.serialize.intent.withArguments
 import com.example.smile.R
 import com.example.smile.app.AppConfig
 import com.example.smile.widget.ext.bindViewPager2
 import com.example.smile.widget.ext.init
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.gyf.immersionbar.ktx.immersionBar
 import com.hjq.toast.Toaster
 import net.lucode.hackware.magicindicator.MagicIndicator
@@ -22,7 +22,6 @@ class HomeFragment : Fragment() {
     private val viewpagerToolbar: Toolbar by lazy { requireView().findViewById(R.id.viewpager_toolbar) }
     private val magicIndicator: MagicIndicator by lazy { requireView().findViewById(R.id.magic_indicator) }
     private val viewpager: ViewPager2 by lazy { requireView().findViewById(R.id.viewpager) }
-    private val fab: FloatingActionButton by lazy { requireView().findViewById(R.id.fab) }
 
     companion object {
         /** fragment集合 */
@@ -35,11 +34,12 @@ class HomeFragment : Fragment() {
     init {
         //切换夜间模式会保留之前添加过的片段 防止出现问题 先清空集合
         fragments.clear()
-        //将子fragment添加进集合
+        //将子fragment添加进集合(关注、推荐、纯文、趣图)
         fragments.add(HomeFollowFragment())
-        fragments.add(HomeRecommendFragment())
-        fragments.add(HomeTextFragment())
-        fragments.add(HomePictureFragment())
+        //传递参数，根据type区分页面
+        fragments.add(HomeChildFragment().withArguments("type" to 1))
+        fragments.add(HomeChildFragment().withArguments("type" to 2))
+        fragments.add(HomeChildFragment().withArguments("type" to 3))
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -62,8 +62,8 @@ class HomeFragment : Fragment() {
         immersionBar {
             titleBar(viewpagerToolbar)
         }
-        //初始化viewpager2
-        viewpager.init(this, fragments)
+        //初始化viewpager2(不允许滑动)
+        viewpager.init(this, fragments, false)
         //初始化MagicIndicator
         magicIndicator.bindViewPager2(viewpager, classifyList) {
             //如果是第一个子项(关注)，隐藏toolbar右侧菜单，否则显示

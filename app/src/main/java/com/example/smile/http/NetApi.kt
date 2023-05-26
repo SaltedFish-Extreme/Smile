@@ -14,4 +14,13 @@ object NetApi {
 
     /** 首页推荐列表API路径 */
     const val HomeRecommendAPI = "home/recommend"
+
+    /** 首页纯文列表API路径 */
+    const val HomeTextAPI = "home/text"
+
+    /** 首页趣图列表API路径 */
+    const val HomePictureAPI = "home/pic"
+
+    /** 首页推荐关注列表API路径 */
+    const val HomeRecommendFollowAPI = "home/attention/recommend"
 }
