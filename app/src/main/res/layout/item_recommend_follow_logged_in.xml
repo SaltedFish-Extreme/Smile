@@ -83,7 +83,7 @@
             android:textColor="@color/color_popup_fill"
             android:textSize="@dimen/sp_14"
             app:shape="rectangle"
-            app:shape_radius="20dp"
+            app:shape_radius="@dimen/dp_20"
             app:shape_solidColor="@color/color_concern" />
 
         <com.hjq.shape.view.ShapeTextView
@@ -98,9 +98,8 @@
             android:text="已关注"
             android:textColor="@color/color_omitted"
             android:textSize="@dimen/sp_14"
-            android:visibility="invisible"
             app:shape="rectangle"
-            app:shape_radius="20dp"
+            app:shape_radius="@dimen/dp_20"
             app:shape_solidColor="@color/color_popup_fill"
             app:shape_strokeColor="@color/color_omitted"
             app:shape_strokeWidth="@dimen/dp_0.5" />

@@ -7,13 +7,14 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
+import com.drake.serialize.intent.openActivity
 import com.drake.serialize.intent.withArguments
 import com.example.smile.R
 import com.example.smile.app.AppConfig
+import com.example.smile.ui.activity.SearchActivity
 import com.example.smile.widget.ext.bindViewPager2
 import com.example.smile.widget.ext.init
 import com.gyf.immersionbar.ktx.immersionBar
-import com.hjq.toast.Toaster
 import net.lucode.hackware.magicindicator.MagicIndicator
 
 /** 首页 */
@@ -71,7 +72,7 @@ class HomeFragment : Fragment() {
                 isVisible = it != 0
                 //设置菜单item点击事件，跳转搜索页面
                 setOnMenuItemClickListener {
-                    Toaster.show("我免费了！")
+                    openActivity<SearchActivity>()
                     true
                 }
             }

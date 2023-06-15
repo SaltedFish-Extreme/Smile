@@ -7,7 +7,9 @@ plugins {
 }
 
 android {
+
     namespace 'com.example.smile'
+
     compileSdk 33
 
     defaultConfig {
@@ -122,7 +124,7 @@ dependencies {
     //RecyclerView https://github.com/liangjingkanji/BRV
     implementation 'com.github.liangjingkanji:BRV:1.4.1'
     //Adapter https://github.com/CymChad/BaseRecyclerViewAdapterHelper
-    implementation "io.github.cymchad:BaseRecyclerViewAdapterHelper:4.0.0-beta10"
+    implementation "io.github.cymchad:BaseRecyclerViewAdapterHelper:4.0.0-beta14"
     //智能刷新 经典刷新头&谷歌刷新头 https://github.com/scwang90/SmartRefreshLayout
     implementation 'io.github.scwang90:refresh-header-classics:2.0.6'
     implementation 'io.github.scwang90:refresh-header-material:2.0.6'
@@ -143,9 +145,9 @@ dependencies {
     //相机相册 https://github.com/HuanTanSheng/EasyPhotos
     implementation 'com.github.HuanTanSheng:EasyPhotos:3.1.5'
     //标题栏 https://github.com/getActivity/TitleBar
-    implementation 'com.github.getActivity:TitleBar:10.3'
+    implementation 'com.github.getActivity:TitleBar:10.5'
     //吐司 https://github.com/getActivity/Toaster
-    implementation 'com.github.getActivity:Toaster:12.2'
+    implementation 'com.github.getActivity:Toaster:12.3'
     //权限请求 https://github.com/getActivity/XXPermissions
     implementation 'com.github.getActivity:XXPermissions:18.2'
     //Shape https://github.com/getActivity/ShapeView
@@ -166,4 +168,8 @@ dependencies {
     implementation 'com.localebro:okhttpprofiler:1.0.8'
     //kotlin JSON解析框架 https://github.com/Kotlin/kotlinx.serialization
     implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0"
+    //仿微信朋友圈大图多图预览 https://github.com/wanggaowan/PhotoPreview
+    implementation 'com.github.wanggaowan:PhotoPreview:2.4.6'
+    //图片预览&视频播放 https://github.com/FlyJingFish/OpenImage
+    implementation 'io.github.FlyJingFish.OpenImage:OpenImageFullLib:2.0.1'
 }

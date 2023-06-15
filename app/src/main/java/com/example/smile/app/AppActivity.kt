@@ -2,7 +2,6 @@ package com.example.smile.app
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.content.pm.ActivityInfo
 import android.content.res.Configuration
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -46,8 +45,6 @@ open class AppActivity : AppCompatActivity() {
 
             true -> immersionBar {}
         }
-        //强制页面竖屏显示
-        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
     }
 
     @Suppress("DEPRECATION")

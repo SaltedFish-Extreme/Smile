@@ -1,4 +1,4 @@
-package com.example.smile.widget
+package com.example.smile.widget.ext
 
 import android.graphics.Bitmap
 import android.graphics.Canvas

@@ -24,7 +24,7 @@ import com.example.smile.app.AppActivity
 import com.example.smile.app.AppConfig.getVersionCode
 import com.example.smile.app.AppConfig.getVersionName
 import com.example.smile.util.KLog
-import com.example.smile.widget.setOnclickNoRepeat
+import com.example.smile.widget.ext.setOnclickNoRepeat
 import com.gyf.immersionbar.ImmersionBar
 import com.hjq.permissions.Permission
 import com.hjq.permissions.XXPermissions

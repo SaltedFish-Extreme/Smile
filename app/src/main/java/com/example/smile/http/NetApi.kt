@@ -23,4 +23,10 @@ object NetApi {
 
     /** 首页推荐关注列表API路径 */
     const val HomeRecommendFollowAPI = "home/attention/recommend"
+
+    /** 首页搜索段子API路径 */
+    const val HomeSearchJokeAPI = "home/jokes/search"
+
+    /** 首页热搜关键词API路径 */
+    const val HomeHotSearchAPI = "helper/hot_search"
 }

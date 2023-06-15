@@ -3,6 +3,7 @@ package com.example.smile.app
 import android.content.Context
 import android.os.Build
 import android.provider.Settings
+import com.drake.serialize.serialize.annotation.SerializeConfig
 import com.drake.serialize.serialize.serialLazy
 import com.example.smile.BuildConfig
 import java.util.UUID
@@ -16,6 +17,7 @@ import java.util.UUID
  *
  * desc : App 配置管理类
  */
+@SerializeConfig(mmapID = "app_config")
 object AppConfig {
 
     /** 是否夜间主题 */
@@ -74,4 +76,10 @@ object AppConfig {
     /** AES解析密钥 */
     const val AesParsingKey = "cretinzp**273846"
     //endregion
+
+    /** 搜索热词 全局变量 每次打开app重新初始化赋值 */
+    val SearchHot: MutableList<String> by lazy { (mutableListOf()) }
+
+    /** 搜索记录 永久保存磁盘，app删除或者赋值为null时清除 */
+    var SearchHistory: List<String> by serialLazy(arrayListOf())
 }

@@ -100,9 +100,9 @@
                 android:textSize="@dimen/sp_15"
                 android:visibility="invisible"
                 app:shape="rectangle"
-                app:shape_radius="10dp"
+                app:shape_radius="@dimen/dp_10"
                 app:shape_strokeColor="@color/color_concern"
-                app:shape_strokeWidth="1dp"
+                app:shape_strokeWidth="@dimen/dp_1"
                 tools:visibility="invisible" />
 
             <com.huantansheng.easyphotos.ui.widget.PressedImageView
@@ -132,19 +132,18 @@
             android:id="@+id/joke_picture"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/dp_5"
-            android:layout_marginTop="@dimen/dp_10"
+            android:layout_margin="@dimen/dp_5"
             android:contentDescription="@android:string/unknownName"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:spanCount="3"
-            tools:itemCount="1"
+            tools:itemCount="3"
             tools:listitem="@layout/item_joke_picture" />
 
         <com.example.smile.widget.view.SmartTextView
             android:id="@+id/release_time"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_10"
+            android:layout_marginTop="@dimen/dp_5"
             android:layout_marginEnd="@dimen/dp_10"
             android:gravity="end"
             android:text="@string/release_time" />
@@ -158,13 +157,13 @@
             android:layout_marginEnd="@dimen/dp_10"
             android:gravity="center">
 
-            <com.example.smile.widget.view.RevealHappyView
-                android:id="@+id/reveal_happy"
+            <com.example.smile.widget.view.RevealViewLike
+                android:id="@+id/reveal_like"
                 android:layout_width="@dimen/dp_25"
                 android:layout_height="@dimen/dp_25" />
 
             <TextView
-                android:id="@+id/happy_num"
+                android:id="@+id/like_num"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dp_10"
@@ -172,13 +171,13 @@
                 android:text="0"
                 android:textSize="@dimen/sp_20" />
 
-            <com.example.smile.widget.view.RevealUnHappyView
-                android:id="@+id/reveal_unhappy"
+            <com.example.smile.widget.view.RevealViewDislike
+                android:id="@+id/reveal_dislike"
                 android:layout_width="@dimen/dp_25"
                 android:layout_height="@dimen/dp_25" />
 
             <TextView
-                android:id="@+id/unhappy_num"
+                android:id="@+id/dislike_num"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dp_10"

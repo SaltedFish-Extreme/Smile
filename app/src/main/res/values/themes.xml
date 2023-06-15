@@ -110,4 +110,11 @@
         <item name="android:background">@color/transparent</item>
         <item name="android:windowNoTitle">true</item>
     </style>
+
+    <!-- PopupWindows的弹出和消失动画 -->
+    <style name="popup_window_anim">
+        <item name="android:windowEnterAnimation">@anim/popup_in</item>
+        <item name="android:windowExitAnimation">@anim/popup_out</item>
+    </style>
+
 </resources>

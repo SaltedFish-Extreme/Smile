@@ -145,8 +145,7 @@ class SettingBar @JvmOverloads constructor(context: Context, attrs: AttributeSet
         )
         setRightDrawablePadding(
             if (array.hasValue(R.styleable.SettingBar_bar_rightDrawablePadding)) array.getDimensionPixelSize(
-                R.styleable.SettingBar_bar_rightDrawablePadding,
-                0
+                R.styleable.SettingBar_bar_rightDrawablePadding, 0
             )
             else resources.getDimension(R.dimen.dp_10).toInt()
         )

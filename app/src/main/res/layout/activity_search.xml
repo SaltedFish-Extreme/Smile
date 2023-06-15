@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?><!--搜索页-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!--搜索栏-->
+    <LinearLayout
+        android:id="@+id/ll_search_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.example.smile.widget.view.ClearEditText
+            android:id="@+id/search_box"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/dp_5"
+            android:layout_marginStart="@dimen/dp_15"
+            android:layout_marginEnd="@dimen/dp_5"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:hint="@string/search_box_tip"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:paddingHorizontal="@dimen/dp_10"
+            android:paddingVertical="@dimen/dp_10"
+            android:textColor="@color/color_omitted"
+            android:textSize="@dimen/sp_18"
+            app:drawableTint="?android:attr/textColorPrimary"
+            app:shape="rectangle"
+            app:shape_radius="@dimen/dp_20"
+            app:shape_solidColor="@color/color_search_box" />
+
+        <com.example.smile.widget.view.PressAlphaTextView
+            android:id="@+id/cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginEnd="@dimen/dp_5"
+            android:padding="@dimen/dp_5"
+            android:text="@string/cancel"
+            android:textSize="@dimen/sp_18" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_0.1"
+        android:background="@color/color_search_box" />
+
+    <!--段子内容页面-->
+    <include
+        layout="@layout/fragment_home_child"
+        tools:visibility="gone" />
+
+    <!--搜索提示块页面-->
+    <LinearLayout
+        android:id="@+id/ll_search_block"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dp_10"
+            android:text="@string/search_hot"
+            android:textColor="@color/color_search_tag"
+            android:textSize="@dimen/sp_16" />
+
+        <!--热门搜索列表-->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_hot"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_50"
+            tools:listitem="@layout/item_search_block" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dp_10"
+                android:text="@string/search_history"
+                android:textColor="@color/color_line_divider"
+                android:textSize="@dimen/sp_16" />
+
+            <com.huantansheng.easyphotos.ui.widget.PressedTextView
+                android:id="@+id/clear_history"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_margin="@dimen/dp_10"
+                android:text="@string/clear"
+                android:textColor="@color/color_ornaments"
+                android:textSize="@dimen/sp_16" />
+        </FrameLayout>
+
+        <!--历史搜索列表-->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_history"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/item_search_block" />
+    </LinearLayout>
+
+</LinearLayout>

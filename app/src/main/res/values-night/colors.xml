@@ -7,14 +7,14 @@
     <!--标题栏颜色--><color name="color_title_bar">@color/gray_8f</color>
     <!--viewpager指示器选中颜色--><color name="color_viewpager_selected">@color/white</color>
     <!--viewpager指示器未选中颜色--><color name="color_viewpager_unselected">@color/white_smoke</color>
-    <!--圆形按钮颜色--><color name="color_circle_button_selector">@color/orchid</color>
     <!--圆形按钮禁用状态颜色--><color name="color_circle_button_selector_disabled">@color/tundra</color>
     <!--分割线颜色--><color name="color_line_divider">@color/boulder</color>
     <!--图标背景色调--><color name="color_ic_bg_tint">@color/white</color>
-    <!--标签文字颜色--><color name="color_tag">@color/super_blue</color>
+    <!--搜索标签颜色--><color name="color_search_tag">@color/plum</color>
     <!--热门颜色--><color name="color_hot">@color/orange_red</color>
     <!--省略号颜色--><color name="color_omitted">@color/light_grey</color>
     <!--关注颜色--><color name="color_concern">@color/orange</color>
-    <!--弹窗填充颜色--><color name="color_popup_fill">@color/black</color>
+    <!--弹窗填充颜色--><color name="color_popup_fill">@color/black_ivory</color>
     <!--装饰颜色--><color name="color_ornaments">@color/light_silver</color>
+    <!--搜索框颜色--><color name="color_search_box">@color/tundra</color>
 </resources>

@@ -52,10 +52,10 @@ val Context.screenHeight get() = resources.displayMetrics.heightPixels
 /** 获取随机rgb颜色值函数 */
 fun randomColor(): Int {
     Random().run {
-        //0-190, 如果颜色值过大,就越接近白色,就看不清了,所以需要限定范围
-        val red = nextInt(190)
-        val green = nextInt(190)
-        val blue = nextInt(190)
+        //0-255, 如果颜色值过大,就越接近白色,就看不清了,所以需要限定范围
+        val red = nextInt(255)
+        val green = nextInt(255)
+        val blue = nextInt(255)
         //使用rgb混合生成一种新的颜色,Color.rgb生成的是一个int数
         return Color.rgb(red, green, blue)
     }
@@ -315,7 +315,7 @@ fun RecyclerView.cancelFloatBtn(floatBtn: FloatingActionButton) {
  */
 fun NestedScrollView.initFloatBtn(floatBtn: FloatingActionButton) {
     //监听NestedScrollView滑动到顶部的时候，需要把向上返回顶部的按钮隐藏
-    this.setOnScrollChangeListener { _, _, scrollY, _, _ ->
+    setOnScrollChangeListener { _, _, scrollY, _, _ ->
         if (scrollY <= 100) {
             floatBtn.visibility = View.INVISIBLE
         }

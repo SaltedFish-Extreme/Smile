@@ -37,7 +37,7 @@ class HomeChildFragment : Fragment() {
     private var first = true
 
     /** 适配器 */
-    private val adapter: JokeContentAdapter by lazy { JokeContentAdapter(this) }
+    private val adapter: JokeContentAdapter by lazy { JokeContentAdapter(fragment = this) }
 
     /** 数据集 */
     private lateinit var data: ArrayList<JokeContentModel>
@@ -86,9 +86,9 @@ class HomeChildFragment : Fragment() {
                     //设置初次创建页面为否
                     first = false
                     index += if (index == 1) { //下拉刷新
-                        //去掉视频后可能就没有数据显示了😅所以再发一次请求，获取下一次数据添加进去，这样应该就有数据了吧🤔
+                        //去掉视频后可能就没有数据显示了😅所以再发一次请求，获取下一次数据，这样应该就有数据了吧🤔(这里即使没有数据再次发起请求，页码也不会变，请求完成页码+1)
                         if (data.none { it.joke.type < 3 }) {
-                            data.addAll(Post<ArrayList<JokeContentModel>>(NetApi.HomeRecommendAPI).await())
+                            data = Post<ArrayList<JokeContentModel>>(NetApi.HomeRecommendAPI).await()
                         }
                         //设置数据
                         adapter.submitList(data.filter { it.joke.type < 3 })
@@ -101,8 +101,8 @@ class HomeChildFragment : Fragment() {
                             return@scope
                         }
                         if (data.none { it.joke.type < 3 }) {
-                            //如上同理
-                            data.addAll(Post<ArrayList<JokeContentModel>>(NetApi.HomeRecommendAPI).await())
+                            //如上同理(这里即使没有数据再次发起请求，页码也不会变，请求完成页码+1)
+                            data = Post<ArrayList<JokeContentModel>>(NetApi.HomeRecommendAPI).await()
                         }
                         //添加数据
                         adapter.addAll(data.filter { it.joke.type < 3 })

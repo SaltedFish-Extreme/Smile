@@ -3,6 +3,8 @@ package com.example.smile.app
 import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
+import android.widget.ImageView
+import com.bumptech.glide.Glide
 import com.drake.brv.PageRefreshLayout
 import com.drake.net.NetConfig
 import com.drake.net.interceptor.RequestInterceptor
@@ -22,6 +24,7 @@ import com.scwang.smart.refresh.footer.ClassicsFooter
 import com.scwang.smart.refresh.header.ClassicsHeader
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
 import com.tencent.mmkv.MMKV
+import com.wgw.photo.preview.PhotoPreview
 import org.litepal.LitePal
 import per.goweii.swipeback.SwipeBack
 import per.goweii.swipeback.SwipeBackDirection
@@ -112,6 +115,10 @@ class AppApplication : Application() {
         //设置全局RefreshFooter构建器
         SmartRefreshLayout.setDefaultRefreshFooterCreator { context, _ ->
             ClassicsFooter(context).setDrawableSize(20F)//指定为经典Footer
+        }
+        //设置全局图片加载器
+        PhotoPreview.setGlobalImageLoader { _: Int, source: Any?, imageView: ImageView ->
+            Glide.with(imageView.context).load(source as String?).into(imageView)
         }
     }
 }

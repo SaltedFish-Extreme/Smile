@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <!--程序运行不需要相机硬件功能支持-->
+    <!-- 程序运行不需要相机硬件功能支持 -->
     <uses-feature
         android:name="android.hardware.camera"
         android:required="false" />
@@ -26,6 +26,10 @@
     <!-- 定位权限 -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!-- Android 13版本适配，细化存储权限 -->
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
+    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
     <!-- Android 11 软件包可见性适配：https://www.jianshu.com/p/d1ccd425c4ce -->
     <queries>
         <!-- 拍照意图：MediaStore.ACTION_IMAGE_CAPTURE -->
@@ -91,14 +95,21 @@
             android:value="true" />
 
         <activity
+            android:name=".ui.activity.SearchActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".ui.activity.ReleaseActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activity.MainActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activity.SplashActivity"
             android:exported="true"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.Smile.SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -111,13 +122,15 @@
             android:name=".ui.activity.CrashActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|locale"
             android:launchMode="singleTop"
-            android:process=":crash" />
+            android:process=":crash"
+            android:screenOrientation="portrait" />
         <!-- 重启应用（必须在独立进程） -->
         <activity
             android:name=".ui.activity.RestartActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|locale"
             android:launchMode="singleTop"
-            android:process=":restart" />
+            android:process=":restart"
+            android:screenOrientation="portrait" />
         <!-- 适配 Android 7.0 文件意图 -->
         <provider
             android:name="androidx.core.content.FileProvider"

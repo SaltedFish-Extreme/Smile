@@ -18,6 +18,10 @@
     <string name="information_fragment">消息</string>
     <string name="profile_fragment">我的</string>
     <string name="no_wifi">当前没有网络连接，请确保已经打开网络</string>
+    <string name="save_picture">保存图片</string>
+    <string name="save_succeed">保存成功</string>
+    <string name="save_failed">保存失败</string>
+    <string name="please_login">请先登录</string>
     <!--首页-->
     <string name="concern">关注</string>
     <string name="follow_title_tip">优秀的人值得关注</string>
@@ -30,6 +34,7 @@
     <string name="refresh">换一批</string>
     <string name="release_num">发布 %s</string>
     <string name="follower_num">粉丝 %s</string>
+    <string name="search_box_tip">搜索你感兴趣的帖子</string>
     <!--Dialog按钮-->
     <string name="sure">确定</string>
     <string name="cancel">取消</string>
@@ -69,9 +74,9 @@
     <string name="web_browser">用浏览器打开</string>
     <!--搜索页-->
     <string name="search_tip">输入关键字搜索</string>
-    <string name="search_hot">热门搜索(目前搜索最多的关键词)</string>
-    <string name="search_history">搜索历史(保留最近前十条搜索记录)</string>
-    <string name="clear">清空</string>
+    <string name="search_hot">热门搜索</string>
+    <string name="search_history">历史搜索</string>
+    <string name="clear">清空历史</string>
     <!--历史记录页-->
     <string name="delete_succeed">删除成功</string>
     <string name="date">2022\-02\-02 00:00:00</string>
@@ -100,9 +105,6 @@
     <string name="share_link_tip">例如：https://www.wanandroid.com</string>
     <string name="share">分享</string>
     <string name="share_tip">温馨提示</string>
-    <string name="save_picture">保存图片</string>
-    <string name="save_succeed">保存成功</string>
-    <string name="save_failed">保存失败</string>
     <!--主页底部导航栏item标题列表-->
     <string-array name="bottom_navigation_title">
         <item>首页</item>
