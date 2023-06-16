@@ -8,6 +8,7 @@ import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.drake.brv.PageRefreshLayout
+import com.drake.channel.receiveEventLive
 import com.drake.net.Post
 import com.drake.net.utils.scope
 import com.drake.net.utils.scopeNetLife
@@ -144,6 +145,10 @@ class SearchActivity : AppActivity(), SwipeBackAbility.Direction {
         }
         //设置段子内容列表适配器
         rv.adapter = adapter
+        //接收消息事件，将传递的搜索内容设置到搜索框上，会自动调用监听输入完成事件，进行搜索
+        receiveEventLive<String>("click_search_block") {
+            searchBox.setText(it)
+        }
     }
 
     /**

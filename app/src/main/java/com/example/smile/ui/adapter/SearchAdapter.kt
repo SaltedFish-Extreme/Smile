@@ -5,6 +5,7 @@ import androidx.core.view.isVisible
 import com.chad.library.adapter.base.util.addOnDebouncedChildClick
 import com.chad.library.adapter.base.util.setOnDebouncedItemClick
 import com.chad.library.adapter.base.viewholder.QuickViewHolder
+import com.drake.channel.sendEvent
 import com.example.smile.R
 import com.example.smile.app.AppAdapter
 import com.example.smile.app.AppConfig
@@ -13,7 +14,6 @@ import com.example.smile.widget.ext.randomColor
 import com.example.smile.widget.ext.visibleOrInvisible
 import com.example.smile.widget.view.ScaleImageView
 import com.hjq.shape.view.ShapeTextView
-import com.hjq.toast.Toaster
 
 /**
  * Created by 咸鱼至尊 on 2023/5/30
@@ -25,9 +25,9 @@ class SearchAdapter(private val type: Int) : AppAdapter<String>(R.layout.item_se
     init {
         //动画效果
         setItemAnimation(AnimationType.AlphaIn)
-        //item点击事件，跳转搜索
+        //item点击事件，发送事件，传递点击项内容
         setOnDebouncedItemClick { _, _, position ->
-            Toaster.show("我被点击了！ ${items[position]}")
+            sendEvent(items[position], "click_search_block")
         }
         //历史搜索
         if (type == 1) {
@@ -40,7 +40,6 @@ class SearchAdapter(private val type: Int) : AppAdapter<String>(R.layout.item_se
             }
             //删除按钮点击事件，删除该item，同步更新存储数据
             addOnDebouncedChildClick(R.id.search_block_image) { _, _, position ->
-                Toaster.show(context.getString(R.string.delete_succeed))
                 removeAt(position)
                 AppConfig.SearchHistory = items
             }
