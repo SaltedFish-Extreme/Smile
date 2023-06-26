@@ -138,8 +138,6 @@ dependencies {
     implementation 'com.github.hackware1993:MagicIndicator:1.7.0'
     //图片加载 https://github.com/bumptech/glide
     implementation 'com.github.bumptech.glide:glide:4.15.1'
-    //图片视图 https://github.com/Baseflow/PhotoView
-    implementation 'com.github.chrisbanes:PhotoView:2.3.0'
     //轮播图 https://github.com/youth5201314/banner
     implementation 'io.github.youth5201314:banner:2.2.2'
     //相机相册 https://github.com/HuanTanSheng/EasyPhotos
@@ -170,6 +168,4 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0"
     //仿微信朋友圈大图多图预览 https://github.com/wanggaowan/PhotoPreview
     implementation 'com.github.wanggaowan:PhotoPreview:2.4.6'
-    //图片预览&视频播放 https://github.com/FlyJingFish/OpenImage
-    implementation 'io.github.FlyJingFish.OpenImage:OpenImageFullLib:2.0.1'
 }
