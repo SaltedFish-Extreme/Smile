@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.drake.brv.PageRefreshLayout
@@ -12,6 +11,7 @@ import com.drake.net.Post
 import com.drake.net.utils.scope
 import com.example.smile.R
 import com.example.smile.app.AppConfig
+import com.example.smile.app.AppFragment
 import com.example.smile.http.NetApi
 import com.example.smile.model.RecommendFollowModel
 import com.example.smile.ui.adapter.RecommendFollowAdapter
@@ -19,7 +19,7 @@ import com.example.smile.widget.view.DrawableTextView
 import com.scwang.smart.refresh.header.MaterialHeader
 
 /** 首页关注选项卡片段 */
-class HomeFollowFragment : Fragment() {
+class HomeFollowFragment : AppFragment() {
 
     private val pageRecommendUser: PageRefreshLayout by lazy { requireView().findViewById(R.id.page_recommend_follow) }
     private val rvRecommendUser: RecyclerView by lazy { requireView().findViewById(R.id.rv_recommend_follow) }

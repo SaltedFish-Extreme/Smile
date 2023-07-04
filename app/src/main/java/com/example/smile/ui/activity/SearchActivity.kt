@@ -36,7 +36,6 @@ import per.goweii.swipeback.SwipeBackDirection
 
 class SearchActivity : AppActivity(), SwipeBackAbility.Direction {
 
-    private val llSearchBar: LinearLayout by lazy { findViewById(R.id.ll_search_bar) }
     private val llSearchBlock: LinearLayout by lazy { findViewById(R.id.ll_search_block) }
     private val searchBox: ClearEditText by lazy { findViewById(R.id.search_box) }
     private val cancel: PressAlphaTextView by lazy { findViewById(R.id.cancel) }
@@ -71,7 +70,7 @@ class SearchActivity : AppActivity(), SwipeBackAbility.Direction {
         setContentView(R.layout.activity_search)
         //使顶部和状态栏不重叠
         immersionBar {
-            titleBarMarginTop(llSearchBar)
+            titleBarMarginTop(R.id.ll_search_bar)
         }
         //默认隐藏段子内容页面
         frame.gone()

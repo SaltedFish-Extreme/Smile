@@ -10,7 +10,8 @@
     <LinearLayout
         android:id="@+id/ll_search_bar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10">
 
         <com.example.smile.widget.view.ClearEditText
             android:id="@+id/search_box"

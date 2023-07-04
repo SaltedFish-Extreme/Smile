@@ -4,13 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.drake.brv.PageRefreshLayout
 import com.drake.net.Post
 import com.drake.net.utils.scope
 import com.drake.serialize.intent.bundle
 import com.example.smile.R
+import com.example.smile.app.AppFragment
 import com.example.smile.http.NetApi
 import com.example.smile.model.JokeContentModel
 import com.example.smile.ui.adapter.JokeContentAdapter
@@ -19,7 +19,7 @@ import com.example.smile.widget.ext.initFloatBtn
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 /** 首页子选项卡片段 */
-class HomeChildFragment : Fragment() {
+class HomeChildFragment : AppFragment() {
 
     private val page: PageRefreshLayout by lazy { requireView().findViewById(R.id.page) }
     private val rv: RecyclerView by lazy { requireView().findViewById(R.id.rv) }

@@ -10,7 +10,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.drake.serialize.intent.openActivity
 import com.drake.serialize.intent.withArguments
 import com.example.smile.R
-import com.example.smile.app.AppConfig
+import com.example.smile.app.AppFragment
 import com.example.smile.ui.activity.SearchActivity
 import com.example.smile.widget.ext.bindViewPager2
 import com.example.smile.widget.ext.init
@@ -18,7 +18,7 @@ import com.gyf.immersionbar.ktx.immersionBar
 import net.lucode.hackware.magicindicator.MagicIndicator
 
 /** 首页 */
-class HomeFragment : Fragment() {
+class HomeFragment : AppFragment() {
 
     private val viewpagerToolbar: Toolbar by lazy { requireView().findViewById(R.id.viewpager_toolbar) }
     private val magicIndicator: MagicIndicator by lazy { requireView().findViewById(R.id.magic_indicator) }
@@ -49,16 +49,6 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //状态栏沉浸
-        when (AppConfig.DarkTheme) {
-            false -> immersionBar {
-                navigationBarColor(R.color.white_smoke)
-                statusBarDarkFont(true, 0.2f)
-                navigationBarDarkIcon(true, 0.2f)
-            }
-
-            true -> immersionBar {}
-        }
         //使标题栏和状态栏不重叠
         immersionBar {
             titleBar(viewpagerToolbar)
