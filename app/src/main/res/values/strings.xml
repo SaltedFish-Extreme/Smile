@@ -11,6 +11,9 @@
     <string name="no_data">暂无数据，点击重试</string>
     <string name="no_net">网络异常，点击重试</string>
     <string name="loading">加载中，请稍候</string>
+    <!--Dialog按钮-->
+    <string name="sure">确定</string>
+    <string name="cancel">取消</string>
     <!--主页-->
     <string name="home_fragment">首页</string>
     <string name="evenly_fragment">划一划</string>
@@ -35,9 +38,25 @@
     <string name="release_num">发布 %s</string>
     <string name="follower_num">粉丝 %s</string>
     <string name="search_box_tip">搜索你感兴趣的帖子</string>
-    <!--Dialog按钮-->
-    <string name="sure">确定</string>
-    <string name="cancel">取消</string>
+    <!--个人页-->
+    <string name="log_in_register">登录/注册</string>
+    <string name="signature_tip">快来开始你的创作吧~</string>
+    <string name="signature_default">他/她正在想一个爆炸的签名…</string>
+    <string name="follow">关注</string>
+    <string name="follower">粉丝</string>
+    <string name="le_beans">乐豆</string>
+    <string name="post">帖子</string>
+    <string name="comment">评论</string>
+    <string name="like">点赞</string>
+    <string name="collect">收藏</string>
+    <string name="community_convention">社区公约</string>
+    <string name="customer_service">我的客服</string>
+    <string name="under_review">审核中</string>
+    <string name="audit_failure">审核失败</string>
+    <string name="share_friends">分享好友</string>
+    <string name="feedback">意见反馈</string>
+    <string name="praise">赏个好评</string>
+    <string name="setup">设置</string>
     <!--设置页-->
     <string name="setting">系统设置</string>
     <string name="logout">退出登录</string>

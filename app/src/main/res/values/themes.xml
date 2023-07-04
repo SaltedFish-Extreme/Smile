@@ -117,4 +117,33 @@
         <item name="android:windowExitAnimation">@anim/popup_out</item>
     </style>
 
+    <!--个人页菜单图标样式-->
+    <style name="profileOrderIconStyle">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/sp_16</item>
+        <item name="drawableHeight">@dimen/dp_30</item>
+        <item name="drawableWidth">@dimen/dp_30</item>
+    </style>
+
+    <!--个人页设置栏通用样式-->
+    <style name="profileSettingBarStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_marginBottom">@dimen/dp_5</item>
+        <item name="android:background">@drawable/shape_radius_bg</item>
+        <item name="android:foreground">?attr/selectableItemBackground</item>
+        <item name="bar_leftTextColor">?android:attr/textColorPrimary</item>
+        <item name="bar_leftDrawableSize">@dimen/dp_20</item>
+        <item name="bar_leftDrawablePadding">@dimen/dp_20</item>
+        <item name="bar_leftDrawableTint">@color/color_ic_bg_tint</item>
+        <item name="bar_rightTextColor">?android:attr/textColorSecondary</item>
+        <item name="bar_rightDrawable">@drawable/ic_arrows_right</item>
+        <item name="bar_rightDrawableSize">@dimen/dp_20</item>
+        <item name="bar_rightDrawableTint">@color/color_ic_bg_tint</item>
+        <item name="bar_lineVisible">false</item>
+    </style>
+
 </resources>
