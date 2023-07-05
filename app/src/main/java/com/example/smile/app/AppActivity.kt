@@ -7,6 +7,9 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.smile.R
 import com.gyf.immersionbar.ktx.immersionBar
+import com.hjq.toast.Toaster
+import com.hjq.toast.style.BlackToastStyle
+import com.hjq.toast.style.WhiteToastStyle
 
 /**
  * Created by 咸鱼至尊 on 2021/12/9
@@ -41,9 +44,14 @@ open class AppActivity : AppCompatActivity() {
                 navigationBarColor(R.color.white_smoke)
                 statusBarDarkFont(true, 0.2f)
                 navigationBarDarkIcon(true, 0.2f)
+                //日间主题修改吐司黑色样式
+                Toaster.setStyle(BlackToastStyle())
             }
 
-            true -> immersionBar {}
+            true -> immersionBar {
+                //夜间主题修改吐司白色样式
+                Toaster.setStyle(WhiteToastStyle())
+            }
         }
     }
 
