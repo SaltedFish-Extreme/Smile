@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.hjq.bar.TitleBar
+        android:id="@+id/titleBar"
+        style="@style/TitleBar"
+        app:title="@string/community_convention_title" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.example.smile.widget.nested.NestedLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="@dimen/dp_10"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/community_convention_content_1"
+                android:textColor="?android:attr/textColorPrimary" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/community_convention_content_2"
+                android:textColor="?android:attr/textColorPrimary"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/community_convention_content_3"
+                android:textColor="?android:attr/textColorPrimary" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/community_convention_content_4"
+                android:textColor="?android:attr/textColorPrimary"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/community_convention_content_5"
+                android:textColor="?android:attr/textColorPrimary" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/community_convention_content_6"
+                android:textColor="?android:attr/textColorPrimary"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/community_convention_content_7"
+                android:textColor="?android:attr/textColorPrimary" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/community_convention_content_8"
+                android:textColor="?android:attr/textColorPrimary"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/community_convention_content_9"
+                android:textColor="?android:attr/textColorPrimary" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/community_convention_content_10"
+                android:textColor="?android:attr/textColorPrimary"
+                android:textStyle="bold" />
+        </com.example.smile.widget.nested.NestedLinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>

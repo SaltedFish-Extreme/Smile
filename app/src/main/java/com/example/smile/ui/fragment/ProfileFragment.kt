@@ -5,12 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import com.drake.serialize.intent.openActivity
 import com.example.smile.R
 import com.example.smile.app.AppFragment
+import com.example.smile.ui.activity.CommunityConventionActivity
+import com.example.smile.widget.ext.clickNoRepeat
 import com.example.smile.widget.settingbar.SettingBar
 import com.example.smile.widget.view.DrawableTextView
 import com.google.android.material.imageview.ShapeableImageView
 import com.gyf.immersionbar.ktx.immersionBar
+
 
 /** 个人页 */
 class ProfileFragment : AppFragment() {
@@ -43,6 +47,14 @@ class ProfileFragment : AppFragment() {
         //使标题栏和状态栏不重叠
         immersionBar {
             titleBar(R.id.top_bar)
+        }
+        onClick()
+    }
+
+    /** 点击事件方法 */
+    private fun onClick() {
+        communityConvention.clickNoRepeat {
+            openActivity<CommunityConventionActivity>()
         }
     }
 }

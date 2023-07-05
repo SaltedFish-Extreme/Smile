@@ -52,15 +52,10 @@
     <style name="TitleBar">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:background">@color/color_title_bar</item>
-        <item name="android:paddingTop">@dimen/dp_20</item>
-        <item name="leftIcon">@drawable/ic_back</item>
-        <item name="leftIconTint">@color/color_ic_bg_tint</item>
-        <item name="rightIconTint">@color/color_ic_bg_tint</item>
+        <item name="android:background">@color/day_on_night</item>
         <item name="rightTitleColor">?android:attr/textColorPrimary</item>
         <item name="titleColor">?android:attr/textColorPrimary</item>
         <item name="titleSize">@dimen/sp_20</item>
-        <item name="lineVisible">false</item>
     </style>
 
     <!--设置栏通用样式-->

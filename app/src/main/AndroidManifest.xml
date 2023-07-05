@@ -95,6 +95,10 @@
             android:value="true" />
 
         <activity
+            android:name=".ui.activity.CommunityConventionActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".ui.activity.SearchActivity"
             android:exported="false"
             android:screenOrientation="portrait" />

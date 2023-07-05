@@ -55,8 +55,8 @@ class RecommendFollowAdapter : AppAdapter<RecommendFollowModel>() {
             holder.getView<TextView>(R.id.user_follower_num).text = context.getString(R.string.follower_num, item.fansNum)
             //登录状态是否关注用户(未登录不需要处理)
             if (AppConfig.token.isNotEmpty()) {
-                holder.getView<ShapeTextView>(R.id.follow).visibleOrInvisible(item.isAttention)
-                holder.getView<ShapeTextView>(R.id.followed).visibleOrInvisible(!item.isAttention)
+                holder.getView<ShapeTextView>(R.id.follow).visibleOrInvisible(!item.isAttention)
+                holder.getView<ShapeTextView>(R.id.followed).visibleOrInvisible(item.isAttention)
             }
         }
     }
