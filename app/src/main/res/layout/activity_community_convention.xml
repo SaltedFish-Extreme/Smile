@@ -10,13 +10,13 @@
         style="@style/TitleBar"
         app:title="@string/community_convention_title" />
 
-    <androidx.core.widget.NestedScrollView
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.example.smile.widget.nested.NestedLinearLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/dp_10"
             android:orientation="vertical">
 
@@ -84,8 +84,8 @@
                 android:text="@string/community_convention_content_10"
                 android:textColor="?android:attr/textColorPrimary"
                 android:textStyle="bold" />
-        </com.example.smile.widget.nested.NestedLinearLayout>
+        </LinearLayout>
 
-    </androidx.core.widget.NestedScrollView>
+    </ScrollView>
 
 </LinearLayout>

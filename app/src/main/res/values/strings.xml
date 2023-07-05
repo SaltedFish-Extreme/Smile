@@ -57,6 +57,8 @@
     <string name="feedback">意见反馈</string>
     <string name="praise">赏个好评</string>
     <string name="setup">设置</string>
+    <string name="customer_service_link">mqqwpa://im/chat?chat_type=wpa&#38;uin=%s</string>
+    <string name="customer_service_number">1738099872</string>
     <!--设置页-->
     <string name="setting">系统设置</string>
     <string name="logout">退出登录</string>
@@ -188,7 +190,7 @@
         \n\n &#160;&#160;&#160;&#160;&#160;&#160; 10、歪曲和恶搞经典卡通形象或供未成年人观看的其他文艺作品
         \n\n &#160;&#160;&#160;&#160;&#160;&#160; 凡发布上述内容的开口笑账户，一经发现，开口笑平台将直接删除上述内容或者关闭账户。对于涉嫌违法犯罪的，开口笑平台将向公安机关提供相关内容和线索，并配合公安机关的调查。
         \n\n &#160;&#160;&#160;&#160;&#160;&#160; 开口笑平台鼓励广大用户对于侵害未成年人合法权益的行为和内容进行举报，经查证属实的，开口笑平台将予以适当奖励。</string>
-    <string name="community_convention_content_10">\n &#160;&#160;&#160;&#160;&#160;&#160; 感谢您与我们一起维护一个积极向上、健康、充满创造力的社区。</string>
+    <string name="community_convention_content_10">\n &#160;&#160;&#160;&#160;&#160;&#160; 感谢您与我们一起维护一个积极向上、健康、充满创造力的社区。\n\n </string>
     <!--主页底部导航栏item标题列表-->
     <string-array name="bottom_navigation_title">
         <item>首页</item>

@@ -1,5 +1,7 @@
 package com.example.smile.ui.fragment
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +16,7 @@ import com.example.smile.widget.settingbar.SettingBar
 import com.example.smile.widget.view.DrawableTextView
 import com.google.android.material.imageview.ShapeableImageView
 import com.gyf.immersionbar.ktx.immersionBar
+import com.hjq.toast.Toaster
 
 
 /** 个人页 */
@@ -55,6 +58,16 @@ class ProfileFragment : AppFragment() {
     private fun onClick() {
         communityConvention.clickNoRepeat {
             openActivity<CommunityConventionActivity>()
+        }
+        customerService.clickNoRepeat {
+            try {
+                //QQ跳转到临时会话界面，如果qq号已经是好友了，直接聊天
+                val url = getString(R.string.customer_service_link, getString(R.string.customer_service_number)) //uin是发送过去的qq号码
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
+            } catch (e: Exception) {
+                e.printStackTrace()
+                Toaster.show("请检查是否已经安装QQ")
+            }
         }
     }
 }
