@@ -44,11 +44,12 @@
     <string name="signature_default">他/她正在想一个爆炸的签名…</string>
     <string name="follow">关注</string>
     <string name="follower">粉丝</string>
-    <string name="le_beans">乐豆</string>
+    <string name="experience">经验</string>
     <string name="post">帖子</string>
     <string name="comment">评论</string>
-    <string name="like">点赞</string>
+    <string name="thumbs_up">点赞</string>
     <string name="collect">收藏</string>
+    <string name="like">喜欢</string>
     <string name="community_convention">社区公约</string>
     <string name="customer_service">我的客服</string>
     <string name="under_review">审核中</string>

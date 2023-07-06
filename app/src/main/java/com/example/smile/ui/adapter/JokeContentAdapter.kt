@@ -118,7 +118,7 @@ class JokeContentAdapter(private val fragment: Fragment? = null, private val act
                     if (v.isChecked) {
                         //不喜欢
                         Toaster.show("不喜欢！${holder.layoutPosition}")
-                        holder.getView<RevealViewDislike>(R.id.reveal_like).isChecked = false
+                        holder.getView<RevealViewLike>(R.id.reveal_like).isChecked = false
                     } else {
                         //取消不喜欢
                         Toaster.show("取消不喜欢！${holder.layoutPosition}")

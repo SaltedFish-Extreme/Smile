@@ -4,26 +4,16 @@ package com.example.smile.model
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
-/**
- * 当前用户信息数据模型
- *
- * @property info 用户资源信息数据
- * @property user 用户个人信息数据
- */
+/** 登录返回用户信息数据模型 */
 @Serializable
-data class UserInfoModel(
-    @SerialName("info") var info: Info = Info(), @SerialName("user") var user: User = User()
+data class LoginUserInfoModel(
+    @SerialName("token") var token: String = "",
+    @SerialName("type") var type: String = "",
+    @SerialName("userInfo") var userInfo: UserInfo = UserInfo()
 ) {
+    /** 用户信息 */
     @Serializable
-    data class Info(
-        @SerialName("attentionNum") var attentionNum: Int = 0,
-        @SerialName("experienceNum") var experienceNum: Int = 0,
-        @SerialName("fansNum") var fansNum: Int = 0,
-        @SerialName("likeNum") var likeNum: Int = 0
-    )
-
-    @Serializable
-    data class User(
+    data class UserInfo(
         @SerialName("avatar") var avatar: String = "",
         @SerialName("birthday") var birthday: String = "",
         @SerialName("inviteCode") var inviteCode: String = "",

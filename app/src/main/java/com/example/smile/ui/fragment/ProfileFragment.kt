@@ -7,9 +7,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
+import com.drake.net.Post
+import com.drake.net.utils.scopeNetLife
 import com.drake.serialize.intent.openActivity
 import com.example.smile.R
+import com.example.smile.app.AppConfig
 import com.example.smile.app.AppFragment
+import com.example.smile.http.NetApi
+import com.example.smile.model.UserInfoModel
 import com.example.smile.ui.activity.CommunityConventionActivity
 import com.example.smile.widget.ext.clickNoRepeat
 import com.example.smile.widget.settingbar.SettingBar
@@ -17,7 +24,6 @@ import com.example.smile.widget.view.DrawableTextView
 import com.google.android.material.imageview.ShapeableImageView
 import com.gyf.immersionbar.ktx.immersionBar
 import com.hjq.toast.Toaster
-
 
 /** 个人页 */
 class ProfileFragment : AppFragment() {
@@ -27,10 +33,11 @@ class ProfileFragment : AppFragment() {
     private val userSignature: TextView by lazy { requireView().findViewById(R.id.user_signature) }
     private val followed: TextView by lazy { requireView().findViewById(R.id.followed) }
     private val follower: TextView by lazy { requireView().findViewById(R.id.follower) }
-    private val leBeans: TextView by lazy { requireView().findViewById(R.id.le_beans) }
+    private val like: TextView by lazy { requireView().findViewById(R.id.like) }
+    private val experience: TextView by lazy { requireView().findViewById(R.id.experience) }
     private val post: DrawableTextView by lazy { requireView().findViewById(R.id.post) }
     private val comment: DrawableTextView by lazy { requireView().findViewById(R.id.comment) }
-    private val like: DrawableTextView by lazy { requireView().findViewById(R.id.like) }
+    private val thumbsUp: DrawableTextView by lazy { requireView().findViewById(R.id.thumbs_up) }
     private val collect: DrawableTextView by lazy { requireView().findViewById(R.id.collect) }
     private val communityConvention: SettingBar by lazy { requireView().findViewById(R.id.community_convention) }
     private val customerService: SettingBar by lazy { requireView().findViewById(R.id.customer_service) }
@@ -50,6 +57,27 @@ class ProfileFragment : AppFragment() {
         //使标题栏和状态栏不重叠
         immersionBar {
             titleBar(R.id.top_bar)
+        }
+        if (AppConfig.token.isNotBlank()) {
+            scopeNetLife {
+                //获取用户信息数据
+                val userInfoData = Post<UserInfoModel>(NetApi.UserInfoAPI).await()
+                //Glide显示头像
+                Glide.with(requireContext()).load(userInfoData.user.avatar).placeholder(R.drawable.ic_account)
+                    .transition(DrawableTransitionOptions.withCrossFade(100)).into(userAvatar)
+                //显示昵称
+                userNickname.text = userInfoData.user.nickname
+                //显示签名
+                userSignature.text = userInfoData.user.signature
+                //显示关注
+                followed.text = userInfoData.info.attentionNum.toString()
+                //显示粉丝
+                follower.text = userInfoData.info.fansNum.toString()
+                //显示喜欢
+                like.text = userInfoData.info.likeNum.toString()
+                //显示经验
+                experience.text = userInfoData.info.experienceNum.toString()
+            }
         }
         onClick()
     }

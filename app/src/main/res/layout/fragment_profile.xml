@@ -94,14 +94,24 @@
                 app:layout_constraintStart_toEndOf="@id/followed_text" />
 
             <TextView
-                android:id="@+id/le_beans_text"
+                android:id="@+id/like_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dp_40"
-                android:text="@string/le_beans"
+                android:text="@string/like"
                 android:textSize="@dimen/sp_16"
                 app:layout_constraintBaseline_toBaselineOf="@id/follower_text"
                 app:layout_constraintStart_toEndOf="@id/follower_text" />
+
+            <TextView
+                android:id="@+id/experience_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_40"
+                android:text="@string/experience"
+                android:textSize="@dimen/sp_16"
+                app:layout_constraintBaseline_toBaselineOf="@id/like_text"
+                app:layout_constraintStart_toEndOf="@id/like_text" />
 
             <TextView
                 android:id="@+id/followed"
@@ -124,14 +134,24 @@
                 app:layout_constraintStart_toStartOf="@id/follower_text" />
 
             <TextView
-                android:id="@+id/le_beans"
+                android:id="@+id/like"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="-"
                 android:textSize="@dimen/sp_16"
-                app:layout_constraintBottom_toTopOf="@id/le_beans_text"
-                app:layout_constraintEnd_toEndOf="@id/le_beans_text"
-                app:layout_constraintStart_toStartOf="@id/le_beans_text" />
+                app:layout_constraintBottom_toTopOf="@id/like_text"
+                app:layout_constraintEnd_toEndOf="@id/like_text"
+                app:layout_constraintStart_toStartOf="@id/like_text" />
+
+            <TextView
+                android:id="@+id/experience"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="-"
+                android:textSize="@dimen/sp_16"
+                app:layout_constraintBottom_toTopOf="@id/experience_text"
+                app:layout_constraintEnd_toEndOf="@id/experience_text"
+                app:layout_constraintStart_toStartOf="@id/experience_text" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -163,10 +183,10 @@
                     android:text="@string/comment" />
 
                 <com.example.smile.widget.view.DrawableTextView
-                    android:id="@+id/like"
+                    android:id="@+id/thumbs_up"
                     style="@style/profileOrderIconStyle"
                     android:drawableTop="@drawable/ic_like"
-                    android:text="@string/like" />
+                    android:text="@string/thumbs_up" />
 
                 <com.example.smile.widget.view.DrawableTextView
                     android:id="@+id/collect"

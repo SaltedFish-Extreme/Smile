@@ -29,4 +29,7 @@ object NetApi {
 
     /** 首页热搜关键词API路径 */
     const val HomeHotSearchAPI = "helper/hot_search"
+
+    /** 当前用户信息API路径 */
+    const val UserInfoAPI = "user/info"
 }
