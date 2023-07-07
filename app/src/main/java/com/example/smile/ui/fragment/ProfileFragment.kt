@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.drake.net.Post
@@ -17,7 +18,8 @@ import com.example.smile.app.AppConfig
 import com.example.smile.app.AppFragment
 import com.example.smile.http.NetApi
 import com.example.smile.model.UserInfoModel
-import com.example.smile.ui.activity.CommunityConventionActivity
+import com.example.smile.ui.activity.AnnouncementActivity
+import com.example.smile.ui.activity.LoginActivity
 import com.example.smile.widget.ext.clickNoRepeat
 import com.example.smile.widget.settingbar.SettingBar
 import com.example.smile.widget.view.DrawableTextView
@@ -28,6 +30,7 @@ import com.hjq.toast.Toaster
 /** 个人页 */
 class ProfileFragment : AppFragment() {
 
+    private val topBar: ConstraintLayout by lazy { requireView().findViewById(R.id.top_bar) }
     private val userAvatar: ShapeableImageView by lazy { requireView().findViewById(R.id.user_avatar) }
     private val userNickname: TextView by lazy { requireView().findViewById(R.id.user_nickname) }
     private val userSignature: TextView by lazy { requireView().findViewById(R.id.user_signature) }
@@ -56,7 +59,7 @@ class ProfileFragment : AppFragment() {
         super.onViewCreated(view, savedInstanceState)
         //使标题栏和状态栏不重叠
         immersionBar {
-            titleBar(R.id.top_bar)
+            titleBar(topBar)
         }
         if (AppConfig.token.isNotBlank()) {
             scopeNetLife {
@@ -84,8 +87,12 @@ class ProfileFragment : AppFragment() {
 
     /** 点击事件方法 */
     private fun onClick() {
+        topBar.clickNoRepeat {
+            openActivity<LoginActivity>()
+        }
         communityConvention.clickNoRepeat {
-            openActivity<CommunityConventionActivity>()
+            //跳转公告页，传递标题：开口笑社区自律公约
+            openActivity<AnnouncementActivity>("title" to getString(R.string.community_convention_title))
         }
         customerService.clickNoRepeat {
             try {

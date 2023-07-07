@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?><!--隐私政策页面-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.hjq.bar.TitleBar
+        android:id="@+id/titleBar"
+        style="@style/TitleBar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dp_10"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/privacy_policy_content_1"
+                android:textColor="?android:attr/textColorPrimary" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/privacy_policy_content_2"
+                android:textColor="?android:attr/textColorPrimary"
+                android:textSize="@dimen/sp_15"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/privacy_policy_content_3"
+                android:textColor="?android:attr/textColorPrimary" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/privacy_policy_content_4"
+                android:textColor="?android:attr/textColorPrimary"
+                android:textSize="@dimen/sp_16"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/privacy_policy_content_5"
+                android:textColor="?android:attr/textColorPrimary" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/privacy_policy_content_6"
+                android:textColor="?android:attr/textColorPrimary"
+                android:textSize="@dimen/sp_16"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/privacy_policy_content_7"
+                android:textColor="?android:attr/textColorPrimary" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/privacy_policy_content_8"
+                android:textColor="?android:attr/textColorPrimary"
+                android:textSize="@dimen/sp_16"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/privacy_policy_content_9"
+                android:textColor="?android:attr/textColorPrimary" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/privacy_policy_content_10"
+                android:textColor="?android:attr/textColorPrimary"
+                android:textSize="@dimen/sp_16"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/privacy_policy_content_11"
+                android:textColor="?android:attr/textColorPrimary" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/privacy_policy_content_12"
+                android:textColor="?android:attr/textColorPrimary"
+                android:textSize="@dimen/sp_16"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/privacy_policy_content_13"
+                android:textColor="?android:attr/textColorPrimary" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/privacy_policy_content_14"
+                android:textColor="?android:attr/textColorPrimary"
+                android:textSize="@dimen/sp_16"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/privacy_policy_content_15"
+                android:textColor="?android:attr/textColorPrimary" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/privacy_policy_content_16"
+                android:textColor="?android:attr/textColorPrimary"
+                android:textSize="@dimen/sp_16"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/privacy_policy_content_17"
+                android:textColor="?android:attr/textColorPrimary" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/privacy_policy_content_18"
+                android:textColor="?android:attr/textColorPrimary"
+                android:textSize="@dimen/sp_16"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/privacy_policy_content_19"
+                android:textColor="?android:attr/textColorPrimary" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/privacy_policy_content_20"
+                android:textColor="?android:attr/textColorPrimary"
+                android:textSize="@dimen/sp_16"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/privacy_policy_content_21"
+                android:textColor="?android:attr/textColorPrimary" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/privacy_policy_content_22"
+                android:textColor="?android:attr/textColorPrimary"
+                android:textSize="@dimen/sp_16"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/privacy_policy_content_23"
+                android:textColor="?android:attr/textColorPrimary" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/privacy_policy_content_24"
+                android:textColor="?android:attr/textColorPrimary"
+                android:textSize="@dimen/sp_16"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autoLink="email"
+                android:text="@string/privacy_policy_content_25"
+                android:textColor="?android:attr/textColorPrimary" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

@@ -95,7 +95,11 @@
             android:value="true" />
 
         <activity
-            android:name=".ui.activity.CommunityConventionActivity"
+            android:name=".ui.activity.AnnouncementActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.LoginActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity

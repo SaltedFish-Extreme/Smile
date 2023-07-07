@@ -57,6 +57,7 @@
     <!--蜜色--><color name="honeydew">#f0fff0</color>
     <!--红橙色--><color name="orange_red">#ff4500</color>
     <!--橙色--><color name="orange">#ffa500</color>
+    <!--橙色提醒--><color name="orange_protocol">#ed6a2c</color>
     <!--橙绿色--><color name="lime_green">#32cd32</color>
     <!--酸橙色--><color name="lime">#00ff00</color>
     <!--黄色--><color name="yellow">#ffff00</color>
