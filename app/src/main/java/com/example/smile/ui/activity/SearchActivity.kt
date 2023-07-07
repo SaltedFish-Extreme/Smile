@@ -34,6 +34,7 @@ import com.huantansheng.easyphotos.ui.widget.PressedTextView
 import per.goweii.swipeback.SwipeBackAbility
 import per.goweii.swipeback.SwipeBackDirection
 
+/** 搜索页 */
 class SearchActivity : AppActivity(), SwipeBackAbility.Direction {
 
     private val llSearchBlock: LinearLayout by lazy { findViewById(R.id.ll_search_block) }
