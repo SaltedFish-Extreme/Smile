@@ -39,15 +39,6 @@
         <item name="overlapAnchor">false</item>
     </style>
 
-    <!--标签框通用样式-->
-    <style name="ShapeTextView">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginStart">@dimen/dp_8</item>
-        <item name="android:padding">@dimen/dp_4</item>
-        <item name="android:textSize">@dimen/sp_10</item>
-    </style>
-
     <!--标题栏通用样式-->
     <style name="TitleBar">
         <item name="android:layout_width">match_parent</item>
@@ -86,8 +77,10 @@
         <item name="cornerSize">50%</item>
     </style>
 
-    <!-- 默认按钮样式 -->
-    <style name="ButtonStyle" parent="Widget.AppCompat.Button.Borderless">
+    <!-- 登陆按钮样式 -->
+    <style name="LoginButtonStyle" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">@dimen/sp_16</item>
         <item name="android:textColor">?android:attr/textColorPrimary</item>
         <item name="android:gravity">center</item>
@@ -96,7 +89,7 @@
     </style>
 
     <!--透明背景弹窗样式-->
-    <style name="transparentBgDialog" parent="@android:style/Theme.Dialog">
+    <style name="TransparentBgDialog" parent="@android:style/Theme.Dialog">
         <item name="android:windowFrame">@null</item>
         <item name="android:windowIsFloating">true</item>
         <item name="android:windowIsTranslucent">true</item>
@@ -107,13 +100,13 @@
     </style>
 
     <!-- PopupWindows的弹出和消失动画 -->
-    <style name="popup_window_anim">
+    <style name="PopupWindowAnim">
         <item name="android:windowEnterAnimation">@anim/popup_in</item>
         <item name="android:windowExitAnimation">@anim/popup_out</item>
     </style>
 
     <!--个人页菜单图标样式-->
-    <style name="profileOrderIconStyle">
+    <style name="ProfileOrderIconStyle">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_weight">1</item>
@@ -124,7 +117,7 @@
     </style>
 
     <!--个人页设置栏通用样式-->
-    <style name="profileSettingBarStyle">
+    <style name="ProfileSettingBarStyle">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_marginBottom">@dimen/dp_5</item>
@@ -139,6 +132,38 @@
         <item name="bar_rightDrawableSize">@dimen/dp_20</item>
         <item name="bar_rightDrawableTint">@color/color_ic_bg_tint</item>
         <item name="bar_lineVisible">false</item>
+    </style>
+
+    <!-- 验证码按钮样式 -->
+    <style name="CountdownViewStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginEnd">@dimen/dp_15</item>
+        <item name="android:padding">@dimen/dp_5</item>
+        <item name="android:minWidth">@dimen/dp_80</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_gravity">center_vertical|end</item>
+        <item name="android:text">@string/send_verification_code</item>
+        <item name="android:textColor">@drawable/countdown_color_selector</item>
+        <item name="android:textSize">@dimen/sp_16</item>
+    </style>
+
+    <!-- 输入框通用样式 -->
+    <style name="InputBoxStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/dp_45</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_marginStart">@dimen/dp_5</item>
+        <item name="android:layout_marginEnd">@dimen/dp_5</item>
+        <item name="android:paddingStart">@dimen/dp_20</item>
+        <item name="android:paddingEnd">@dimen/dp_20</item>
+        <item name="android:drawablePadding">@dimen/dp_5</item>
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+        <item name="android:textSize">@dimen/sp_15</item>
+        <item name="shape">rectangle</item>
+        <item name="shape_radius">@dimen/dp_20</item>
+        <item name="shape_solidColor">@color/color_input_box</item>
+        <item name="android:singleLine">true</item>
     </style>
 
 </resources>

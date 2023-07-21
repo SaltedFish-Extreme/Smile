@@ -191,5 +191,9 @@
     <!--弹窗填充颜色--><color name="color_popup_fill">@color/white</color>
     <!--装饰颜色--><color name="color_ornaments">@color/silver_chalice</color>
     <!--搜索框颜色--><color name="color_search_box">@color/mercury</color>
+    <!--输入框颜色--><color name="color_input_box">@color/pale_off_white</color>
     <!--日夜颜色--><color name="day_on_night">@color/white</color>
+    <!--隐私政策提醒颜色--><color name="privacy_policy_reminder_colors">@color/orange_protocol</color>
+    <!--服务协议提醒颜色--><color name="service_agreement_reminder_color">@color/lime_green</color>
+    <!--登陆辅助颜色--><color name="color_login_auxiliary">@color/dodger_blue</color>
 </resources>

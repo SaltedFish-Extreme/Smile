@@ -172,25 +172,25 @@
 
                 <com.example.smile.widget.view.DrawableTextView
                     android:id="@+id/post"
-                    style="@style/profileOrderIconStyle"
+                    style="@style/ProfileOrderIconStyle"
                     android:drawableTop="@drawable/ic_post"
                     android:text="@string/post" />
 
                 <com.example.smile.widget.view.DrawableTextView
                     android:id="@+id/comment"
-                    style="@style/profileOrderIconStyle"
+                    style="@style/ProfileOrderIconStyle"
                     android:drawableTop="@drawable/ic_comment"
                     android:text="@string/comment" />
 
                 <com.example.smile.widget.view.DrawableTextView
                     android:id="@+id/thumbs_up"
-                    style="@style/profileOrderIconStyle"
+                    style="@style/ProfileOrderIconStyle"
                     android:drawableTop="@drawable/ic_like"
                     android:text="@string/thumbs_up" />
 
                 <com.example.smile.widget.view.DrawableTextView
                     android:id="@+id/collect"
-                    style="@style/profileOrderIconStyle"
+                    style="@style/ProfileOrderIconStyle"
                     android:drawableTop="@drawable/ic_collect"
                     android:text="@string/collect" />
 
@@ -207,49 +207,49 @@
 
             <com.example.smile.widget.settingbar.SettingBar
                 android:id="@+id/community_convention"
-                style="@style/profileSettingBarStyle"
+                style="@style/ProfileSettingBarStyle"
                 app:bar_leftDrawable="@drawable/icon_community_convention"
                 app:bar_leftText="@string/community_convention" />
 
             <com.example.smile.widget.settingbar.SettingBar
                 android:id="@+id/customer_service"
-                style="@style/profileSettingBarStyle"
+                style="@style/ProfileSettingBarStyle"
                 app:bar_leftDrawable="@drawable/icon_customer_service"
                 app:bar_leftText="@string/customer_service" />
 
             <com.example.smile.widget.settingbar.SettingBar
                 android:id="@+id/under_review"
-                style="@style/profileSettingBarStyle"
+                style="@style/ProfileSettingBarStyle"
                 app:bar_leftDrawable="@drawable/icon_under_review"
                 app:bar_leftText="@string/under_review" />
 
             <com.example.smile.widget.settingbar.SettingBar
                 android:id="@+id/audit_failure"
-                style="@style/profileSettingBarStyle"
+                style="@style/ProfileSettingBarStyle"
                 app:bar_leftDrawable="@drawable/icon_audit_failure"
                 app:bar_leftText="@string/audit_failure" />
 
             <com.example.smile.widget.settingbar.SettingBar
                 android:id="@+id/share_friends"
-                style="@style/profileSettingBarStyle"
+                style="@style/ProfileSettingBarStyle"
                 app:bar_leftDrawable="@drawable/icon_share_friends"
                 app:bar_leftText="@string/share_friends" />
 
             <com.example.smile.widget.settingbar.SettingBar
                 android:id="@+id/feedback"
-                style="@style/profileSettingBarStyle"
+                style="@style/ProfileSettingBarStyle"
                 app:bar_leftDrawable="@drawable/icon_feedback"
                 app:bar_leftText="@string/feedback" />
 
             <com.example.smile.widget.settingbar.SettingBar
                 android:id="@+id/praise"
-                style="@style/profileSettingBarStyle"
+                style="@style/ProfileSettingBarStyle"
                 app:bar_leftDrawable="@drawable/icon_praise"
                 app:bar_leftText="@string/praise" />
 
             <com.example.smile.widget.settingbar.SettingBar
                 android:id="@+id/setup"
-                style="@style/profileSettingBarStyle"
+                style="@style/ProfileSettingBarStyle"
                 app:bar_leftDrawable="@drawable/icon_setup"
                 app:bar_leftText="@string/setup" />
 

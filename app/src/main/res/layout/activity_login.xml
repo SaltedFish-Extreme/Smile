@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?><!--登录页-->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/blank_page"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="@dimen/dp_30">
 
     <ImageView
         android:id="@+id/close"
-        android:layout_width="@dimen/dp_40"
-        android:layout_height="@dimen/dp_40"
+        android:layout_width="@dimen/dp_30"
+        android:layout_height="@dimen/dp_30"
         app:srcCompat="@drawable/ic_closure"
         app:tint="@color/color_ic_bg_tint" />
 
@@ -18,10 +19,91 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/close"
         android:layout_marginTop="@dimen/dp_30"
-        android:text="验证码登录"
+        android:text="@string/verification_code_login"
         android:textColor="?android:attr/textColorPrimary"
-        android:textSize="@dimen/sp_30"
+        android:textSize="@dimen/sp_24"
         android:textStyle="bold" />
+
+    <com.example.smile.widget.view.ClearEditText
+        android:id="@+id/input_phone"
+        style="@style/InputBoxStyle"
+        android:layout_below="@id/login_info"
+        android:layout_marginTop="@dimen/dp_50"
+        android:hint="@string/phone_tip"
+        app:regexType="mobile" />
+
+    <RelativeLayout
+        android:id="@+id/verification_code_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/input_phone"
+        android:layout_marginTop="@dimen/dp_30"
+        android:visibility="visible">
+
+        <com.example.smile.widget.view.RegexEditText
+            android:id="@+id/input_verification_code"
+            style="@style/InputBoxStyle"
+            android:hint="@string/verification_code_tip"
+            android:maxLength="6"
+            app:regexType="number" />
+
+        <View
+            android:layout_width="@dimen/dp_1"
+            android:layout_height="@dimen/dp_25"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/dp_10"
+            android:layout_toStartOf="@id/send_verification_code"
+            android:background="@color/color_circle_button_selector_disabled" />
+
+        <com.example.smile.widget.view.CountdownView
+            android:id="@+id/send_verification_code"
+            style="@style/CountdownViewStyle"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:enabled="false" />
+    </RelativeLayout>
+
+    <com.example.smile.widget.view.PasswordEditText
+        android:id="@+id/input_password"
+        style="@style/InputBoxStyle"
+        android:layout_below="@id/input_phone"
+        android:layout_marginTop="@dimen/dp_30"
+        android:hint="@string/password_tip"
+        android:maxLength="20"
+        android:visibility="gone"
+        app:regexType="nonnull" />
+
+    <com.example.smile.widget.view.SubmitButton
+        android:id="@+id/btn_login"
+        style="@style/LoginButtonStyle"
+        android:layout_below="@id/input_phone"
+        android:layout_marginTop="@dimen/dp_120"
+        android:text="@string/login" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_login"
+        android:layout_marginHorizontal="@dimen/dp_10"
+        android:layout_marginTop="@dimen/dp_20">
+
+        <TextView
+            android:id="@+id/login_method_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/password_login"
+            android:textColor="@color/color_login_auxiliary"
+            android:textSize="@dimen/sp_16" />
+
+        <TextView
+            android:id="@+id/encounter_problems"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:text="@string/encounter_problems"
+            android:textColor="@color/color_login_auxiliary"
+            android:textSize="@dimen/sp_16" />
+    </FrameLayout>
 
     <TextView
         android:id="@+id/login_protocol_reminder"

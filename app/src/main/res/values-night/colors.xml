@@ -17,5 +17,9 @@
     <!--弹窗填充颜色--><color name="color_popup_fill">@color/black_ivory</color>
     <!--装饰颜色--><color name="color_ornaments">@color/light_silver</color>
     <!--搜索框颜色--><color name="color_search_box">@color/tundra</color>
+    <!--输入框颜色--><color name="color_input_box">@color/black_ivory</color>
     <!--日夜颜色--><color name="day_on_night">@color/black_ivory</color>
+    <!--隐私政策提醒颜色--><color name="privacy_policy_reminder_colors">@color/dark_orange</color>
+    <!--服务协议提醒颜色--><color name="service_agreement_reminder_color">@color/lime</color>
+    <!--登陆辅助颜色--><color name="color_login_auxiliary">@color/medium_purple</color>
 </resources>

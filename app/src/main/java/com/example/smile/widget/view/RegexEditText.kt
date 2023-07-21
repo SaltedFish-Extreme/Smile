@@ -6,8 +6,8 @@ import android.text.InputFilter
 import android.text.Spanned
 import android.text.TextUtils
 import android.util.AttributeSet
-import androidx.appcompat.widget.AppCompatEditText
 import com.example.smile.R
+import com.hjq.shape.view.ShapeEditText
 import java.util.regex.Pattern
 
 /**
@@ -22,7 +22,7 @@ import java.util.regex.Pattern
 @Suppress("MemberVisibilityCanBePrivate", "unused")
 open class RegexEditText @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = android.R.attr.editTextStyle
-) : AppCompatEditText(context, attrs, defStyleAttr), InputFilter {
+) : ShapeEditText(context, attrs, defStyleAttr), InputFilter {
 
     companion object {
 

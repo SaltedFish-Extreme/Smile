@@ -50,7 +50,7 @@ class PhotoAdapter(
         //初始化
         PopupWindow(view, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, true).apply {
             //动画效果
-            animationStyle = R.style.popup_window_anim
+            animationStyle = R.style.PopupWindowAnim
             //接收点击外侧事件，点击关闭弹窗
             isOutsideTouchable = true
             View.OnTouchListener { v, event ->

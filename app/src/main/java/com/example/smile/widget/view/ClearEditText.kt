@@ -13,7 +13,6 @@ import android.view.View.OnTouchListener
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.DrawableCompat
 import com.example.smile.R
-import com.hjq.shape.view.ShapeEditText
 
 /**
  * author : Android 轮子哥
@@ -26,7 +25,7 @@ import com.hjq.shape.view.ShapeEditText
  */
 @Suppress("ClickableViewAccessibility", "unused")
 class ClearEditText @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = android.R.attr.editTextStyle) :
-    ShapeEditText(context, attrs, defStyleAttr), OnTouchListener, OnFocusChangeListener, TextWatcher {
+    RegexEditText(context, attrs, defStyleAttr), OnTouchListener, OnFocusChangeListener, TextWatcher {
 
     private val clearDrawable: Drawable = DrawableCompat.wrap(ContextCompat.getDrawable(context, R.drawable.ic_clear)!!)
     private var touchListener: OnTouchListener? = null
