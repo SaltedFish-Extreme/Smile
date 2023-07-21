@@ -69,10 +69,6 @@ class SearchActivity : AppActivity(), SwipeBackAbility.Direction {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
-        //使顶部和状态栏不重叠
-        immersionBar {
-            titleBarMarginTop(R.id.ll_search_bar)
-        }
         //默认隐藏段子内容页面
         frame.gone()
         //没有存储过搜索热词就发起请求
@@ -261,6 +257,14 @@ class SearchActivity : AppActivity(), SwipeBackAbility.Direction {
                 }
             }
         }.refreshing()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        //使顶部和状态栏不重叠
+        immersionBar {
+            titleBarMarginTop(R.id.ll_search_bar)
+        }
     }
 
     /** 当前页禁用侧滑 */

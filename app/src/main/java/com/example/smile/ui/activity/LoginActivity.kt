@@ -1,6 +1,10 @@
 package com.example.smile.ui.activity
 
+import ando.dialog.core.DialogManager
+import ando.dialog.usage.BottomDialog
+import android.content.Context
 import android.os.Bundle
+import android.view.Window
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.RelativeLayout
@@ -45,10 +49,6 @@ class LoginActivity : AppActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-        //使顶部和状态栏不重叠
-        immersionBar {
-            titleBarMarginTop(close)
-        }
         //点击空白处隐藏输入法并清除输入框焦点
         blankPage.clickNoRepeat {
             hideSoftKeyboard(this)
@@ -128,4 +128,13 @@ class LoginActivity : AppActivity() {
             }
         }
     }
+
+    override fun onResume() {
+        super.onResume()
+        //使顶部和状态栏不重叠
+        immersionBar {
+            titleBarMarginTop(close)
+        }
+    }
+
 }

@@ -24,13 +24,17 @@ class AnnouncementActivity : AppActivity() {
             getString(R.string.privacy_policy_title) -> setContentView(R.layout.activity_privacy_policy)
             getString(R.string.services_agreement) -> setContentView(R.layout.activity_services_agreement)
         }
-        //使标题栏和状态栏不重叠
-        immersionBar {
-            titleBar(titleBar)
-        }
         //设置标题
         titleBar.title = title
         //标题栏左侧返回按钮关闭当前页面
         titleBar.leftView.clickNoRepeat { finish() }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        //使标题栏和状态栏不重叠
+        immersionBar {
+            titleBar(titleBar)
+        }
     }
 }

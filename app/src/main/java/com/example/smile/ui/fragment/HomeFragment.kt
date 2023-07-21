@@ -49,10 +49,6 @@ class HomeFragment : AppFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //使标题栏和状态栏不重叠
-        immersionBar {
-            titleBar(viewpagerToolbar)
-        }
         //初始化viewpager2(不允许滑动)
         viewpager.init(this, fragments, false)
         //初始化MagicIndicator
@@ -71,5 +67,13 @@ class HomeFragment : AppFragment() {
         viewpager.offscreenPageLimit = fragments.size
         //设置viewpager默认选中页面
         viewpager.currentItem = 1
+    }
+
+    override fun onResume() {
+        super.onResume()
+        //使标题栏和状态栏不重叠
+        immersionBar {
+            titleBar(viewpagerToolbar)
+        }
     }
 }

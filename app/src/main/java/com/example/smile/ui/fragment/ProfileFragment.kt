@@ -57,10 +57,6 @@ class ProfileFragment : AppFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //使标题栏和状态栏不重叠
-        immersionBar {
-            titleBar(topBar)
-        }
         if (AppConfig.token.isNotBlank()) {
             scopeNetLife {
                 //获取用户信息数据
@@ -103,6 +99,14 @@ class ProfileFragment : AppFragment() {
                 e.printStackTrace()
                 Toaster.show("请检查是否已经安装QQ")
             }
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        //使标题栏和状态栏不重叠
+        immersionBar {
+            titleBar(topBar)
         }
     }
 }
