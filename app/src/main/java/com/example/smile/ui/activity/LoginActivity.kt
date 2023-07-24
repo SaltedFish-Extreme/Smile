@@ -3,6 +3,8 @@ package com.example.smile.ui.activity
 import ando.dialog.core.DialogManager
 import ando.dialog.usage.BottomDialog
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.Window
 import android.view.animation.AnimationUtils
@@ -127,6 +129,8 @@ class LoginActivity : AppActivity() {
                 )
             }
         }
+        //点击遇到问题显示底部弹窗
+        encounterProblems.clickNoRepeat { showBottomDialog() }
     }
 
     override fun onResume() {
@@ -135,6 +139,48 @@ class LoginActivity : AppActivity() {
         immersionBar {
             titleBarMarginTop(close)
         }
+    }
+
+    //底部弹窗(BottomDialog)
+    private fun showBottomDialog() {
+        val bottomDialog = CustomBottomDialog(this)
+        DialogManager.replaceDialog(bottomDialog).setCancelable(true).setCanceledOnTouchOutside(true).setDimmedBehind(true).show()
+    }
+
+    private class CustomBottomDialog(context: Context) : BottomDialog(context, R.style.AndoLoadingDialog) {
+
+        private val forgotPassword: TextView by lazy { findViewById(R.id.forgot_password) }
+        private val contactCustomerService: TextView by lazy { findViewById(R.id.contact_customer_service) }
+        private val wantFeedback: TextView by lazy { findViewById(R.id.want_feedback) }
+        private val cancel: TextView by lazy { findViewById(R.id.cancel) }
+
+        override fun initView() {
+            forgotPassword.clickNoRepeat { Toaster.show("我被点击了1") }
+            contactCustomerService.clickNoRepeat {
+                try {
+                    //QQ跳转到临时会话界面，如果qq号已经是好友了，直接聊天
+                    val url = context.getString(R.string.customer_service_link, context.getString(R.string.customer_service_number)) //uin是发送过去的qq号码
+                    context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                    Toaster.show("请检查是否已经安装QQ")
+                }
+            }
+            wantFeedback.clickNoRepeat { Toaster.show("我被点击了3") }
+            cancel.clickNoRepeat { dismiss() }
+        }
+
+        override fun initConfig(savedInstanceState: Bundle?) {
+            super.initConfig(savedInstanceState)
+        }
+
+        override fun initWindow(window: Window) {
+            super.initWindow(window)
+            window.setBackgroundDrawableResource(R.drawable.rectangle_ando_dialog_bottom)
+            window.setWindowAnimations(R.style.AndoBottomDialogAnimation)
+        }
+
+        override fun getLayoutId(): Int = R.layout.layout_dialog_bottom
     }
 
 }

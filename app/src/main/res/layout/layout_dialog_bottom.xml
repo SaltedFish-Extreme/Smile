@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dp_300"
+    android:background="@drawable/rectangle_ando_dialog_bottom"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/dimen_ando_dialog_bottom_radius">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_50"
+        android:gravity="center"
+        android:text="@string/choose_problems"
+        android:textColor="?android:attr/textColorPrimary"
+        android:textSize="@dimen/sp_20"
+        android:textStyle="bold" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_1"
+        android:background="@color/color_input_box" />
+
+    <TextView
+        android:id="@+id/forgot_password"
+        style="@style/BottomDialogTextStyle"
+        android:text="@string/forgot_password" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_0.2"
+        android:background="@color/color_search_box" />
+
+    <TextView
+        android:id="@+id/contact_customer_service"
+        style="@style/BottomDialogTextStyle"
+        android:text="@string/contact_customer_service" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_0.2"
+        android:background="@color/color_search_box" />
+
+    <TextView
+        android:id="@+id/want_feedback"
+        style="@style/BottomDialogTextStyle"
+        android:text="@string/want_feedback" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_10"
+        android:background="@color/color_input_box" />
+
+    <TextView
+        android:id="@+id/cancel"
+        style="@style/BottomDialogTextStyle"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="@string/cancel" />
+
+</LinearLayout>
