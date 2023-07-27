@@ -48,7 +48,7 @@ fun View.toBitmap(scale: Float = 1f, config: Bitmap.Config = Bitmap.Config.ARGB_
     if (this is ImageView) {
         if (drawable is BitmapDrawable) return (drawable as BitmapDrawable).bitmap
     }
-    this.clearFocus()
+    clearFocus()
     val bitmap = createBitmapSafely(
         (width * scale).toInt(), (height * scale).toInt(), config, 1
     )

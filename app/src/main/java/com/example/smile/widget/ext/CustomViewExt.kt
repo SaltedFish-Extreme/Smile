@@ -210,7 +210,7 @@ fun MagicIndicator.bindViewPager2(viewPager: ViewPager2, mStringList: List<Strin
             }
         }
     }
-    this.navigator = commonNavigator
+    navigator = commonNavigator
 
     viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
         override fun onPageSelected(position: Int) {
@@ -246,7 +246,7 @@ fun hideSoftKeyboard(activity: Activity?) {
 
 /** 拦截底部导航栏长按弹出吐司扩展函数 */
 fun BottomNavigationView.interceptLongClick() {
-    val bottomNavigationMenuView = this.getChildAt(0) as BottomNavigationMenuView
+    val bottomNavigationMenuView = getChildAt(0) as BottomNavigationMenuView
     val size = bottomNavigationMenuView.childCount
     for (index in 0 until size) {
         bottomNavigationMenuView[index].setOnLongClickListener { true }

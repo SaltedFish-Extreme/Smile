@@ -73,7 +73,7 @@ class NestedLinearLayout @JvmOverloads constructor(context: Context, attrs: Attr
                     event.offsetLocation(0f, scrollOffset[1].toFloat())
                 }
                 if (!beingDragged && abs(lastMotionY - y) > touchSlop) {
-                    this.parent?.requestDisallowInterceptTouchEvent(true)
+                    parent?.requestDisallowInterceptTouchEvent(true)
                     beingDragged = true
                     if (deltaY > 0) {
                         deltaY -= touchSlop.toInt()

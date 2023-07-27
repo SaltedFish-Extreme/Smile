@@ -19,7 +19,7 @@ fun String.decrypt(): String {
     val cipher = Cipher.getInstance("AES/ECB/PKCS5Padding")
     cipher.init(Cipher.DECRYPT_MODE, secretKeySpec)
     val encrypted = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-        Base64.getDecoder().decode(this.replace("ftp://", "").trim())
+        Base64.getDecoder().decode(replace("ftp://", "").trim())
     } else {
         return ""
     }

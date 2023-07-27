@@ -12,17 +12,17 @@ import android.os.*
 fun Context.vibration() {
     when {
         Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
-            val vibrator = this.getSystemService(Context.VIBRATOR_MANAGER_SERVICE) as VibratorManager
+            val vibrator = getSystemService(Context.VIBRATOR_MANAGER_SERVICE) as VibratorManager
             vibrator.vibrate(CombinedVibration.createParallel(VibrationEffect.createOneShot(50, -1)))
         }
 
         Build.VERSION.SDK_INT >= Build.VERSION_CODES.O -> {
-            val vibrator = this.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+            val vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
             vibrator.vibrate(VibrationEffect.createOneShot(50, -1))
         }
 
         else -> {
-            val vibrator = this.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+            val vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
             vibrator.vibrate(50)
         }
     }

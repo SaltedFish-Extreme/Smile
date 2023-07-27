@@ -34,7 +34,7 @@ class SearchAdapter(private val type: Int) : AppAdapter<String>(R.layout.item_se
             //长按事件，显示隐藏删除按钮
             setOnItemLongClickListener { _, view, _ ->
                 view.findViewById<ScaleImageView>(R.id.search_block_image).apply {
-                    visibleOrInvisible(!this.isVisible)
+                    visibleOrInvisible(!isVisible)
                 }
                 true
             }
