@@ -30,6 +30,8 @@ import com.hjq.permissions.Permission
 import com.hjq.permissions.XXPermissions
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import per.goweii.swipeback.SwipeBackAbility
+import per.goweii.swipeback.SwipeBackDirection
 import java.io.PrintWriter
 import java.io.Serializable
 import java.io.StringWriter
@@ -50,7 +52,7 @@ import kotlin.math.min
  *
  * desc : 崩溃捕捉界面
  */
-class CrashActivity : AppActivity() {
+class CrashActivity : AppActivity(), SwipeBackAbility.Direction {
 
     companion object {
 
@@ -191,14 +193,19 @@ class CrashActivity : AppActivity() {
             }
         }
         val builder: StringBuilder = StringBuilder()
-        builder.append("设备品牌：\t").append(Build.BRAND).append("\n设备型号：\t").append(Build.MODEL).append("\n设备类型：\t")
+        builder.append("设备品牌：\t").append(Build.BRAND).append("\n设备型号：\t").append(Build.MODEL)
+            .append("\n设备类型：\t")
             .append(if (isTablet()) "平板" else "手机")
 
         builder.append("\n屏幕宽高：\t").append(screenWidth).append(" x ").append(screenHeight).append("\n屏幕密度：\t")
-            .append(displayMetrics.densityDpi).append("\n密度像素：\t").append(displayMetrics.density).append("\n目标资源：\t").append(targetResource)
+            .append(displayMetrics.densityDpi).append("\n密度像素：\t").append(displayMetrics.density)
+            .append("\n目标资源：\t")
+            .append(targetResource)
             .append("\n最小宽度：\t").append(smallestWidth.toInt())
 
-        builder.append("\n安卓版本：\t").append(Build.VERSION.RELEASE).append("\nAPI 版本：\t").append(Build.VERSION.SDK_INT).append("\nCPU 架构：\t")
+        builder.append("\n安卓版本：\t").append(Build.VERSION.RELEASE).append("\nAPI 版本：\t")
+            .append(Build.VERSION.SDK_INT)
+            .append("\nCPU 架构：\t")
             .append(Build.SUPPORTED_ABIS[0])
 
         builder.append("\n应用版本：\t").append(getVersionName()).append("\n版本代码：\t").append(getVersionCode())
@@ -210,8 +217,10 @@ class CrashActivity : AppActivity() {
             } else {
                 packageManager.getPackageInfo(packageName, PackageManager.GET_PERMISSIONS)
             }
-            builder.append("\n首次安装：\t").append(dateFormat.format(Date(packageInfo.firstInstallTime))).append("\n最近安装：\t")
-                .append(dateFormat.format(Date(packageInfo.lastUpdateTime))).append("\n崩溃时间：\t").append(dateFormat.format(Date()))
+            builder.append("\n首次安装：\t").append(dateFormat.format(Date(packageInfo.firstInstallTime)))
+                .append("\n最近安装：\t")
+                .append(dateFormat.format(Date(packageInfo.lastUpdateTime))).append("\n崩溃时间：\t")
+                .append(dateFormat.format(Date()))
             val permissions: MutableList<String> = mutableListOf(*packageInfo.requestedPermissions)
             if (permissions.contains(Permission.READ_EXTERNAL_STORAGE) || permissions.contains(Permission.WRITE_EXTERNAL_STORAGE)) {
                 builder.append("\n存储权限：\t").append(
@@ -239,7 +248,8 @@ class CrashActivity : AppActivity() {
                 }
             }
             if (permissions.contains(Permission.CAMERA)) {
-                builder.append("\n相机权限：\t").append(if (XXPermissions.isGranted(this, Permission.CAMERA)) "已获得" else "未获得")
+                builder.append("\n相机权限：\t")
+                    .append(if (XXPermissions.isGranted(this, Permission.CAMERA)) "已获得" else "未获得")
             }
             if (permissions.contains(Permission.RECORD_AUDIO)) {
                 builder.append("\n录音权限：\t").append(
@@ -295,4 +305,7 @@ class CrashActivity : AppActivity() {
         val bundle: Bundle = intent.extras ?: return null
         return (bundle.getSerializable(name)) as S?
     }
+
+    /** 当前页禁用侧滑 */
+    override fun swipeBackDirection() = SwipeBackDirection.NONE
 }
