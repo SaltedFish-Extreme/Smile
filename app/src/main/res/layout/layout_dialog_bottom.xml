@@ -1,8 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?><!--底部弹窗布局(遇到问题)-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/dp_300"
+    android:layout_height="wrap_content"
     android:background="@drawable/rectangle_ando_dialog_bottom"
+    android:backgroundTint="@color/day_on_night"
     android:orientation="vertical"
     android:paddingTop="@dimen/dimen_ando_dialog_bottom_radius">
 
@@ -18,7 +19,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_1"
-        android:background="@color/color_input_box" />
+        android:background="@color/color_search_box" />
 
     <TextView
         android:id="@+id/forgot_password"
@@ -27,7 +28,7 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_0.2"
+        android:layout_height="@dimen/dp_0.5"
         android:background="@color/color_search_box" />
 
     <TextView
@@ -37,7 +38,7 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_0.2"
+        android:layout_height="@dimen/dp_0.5"
         android:background="@color/color_search_box" />
 
     <TextView
@@ -47,14 +48,12 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_10"
-        android:background="@color/color_input_box" />
+        android:layout_height="@dimen/dp_5"
+        android:background="@color/color_search_box" />
 
     <TextView
         android:id="@+id/cancel"
         style="@style/BottomDialogTextStyle"
-        android:layout_height="0dp"
-        android:layout_weight="1"
         android:text="@string/cancel" />
 
 </LinearLayout>

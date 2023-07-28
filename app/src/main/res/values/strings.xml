@@ -38,6 +38,8 @@
     <string name="release_num">发布 %s</string>
     <string name="follower_num">粉丝 %s</string>
     <string name="search_box_tip">搜索你感兴趣的帖子</string>
+    <string name="copy_joke">复制段子</string>
+    <string name="copy_succeed">复制成功</string>
     <!--个人页-->
     <string name="log_in_register">登录/注册</string>
     <string name="signature_tip">快来开始你的创作吧~</string>
@@ -87,22 +89,11 @@
     <string name="email">1738099872@qq.com</string>
     <string name="github">github.com/SaltedFish-Extreme</string>
     <string name="link">saltedfish-extreme.github.io</string>
-    <!--网页-->
-    <string name="text_plan">text/plain</string>
-    <string name="web_collect">收藏</string>
-    <string name="web_share">分享</string>
-    <string name="web_share_url">%1$s分享【%2$s】：%3$s</string>
-    <string name="web_refresh">刷新</string>
-    <string name="web_browser">用浏览器打开</string>
     <!--搜索页-->
     <string name="search_tip">输入关键字搜索</string>
     <string name="search_hot">热门搜索</string>
     <string name="search_history">历史搜索</string>
     <string name="clear">清空历史</string>
-    <!--历史记录页-->
-    <string name="delete_succeed">删除成功</string>
-    <string name="date">2022\-02\-02 00:00:00</string>
-    <string name="delete_confirm">确定删除所有历史记录吗？</string>
     <!--登录页-->
     <string name="login">登录</string>
     <string name="verification_code_login">验证码登录</string>
@@ -117,21 +108,22 @@
     <string name="verification_code_tip">请输入验证码</string>
     <string name="get_verification_code">获取验证码</string>
     <string name="send_verification_code">发送验证码</string>
-    <string name="verification_code_sent_success">验证码发送成功</string>
+    <string name="verification_code_sent_success">验证码发送成功，请前往小程序查看</string>
     <string name="verification_code_send_hint">验证码已发送，请注意查收</string>
     <string name="login_succeed">登录成功</string>
     <string name="Phone_number_format_incorrect">手机号格式不正确</string>
     <string name="Incorrect_username_or_password">账号或密码错误</string>
     <string name="verification_code_error">验证码错误</string>
     <string name="login_protocol_reminder">登录/注册即代表您同意开口笑《隐私政策》\n 和《用户服务协议》</string>
-    <!--分享文章页-->
-    <string name="share_article">分享文章</string>
-    <string name="share_title">文章标题</string>
-    <string name="share_title_tip">100字以内</string>
-    <string name="share_link">文章链接</string>
-    <string name="share_link_tip">例如：https://www.wanandroid.com</string>
-    <string name="share">分享</string>
-    <string name="share_tip">温馨提示</string>
+    <string name="reset_password">重置密码</string>
+    <string name="input_new_password">请输入新密码(长度6~18)</string>
+    <string name="input_new_password_again">请再次输入新密码</string>
+    <string name="reset">重置</string>
+    <string name="to_login">去登陆</string>
+    <string name="re_enter_password">两次密码输入不一致</string>
+    <string name="phone_format_error">手机号格式错误</string>
+    <string name="password_format_error">密码格式错误</string>
+    <string name="verification_code_format_error">验证码格式错误</string>
     <!--公约-->
     <string name="community_convention_title">开口笑社区自律公约</string>
     <string name="community_convention_content_1">\n &#160;&#160;&#160;&#160;&#160;&#160; 开口笑是一款主打轻幽默内容的全新产品，我们希望通过产品来传播快乐，让大家分享快乐生活。开口笑作为由用户共建、共治、共享的社区，开口笑致力于弘扬社会主义核心价值观，传播正能量，宣扬中华民族传统文化和美德，宣传积极向上的时代风尚和生活方式。这一目标的实现，离不开平台和用户共同努力，维护有利于平台健康和谐发展的网络环境，营造风清气正的社区生态。\n\n &#160;&#160;&#160;&#160;&#160;&#160; 为此特制定《开口笑社区公约》（以下简称“本公约”），由开口笑的平台服务提供者和所有开口笑用户共同遵守。平台服务提供者审核和推荐内容，开口笑用户发布和传播内容、参与互动，应当符合本公约的规范。</string>

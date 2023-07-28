@@ -1,11 +1,15 @@
 package com.example.smile.widget.ext
 
+import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
 import android.view.View
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.widget.ImageView
+import androidx.annotation.AnimRes
 
 /** view扩展函数 */
 
@@ -120,3 +124,10 @@ fun setOnclickNoRepeat(vararg views: View?, interval: Long = 500, onClick: (View
         }
     }
 }
+
+/**
+ * 加载动画
+ *
+ * @param anim 要加载的动画效果资源
+ */
+fun Context.loadAnimation(@AnimRes anim: Int): Animation = AnimationUtils.loadAnimation(this, anim)

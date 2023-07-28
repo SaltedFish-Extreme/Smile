@@ -1,7 +1,6 @@
 package com.example.smile.ui.activity
 
 import ando.dialog.core.DialogManager
-import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.RelativeLayout
@@ -17,10 +16,8 @@ import com.example.smile.app.AppActivity
 import com.example.smile.ui.dialog.CustomBottomDialog
 import com.example.smile.util.InputTextManager
 import com.example.smile.widget.ext.clickNoRepeat
-import com.example.smile.widget.ext.gone
 import com.example.smile.widget.ext.hideSoftKeyboard
 import com.example.smile.widget.ext.loadAnimation
-import com.example.smile.widget.ext.visible
 import com.example.smile.widget.view.ClearEditText
 import com.example.smile.widget.view.CountdownView
 import com.example.smile.widget.view.PasswordEditText
@@ -29,31 +26,31 @@ import com.example.smile.widget.view.SubmitButton
 import com.gyf.immersionbar.ktx.immersionBar
 import com.hjq.toast.Toaster
 
-/** 登录页 */
-class LoginActivity : AppActivity() {
+/** 重置密码页 */
+class ResetPasswordActivity : AppActivity() {
 
     private val blankPage: RelativeLayout by lazy { findViewById(R.id.blank_page) }
     private val close: ImageView by lazy { findViewById(R.id.close) }
-    private val loginInfo: TextView by lazy { findViewById(R.id.login_info) }
     private val inputPhone: ClearEditText by lazy { findViewById(R.id.input_phone) }
-    private val verificationCodeLogin: RelativeLayout by lazy { findViewById(R.id.verification_code_login) }
     private val inputVerificationCode: RegexEditText by lazy { findViewById(R.id.input_verification_code) }
     private val sendVerificationCode: CountdownView by lazy { findViewById(R.id.send_verification_code) }
     private val inputPassword: PasswordEditText by lazy { findViewById(R.id.input_password) }
-    private val btnLogin: SubmitButton by lazy { findViewById(R.id.btn_login) }
-    private val loginMethodSwitch: TextView by lazy { findViewById(R.id.login_method_switch) }
+    private val inputPasswordAgain: PasswordEditText by lazy { findViewById(R.id.input_password_again) }
+    private val btnReset: SubmitButton by lazy { findViewById(R.id.btn_reset) }
+    private val toLogin: TextView by lazy { findViewById(R.id.to_login) }
     private val encounterProblems: TextView by lazy { findViewById(R.id.encounter_problems) }
     private val loginProtocolReminder: TextView by lazy { findViewById(R.id.login_protocol_reminder) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        setContentView(R.layout.activity_reset_password)
         //点击空白处隐藏输入法并清除输入框焦点
         blankPage.clickNoRepeat {
             hideSoftKeyboard(this)
             inputPhone.clearFocus()
             inputVerificationCode.clearFocus()
             inputPassword.clearFocus()
+            inputPasswordAgain.clearFocus()
         }
         //关闭按钮关闭当前页面
         close.clickNoRepeat { finish() }
@@ -88,35 +85,12 @@ class LoginActivity : AppActivity() {
                     )
                 }
             }
-        //切换登陆方式
-        loginMethodSwitch.clickNoRepeat {
-            if (loginInfo.text == getString(R.string.verification_code_login)) {
-                loginInfo.text = getString(R.string.password_login)
-                loginMethodSwitch.text = getString(R.string.verification_code_login)
-                inputVerificationCode.text?.clear()
-                verificationCodeLogin.gone()
-                inputPassword.visible()
-                //联动登陆按钮和手机号/密码输入框
-                InputTextManager.with(this).addView(inputPhone).addView(inputPassword)
-                    .setMain(btnLogin).build()
-            } else if (loginInfo.text == getString(R.string.password_login)) {
-                loginInfo.text = getString(R.string.verification_code_login)
-                loginMethodSwitch.text = getString(R.string.password_login)
-                inputPassword.text?.clear()
-                inputPassword.gone()
-                verificationCodeLogin.visible()
-                //联动登陆按钮和手机号/验证码输入框
-                InputTextManager.with(this).addView(inputPhone).addView(inputVerificationCode)
-                    .setMain(btnLogin).build()
-            }
-        }
-        //点击遇到问题显示底部弹窗
-        encounterProblems.clickNoRepeat { showBottomDialog() }
-        btnLogin.run {
-            //联动登陆按钮和手机号/验证码输入框
-            InputTextManager.with(this@LoginActivity).addView(inputPhone)
-                .addView(inputVerificationCode).setMain(this).build()
-            clickNoRepeat {
+        btnReset.run {
+            //联动重置按钮和手机号/验证码/密码/重复密码输入框
+            InputTextManager.with(this@ResetPasswordActivity).addView(inputPhone)
+                .addView(inputVerificationCode).addView(inputPassword).addView(inputPasswordAgain)
+                .setMain(this).build()
+            this.clickNoRepeat {
                 //校验手机号长度
                 if (inputPhone.text!!.length != 11) {
                     inputPhone.startAnimation(loadAnimation(R.anim.shake_anim))
@@ -124,34 +98,42 @@ class LoginActivity : AppActivity() {
                     Toaster.show(getString(R.string.phone_format_error))
                     return@clickNoRepeat
                 }
-                if (loginInfo.text == getString(R.string.verification_code_login)) {
-                    //校验验证码长度
-                    if (inputVerificationCode.text!!.length != 6) {
-                        inputVerificationCode.startAnimation(loadAnimation(R.anim.shake_anim))
-                        showError(2000)
-                        Toaster.show(getString(R.string.verification_code_format_error))
-                        return@clickNoRepeat
-                    } else {
-                        //todo 执行手机号/验证码登陆逻辑
-                    }
-                } else if (loginInfo.text == getString(R.string.password_login)) {
-                    //校验密码长度
-                    if (inputPassword.text!!.length !in 6..18) {
-                        inputPassword.startAnimation(loadAnimation(R.anim.shake_anim))
-                        showError(2000)
-                        Toaster.show(getString(R.string.password_format_error))
-                        return@clickNoRepeat
-                    } else {
-                        //todo 执行手机号/密码登陆逻辑
-                    }
+                //校验验证码长度
+                if (inputVerificationCode.text!!.length != 6) {
+                    inputVerificationCode.startAnimation(loadAnimation(R.anim.shake_anim))
+                    showError(2000)
+                    Toaster.show(getString(R.string.verification_code_format_error))
+                    return@clickNoRepeat
                 }
+                //校验密码长度
+                if (inputPassword.text!!.length !in 6..18) {
+                    inputPassword.startAnimation(loadAnimation(R.anim.shake_anim))
+                    showError(2000)
+                    Toaster.show(getString(R.string.password_format_error))
+                    return@clickNoRepeat
+                }
+                //校验两次密码是否一致
+                if (inputPassword.text.toString() != inputPasswordAgain.text.toString()) {
+                    inputPassword.startAnimation(loadAnimation(R.anim.shake_anim))
+                    inputPasswordAgain.startAnimation(loadAnimation(R.anim.shake_anim))
+                    btnReset.showError(2000)
+                    Toaster.show(getString(R.string.re_enter_password))
+                    return@clickNoRepeat
+                }
+                //todo 执行重置密码逻辑
             }
         }
+        //点击去登陆文本，跳转登陆页面
+        toLogin.clickNoRepeat {
+            openActivity<LoginActivity>()
+        }
+        //点击遇到问题显示底部弹窗
+        encounterProblems.clickNoRepeat { showBottomDialog() }
     }
 
     //底部弹窗(BottomDialog)
     private fun showBottomDialog() {
-        val bottomDialog = CustomBottomDialog(this, true)
+        val bottomDialog = CustomBottomDialog(this, false)
         DialogManager.replaceDialog(bottomDialog).setCancelable(true)
             .setCanceledOnTouchOutside(true).setDimmedBehind(true).show()
     }
@@ -164,9 +146,9 @@ class LoginActivity : AppActivity() {
         }
     }
 
-    override fun startActivity(intent: Intent?) {
-        super.startActivity(intent)
-        //转场动画效果(启动新Activity时淡入)
+    override fun finish() {
+        super.finish()
+        //转场动画效果(结束当前Activity时淡出)
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
     }
 }
