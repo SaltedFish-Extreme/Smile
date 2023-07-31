@@ -154,7 +154,7 @@ dependencies {
     //权限请求 https://github.com/getActivity/XXPermissions
     implementation 'com.github.getActivity:XXPermissions:18.2'
     //Shape https://github.com/getActivity/ShapeView
-    implementation 'com.github.getActivity:ShapeView:8.5'
+    implementation 'com.github.getActivity:ShapeView:9.0'
     //揭示效果 https://github.com/goweii/RevealLayout
     implementation 'com.github.goweii:RevealLayout:1.3.4'
     //伸缩布局 https://github.com/google/flexbox-layout

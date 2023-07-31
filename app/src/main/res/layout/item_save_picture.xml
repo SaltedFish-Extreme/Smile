@@ -12,9 +12,9 @@
         android:text="@string/save_picture"
         android:textColor="?android:attr/textColorPrimary"
         android:textSize="@dimen/sp_18"
-        app:shape="rectangle"
+        app:shape_type="rectangle"
         app:shape_radius="@dimen/dp_5"
         app:shape_solidColor="@color/color_popup_fill"
         app:shape_strokeColor="?android:attr/textColorSecondary"
-        app:shape_strokeWidth="@dimen/dp_1" />
+        app:shape_strokeSize="@dimen/dp_1" />
 </FrameLayout>

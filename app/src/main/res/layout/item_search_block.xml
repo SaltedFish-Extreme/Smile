@@ -17,11 +17,11 @@
         android:text="@string/app_name"
         android:textColor="?android:attr/textColorPrimary"
         android:textSize="@dimen/sp_14"
-        app:shape="rectangle"
+        app:shape_type="rectangle"
         app:shape_radius="@dimen/dp_20"
         app:shape_strokeColor="?android:attr/textColorPrimary"
         app:shape_strokePressedColor="?android:attr/textColorSecondary"
-        app:shape_strokeWidth="@dimen/dp_1" />
+        app:shape_strokeSize="@dimen/dp_1" />
 
     <com.example.smile.widget.view.ScaleImageView
         android:id="@+id/search_block_image"

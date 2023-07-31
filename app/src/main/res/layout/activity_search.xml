@@ -30,7 +30,7 @@
             android:textColor="@color/color_omitted"
             android:textSize="@dimen/sp_18"
             app:drawableTint="?android:attr/textColorPrimary"
-            app:shape="rectangle"
+            app:shape_type="rectangle"
             app:shape_radius="@dimen/dp_20"
             app:shape_solidColor="@color/color_search_box" />
 

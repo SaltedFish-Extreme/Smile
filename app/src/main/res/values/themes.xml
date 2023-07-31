@@ -160,7 +160,7 @@
         <item name="android:drawablePadding">@dimen/dp_5</item>
         <item name="android:textColor">?android:attr/textColorPrimary</item>
         <item name="android:textSize">@dimen/sp_15</item>
-        <item name="shape">rectangle</item>
+        <item name="shape_type">rectangle</item>
         <item name="shape_radius">@dimen/dp_20</item>
         <item name="shape_solidColor">@color/color_input_box</item>
         <item name="android:singleLine">true</item>

@@ -99,10 +99,10 @@
                 android:textColor="@color/color_concern"
                 android:textSize="@dimen/sp_15"
                 android:visibility="invisible"
-                app:shape="rectangle"
+                app:shape_type="rectangle"
                 app:shape_radius="@dimen/dp_10"
                 app:shape_strokeColor="@color/color_concern"
-                app:shape_strokeWidth="@dimen/dp_1"
+                app:shape_strokeSize="@dimen/dp_1"
                 tools:visibility="invisible" />
 
             <com.huantansheng.easyphotos.ui.widget.PressedImageView
