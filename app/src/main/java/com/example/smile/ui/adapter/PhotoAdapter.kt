@@ -80,23 +80,25 @@ class PhotoAdapter(
         //设置图片点击事件，打开大图预览
         setOnDebouncedItemClick { _, view, position ->
             if (fragment != null) {
-                PhotoPreview.with(fragment).defaultShowPosition(position).sources(dataList).onLongClickListener { _, customViewRoot, _ ->
-                    location = position
-                    //长按显示PopupWindow
-                    pop.showAtLocation(customViewRoot, Gravity.CENTER, 0, 0)
-                    true
-                }.shapeTransformType(ShapeTransformType.ROUND_RECT).shapeCornerRadius(20).build().show(view) // 指定缩略图
+                PhotoPreview.with(fragment).defaultShowPosition(position).sources(dataList)
+                    .onLongClickListener { _, customViewRoot, _ ->
+                        location = position
+                        //长按显示PopupWindow
+                        pop.showAtLocation(customViewRoot, Gravity.CENTER, 0, 0)
+                        true
+                    }.shapeTransformType(ShapeTransformType.ROUND_RECT).shapeCornerRadius(20).build().show(view) // 指定缩略图
             } else if (activity != null) {
-                PhotoPreview.with(activity).defaultShowPosition(position).sources(dataList).onLongClickListener { _, customViewRoot, _ ->
-                    location = position
-                    //长按显示PopupWindow
-                    pop.showAtLocation(customViewRoot, Gravity.CENTER, 0, 0)
-                    true
-                }.shapeTransformType(ShapeTransformType.ROUND_RECT).shapeCornerRadius(20).build().show(view) // 指定缩略图
+                PhotoPreview.with(activity).defaultShowPosition(position).sources(dataList)
+                    .onLongClickListener { _, customViewRoot, _ ->
+                        location = position
+                        //长按显示PopupWindow
+                        pop.showAtLocation(customViewRoot, Gravity.CENTER, 0, 0)
+                        true
+                    }.shapeTransformType(ShapeTransformType.ROUND_RECT).shapeCornerRadius(20).build().show(view) // 指定缩略图
             }
         }
         //长按保存图片
-        addOnItemChildLongClickListener(R.id.joke_image) { _, _, position ->
+        setOnItemLongClickListener { _, _, position ->
             savePicture(position)
             true
         }
@@ -105,7 +107,8 @@ class PhotoAdapter(
     override fun onBindViewHolder(holder: QuickViewHolder, position: Int, item: String?) {
         holder.getView<ImageView>(R.id.joke_image).apply {
             //Glide显示图片
-            Glide.with(context).load(item).placeholder(R.drawable.load_picture).apply(RequestOptions().transform(CenterCrop(), RoundedCorners(20)))
+            Glide.with(context).load(item).placeholder(R.drawable.load_picture)
+                .apply(RequestOptions().transform(CenterCrop(), RoundedCorners(20)))
                 .into(this)
         }
     }

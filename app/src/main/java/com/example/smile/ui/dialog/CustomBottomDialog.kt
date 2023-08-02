@@ -9,6 +9,7 @@ import android.view.Window
 import android.widget.TextView
 import com.drake.serialize.intent.openActivity
 import com.example.smile.R
+import com.example.smile.ui.activity.FeedbackActivity
 import com.example.smile.ui.activity.ResetPasswordActivity
 import com.example.smile.widget.ext.clickNoRepeat
 import com.example.smile.widget.ext.visibleOrGone
@@ -53,7 +54,7 @@ class CustomBottomDialog(context: Context, private val visible: Boolean) :
         }
         //跳转反馈页面
         wantFeedback.clickNoRepeat {
-            Toaster.show("我被点击了！")
+            context.openActivity<FeedbackActivity>()
             dismiss()
         }
         //关闭弹窗

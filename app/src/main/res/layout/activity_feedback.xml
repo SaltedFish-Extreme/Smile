@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?><!--意见反馈页-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/blank_page"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.hjq.bar.TitleBar
+        android:id="@+id/titleBar"
+        style="@style/TitleBar" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_20"
+        android:layout_marginTop="@dimen/dp_20"
+        android:text="@string/describe_problem"
+        android:textColor="?android:attr/textColorPrimary"
+        android:textSize="@dimen/sp_18" />
+
+    <com.hjq.shape.view.ShapeEditText
+        android:id="@+id/feedback_text"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_150"
+        android:layout_margin="@dimen/dp_20"
+        android:gravity="top|start"
+        android:hint="@string/describe_problem_hint"
+        android:padding="@dimen/dp_5"
+        android:textColor="?android:attr/textColorSecondary"
+        android:textSize="@dimen/sp_16"
+        app:shape_radius="@dimen/dp_5"
+        app:shape_strokeColor="@color/color_search_box"
+        app:shape_strokeSize="@dimen/dp_1"
+        app:shape_type="rectangle" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_20"
+        android:text="@string/supplementary_pictures"
+        android:textColor="?android:attr/textColorPrimary"
+        android:textSize="@dimen/sp_18" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_100"
+        android:layout_marginHorizontal="@dimen/dp_15"
+        android:layout_marginVertical="@dimen/dp_10">
+
+        <com.example.smile.widget.recycler.WrapRecyclerView
+            android:id="@+id/feedback_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingHorizontal="@dimen/dp_5"
+            tools:listitem="@layout/item_add_image" />
+    </FrameLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_20"
+        android:text="@string/contact_info"
+        android:textColor="?android:attr/textColorPrimary"
+        android:textSize="@dimen/sp_18" />
+
+    <com.hjq.shape.view.ShapeEditText
+        android:id="@+id/feedback_contact_info"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_60"
+        android:layout_margin="@dimen/dp_20"
+        android:gravity="top|start"
+        android:hint="@string/contact_info_hint"
+        android:padding="@dimen/dp_5"
+        android:textColor="?android:attr/textColorSecondary"
+        android:textSize="@dimen/sp_16"
+        app:shape_radius="@dimen/dp_5"
+        app:shape_strokeColor="@color/color_search_box"
+        app:shape_strokeSize="@dimen/dp_1"
+        app:shape_type="rectangle" />
+
+    <com.example.smile.widget.view.SubmitButton
+        android:id="@+id/feedback_btn"
+        style="@style/LoginButtonStyle"
+        android:layout_marginHorizontal="@dimen/dp_20"
+        android:layout_marginTop="@dimen/dp_10"
+        android:text="@string/submit" />
+
+</LinearLayout>

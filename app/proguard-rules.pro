@@ -78,3 +78,6 @@
 # Gson specific classes
 -keep class com.google.gson.stream.** { *; }
 # Application classes that will be serialized/deserialized over Gson
+
+################EasyPhotos###############
+-keep class com.huantansheng.easyphotos.models.** { *; }

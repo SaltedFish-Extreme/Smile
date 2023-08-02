@@ -1,6 +1,7 @@
 package com.example.smile.ui.activity
 
 import ando.dialog.core.DialogManager
+import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.RelativeLayout
@@ -144,6 +145,12 @@ class ResetPasswordActivity : AppActivity() {
         immersionBar {
             titleBarMarginTop(close)
         }
+    }
+
+    override fun startActivity(intent: Intent?) {
+        super.startActivity(intent)
+        //转场动画效果(启动新Activity时淡入)
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
     }
 
     override fun finish() {

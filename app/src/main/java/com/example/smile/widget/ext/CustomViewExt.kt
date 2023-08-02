@@ -1,5 +1,6 @@
 package com.example.smile.widget.ext
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.graphics.Color
@@ -24,10 +25,16 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.example.smile.R
+import com.example.smile.app.AppConfig
+import com.example.smile.ui.adapter.UploadPictureAdapter
+import com.example.smile.util.GlideEngine
 import com.example.smile.widget.viewpager.ScaleTransitionPagerTitleView
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.huantansheng.easyphotos.EasyPhotos
+import com.huantansheng.easyphotos.callback.SelectCallback
+import com.huantansheng.easyphotos.models.album.entity.Photo
 import net.lucode.hackware.magicindicator.MagicIndicator
 import net.lucode.hackware.magicindicator.buildins.UIUtil
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.CommonNavigator
@@ -171,7 +178,11 @@ fun ViewPager2.init(activity: FragmentActivity, fragments: ArrayList<Fragment>, 
  * @param mStringList 用作标题的字符串集合
  * @param action 子项行为，可空
  */
-fun MagicIndicator.bindViewPager2(viewPager: ViewPager2, mStringList: List<String> = arrayListOf(), action: (index: Int) -> Unit = {}) {
+fun MagicIndicator.bindViewPager2(
+    viewPager: ViewPager2,
+    mStringList: List<String> = arrayListOf(),
+    action: (index: Int) -> Unit = {}
+) {
     val commonNavigator = CommonNavigator(context)
     commonNavigator.adapter = object : CommonNavigatorAdapter() {
 
@@ -356,5 +367,42 @@ fun View.margin(l: Int, t: Int, r: Int, b: Int, v: View = this) {
         val p = v.layoutParams as ViewGroup.MarginLayoutParams
         p.setMargins(l, t, r, b)
         v.requestLayout()
+    }
+}
+
+/**
+ * 相册上传图片
+ *
+ * @param photoList 照片对象集合
+ * @param adapter 数据适配器
+ * @param rv rv对象
+ */
+fun Activity.albumUploadImage(photoList: ArrayList<Photo>, adapter: UploadPictureAdapter, rv: RecyclerView) {
+    GlideEngine.instance?.let {
+        //参数说明：上下文，是否显示相机按钮，是否使用宽高数据（false时宽高数据为0，扫描速度更快），[配置Glide为图片加载引擎]
+        EasyPhotos.createAlbum(this, true, false, it)
+            //参数说明：见下方`FileProvider的配置`
+            .setFileProviderAuthority("${AppConfig.getPackageName()}.provider")
+            //无拼图功能
+            .setPuzzleMenu(false)
+            //参数说明：最大可选数，默认1
+            .setCount(9)
+            //参数说明:用户上一次勾选过的图片地址集合，ArrayList<String>类型;上次用户选择图片时是否选中了原图选项，如不用原图选项功能直接传false即可。
+            .setSelectedPhotos(photoList, false)
+            //相册回调
+            .start(object : SelectCallback() {
+                //photos:返回对象集合：如果你需要了解图片的宽、高、大小、用户是否选中原图选项等信息，可以用这个
+                @SuppressLint("NotifyDataSetChanged")
+                override fun onResult(photos: ArrayList<Photo>, isOriginal: Boolean) {
+                    //将图片对象集合重新添加,刷新数据列表
+                    photoList.clear()
+                    photoList.addAll(photos)
+                    adapter.notifyDataSetChanged()
+                    //列表滚动到最后面(因为有脚布局，所以不用-1，否则需要-1)
+                    rv.scrollToPosition(adapter.itemCount)
+                }
+
+                override fun onCancel() {}
+            })
     }
 }
