@@ -12,7 +12,7 @@ import com.drake.net.utils.scope
 import com.example.smile.R
 import com.example.smile.app.AppConfig
 import com.example.smile.app.AppFragment
-import com.example.smile.http.NetApi
+import com.example.smile.http.NetApi.HomeRecommendFollowAPI
 import com.example.smile.model.RecommendFollowModel
 import com.example.smile.ui.adapter.RecommendFollowAdapter
 import com.example.smile.widget.view.DrawableTextView
@@ -68,7 +68,7 @@ class HomeFollowFragment : AppFragment() {
         pageRecommendUser.onRefresh {
             scope {
                 //获取首页推荐关注列表数据
-                data = Post<ArrayList<RecommendFollowModel>>(NetApi.HomeRecommendFollowAPI).await()
+                data = Post<ArrayList<RecommendFollowModel>>(HomeRecommendFollowAPI).await()
                 if (first && data.isEmpty()) {
                     //如果数据为空显示空缺省页
                     showEmpty()

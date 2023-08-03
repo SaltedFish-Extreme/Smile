@@ -16,7 +16,7 @@ import com.drake.serialize.intent.openActivity
 import com.example.smile.R
 import com.example.smile.app.AppConfig
 import com.example.smile.app.AppFragment
-import com.example.smile.http.NetApi
+import com.example.smile.http.NetApi.UserInfoAPI
 import com.example.smile.model.UserInfoModel
 import com.example.smile.ui.activity.AnnouncementActivity
 import com.example.smile.ui.activity.LoginActivity
@@ -60,7 +60,7 @@ class ProfileFragment : AppFragment() {
         if (AppConfig.token.isNotBlank()) {
             scopeNetLife {
                 //获取用户信息数据
-                val userInfoData = Post<UserInfoModel>(NetApi.UserInfoAPI).await()
+                val userInfoData = Post<UserInfoModel>(UserInfoAPI).await()
                 //Glide显示头像
                 Glide.with(requireContext()).load(userInfoData.user.avatar).placeholder(R.drawable.ic_account)
                     .transition(DrawableTransitionOptions.withCrossFade(100)).into(userAvatar)

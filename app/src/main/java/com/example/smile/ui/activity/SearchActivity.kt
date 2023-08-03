@@ -15,7 +15,8 @@ import com.drake.net.utils.scopeNetLife
 import com.example.smile.R
 import com.example.smile.app.AppActivity
 import com.example.smile.app.AppConfig
-import com.example.smile.http.NetApi
+import com.example.smile.http.NetApi.HomeHotSearchAPI
+import com.example.smile.http.NetApi.HomeSearchJokeAPI
 import com.example.smile.model.JokeContentModel
 import com.example.smile.ui.adapter.JokeContentAdapter
 import com.example.smile.ui.adapter.SearchAdapter
@@ -75,7 +76,7 @@ class SearchActivity : AppActivity(), SwipeBackAbility.Direction {
         if (AppConfig.SearchHot.isEmpty()) {
             scopeNetLife {
                 //请求搜索热词数据
-                val hotData = Post<List<String>>(NetApi.HomeHotSearchAPI).await()
+                val hotData = Post<List<String>>(HomeHotSearchAPI).await()
                 //给adapter设置数据
                 hotAdapter.submitList(hotData)
                 //存储搜索热词数据
@@ -210,7 +211,7 @@ class SearchActivity : AppActivity(), SwipeBackAbility.Direction {
         page.onRefresh {
             scope {
                 //获取搜索段子内容列表数据
-                data = Post<ArrayList<JokeContentModel>>(NetApi.HomeSearchJokeAPI) {
+                data = Post<ArrayList<JokeContentModel>>(HomeSearchJokeAPI) {
                     param("keyword", searchContent)
                     param("page", index)
                 }.await()
@@ -225,7 +226,7 @@ class SearchActivity : AppActivity(), SwipeBackAbility.Direction {
                         if (data.none { it.joke.type < 3 }) {
                             //先页码+1再继续发起请求
                             index += 1
-                            data = Post<ArrayList<JokeContentModel>>(NetApi.HomeSearchJokeAPI) {
+                            data = Post<ArrayList<JokeContentModel>>(HomeSearchJokeAPI) {
                                 param("keyword", searchContent)
                                 param("page", index)
                             }.await()
@@ -243,7 +244,7 @@ class SearchActivity : AppActivity(), SwipeBackAbility.Direction {
                         if (data.none { it.joke.type < 3 }) {
                             //如上同理 先页码+1再继续发起请求
                             index += 1
-                            data = Post<ArrayList<JokeContentModel>>(NetApi.HomeSearchJokeAPI) {
+                            data = Post<ArrayList<JokeContentModel>>(HomeSearchJokeAPI) {
                                 param("keyword", searchContent)
                                 param("page", index)
                             }.await()
