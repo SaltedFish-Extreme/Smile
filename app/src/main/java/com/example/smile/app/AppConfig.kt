@@ -45,7 +45,6 @@ object AppConfig {
 
     /** 获取设备序列号 */
     private fun getSerial(context: Context): String {
-        //return UUID.randomUUID().toString()
         return Settings.System.getString(context.contentResolver, Settings.Secure.ANDROID_ID)
     }
 

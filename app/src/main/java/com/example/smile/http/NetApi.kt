@@ -32,4 +32,7 @@ object NetApi {
 
     /** 当前用户信息API路径 */
     const val UserInfoAPI = "user/info"
+
+    /** 获取七牛云tokenAPI路径 */
+    const val QiNiuYunTokenAPI = "helper/qiniu/token"
 }

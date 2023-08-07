@@ -131,6 +131,8 @@
     <string name="contact_info">联系方式：</string>
     <string name="contact_info_hint">请输入您的联系方式，如：qq:xxx，微信:xxx，邮箱:xxx，手机号:xxx</string>
     <string name="submit">提交</string>
+    <string name="upload_success">上传成功</string>
+    <string name="upload_failed">上传失败</string>
     <!--公约-->
     <string name="community_convention_title">开口笑社区自律公约</string>
     <string name="community_convention_content_1">\n &#160;&#160;&#160;&#160;&#160;&#160; 开口笑是一款主打轻幽默内容的全新产品，我们希望通过产品来传播快乐，让大家分享快乐生活。开口笑作为由用户共建、共治、共享的社区，开口笑致力于弘扬社会主义核心价值观，传播正能量，宣扬中华民族传统文化和美德，宣传积极向上的时代风尚和生活方式。这一目标的实现，离不开平台和用户共同努力，维护有利于平台健康和谐发展的网络环境，营造风清气正的社区生态。\n\n &#160;&#160;&#160;&#160;&#160;&#160; 为此特制定《开口笑社区公约》（以下简称“本公约”），由开口笑的平台服务提供者和所有开口笑用户共同遵守。平台服务提供者审核和推荐内容，开口笑用户发布和传播内容、参与互动，应当符合本公约的规范。</string>
