@@ -1,12 +1,18 @@
 package com.example.smile.ui.activity
 
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.widget.LinearLayout
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.drake.net.Post
+import com.drake.net.utils.scopeNetLife
 import com.drake.softinput.setWindowSoftInput
 import com.example.smile.R
 import com.example.smile.app.AppActivity
+import com.example.smile.app.AppConfig.getVersionCode
+import com.example.smile.app.AppConfig.getVersionName
+import com.example.smile.http.NetApi.FeedbackAPI
 import com.example.smile.ui.adapter.UploadPictureAdapter
 import com.example.smile.util.InputTextManager
 import com.example.smile.widget.ext.albumUploadImage
@@ -17,7 +23,9 @@ import com.example.smile.widget.view.SubmitButton
 import com.gyf.immersionbar.ktx.immersionBar
 import com.hjq.bar.TitleBar
 import com.hjq.shape.view.ShapeEditText
+import com.hjq.toast.Toaster
 import com.huantansheng.easyphotos.models.album.entity.Photo
+import kotlinx.coroutines.delay
 
 /** 意见反馈页 */
 class FeedbackActivity : AppActivity() {
@@ -59,6 +67,32 @@ class FeedbackActivity : AppActivity() {
         feedbackImage.getFooterViews().forEach {
             it?.setOnClickListener {
                 albumUploadImage(photoList, adapter, feedbackImage)
+            }
+        }
+        //点击提交按钮，上传反馈信息
+        feedbackBtn.clickNoRepeat {
+            scopeNetLife {
+                //延迟一秒，增强用户体验
+                delay(1000)
+                Post<String>(FeedbackAPI) {
+                    param("brand", Build.BRAND)
+                    param("contact", feedbackContactInfo.text.toString())
+                    param("content", feedbackText.text.toString())
+                    param("pics", photoList.joinToString(",") { it.path })
+                    param("product", Build.MODEL)
+                    param("release_version", Build.VERSION.RELEASE)
+                    param("version_code", getVersionCode())
+                    param("version_name", getVersionName())
+                }.await()
+                //提交按钮显示成功，延迟一秒，关闭页面
+                Toaster.show(getString(R.string.submit_success))
+                feedbackBtn.showSucceed()
+                delay(1000)
+                finish()
+            }.catch {
+                //提交出问题，吐司提示，提交按钮显示错误
+                Toaster.show(getString(R.string.submit_failed))
+                feedbackBtn.showError(1500)
             }
         }
     }

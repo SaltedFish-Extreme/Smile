@@ -32,4 +32,7 @@ object NetApi {
 
     /** 当前用户信息API路径 */
     const val UserInfoAPI = "user/info"
+
+    /** 意见反馈API路径 */
+    const val FeedbackAPI = "helper/feedback"
 }
