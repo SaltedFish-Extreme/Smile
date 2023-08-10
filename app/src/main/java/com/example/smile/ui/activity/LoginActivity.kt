@@ -125,6 +125,7 @@ class LoginActivity : AppActivity() {
         }
         //点击遇到问题显示底部弹窗
         encounterProblems.clickNoRepeat { showBottomDialog() }
+        //点击登录按钮
         btnLogin.run {
             //联动登陆按钮和手机号/验证码输入框
             InputTextManager.with(this@LoginActivity).addView(inputPhone).addView(inputVerificationCode).setMain(this).build()

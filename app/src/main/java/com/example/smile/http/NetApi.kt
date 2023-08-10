@@ -45,4 +45,9 @@ object NetApi {
     /** 密码登陆API路径 */
     const val PasswordLoginAPI = "user/login/psw"
 
+    /** 获取重置验证码API路径 */
+    const val GetResetCodeAPI = "user/psw/reset/get_code"
+
+    /** 重置密码API路径 */
+    const val ResetPasswordAPI = "user/psw/reset"
 }

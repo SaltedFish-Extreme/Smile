@@ -12,6 +12,7 @@ import com.example.smile.R
 import com.example.smile.app.AppActivity
 import com.example.smile.app.AppConfig
 import com.example.smile.http.NetApi.FeedbackAPI
+import com.example.smile.model.EmptyModel
 import com.example.smile.ui.adapter.UploadPictureAdapter
 import com.example.smile.util.InputTextManager
 import com.example.smile.widget.ext.albumUploadImage
@@ -71,7 +72,7 @@ class FeedbackActivity : AppActivity() {
             scopeNetLife {
                 //延迟一秒，增强用户体验
                 delay(1000)
-                Post<String>(FeedbackAPI) {
+                Post<EmptyModel?>(FeedbackAPI) {
                     param("brand", Build.BRAND)
                     param("contact", feedbackContactInfo.text.toString())
                     param("content", feedbackText.text.toString())

@@ -7,6 +7,8 @@ import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.core.widget.addTextChangedListener
+import com.drake.net.Post
+import com.drake.net.utils.scopeNetLife
 import com.drake.serialize.intent.openActivity
 import com.drake.spannable.movement.ClickableMovementMethod
 import com.drake.spannable.replaceSpanFirst
@@ -14,6 +16,8 @@ import com.drake.spannable.replaceSpanLast
 import com.drake.spannable.span.HighlightSpan
 import com.example.smile.R
 import com.example.smile.app.AppActivity
+import com.example.smile.http.NetApi
+import com.example.smile.model.EmptyModel
 import com.example.smile.ui.dialog.CustomBottomDialog
 import com.example.smile.util.InputTextManager
 import com.example.smile.widget.ext.clickNoRepeat
@@ -26,6 +30,7 @@ import com.example.smile.widget.view.RegexEditText
 import com.example.smile.widget.view.SubmitButton
 import com.gyf.immersionbar.ktx.immersionBar
 import com.hjq.toast.Toaster
+import kotlinx.coroutines.delay
 
 /** 重置密码页 */
 class ResetPasswordActivity : AppActivity() {
@@ -59,8 +64,16 @@ class ResetPasswordActivity : AppActivity() {
         inputPhone.addTextChangedListener { sendVerificationCode.isEnabled = !it.isNullOrBlank() && it.length == 11 }
         //发送验证码
         sendVerificationCode.clickNoRepeat {
-            Toaster.show(R.string.verification_code_sent_success)
-            sendVerificationCode.start()
+            scopeNetLife {
+                //返回数据为null，验证码在小程序查看
+                Post<EmptyModel?>(NetApi.GetResetCodeAPI) { param("phone", inputPhone.text.toString()) }.await()
+                //发送成功，验证码倒计时开始
+                Toaster.show(getString(R.string.verification_code_sent_success))
+                sendVerificationCode.start()
+            }.catch {
+                //吐司错误信息
+                Toaster.show(it.message)
+            }
         }
         //登录协议Spannable文本
         loginProtocolReminder.movementMethod = ClickableMovementMethod.getInstance() // 保证没有点击背景色
@@ -83,6 +96,7 @@ class ResetPasswordActivity : AppActivity() {
                     )
                 }
             }
+        //点击重置按钮
         btnReset.run {
             //联动重置按钮和手机号/验证码/密码/重复密码输入框
             InputTextManager.with(this@ResetPasswordActivity).addView(inputPhone)
@@ -118,7 +132,26 @@ class ResetPasswordActivity : AppActivity() {
                     Toaster.show(getString(R.string.re_enter_password))
                     return@clickNoRepeat
                 }
-                //todo 执行重置密码逻辑
+                scopeNetLife {
+                    //延迟一秒，增强用户体验
+                    delay(1000)
+                    //重置密码
+                    Post<EmptyModel?>(NetApi.ResetPasswordAPI) {
+                        param("phone", inputPhone.text.toString())
+                        param("password", inputPassword.text.toString())
+                        param("code", inputVerificationCode.text.toString())
+                    }.await()
+                    //重置成功
+                    Toaster.show(getString(R.string.reset_success))
+                    showSucceed()
+                    //延迟一秒关闭页面
+                    delay(1000)
+                    finish()
+                }.catch {
+                    //重置失败，显示错误，吐司错误信息
+                    showError(2000)
+                    Toaster.show(it.message)
+                }
             }
         }
         //点击去登陆文本，跳转登陆页面
