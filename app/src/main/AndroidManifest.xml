@@ -123,6 +123,7 @@
         <activity
             android:name=".ui.activity.MainActivity"
             android:exported="false"
+            android:launchMode="singleTask"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activity.SplashActivity"

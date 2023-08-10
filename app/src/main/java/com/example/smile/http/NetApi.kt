@@ -35,4 +35,14 @@ object NetApi {
 
     /** 意见反馈API路径 */
     const val FeedbackAPI = "helper/feedback"
+
+    /** 获取登陆验证码API路径 */
+    const val GetLoginCodeAPI = "user/login/get_code"
+
+    /** 验证码登陆API路径 */
+    const val CodeLoginAPI = "user/login/code"
+
+    /** 密码登陆API路径 */
+    const val PasswordLoginAPI = "user/login/psw"
+
 }

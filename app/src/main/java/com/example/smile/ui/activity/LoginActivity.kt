@@ -7,13 +7,22 @@ import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.core.widget.addTextChangedListener
+import com.drake.net.Post
+import com.drake.net.utils.scopeNetLife
 import com.drake.serialize.intent.openActivity
 import com.drake.spannable.movement.ClickableMovementMethod
 import com.drake.spannable.replaceSpanFirst
 import com.drake.spannable.replaceSpanLast
 import com.drake.spannable.span.HighlightSpan
 import com.example.smile.R
+import com.example.smile.app.ActivityManager
 import com.example.smile.app.AppActivity
+import com.example.smile.app.AppConfig
+import com.example.smile.http.NetApi.CodeLoginAPI
+import com.example.smile.http.NetApi.GetLoginCodeAPI
+import com.example.smile.http.NetApi.PasswordLoginAPI
+import com.example.smile.model.EmptyModel
+import com.example.smile.model.LoginUserInfoModel
 import com.example.smile.ui.dialog.CustomBottomDialog
 import com.example.smile.util.InputTextManager
 import com.example.smile.widget.ext.clickNoRepeat
@@ -28,6 +37,7 @@ import com.example.smile.widget.view.RegexEditText
 import com.example.smile.widget.view.SubmitButton
 import com.gyf.immersionbar.ktx.immersionBar
 import com.hjq.toast.Toaster
+import kotlinx.coroutines.delay
 
 /** 登录页 */
 class LoginActivity : AppActivity() {
@@ -64,8 +74,16 @@ class LoginActivity : AppActivity() {
         }
         //发送验证码
         sendVerificationCode.clickNoRepeat {
-            Toaster.show(R.string.verification_code_sent_success)
-            sendVerificationCode.start()
+            scopeNetLife {
+                //返回数据为null，验证码在小程序查看
+                Post<EmptyModel?>(GetLoginCodeAPI) { param("phone", inputPhone.text.toString()) }.await()
+                //发送成功，验证码倒计时开始
+                Toaster.show(getString(R.string.verification_code_sent_success))
+                sendVerificationCode.start()
+            }.catch {
+                //吐司错误信息
+                Toaster.show(it.message)
+            }
         }
         //登录协议Spannable文本
         loginProtocolReminder.movementMethod = ClickableMovementMethod.getInstance() // 保证没有点击背景色
@@ -132,7 +150,20 @@ class LoginActivity : AppActivity() {
                         Toaster.show(getString(R.string.verification_code_format_error))
                         return@clickNoRepeat
                     } else {
-                        //todo 执行手机号/验证码登陆逻辑
+                        scopeNetLife {
+                            //延迟一秒，增强用户体验
+                            delay(1000)
+                            //验证码登录
+                            val data = Post<LoginUserInfoModel>(CodeLoginAPI) {
+                                param("phone", inputPhone.text.toString())
+                                param("code", inputVerificationCode.text.toString())
+                            }.await()
+                            loginSuccess(data)
+                        }.catch {
+                            //登录失败，显示错误，吐司错误信息
+                            showError(2000)
+                            Toaster.show(it.message)
+                        }
                     }
                 } else if (loginInfo.text == getString(R.string.password_login)) {
                     //校验密码长度
@@ -142,7 +173,20 @@ class LoginActivity : AppActivity() {
                         Toaster.show(getString(R.string.password_format_error))
                         return@clickNoRepeat
                     } else {
-                        //todo 执行手机号/密码登陆逻辑
+                        scopeNetLife {
+                            //延迟一秒，增强用户体验
+                            delay(1000)
+                            //密码登录
+                            val data = Post<LoginUserInfoModel>(PasswordLoginAPI) {
+                                param("phone", inputPhone.text.toString())
+                                param("psw", inputPassword.text.toString())
+                            }.await()
+                            loginSuccess(data)
+                        }.catch {
+                            //登录失败，显示错误，吐司错误信息
+                            showError(2000)
+                            Toaster.show(it.message)
+                        }
                     }
                 }
             }
@@ -154,6 +198,29 @@ class LoginActivity : AppActivity() {
         val bottomDialog = CustomBottomDialog(this, true)
         DialogManager.replaceDialog(bottomDialog).setCancelable(true)
             .setCanceledOnTouchOutside(true).setDimmedBehind(true).show()
+    }
+
+    /**
+     * 登录成功执行逻辑
+     *
+     * @param data 用户信息数据
+     */
+    private suspend fun SubmitButton.loginSuccess(data: LoginUserInfoModel) {
+        //隐藏软键盘
+        hideSoftKeyboard(this@LoginActivity)
+        //登录按钮显示成功
+        Toaster.show(getString(R.string.login_succeed))
+        showSucceed()
+        //设置全局token
+        AppConfig.token = data.token
+        //销毁主页
+        ActivityManager.getInstance().finishActivity(MainActivity::class.java)
+        //延迟一秒
+        delay(1000)
+        //跳转主页
+        openActivity<MainActivity>()
+        //关闭页面
+        finish()
     }
 
     override fun onResume() {
