@@ -36,8 +36,10 @@ class FeedbackActivity : AppActivity() {
     private val feedbackContactInfo: ShapeEditText by lazy { findViewById(R.id.feedback_contact_info) }
     private val feedbackBtn: SubmitButton by lazy { findViewById(R.id.feedback_btn) }
 
+    /** 照片对象集合 */
     private val photoList by lazy { arrayListOf<Photo>() }
 
+    /** 上传图片列表适配器 */
     private val adapter by lazy { UploadPictureAdapter(this, photoList) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -63,11 +65,7 @@ class FeedbackActivity : AppActivity() {
         //添加脚布局
         feedbackImage.addFooterView<View>(R.layout.item_add_image)
         //脚布局点击监听，跳转相册图片选择器，上传图片
-        feedbackImage.getFooterViews().forEach {
-            it?.setOnClickListener {
-                albumUploadImage(photoList, adapter, feedbackImage)
-            }
-        }
+        feedbackImage.getFooterViews().forEach { it?.setOnClickListener { albumUploadImage(photoList, adapter, feedbackImage) } }
         //点击提交按钮，上传反馈信息
         feedbackBtn.clickNoRepeat {
             scopeNetLife {
@@ -99,9 +97,7 @@ class FeedbackActivity : AppActivity() {
     override fun onResume() {
         super.onResume()
         //使标题栏和状态栏不重叠
-        immersionBar {
-            titleBar(titleBar)
-        }
+        immersionBar { titleBar(titleBar) }
     }
 
     override fun finish() {

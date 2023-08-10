@@ -19,8 +19,9 @@ import com.example.smile.app.AppFragment
 import com.example.smile.http.NetApi.UserInfoAPI
 import com.example.smile.model.UserInfoModel
 import com.example.smile.ui.activity.AnnouncementActivity
-import com.example.smile.ui.activity.LoginActivity
+import com.example.smile.ui.activity.FeedbackActivity
 import com.example.smile.widget.ext.clickNoRepeat
+import com.example.smile.widget.ext.judgeLoginOperation
 import com.example.smile.widget.settingbar.SettingBar
 import com.example.smile.widget.view.DrawableTextView
 import com.google.android.material.imageview.ShapeableImageView
@@ -90,6 +91,7 @@ class ProfileFragment : AppFragment() {
             //跳转公告页，传递标题：开口笑社区自律公约
             openActivity<AnnouncementActivity>("title" to getString(R.string.community_convention_title))
         }
+        //点击我的客服
         customerService.clickNoRepeat {
             try {
                 //QQ跳转到临时会话界面，如果qq号已经是好友了，直接聊天
@@ -105,8 +107,6 @@ class ProfileFragment : AppFragment() {
     override fun onResume() {
         super.onResume()
         //使标题栏和状态栏不重叠
-        immersionBar {
-            titleBar(topBar)
-        }
+        immersionBar { titleBar(topBar) }
     }
 }

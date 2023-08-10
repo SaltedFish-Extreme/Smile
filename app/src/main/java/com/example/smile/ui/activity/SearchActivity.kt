@@ -263,9 +263,7 @@ class SearchActivity : AppActivity(), SwipeBackAbility.Direction {
     override fun onResume() {
         super.onResume()
         //使顶部和状态栏不重叠
-        immersionBar {
-            titleBarMarginTop(R.id.ll_search_bar)
-        }
+        immersionBar { titleBarMarginTop(R.id.ll_search_bar) }
     }
 
     /** 当前页禁用侧滑 */

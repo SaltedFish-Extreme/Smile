@@ -68,10 +68,7 @@ class LoginActivity : AppActivity() {
         //关闭按钮关闭当前页面
         close.clickNoRepeat { finish() }
         //监听手机号输入框输入完成事件(使发送验证码可用)
-        inputPhone.addTextChangedListener {
-            sendVerificationCode.isEnabled =
-                !it.isNullOrBlank() && it.startsWith("1") && it.length == 11
-        }
+        inputPhone.addTextChangedListener { sendVerificationCode.isEnabled = !it.isNullOrBlank() && it.length == 11 }
         //发送验证码
         sendVerificationCode.clickNoRepeat {
             scopeNetLife {
@@ -115,8 +112,7 @@ class LoginActivity : AppActivity() {
                 verificationCodeLogin.gone()
                 inputPassword.visible()
                 //联动登陆按钮和手机号/密码输入框
-                InputTextManager.with(this).addView(inputPhone).addView(inputPassword)
-                    .setMain(btnLogin).build()
+                InputTextManager.with(this).addView(inputPhone).addView(inputPassword).setMain(btnLogin).build()
             } else if (loginInfo.text == getString(R.string.password_login)) {
                 loginInfo.text = getString(R.string.verification_code_login)
                 loginMethodSwitch.text = getString(R.string.password_login)
@@ -124,16 +120,14 @@ class LoginActivity : AppActivity() {
                 inputPassword.gone()
                 verificationCodeLogin.visible()
                 //联动登陆按钮和手机号/验证码输入框
-                InputTextManager.with(this).addView(inputPhone).addView(inputVerificationCode)
-                    .setMain(btnLogin).build()
+                InputTextManager.with(this).addView(inputPhone).addView(inputVerificationCode).setMain(btnLogin).build()
             }
         }
         //点击遇到问题显示底部弹窗
         encounterProblems.clickNoRepeat { showBottomDialog() }
         btnLogin.run {
             //联动登陆按钮和手机号/验证码输入框
-            InputTextManager.with(this@LoginActivity).addView(inputPhone)
-                .addView(inputVerificationCode).setMain(this).build()
+            InputTextManager.with(this@LoginActivity).addView(inputPhone).addView(inputVerificationCode).setMain(this).build()
             clickNoRepeat {
                 //校验手机号长度
                 if (inputPhone.text!!.length != 11) {
@@ -196,8 +190,7 @@ class LoginActivity : AppActivity() {
     //底部弹窗(BottomDialog)
     private fun showBottomDialog() {
         val bottomDialog = CustomBottomDialog(this, true)
-        DialogManager.replaceDialog(bottomDialog).setCancelable(true)
-            .setCanceledOnTouchOutside(true).setDimmedBehind(true).show()
+        DialogManager.replaceDialog(bottomDialog).setCancelable(true).setCanceledOnTouchOutside(true).setDimmedBehind(true).show()
     }
 
     /**
@@ -226,9 +219,7 @@ class LoginActivity : AppActivity() {
     override fun onResume() {
         super.onResume()
         //使顶部和状态栏不重叠
-        immersionBar {
-            titleBarMarginTop(close)
-        }
+        immersionBar { titleBarMarginTop(close) }
     }
 
     override fun startActivity(intent: Intent?) {

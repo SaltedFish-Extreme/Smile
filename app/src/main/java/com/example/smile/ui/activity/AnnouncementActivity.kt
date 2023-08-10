@@ -33,8 +33,6 @@ class AnnouncementActivity : AppActivity() {
     override fun onResume() {
         super.onResume()
         //使标题栏和状态栏不重叠
-        immersionBar {
-            titleBar(titleBar)
-        }
+        immersionBar { titleBar(titleBar) }
     }
 }

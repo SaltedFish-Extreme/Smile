@@ -56,10 +56,7 @@ class ResetPasswordActivity : AppActivity() {
         //关闭按钮关闭当前页面
         close.clickNoRepeat { finish() }
         //监听手机号输入框输入完成事件(使发送验证码可用)
-        inputPhone.addTextChangedListener {
-            sendVerificationCode.isEnabled =
-                !it.isNullOrBlank() && it.startsWith("1") && it.length == 11
-        }
+        inputPhone.addTextChangedListener { sendVerificationCode.isEnabled = !it.isNullOrBlank() && it.length == 11 }
         //发送验证码
         sendVerificationCode.clickNoRepeat {
             Toaster.show(R.string.verification_code_sent_success)
@@ -125,9 +122,7 @@ class ResetPasswordActivity : AppActivity() {
             }
         }
         //点击去登陆文本，跳转登陆页面
-        toLogin.clickNoRepeat {
-            openActivity<LoginActivity>()
-        }
+        toLogin.clickNoRepeat { openActivity<LoginActivity>() }
         //点击遇到问题显示底部弹窗
         encounterProblems.clickNoRepeat { showBottomDialog() }
     }
@@ -142,9 +137,7 @@ class ResetPasswordActivity : AppActivity() {
     override fun onResume() {
         super.onResume()
         //使顶部和状态栏不重叠
-        immersionBar {
-            titleBarMarginTop(close)
-        }
+        immersionBar { titleBarMarginTop(close) }
     }
 
     override fun startActivity(intent: Intent?) {
