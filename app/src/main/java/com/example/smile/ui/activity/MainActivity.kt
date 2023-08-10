@@ -16,6 +16,7 @@ import com.example.smile.util.vibration
 import com.google.android.material.bottomnavigation.BottomNavigationItemView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.hjq.toast.Toaster
 
 /** 主页 */
 class MainActivity : AppActivity() {
@@ -27,6 +28,9 @@ class MainActivity : AppActivity() {
     companion object {
         /** 菜单编号(和底部导航图中fixFragment的id保持一致) */
         private val menuItemIdList = arrayListOf(R.id.home_page, R.id.tools_page, R.id.release_page, R.id.message_page, R.id.profile_page)
+
+        /** 退出时间 */
+        private var exitTime = 0L
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -111,5 +115,17 @@ class MainActivity : AppActivity() {
         }
         //震动一下
         vibration()
+    }
+
+    @Deprecated("Deprecated in Java")
+    @Suppress("DEPRECATION")
+    override fun onBackPressed() {
+        //返回键退出程序确认
+        if (System.currentTimeMillis() - exitTime > 2000) {
+            Toaster.show(getString(R.string.exit))
+            exitTime = System.currentTimeMillis()
+            return
+        }
+        super.onBackPressed()
     }
 }
