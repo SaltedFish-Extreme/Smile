@@ -10,6 +10,7 @@ import androidx.core.widget.addTextChangedListener
 import com.drake.net.Post
 import com.drake.net.utils.scopeNetLife
 import com.drake.serialize.intent.openActivity
+import com.drake.softinput.setWindowSoftInput
 import com.drake.spannable.movement.ClickableMovementMethod
 import com.drake.spannable.replaceSpanFirst
 import com.drake.spannable.replaceSpanLast
@@ -62,6 +63,8 @@ class ResetPasswordActivity : AppActivity() {
         close.clickNoRepeat { finish() }
         //监听手机号输入框输入完成事件(使发送验证码可用)
         inputPhone.addTextChangedListener { sendVerificationCode.isEnabled = !it.isNullOrBlank() && it.length == 11 }
+        //使软键盘不遮挡输入框(监听密码重复输入框，使重置按钮悬浮在软键盘上面)
+        setWindowSoftInput(float = btnReset, editText = inputPasswordAgain)
         //发送验证码
         sendVerificationCode.clickNoRepeat {
             scopeNetLife {
