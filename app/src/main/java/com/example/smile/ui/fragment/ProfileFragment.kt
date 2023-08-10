@@ -84,9 +84,61 @@ class ProfileFragment : AppFragment() {
 
     /** 点击事件方法 */
     private fun onClick() {
+        //todo 点击顶部个人栏
         topBar.clickNoRepeat {
-            openActivity<LoginActivity>()
+            requireContext().judgeLoginOperation {
+                Toaster.show(userNickname.text)
+            }
         }
+        //todo 点击关注
+        followed.clickNoRepeat {
+            requireContext().judgeLoginOperation {
+                Toaster.show((it as TextView).text)
+            }
+        }
+        //todo 点击粉丝
+        follower.clickNoRepeat {
+            requireContext().judgeLoginOperation {
+                Toaster.show((it as TextView).text)
+            }
+        }
+        //todo 点击喜欢
+        like.clickNoRepeat {
+            requireContext().judgeLoginOperation {
+                Toaster.show((it as TextView).text)
+            }
+        }
+        //todo 点击经验
+        experience.clickNoRepeat {
+            requireContext().judgeLoginOperation {
+                Toaster.show((it as TextView).text)
+            }
+        }
+        //todo 点击帖子
+        post.clickNoRepeat {
+            requireContext().judgeLoginOperation {
+                Toaster.show((it as DrawableTextView).text)
+            }
+        }
+        //todo 点击评论
+        comment.clickNoRepeat {
+            requireContext().judgeLoginOperation {
+                Toaster.show((it as DrawableTextView).text)
+            }
+        }
+        //todo 点击点赞
+        thumbsUp.clickNoRepeat {
+            requireContext().judgeLoginOperation {
+                Toaster.show((it as DrawableTextView).text)
+            }
+        }
+        //todo 点击收藏
+        collect.clickNoRepeat {
+            requireContext().judgeLoginOperation {
+                Toaster.show((it as DrawableTextView).text)
+            }
+        }
+        //点击社区公约
         communityConvention.clickNoRepeat {
             //跳转公告页，传递标题：开口笑社区自律公约
             openActivity<AnnouncementActivity>("title" to getString(R.string.community_convention_title))
@@ -100,6 +152,38 @@ class ProfileFragment : AppFragment() {
             } catch (e: Exception) {
                 e.printStackTrace()
                 Toaster.show("请检查是否已经安装QQ")
+            }
+        }
+        //todo 点击审核中
+        underReview.clickNoRepeat {
+            requireContext().judgeLoginOperation {
+                Toaster.show((it as SettingBar).getLeftText())
+            }
+        }
+        //todo 点击审核失败
+        auditFailure.clickNoRepeat {
+            requireContext().judgeLoginOperation {
+                Toaster.show((it as SettingBar).getLeftText())
+            }
+        }
+        //todo 点击分享好友
+        shareFriends.clickNoRepeat {
+            requireContext().judgeLoginOperation {
+                Toaster.show((it as SettingBar).getLeftText())
+            }
+        }
+        //点击意见反馈
+        feedback.clickNoRepeat { openActivity<FeedbackActivity>() }
+        //todo 点击赏个好评
+        praise.clickNoRepeat {
+            requireContext().judgeLoginOperation {
+                Toaster.show((it as SettingBar).getLeftText())
+            }
+        }
+        //todo 点击设置
+        setup.clickNoRepeat {
+            requireContext().judgeLoginOperation {
+                Toaster.show((it as SettingBar).getLeftText())
             }
         }
     }

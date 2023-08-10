@@ -10,6 +10,11 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import androidx.annotation.AnimRes
+import com.drake.serialize.intent.openActivity
+import com.example.smile.R
+import com.example.smile.app.AppConfig
+import com.example.smile.ui.activity.LoginActivity
+import com.hjq.toast.Toaster
 
 /** view扩展函数 */
 
@@ -131,3 +136,17 @@ fun setOnclickNoRepeat(vararg views: View?, interval: Long = 500, onClick: (View
  * @param anim 要加载的动画效果资源
  */
 fun Context.loadAnimation(@AnimRes anim: Int): Animation = AnimationUtils.loadAnimation(this, anim)
+
+/**
+ * 判断登录状态，未登录吐司提示登录，跳转登录页面，否则执行后续逻辑操作
+ *
+ * @param invoke 已登录状态要执行的操作
+ */
+fun Context.judgeLoginOperation(invoke: () -> Unit) {
+    if (AppConfig.token.isBlank()) {
+        Toaster.show(getString(R.string.please_login))
+        openActivity<LoginActivity>()
+    } else {
+        invoke()
+    }
+}
