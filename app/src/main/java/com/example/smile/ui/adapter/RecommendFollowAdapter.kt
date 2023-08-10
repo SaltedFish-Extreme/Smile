@@ -41,8 +41,8 @@ class RecommendFollowAdapter : AppAdapter<RecommendFollowModel>() {
             //用户头像
             holder.getView<ShapeableImageView>(R.id.user_avatar).run {
                 if (item.avatar.isNotEmpty()) {
-                    Glide.with(context).load(item.avatar).placeholder(R.drawable.ic_account).transition(DrawableTransitionOptions.withCrossFade())
-                        .into(this)
+                    Glide.with(context).load(item.avatar).placeholder(R.drawable.ic_account)
+                        .transition(DrawableTransitionOptions.withCrossFade()).into(this)
                 } else {
                     Glide.with(context).load(R.drawable.ic_account).into(this)
                 }

@@ -10,8 +10,7 @@ import com.drake.net.utils.scopeNetLife
 import com.drake.softinput.setWindowSoftInput
 import com.example.smile.R
 import com.example.smile.app.AppActivity
-import com.example.smile.app.AppConfig.getVersionCode
-import com.example.smile.app.AppConfig.getVersionName
+import com.example.smile.app.AppConfig
 import com.example.smile.http.NetApi.FeedbackAPI
 import com.example.smile.ui.adapter.UploadPictureAdapter
 import com.example.smile.util.InputTextManager
@@ -81,8 +80,8 @@ class FeedbackActivity : AppActivity() {
                     param("pics", photoList.joinToString(",") { it.path })
                     param("product", Build.MODEL)
                     param("release_version", Build.VERSION.RELEASE)
-                    param("version_code", getVersionCode())
-                    param("version_name", getVersionName())
+                    param("version_code", AppConfig.getVersionCode())
+                    param("version_name", AppConfig.getVersionName())
                 }.await()
                 //提交按钮显示成功，延迟一秒，关闭页面
                 Toaster.show(getString(R.string.submit_success))

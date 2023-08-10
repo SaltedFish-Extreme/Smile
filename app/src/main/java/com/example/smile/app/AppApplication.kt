@@ -13,7 +13,6 @@ import com.drake.net.okhttp.setRequestInterceptor
 import com.drake.net.request.BaseRequest
 import com.drake.statelayout.StateConfig
 import com.example.smile.R
-import com.example.smile.app.AppConfig.isDebug
 import com.example.smile.http.NetApi.BaseURL
 import com.example.smile.http.SerializationConverter
 import com.example.smile.util.DynamicTimeFormat
@@ -53,6 +52,8 @@ class AppApplication : Application() {
         MMKV.initialize(this)
         //启用动态主题颜色
         DynamicColors.applyToActivitiesIfAvailable(this)
+        //Activity栈管理初始化
+        ActivityManager.getInstance().init(this)
         //本地异常捕捉
         CrashHandler.register(this)
         //初始化数据库
@@ -60,7 +61,7 @@ class AppApplication : Application() {
         //初始化Toast框架
         Toaster.init(this)
         //设置吐司调试模式
-        Toaster.setDebugMode(isDebug())
+        Toaster.setDebugMode(AppConfig.isDebug())
         //全局配置侧滑返回activity(有各种骚操作的奇怪BUG，不影响正常使用)
         SwipeBack.getInstance().run {
             //初始化侧滑返回
@@ -79,7 +80,7 @@ class AppApplication : Application() {
             //设置Gson解析方式
             setConverter(SerializationConverter("200", "code", "msg"))
             //添加日志拦截器
-            if (isDebug()) addInterceptor(OkHttpProfilerInterceptor())
+            if (AppConfig.isDebug()) addInterceptor(OkHttpProfilerInterceptor())
             //设置请求拦截器
             setRequestInterceptor(object : RequestInterceptor {
                 override fun interceptor(request: BaseRequest) {
