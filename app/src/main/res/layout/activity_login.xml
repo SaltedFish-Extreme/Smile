@@ -30,6 +30,7 @@
         android:layout_below="@id/login_info"
         android:layout_marginTop="@dimen/dp_50"
         android:hint="@string/phone_tip"
+        android:inputType="phone"
         app:regexType="mobile" />
 
     <RelativeLayout
@@ -44,6 +45,7 @@
             android:id="@+id/input_verification_code"
             style="@style/InputBoxStyle"
             android:hint="@string/verification_code_tip"
+            android:inputType="number"
             android:maxLength="6"
             app:regexType="number" />
 

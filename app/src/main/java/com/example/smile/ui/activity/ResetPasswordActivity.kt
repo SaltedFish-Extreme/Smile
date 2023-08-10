@@ -64,7 +64,7 @@ class ResetPasswordActivity : AppActivity() {
         //监听手机号输入框输入完成事件(使发送验证码可用)
         inputPhone.addTextChangedListener { sendVerificationCode.isEnabled = !it.isNullOrBlank() && it.length == 11 }
         //使软键盘不遮挡输入框(监听密码重复输入框，使重置按钮悬浮在软键盘上面)
-        setWindowSoftInput(float = btnReset, editText = inputPasswordAgain)
+        setWindowSoftInput(float = btnReset, editText = inputPassword)
         //发送验证码
         sendVerificationCode.clickNoRepeat {
             scopeNetLife {
