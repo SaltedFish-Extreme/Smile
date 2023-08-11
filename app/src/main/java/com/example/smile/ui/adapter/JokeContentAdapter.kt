@@ -23,6 +23,7 @@ import com.example.smile.R
 import com.example.smile.app.AppAdapter
 import com.example.smile.model.JokeContentModel
 import com.example.smile.util.decrypt
+import com.example.smile.util.vibration
 import com.example.smile.widget.ext.gone
 import com.example.smile.widget.ext.screenWidth
 import com.example.smile.widget.ext.visible
@@ -197,5 +198,7 @@ class JokeContentAdapter(private val fragment: Fragment? = null, private val act
         val clip = ClipData.newPlainText("copy_text", text)
         clipboard.setPrimaryClip(clip)
         Toaster.show(context.getString(R.string.copy_succeed))
+        //顺便震动一下
+        context.vibration()
     }
 }
