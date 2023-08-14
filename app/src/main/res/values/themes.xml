@@ -49,22 +49,6 @@
         <item name="titleSize">@dimen/sp_20</item>
     </style>
 
-    <!--设置栏通用样式-->
-    <style name="SettingBar">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:background">?android:attr/colorBackground</item>
-        <item name="android:foreground">?attr/selectableItemBackground</item>
-        <item name="bar_leftTextSize">@dimen/sp_16</item>
-        <item name="bar_leftTextColor">?android:attr/textColorPrimary</item>
-        <item name="bar_leftDrawablePadding">@dimen/dp_20</item>
-        <item name="bar_leftDrawableTint">@color/color_bottom_navigation_surface</item>
-        <item name="bar_rightTextColor">?android:attr/textColorSecondary</item>
-        <item name="bar_rightDrawable">@drawable/ic_arrows_right</item>
-        <item name="bar_rightDrawableTint">@color/color_ic_bg_tint</item>
-        <item name="bar_lineVisible">false</item>
-    </style>
-
     <!--ShapeAbleImageView 圆角-->
     <style name="RoundedStyle">
         <item name="cornerFamily">rounded</item>
@@ -116,22 +100,38 @@
         <item name="drawableWidth">@dimen/dp_30</item>
     </style>
 
-    <!--个人页设置栏通用样式-->
-    <style name="ProfileSettingBarStyle">
+    <!--设置栏通用样式-->
+    <style name="SettingBarStyle">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_marginBottom">@dimen/dp_5</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:background">@drawable/shape_radius_bg</item>
         <item name="android:foreground">?attr/selectableItemBackground</item>
+        <item name="bar_leftTextSize">@dimen/sp_16</item>
         <item name="bar_leftTextColor">?android:attr/textColorPrimary</item>
         <item name="bar_leftDrawableSize">@dimen/dp_20</item>
         <item name="bar_leftDrawablePadding">@dimen/dp_20</item>
         <item name="bar_leftDrawableTint">@color/color_ic_bg_tint</item>
+        <item name="bar_rightTextSize">@dimen/sp_15</item>
         <item name="bar_rightTextColor">?android:attr/textColorSecondary</item>
         <item name="bar_rightDrawable">@drawable/ic_arrows_right</item>
         <item name="bar_rightDrawableSize">@dimen/dp_20</item>
         <item name="bar_rightDrawableTint">@color/color_ic_bg_tint</item>
-        <item name="bar_lineVisible">false</item>
+        <item name="bar_lineVisible">true</item>
+    </style>
+
+    <!--设置页子标题通用样式-->
+    <style name="SettingSubTitleStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/shape_radius_bg</item>
+        <item name="android:gravity">start|center_vertical</item>
+        <item name="android:paddingStart">@dimen/dp_15</item>
+        <item name="android:paddingEnd">@dimen/dp_15</item>
+        <item name="android:paddingTop">@dimen/dp_5</item>
+        <item name="android:paddingBottom">@dimen/dp_5</item>
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+        <item name="android:textSize">@dimen/sp_18</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
     <!-- 验证码按钮样式 -->

@@ -22,7 +22,7 @@ class AnnouncementActivity : AppActivity() {
         when (title) {
             getString(R.string.community_convention_title) -> setContentView(R.layout.activity_community_convention)
             getString(R.string.privacy_policy_title) -> setContentView(R.layout.activity_privacy_policy)
-            getString(R.string.services_agreement) -> setContentView(R.layout.activity_services_agreement)
+            getString(R.string.services_agreement_title) -> setContentView(R.layout.activity_services_agreement)
         }
         //设置标题
         titleBar.title = title

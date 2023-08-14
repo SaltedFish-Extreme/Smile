@@ -10,6 +10,8 @@
     <string name="no_data">暂无数据，点击重试</string>
     <string name="no_net">网络异常，点击重试</string>
     <string name="loading">加载中，请稍候</string>
+    <string name="load">加载中…</string>
+    <string name="hint">提示语</string>
     <!--Dialog按钮-->
     <string name="sure">确定</string>
     <string name="cancel">取消</string>
@@ -40,6 +42,10 @@
     <string name="search_box_tip">搜索你感兴趣的帖子</string>
     <string name="copy_joke">复制段子</string>
     <string name="copy_succeed">复制成功</string>
+    <string name="followed">已关注</string>
+    <string name="focus_on">+ 关注</string>
+    <string name="me">咸鱼至尊</string>
+    <string name="sign">他正在想一个爆炸的签名…</string>
     <!--个人页-->
     <string name="log_in_register">登录/注册</string>
     <string name="signature_tip">快来开始你的创作吧~</string>
@@ -63,27 +69,27 @@
     <string name="customer_service_link">mqqwpa://im/chat?chat_type=wpa&#38;uin=%s</string>
     <string name="customer_service_number">1738099872</string>
     <!--设置页-->
-    <string name="setting">系统设置</string>
+    <string name="user_related">用户相关</string>
+    <string name="user_info">用户信息</string>
+    <string name="account_security">账号与安全</string>
+    <string name="universal">通用</string>
+    <string name="push_switch">推送开关</string>
+    <string name="turned_on">已开启</string>
+    <string name="turned_off">未开启</string>
+    <string name="traffic_loading_pictures">数据网络加载图片</string>
+    <string name="clear_cache">清除缓存</string>
+    <string name="other_settings">其他设置</string>
+    <string name="score">给我评分</string>
+    <string name="check_update">检查更新</string>
+    <string name="version_name">v%s</string>
+    <string name="about_us">关于我们</string>
+    <string name="cache">0KB</string>
+    <string name="setting">设置</string>
     <string name="logout">退出登录</string>
     <string name="exit_confirm">确定退出登录吗？</string>
     <string name="exit_succeed">退出登录成功</string>
-    <string name="setting_clear">清除缓存</string>
-    <string name="setting_scan">扫码下载</string>
-    <string name="setting_update">版本更新</string>
-    <string name="setting_web">官方网站</string>
-    <string name="setting_project">项目源码</string>
-    <string name="setting_copyright">版权声明</string>
-    <string name="setting_about">关于我们</string>
-    <string name="setting_cache">0MB</string>
-    <string name="setting_version">当前版本 %s</string>
-    <string name="setting_site">https://github.com/MZCretin/duanzile-open-api</string>
-    <string name="setting_code">SaltedFish-Extreme/Smile</string>
-    <string name="setting_tips">仅作个人及非商业用途 ⊙ω⊙</string>
-    <string name="setting_desc">一个练习时长两年半的安卓菜鸡(ㅎ.ㅎ)</string>
-    <string name="clear_cache">确定清理缓存吗</string>
-    <string name="clear_success">清理成功</string>
-    <string name="update_address">https://wwz.lanzouo.com/b030pezzi</string>
-    <string name="setting_repository">https://github.com/SaltedFish-Extreme/Smile</string>
+    <string name="clear_cache_success">缓存清除成功</string>
+    <string name="project_repository">https://github.com/SaltedFish-Extreme/Smile</string>
     <string name="copyright_content">本APP所使用的所有API均由 段子乐 后台提供，仅供学习交流，不可用于任何商业用途。</string>
     <string name="qq">1738099872</string>
     <string name="email">1738099872@qq.com</string>
@@ -130,6 +136,7 @@
     <string name="describe_problem">请描述具体问题</string>
     <string name="describe_problem_hint">请详细描述你遇到的问题，方便我们排查问题…</string>
     <string name="supplementary_pictures">图片补充：（相关图片能帮助我们快速定位问题）</string>
+    <string name="delete_success">删除成功</string>
     <string name="contact_info">联系方式：</string>
     <string name="contact_info_hint">请输入您的联系方式，如：qq:xxx，微信:xxx，邮箱:xxx，手机号:xxx</string>
     <string name="submit">提交</string>
@@ -245,7 +252,7 @@
     <string name="privacy_policy_content_24">\n联系我们</string>
     <string name="privacy_policy_content_25">\n &#160;&#160;&#160;&#160;&#160;&#160; 如果您对我们的隐私政策有任何问题或建议，请随时通过 1738099872@qq.com 与我们联系。\n\n </string>
     <!--协议-->
-    <string name="services_agreement">用户服务协议</string>
+    <string name="services_agreement_title">用户服务协议</string>
     <string name="services_agreement_content_1">\n欢迎您使用《开口笑》软件及服务！</string>
     <string name="services_agreement_content_2">\n &#160;&#160;&#160;&#160;&#160;&#160; 《开口笑》是咸鱼至尊开发的一款安卓手机娱乐软件，是一个十分好玩有趣的生活娱乐类段子软件，是一款可以让我们远离烦恼，天天开心快乐的软件，该软件内包含了搞笑短视频，爆笑图片，内涵段子等等社区，软件操作流程，内存小不占地方，是一款十分好用的软件。
     \n\n &#160;&#160;&#160;&#160;&#160;&#160; 为使用《开口笑》产品及相应服务，您应当阅读并遵守本协议及《开口笑》隐私政策。请您务必审慎阅读、充分理解各条款内容，特别是免除或者限制责任的条款，并选择接受或不接受。限制、免责条款可能以加粗形式提示你注意。 除非你已阅读并接受本协议所有条款，否则你无权下载、安装或使用本软件及相关服务。您的下载、安装、使用、登录等行为即视为你已阅读并同意上述协议的约束。如您不同意本协议及隐私政策，请您立即停止使用本软件及服务。 此协议在必要时将随时进行修改更新，每次改动都会立即生效。你可以在本软件的最新版本中查阅相关协议条款。本协议条款变更后，如果您继续使用本软件，即视为您已接受修改后的协议。如果您拒绝接受修改后的协议，您应当停止使用本软件，并放弃使用《开口笑》提供的服务；若您继续使用《开口笑》提供的服务，则表明您接受新的协议。 除非特别声明，其他增强服务的新功能将适用此协议。</string>
@@ -331,7 +338,6 @@
     \n\n &#160;&#160;&#160;&#160;&#160;&#160; 7. 对于因不可抗力或因黑客攻击、通讯线路中断等《开口笑》不能控制的原因造成的网络服务中断或其他缺陷， 导致用户不能正常使用《开口笑》，《开口笑》不承担任何责任，但将尽力减少因此给用户造成的损失或影响。
     \n\n &#160;&#160;&#160;&#160;&#160;&#160; 8. 本声明未涉及的问题请参见国家有关法律法规，当本声明与国家有关法律法规冲突时，以国家法律法规为准。
     \n\n &#160;&#160;&#160;&#160;&#160;&#160; 9. 本软件上会发布广告，也会为您提供一些资讯、移动应用。\n\n </string>
-    <string name="delete_success">删除成功</string>
     <!--主页底部导航栏item标题列表-->
     <string-array name="bottom_navigation_title">
         <item>首页</item>
