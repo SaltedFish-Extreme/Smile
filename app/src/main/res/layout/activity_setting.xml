@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?><!--设置页-->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_navigation_bar">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.hjq.bar.TitleBar
+            android:id="@+id/titleBar"
+            style="@style/TitleBar" />
+
+        <LinearLayout
+            android:id="@+id/user_related"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_10"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/SettingSubTitleStyle"
+                android:text="@string/user_related" />
+
+            <com.example.smile.widget.settingbar.SettingBar
+                android:id="@+id/user_info"
+                style="@style/SettingBarStyle"
+                app:bar_leftText="@string/user_info" />
+
+            <com.example.smile.widget.settingbar.SettingBar
+                android:id="@+id/account_security"
+                style="@style/SettingBarStyle"
+                app:bar_leftText="@string/account_security" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_10"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/SettingSubTitleStyle"
+                android:text="@string/universal" />
+
+            <com.example.smile.widget.settingbar.SettingBar
+                android:id="@+id/push_switch"
+                style="@style/SettingBarStyle"
+                app:bar_leftText="@string/push_switch"
+                app:bar_rightText="@string/turned_off" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.example.smile.widget.settingbar.SettingBar
+                    style="@style/SettingBarStyle"
+                    app:bar_leftText="@string/traffic_loading_pictures"
+                    app:bar_rightDrawable="@null" />
+
+                <com.example.smile.widget.view.SwitchButton
+                    android:id="@+id/traffic_loading_pictures"
+                    android:layout_width="@dimen/dp_60"
+                    android:layout_height="@dimen/dp_25"
+                    android:layout_gravity="end|center_vertical"
+                    android:layout_marginEnd="@dimen/dp_25" />
+            </FrameLayout>
+
+            <com.example.smile.widget.settingbar.SettingBar
+                android:id="@+id/clear_cache"
+                style="@style/SettingBarStyle"
+                app:bar_leftText="@string/clear_cache"
+                app:bar_rightText="@string/cache" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_10"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/SettingSubTitleStyle"
+                android:text="@string/other_settings" />
+
+            <com.example.smile.widget.settingbar.SettingBar
+                android:id="@+id/score"
+                style="@style/SettingBarStyle"
+                app:bar_leftText="@string/score" />
+
+            <com.example.smile.widget.settingbar.SettingBar
+                android:id="@+id/check_update"
+                style="@style/SettingBarStyle"
+                app:bar_leftText="@string/check_update"
+                app:bar_rightText="@string/version_name" />
+
+            <com.example.smile.widget.settingbar.SettingBar
+                android:id="@+id/services_agreement_title"
+                style="@style/SettingBarStyle"
+                app:bar_leftText="@string/services_agreement_title" />
+
+            <com.example.smile.widget.settingbar.SettingBar
+                android:id="@+id/privacy_policy_title"
+                style="@style/SettingBarStyle"
+                app:bar_leftText="@string/privacy_policy_title" />
+
+            <com.example.smile.widget.settingbar.SettingBar
+                android:id="@+id/about_us"
+                style="@style/SettingBarStyle"
+                app:bar_leftText="@string/about_us" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/logout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/dp_10"
+            android:background="@drawable/shape_radius_bg"
+            android:foreground="?attr/selectableItemBackground"
+            android:gravity="center"
+            android:padding="@dimen/dp_10"
+            android:text="@string/logout"
+            android:textColor="@color/color_concern"
+            android:textSize="@dimen/sp_18" />
+
+    </LinearLayout>
+
+</ScrollView>

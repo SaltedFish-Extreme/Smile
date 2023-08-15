@@ -96,6 +96,10 @@
             android:value="true" />
 
         <activity
+            android:name=".ui.activity.SettingActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".ui.activity.FeedbackActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
