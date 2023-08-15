@@ -11,7 +11,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.drake.net.Post
-import com.drake.net.utils.scopeNetLife
+import com.drake.net.utils.scopeDialog
 import com.drake.serialize.intent.openActivity
 import com.example.smile.R
 import com.example.smile.app.AppConfig
@@ -20,6 +20,7 @@ import com.example.smile.http.NetApi.UserInfoAPI
 import com.example.smile.model.UserInfoModel
 import com.example.smile.ui.activity.AnnouncementActivity
 import com.example.smile.ui.activity.FeedbackActivity
+import com.example.smile.ui.activity.SettingActivity
 import com.example.smile.widget.ext.clickNoRepeat
 import com.example.smile.widget.ext.judgeLoginOperation
 import com.example.smile.widget.settingbar.SettingBar
@@ -27,6 +28,7 @@ import com.example.smile.widget.view.DrawableTextView
 import com.google.android.material.imageview.ShapeableImageView
 import com.gyf.immersionbar.ktx.immersionBar
 import com.hjq.toast.Toaster
+import kotlinx.coroutines.delay
 
 /** 个人页 */
 class ProfileFragment : AppFragment() {
@@ -59,7 +61,9 @@ class ProfileFragment : AppFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         if (AppConfig.token.isNotBlank()) {
-            scopeNetLife {
+            scopeDialog(cancelable = false) {
+                //延迟0.5秒，转会儿圈
+                delay(500)
                 //获取用户信息数据
                 val userInfoData = Post<UserInfoModel>(UserInfoAPI).await()
                 //Glide显示头像
@@ -151,7 +155,7 @@ class ProfileFragment : AppFragment() {
                 startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
             } catch (e: Exception) {
                 e.printStackTrace()
-                Toaster.show("请检查是否已经安装QQ")
+                Toaster.show(R.string.qq_exist)
             }
         }
         //todo 点击审核中
@@ -168,23 +172,18 @@ class ProfileFragment : AppFragment() {
         }
         //todo 点击分享好友
         shareFriends.clickNoRepeat {
-            requireContext().judgeLoginOperation {
-                Toaster.show((it as SettingBar).getLeftText())
-            }
+            Toaster.show((it as SettingBar).getLeftText())
         }
         //点击意见反馈
         feedback.clickNoRepeat { openActivity<FeedbackActivity>() }
         //todo 点击赏个好评
         praise.clickNoRepeat {
-            requireContext().judgeLoginOperation {
-                Toaster.show((it as SettingBar).getLeftText())
-            }
+            Toaster.show((it as SettingBar).getLeftText())
         }
-        //todo 点击设置
+        //点击设置
         setup.clickNoRepeat {
-            requireContext().judgeLoginOperation {
-                Toaster.show((it as SettingBar).getLeftText())
-            }
+            //跳转设置页，传递是否登录
+            openActivity<SettingActivity>("loginOrNo" to AppConfig.token.isNotBlank())
         }
     }
 

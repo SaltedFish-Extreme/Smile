@@ -11,7 +11,7 @@ import com.drake.brv.PageRefreshLayout
 import com.drake.channel.receiveEventLive
 import com.drake.net.Post
 import com.drake.net.utils.scope
-import com.drake.net.utils.scopeNetLife
+import com.drake.net.utils.scopeDialog
 import com.example.smile.R
 import com.example.smile.app.AppActivity
 import com.example.smile.app.AppConfig
@@ -32,6 +32,7 @@ import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.gyf.immersionbar.ktx.immersionBar
 import com.huantansheng.easyphotos.ui.widget.PressedTextView
+import kotlinx.coroutines.delay
 import per.goweii.swipeback.SwipeBackAbility
 import per.goweii.swipeback.SwipeBackDirection
 
@@ -74,7 +75,9 @@ class SearchActivity : AppActivity(), SwipeBackAbility.Direction {
         frame.gone()
         //没有存储过搜索热词就发起请求
         if (AppConfig.SearchHot.isEmpty()) {
-            scopeNetLife {
+            scopeDialog(cancelable = false) {
+                //延迟0.5秒，转会儿圈
+                delay(500)
                 //请求搜索热词数据
                 val hotData = Post<List<String>>(HomeHotSearchAPI).await()
                 //给adapter设置数据

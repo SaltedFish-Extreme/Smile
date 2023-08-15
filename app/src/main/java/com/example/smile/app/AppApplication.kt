@@ -9,12 +9,14 @@ import com.drake.brv.PageRefreshLayout
 import com.drake.net.NetConfig
 import com.drake.net.interceptor.RequestInterceptor
 import com.drake.net.okhttp.setConverter
+import com.drake.net.okhttp.setDialogFactory
 import com.drake.net.okhttp.setRequestInterceptor
 import com.drake.net.request.BaseRequest
 import com.drake.statelayout.StateConfig
 import com.example.smile.R
 import com.example.smile.http.NetApi.BaseURL
 import com.example.smile.http.SerializationConverter
+import com.example.smile.ui.dialog.WaitDialog
 import com.example.smile.util.DynamicTimeFormat
 import com.google.android.material.color.DynamicColors
 import com.hjq.toast.Toaster
@@ -81,6 +83,15 @@ class AppApplication : Application() {
             setConverter(SerializationConverter("200", "code", "msg"))
             //添加日志拦截器
             if (AppConfig.isDebug()) addInterceptor(OkHttpProfilerInterceptor())
+            //全局加载中对话框配置
+            setDialogFactory {
+                WaitDialog.Builder(it).apply {
+                    setMessage(getString(R.string.load))
+                    //弹窗显示中不可取消(点击外部)，按下返回键还是可以取消显示(需要在使用scopeDialog时设置(cancelable = false))
+                    setCancelable(false)
+                    setCanceledOnTouchOutside(false)
+                }
+            }
             //设置请求拦截器
             setRequestInterceptor(object : RequestInterceptor {
                 override fun interceptor(request: BaseRequest) {
