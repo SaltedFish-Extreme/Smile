@@ -122,7 +122,7 @@ class MainActivity : AppActivity() {
     override fun onBackPressed() {
         //返回键退出程序确认
         if (System.currentTimeMillis() - exitTime > 2000) {
-            Toaster.show(getString(R.string.exit))
+            Toaster.show(R.string.exit)
             exitTime = System.currentTimeMillis()
             return
         }

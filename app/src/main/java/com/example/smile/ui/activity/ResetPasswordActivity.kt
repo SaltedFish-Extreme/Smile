@@ -71,7 +71,7 @@ class ResetPasswordActivity : AppActivity() {
                 //返回数据为null，验证码在小程序查看
                 Post<EmptyModel?>(NetApi.GetResetCodeAPI) { param("phone", inputPhone.text.toString()) }.await()
                 //发送成功，验证码倒计时开始
-                Toaster.show(getString(R.string.verification_code_sent_success))
+                Toaster.show(R.string.verification_code_sent_success)
                 sendVerificationCode.start()
             }.catch {
                 //吐司错误信息
@@ -110,21 +110,21 @@ class ResetPasswordActivity : AppActivity() {
                 if (inputPhone.text!!.length != 11) {
                     inputPhone.startAnimation(loadAnimation(R.anim.shake_anim))
                     showError(2000)
-                    Toaster.show(getString(R.string.phone_format_error))
+                    Toaster.show(R.string.phone_format_error)
                     return@clickNoRepeat
                 }
                 //校验验证码长度
                 if (inputVerificationCode.text!!.length != 6) {
                     inputVerificationCode.startAnimation(loadAnimation(R.anim.shake_anim))
                     showError(2000)
-                    Toaster.show(getString(R.string.verification_code_format_error))
+                    Toaster.show(R.string.verification_code_format_error)
                     return@clickNoRepeat
                 }
                 //校验密码长度
                 if (inputPassword.text!!.length !in 6..18) {
                     inputPassword.startAnimation(loadAnimation(R.anim.shake_anim))
                     showError(2000)
-                    Toaster.show(getString(R.string.password_format_error))
+                    Toaster.show(R.string.password_format_error)
                     return@clickNoRepeat
                 }
                 //校验两次密码是否一致
@@ -132,7 +132,7 @@ class ResetPasswordActivity : AppActivity() {
                     inputPassword.startAnimation(loadAnimation(R.anim.shake_anim))
                     inputPasswordAgain.startAnimation(loadAnimation(R.anim.shake_anim))
                     btnReset.showError(2000)
-                    Toaster.show(getString(R.string.re_enter_password))
+                    Toaster.show(R.string.re_enter_password)
                     return@clickNoRepeat
                 }
                 scopeNetLife {
@@ -145,7 +145,7 @@ class ResetPasswordActivity : AppActivity() {
                         param("code", inputVerificationCode.text.toString())
                     }.await()
                     //重置成功
-                    Toaster.show(getString(R.string.reset_success))
+                    Toaster.show(R.string.reset_success)
                     showSucceed()
                     //延迟一秒关闭页面
                     delay(1000)

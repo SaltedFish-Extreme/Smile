@@ -197,7 +197,7 @@ class JokeContentAdapter(private val fragment: Fragment? = null, private val act
         val clipboard: ClipboardManager = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
         val clip = ClipData.newPlainText("copy_text", text)
         clipboard.setPrimaryClip(clip)
-        Toaster.show(context.getString(R.string.copy_succeed))
+        Toaster.show(R.string.copy_succeed)
         //顺便震动一下
         context.vibration()
     }

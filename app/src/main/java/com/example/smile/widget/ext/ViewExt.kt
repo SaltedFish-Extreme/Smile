@@ -144,7 +144,7 @@ fun Context.loadAnimation(@AnimRes anim: Int): Animation = AnimationUtils.loadAn
  */
 fun Context.judgeLoginOperation(invoke: () -> Unit) {
     if (AppConfig.token.isBlank()) {
-        Toaster.show(getString(R.string.please_login))
+        Toaster.show(R.string.please_login)
         openActivity<LoginActivity>()
     } else {
         invoke()

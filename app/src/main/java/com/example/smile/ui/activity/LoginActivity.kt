@@ -75,7 +75,7 @@ class LoginActivity : AppActivity() {
                 //返回数据为null，验证码在小程序查看
                 Post<EmptyModel?>(GetLoginCodeAPI) { param("phone", inputPhone.text.toString()) }.await()
                 //发送成功，验证码倒计时开始
-                Toaster.show(getString(R.string.verification_code_sent_success))
+                Toaster.show(R.string.verification_code_sent_success)
                 sendVerificationCode.start()
             }.catch {
                 //吐司错误信息
@@ -134,7 +134,7 @@ class LoginActivity : AppActivity() {
                 if (inputPhone.text!!.length != 11) {
                     inputPhone.startAnimation(loadAnimation(R.anim.shake_anim))
                     showError(2000)
-                    Toaster.show(getString(R.string.phone_format_error))
+                    Toaster.show(R.string.phone_format_error)
                     return@clickNoRepeat
                 }
                 if (loginInfo.text == getString(R.string.verification_code_login)) {
@@ -142,7 +142,7 @@ class LoginActivity : AppActivity() {
                     if (inputVerificationCode.text!!.length != 6) {
                         inputVerificationCode.startAnimation(loadAnimation(R.anim.shake_anim))
                         showError(2000)
-                        Toaster.show(getString(R.string.verification_code_format_error))
+                        Toaster.show(R.string.verification_code_format_error)
                         return@clickNoRepeat
                     } else {
                         scopeNetLife {
@@ -165,7 +165,7 @@ class LoginActivity : AppActivity() {
                     if (inputPassword.text!!.length !in 6..18) {
                         inputPassword.startAnimation(loadAnimation(R.anim.shake_anim))
                         showError(2000)
-                        Toaster.show(getString(R.string.password_format_error))
+                        Toaster.show(R.string.password_format_error)
                         return@clickNoRepeat
                     } else {
                         scopeNetLife {
@@ -203,7 +203,7 @@ class LoginActivity : AppActivity() {
         //隐藏软键盘
         hideSoftKeyboard(this@LoginActivity)
         //登录按钮显示成功
-        Toaster.show(getString(R.string.login_succeed))
+        Toaster.show(R.string.login_succeed)
         showSucceed()
         //设置全局token
         AppConfig.token = data.token

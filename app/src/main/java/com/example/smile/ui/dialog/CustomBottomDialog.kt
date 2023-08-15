@@ -48,7 +48,7 @@ class CustomBottomDialog(context: Context, private val visible: Boolean) :
                 context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
             } catch (e: Exception) {
                 e.printStackTrace()
-                Toaster.show("请检查是否已经安装QQ")
+                Toaster.show(R.string.qq_exist)
             }
             dismiss()
         }

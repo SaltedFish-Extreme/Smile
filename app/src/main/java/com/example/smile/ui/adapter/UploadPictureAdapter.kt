@@ -48,7 +48,7 @@ class UploadPictureAdapter(activity: FragmentActivity, private val dataList: Arr
             .placeholder(R.drawable.load_picture).into(holder.ivPhoto)
         //长按图片删除
         holder.ivPhoto.setOnLongClickListener {
-            Toaster.show(mActivity.getString(R.string.delete_success))
+            Toaster.show(R.string.delete_success)
             dataList.removeAt(position) //从数据源删除
             notifyItemRemoved(position) //通知移除item
             notifyItemRangeChanged(position, itemCount - position) //刷新数据（不加偶尔会删除 item 的位置错误）

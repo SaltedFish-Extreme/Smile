@@ -12,6 +12,7 @@
     <string name="loading">加载中，请稍候</string>
     <string name="load">加载中…</string>
     <string name="hint">提示语</string>
+    <string name="wait">请稍候</string>
     <!--Dialog按钮-->
     <string name="sure">确定</string>
     <string name="cancel">取消</string>
@@ -68,6 +69,7 @@
     <string name="setup">设置</string>
     <string name="customer_service_link">mqqwpa://im/chat?chat_type=wpa&#38;uin=%s</string>
     <string name="customer_service_number">1738099872</string>
+    <string name="qq_exist">请检查是否已经安装QQ</string>
     <!--设置页-->
     <string name="user_related">用户相关</string>
     <string name="user_info">用户信息</string>

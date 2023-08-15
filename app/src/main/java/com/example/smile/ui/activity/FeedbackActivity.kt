@@ -83,13 +83,13 @@ class FeedbackActivity : AppActivity() {
                     param("version_name", AppConfig.getVersionName())
                 }.await()
                 //提交按钮显示成功，延迟一秒，关闭页面
-                Toaster.show(getString(R.string.submit_success))
+                Toaster.show(R.string.submit_success)
                 feedbackBtn.showSucceed()
                 delay(1000)
                 finish()
             }.catch {
                 //提交出问题，吐司提示，提交按钮显示错误
-                Toaster.show(getString(R.string.submit_failed))
+                Toaster.show(R.string.submit_failed)
                 feedbackBtn.showError(1500)
             }
         }
