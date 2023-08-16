@@ -61,7 +61,7 @@ class ProfileFragment : AppFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         if (AppConfig.token.isNotBlank()) {
-            scopeDialog(cancelable = false) {
+            scopeDialog {
                 //延迟0.5秒，转会儿圈
                 delay(500)
                 //获取用户信息数据

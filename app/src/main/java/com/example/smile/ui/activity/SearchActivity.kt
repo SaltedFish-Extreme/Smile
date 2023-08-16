@@ -75,7 +75,7 @@ class SearchActivity : AppActivity(), SwipeBackAbility.Direction {
         frame.gone()
         //没有存储过搜索热词就发起请求
         if (AppConfig.SearchHot.isEmpty()) {
-            scopeDialog(cancelable = false) {
+            scopeDialog {
                 //延迟0.5秒，转会儿圈
                 delay(500)
                 //请求搜索热词数据

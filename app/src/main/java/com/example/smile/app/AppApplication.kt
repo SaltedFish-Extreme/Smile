@@ -83,13 +83,10 @@ class AppApplication : Application() {
             setConverter(SerializationConverter("200", "code", "msg"))
             //添加日志拦截器
             if (AppConfig.isDebug()) addInterceptor(OkHttpProfilerInterceptor())
-            //全局加载中对话框配置
+            //全局加载中对话框配置(使用自定义对话框)
             setDialogFactory {
                 WaitDialog.Builder(it).apply {
                     setMessage(getString(R.string.load))
-                    //弹窗显示中不可取消(点击外部)，按下返回键还是可以取消显示(需要在使用scopeDialog时设置(cancelable = false))
-                    setCancelable(false)
-                    setCanceledOnTouchOutside(false)
                 }
             }
             //设置请求拦截器
