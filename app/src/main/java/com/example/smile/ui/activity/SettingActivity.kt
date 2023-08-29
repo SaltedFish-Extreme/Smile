@@ -34,8 +34,8 @@ class SettingActivity : AppActivity() {
     private val clearCache: SettingBar by lazy { findViewById(R.id.clear_cache) }
     private val score: SettingBar by lazy { findViewById(R.id.score) }
     private val checkUpdate: SettingBar by lazy { findViewById(R.id.check_update) }
-    private val servicesAgreementTitle: SettingBar by lazy { findViewById(R.id.services_agreement_title) }
-    private val privacyPolicyTitle: SettingBar by lazy { findViewById(R.id.privacy_policy_title) }
+    private val servicesAgreement: SettingBar by lazy { findViewById(R.id.services_agreement) }
+    private val privacyPolicy: SettingBar by lazy { findViewById(R.id.privacy_policy) }
     private val aboutUs: SettingBar by lazy { findViewById(R.id.about_us) }
     private val logout: TextView by lazy { findViewById(R.id.logout) }
 
@@ -93,6 +93,14 @@ class SettingActivity : AppActivity() {
                 //关闭页面
                 finish()
             }
+        }
+        //跳转公告页，传递标题：用户服务协议
+        servicesAgreement.clickNoRepeat {
+            openActivity<AnnouncementActivity>("title" to getString(R.string.services_agreement_title))
+        }
+        //跳转公告页，传递标题：隐私政策
+        privacyPolicy.clickNoRepeat {
+            openActivity<AnnouncementActivity>("title" to getString(R.string.privacy_policy_title))
         }
     }
 

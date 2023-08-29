@@ -98,12 +98,12 @@
                 app:bar_rightText="@string/version_name" />
 
             <com.example.smile.widget.settingbar.SettingBar
-                android:id="@+id/services_agreement_title"
+                android:id="@+id/services_agreement"
                 style="@style/SettingBarStyle"
                 app:bar_leftText="@string/services_agreement_title" />
 
             <com.example.smile.widget.settingbar.SettingBar
-                android:id="@+id/privacy_policy_title"
+                android:id="@+id/privacy_policy"
                 style="@style/SettingBarStyle"
                 app:bar_leftText="@string/privacy_policy_title" />
 
