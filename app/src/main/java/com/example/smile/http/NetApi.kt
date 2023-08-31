@@ -50,4 +50,7 @@ object NetApi {
 
     /** 重置密码API路径 */
     const val ResetPasswordAPI = "user/psw/reset"
+
+    /** 首页推送视频API路径 */
+    const val NotificationVideoAPI = "douyin/list"
 }
