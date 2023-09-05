@@ -98,6 +98,10 @@
             android:value="true" />
 
         <activity
+            android:name=".ui.activity.NotificationVideoActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait" /> <!-- or android:screenOrientation="landscape"-->
+        <activity
             android:name=".ui.activity.SettingActivity"
             android:exported="false"
             android:screenOrientation="portrait" />

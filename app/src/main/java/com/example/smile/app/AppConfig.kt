@@ -81,4 +81,7 @@ object AppConfig {
 
     /** 搜索记录 永久保存磁盘，app删除或者赋值为null时清除 */
     var SearchHistory: List<String> by serialLazy(arrayListOf())
+
+    /** 根据昵称生成头像API密钥 (https://api.multiavatar.com) */
+    const val apikey = "a6YniOPf1dbrSc"
 }

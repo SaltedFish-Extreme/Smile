@@ -56,7 +56,7 @@ class MainActivity : AppActivity() {
         //通知渠道重要级
         private const val importance = NotificationManager.IMPORTANCE_DEFAULT
 
-        //通知管理者
+        //通知管理器
         private lateinit var notificationManager: NotificationManager
 
         //通知对象
@@ -64,6 +64,13 @@ class MainActivity : AppActivity() {
 
         //通知Id
         private const val notificationId = 1
+
+        //PendingIntent标志，标识Intent传递内容可变
+        private val flagBit = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            PendingIntent.FLAG_MUTABLE
+        } else {
+            PendingIntent.FLAG_UPDATE_CURRENT
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -170,18 +177,23 @@ class MainActivity : AppActivity() {
             //标志位，用于判断是否再次发起请求
             var flag = false
             //段子内容数据
-            var data: JokeContentModel
+            var data = JokeContentModel()
             do {
                 //发起请求，获取首页推送视频数据
                 val originalData = Post<List<JokeContentModel>>(NotificationVideoAPI).await()
                 //取第一条数据(后面解析的视频地址大概率会失效，只推送第一条视频)
-                data = originalData[0]
-                //判断视频地址是否有效(指定结尾无效)，无效再次发起请求，直到有效
-                if (!data.joke.videoUrl.decrypt().endsWith("?flag=null")) {
-                    flag = true
+                originalData[0].run {
+                    //判断视频地址是否有效(以指定结尾无效)，无效再次发起请求，直至有效
+                    if (!this.joke.videoUrl.decrypt().endsWith("?flag=null")) {
+                        flag = true
+                    }
+                    if (flag) {
+                        //视频地址有效，设置段子内容数据
+                        data = this
+                    }
                 }
             } while (!flag)
-            // 适配8.0及以上 创建渠道
+            // 适配8.0及以上 创建通知通道
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 val channel = NotificationChannel(channelId, channelName, importance).apply {
                     description = getString(R.string.describe)
@@ -212,7 +224,8 @@ class MainActivity : AppActivity() {
                 //传递数据模型
                 intent.putExtra("model", model)
             }
-            val pendingIntent = PendingIntent.getActivity(this@MainActivity, 0, intent, PendingIntent.FLAG_IMMUTABLE)
+            //跳转操作意图
+            val pendingIntent = PendingIntent.getActivity(this@MainActivity, 0, intent, flagBit)
             // 构建配置
             notification = NotificationCompat.Builder(this@MainActivity, channelId).apply {
                 setContentTitle(getString(R.string.app_notification_title)) // 标题
@@ -222,6 +235,7 @@ class MainActivity : AppActivity() {
                 priority = NotificationCompat.PRIORITY_DEFAULT // 7.0 设置优先级
                 setContentIntent(pendingIntent) // 跳转配置
                 setAutoCancel(true) // 是否自动消失（点击）or mManager.cancel(mNormalNotificationId)、cancelAll、setTimeoutAfter()
+                addAction(R.drawable.smile, getString(R.string.look), pendingIntent) // 通知上的操作
             }.build()
             // 发起通知
             notificationManager.notify(notificationId, notification)

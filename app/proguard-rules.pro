@@ -81,3 +81,7 @@
 
 ################EasyPhotos###############
 -keep class com.huantansheng.easyphotos.models.** { *; }
+
+################DKVideoPlayer###############
+-keep class xyz.doikki.videoplayer.** { *; }
+-dontwarn xyz.doikki.videoplayer.**

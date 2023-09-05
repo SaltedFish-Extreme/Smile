@@ -31,6 +31,9 @@ import org.litepal.LitePal
 import per.goweii.swipeback.SwipeBack
 import per.goweii.swipeback.SwipeBackDirection
 import per.goweii.swipeback.transformer.ShrinkSwipeBackTransformer
+import xyz.doikki.videoplayer.player.AndroidMediaPlayerFactory
+import xyz.doikki.videoplayer.player.VideoViewConfig
+import xyz.doikki.videoplayer.player.VideoViewManager
 
 /**
  * Created by 咸鱼至尊 on 2021/12/9
@@ -42,9 +45,6 @@ class AppApplication : Application() {
         /** 全局context对象 */
         @SuppressLint("StaticFieldLeak")
         internal lateinit var context: Context
-
-        /** 根据昵称生成头像API密钥 (https://api.multiavatar.com) */
-        const val apikey = "a6YniOPf1dbrSc"
     }
 
     override fun onCreate() {
@@ -59,7 +59,7 @@ class AppApplication : Application() {
         ActivityManager.getInstance().init(this)
         //本地异常捕捉
         CrashHandler.register(this)
-        //初始化数据库
+        //初始化数据库框架
         LitePal.initialize(this)
         //初始化Toast框架
         Toaster.init(this)
@@ -132,5 +132,12 @@ class AppApplication : Application() {
         PhotoPreview.setGlobalImageLoader { _: Int, source: Any?, imageView: ImageView ->
             Glide.with(imageView.context).load(source as String?).into(imageView)
         }
+        //视频播放器初始化配置
+        VideoViewManager.setConfig(
+            VideoViewConfig.newBuilder()
+                //使用MediaPlayer解码
+                .setPlayerFactory(AndroidMediaPlayerFactory.create())
+                .build()
+        )
     }
 }

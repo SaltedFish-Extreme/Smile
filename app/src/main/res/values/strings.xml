@@ -30,6 +30,8 @@
     <string name="exit">再按一次退出程序</string>
     <string name="describe">描述</string>
     <string name="app_notification_title">开口笑推送段子</string>
+    <string name="look">去看看</string>
+    <string name="at">\@ %d</string>
     <!--首页-->
     <string name="concern">关注</string>
     <string name="follow_title_tip">优秀的人值得关注</string>
