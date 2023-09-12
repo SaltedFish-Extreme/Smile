@@ -235,7 +235,6 @@ class MainActivity : AppActivity() {
                 priority = NotificationCompat.PRIORITY_DEFAULT // 7.0 设置优先级
                 setContentIntent(pendingIntent) // 跳转配置
                 setAutoCancel(true) // 是否自动消失（点击）or mManager.cancel(mNormalNotificationId)、cancelAll、setTimeoutAfter()
-                addAction(R.drawable.smile, getString(R.string.look), pendingIntent) // 通知上的操作
             }.build()
             // 发起通知
             notificationManager.notify(notificationId, notification)
