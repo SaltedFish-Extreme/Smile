@@ -3,16 +3,23 @@ package com.example.smile.ui.activity
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.appcompat.content.res.AppCompatResources
 import com.bumptech.glide.Glide
+import com.drake.net.Post
+import com.drake.net.utils.scopeNetLife
 import com.drake.serialize.intent.bundle
 import com.example.smile.R
 import com.example.smile.app.AppActivity
+import com.example.smile.http.NetApi
+import com.example.smile.model.EmptyModel
 import com.example.smile.model.NotificationVideoModel
 import com.example.smile.util.decrypt
+import com.example.smile.widget.ext.clickNoRepeat
+import com.example.smile.widget.ext.invisible
+import com.example.smile.widget.ext.visible
 import com.example.smile.widget.view.RevealViewLikeVideo
 import com.google.android.material.imageview.ShapeableImageView
 import com.hjq.shape.view.ShapeImageView
+import com.hjq.toast.Toaster
 import per.goweii.swipeback.SwipeBackAbility
 import per.goweii.swipeback.SwipeBackDirection
 import xyz.doikki.videocontroller.StandardVideoController
@@ -24,6 +31,7 @@ class NotificationVideoActivity : AppActivity(), SwipeBackAbility.Direction {
     private val player: VideoView by lazy { findViewById(R.id.player) }
     private val userAvatar: ShapeableImageView by lazy { findViewById(R.id.user_avatar) }
     private val follow: ShapeImageView by lazy { findViewById(R.id.follow) }
+    private val followed: ShapeImageView by lazy { findViewById(R.id.followed) }
     private val revealLike: RevealViewLikeVideo by lazy { findViewById(R.id.reveal_like) }
     private val likeNum: TextView by lazy { findViewById(R.id.like_num) }
     private val comment: ImageView by lazy { findViewById(R.id.comment) }
@@ -33,7 +41,7 @@ class NotificationVideoActivity : AppActivity(), SwipeBackAbility.Direction {
     private val videoAuthor: TextView by lazy { findViewById(R.id.video_author) }
     private val videoContent: TextView by lazy { findViewById(R.id.video_content) }
 
-    /** Serialize界面传递参数: model */
+    /** Serialize界面传递参数: model对象 */
     private val model: NotificationVideoModel by bundle()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,9 +51,11 @@ class NotificationVideoActivity : AppActivity(), SwipeBackAbility.Direction {
         Glide.with(this).load(model.avatar).placeholder(R.drawable.ic_account).into(userAvatar)
         //设置关注图标
         if (model.isAttention) {
-            follow.setImageDrawable(AppCompatResources.getDrawable(this, R.drawable.ic_check))
+            followed.visible()
+            follow.invisible()
         } else {
-            follow.setImageDrawable(AppCompatResources.getDrawable(this, R.drawable.ic_plus))
+            follow.visible()
+            followed.invisible()
         }
         //设置是否喜欢
         revealLike.isChecked = model.isLike
@@ -64,6 +74,51 @@ class NotificationVideoActivity : AppActivity(), SwipeBackAbility.Direction {
         controller.addDefaultControlComponent(model.content, false) //设置标题
         player.setVideoController(controller) //设置控制器
         player.start() //开始播放，不调用则不自动播放
+        onClick()
+    }
+
+    /** 点击事件 */
+    private fun onClick() {
+        userAvatar.clickNoRepeat {
+            Toaster.show(model.userId)
+        }
+        videoAuthor.clickNoRepeat {
+            Toaster.show(model.nickName)
+        }
+        //点赞(取消点赞)
+        revealLike.apply {
+            setOnClickListener {
+                //发起请求，点赞(取消点赞)
+                scopeNetLife {
+                    Post<EmptyModel?>(NetApi.LikeOrCancelJokeAPI) {
+                        param("id", model.jokesId)
+                        param("status", isChecked)
+                    }.await()
+                    //请求成功，点赞数+1/-1
+                    "${likeNum.text.toString().toInt() + if (revealLike.isChecked) 1 else -1}".also { likeNum.text = it }
+                }.catch {
+                    //请求失败，吐司错误信息，点赞操作回滚
+                    Toaster.show(it.message)
+                    setChecked(!isChecked, true)
+                }
+            }
+        }
+        follow.clickNoRepeat {
+            Toaster.show("关注成功")
+            followed.visible()
+            follow.invisible()
+        }
+        followed.clickNoRepeat {
+            Toaster.show("取消关注")
+            follow.visible()
+            followed.invisible()
+        }
+        comment.clickNoRepeat {
+            Toaster.show(commentNum.text)
+        }
+        share.clickNoRepeat {
+            Toaster.show(shareNum.text)
+        }
     }
 
     override fun onPause() {

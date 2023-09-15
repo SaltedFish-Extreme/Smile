@@ -27,12 +27,26 @@
         android:layout_width="@dimen/dp_20"
         android:layout_height="@dimen/dp_20"
         android:layout_marginTop="@dimen/dp_45"
+        android:src="@drawable/ic_plus"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="@id/user_avatar"
         app:layout_constraintStart_toStartOf="@id/user_avatar"
         app:layout_constraintTop_toTopOf="@id/user_avatar"
         app:shape_solidColor="@color/white"
-        app:shape_type="oval"
-        app:srcCompat="@drawable/ic_plus" />
+        app:shape_type="oval" />
+
+    <com.hjq.shape.view.ShapeImageView
+        android:id="@+id/followed"
+        android:layout_width="@dimen/dp_20"
+        android:layout_height="@dimen/dp_20"
+        android:layout_marginTop="@dimen/dp_45"
+        android:src="@drawable/ic_check"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@id/user_avatar"
+        app:layout_constraintStart_toStartOf="@id/user_avatar"
+        app:layout_constraintTop_toTopOf="@id/user_avatar"
+        app:shape_solidColor="@color/white"
+        app:shape_type="oval" />
 
     <com.example.smile.widget.view.RevealViewLikeVideo
         android:id="@+id/reveal_like"
