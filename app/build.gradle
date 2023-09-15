@@ -111,6 +111,7 @@ dependencies {
     //约束布局
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     //kotlin核心包
+    //noinspection GradleDependency
     implementation 'androidx.core:core-ktx:1.10.1'
     //Kotlin协程 https://github.com/Kotlin/kotlinx.coroutines
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1'
@@ -125,7 +126,7 @@ dependencies {
     //网络请求 https://github.com/liangjingkanji/Net
     implementation 'com.github.liangjingkanji:Net:3.6.1'
     //RecyclerView https://github.com/liangjingkanji/BRV
-    implementation 'com.github.liangjingkanji:BRV:1.5.0'
+    implementation 'com.github.liangjingkanji:BRV:1.5.2'
     //Adapter https://github.com/CymChad/BaseRecyclerViewAdapterHelper
     implementation 'io.github.cymchad:BaseRecyclerViewAdapterHelper:4.0.1'
     //智能刷新 经典刷新头&谷歌刷新头 https://github.com/scwang90/SmartRefreshLayout
@@ -144,7 +145,7 @@ dependencies {
     //ViewPager指示器 https://github.com/hackware1993/MagicIndicator
     implementation 'com.github.hackware1993:MagicIndicator:1.7.0'
     //图片加载 https://github.com/bumptech/glide
-    implementation 'com.github.bumptech.glide:glide:4.15.1'
+    implementation 'com.github.bumptech.glide:glide:4.16.0'
     //轮播图 https://github.com/youth5201314/banner
     implementation 'io.github.youth5201314:banner:2.2.2'
     //相机相册 https://github.com/HuanTanSheng/EasyPhotos
@@ -154,7 +155,7 @@ dependencies {
     //吐司 https://github.com/getActivity/Toaster
     implementation 'com.github.getActivity:Toaster:12.3'
     //权限请求 https://github.com/getActivity/XXPermissions
-    implementation 'com.github.getActivity:XXPermissions:18.2'
+    implementation 'com.github.getActivity:XXPermissions:18.3'
     //Shape https://github.com/getActivity/ShapeView
     implementation 'com.github.getActivity:ShapeView:9.0'
     //揭示效果 https://github.com/goweii/RevealLayout
