@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
+import com.drake.channel.sendTag
 import com.drake.net.Post
 import com.drake.net.utils.scopeNetLife
 import com.drake.serialize.intent.bundle
@@ -103,15 +104,41 @@ class NotificationVideoActivity : AppActivity(), SwipeBackAbility.Direction {
                 }
             }
         }
+        //关注
         follow.clickNoRepeat {
-            Toaster.show("关注成功")
-            followed.visible()
-            follow.invisible()
+            scopeNetLife {
+                Post<EmptyModel?>(NetApi.FocusOrCancelJokeAPI) {
+                    param("status", 1)
+                    param("userId", model.userId)
+                }.await()
+                //请求成功，显示已关注
+                Toaster.show("关注成功")
+                followed.visible()
+                follow.invisible()
+                //发送消息标签，当回到用户页时，刷新数据
+                sendTag(getString(R.string.get_user_info))
+            }.catch {
+                //请求失败，吐司错误信息
+                Toaster.show(it.message)
+            }
         }
+        //取消关注
         followed.clickNoRepeat {
-            Toaster.show("取消关注")
-            follow.visible()
-            followed.invisible()
+            scopeNetLife {
+                Post<EmptyModel?>(NetApi.FocusOrCancelJokeAPI) {
+                    param("status", 0)
+                    param("userId", model.userId)
+                }.await()
+                //请求成功，显示关注
+                Toaster.show("取消关注")
+                follow.visible()
+                followed.invisible()
+                //发送消息标签，当回到用户页时，刷新数据
+                sendTag(getString(R.string.get_user_info))
+            }.catch {
+                //请求失败，吐司错误信息
+                Toaster.show(it.message)
+            }
         }
         comment.clickNoRepeat {
             Toaster.show(commentNum.text)

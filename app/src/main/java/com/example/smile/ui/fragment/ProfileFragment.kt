@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
+import com.drake.channel.receiveTagLive
 import com.drake.net.Post
 import com.drake.net.utils.scopeDialog
 import com.drake.serialize.intent.openActivity
@@ -61,29 +62,39 @@ class ProfileFragment : AppFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         if (AppConfig.token.isNotBlank()) {
-            scopeDialog {
-                //延迟0.5秒，转会儿圈
-                delay(500)
-                //获取用户信息数据
-                val userInfoData = Post<UserInfoModel>(UserInfoAPI).await()
-                //Glide显示头像
-                Glide.with(requireContext()).load(userInfoData.user.avatar).placeholder(R.drawable.ic_account)
-                    .transition(DrawableTransitionOptions.withCrossFade(100)).into(userAvatar)
-                //显示昵称
-                userNickname.text = userInfoData.user.nickname
-                //显示签名
-                userSignature.text = userInfoData.user.signature
-                //显示关注
-                followed.text = userInfoData.info.attentionNum.toString()
-                //显示粉丝
-                follower.text = userInfoData.info.fansNum.toString()
-                //显示喜欢
-                like.text = userInfoData.info.likeNum.toString()
-                //显示经验
-                experience.text = userInfoData.info.experienceNum.toString()
-            }
+            //初次创建页面，如果存在token，说明用户已登录，请求用户信息
+            getUserInfo()
+        }
+        //接收消息标签，再次请求用户信息，如一些操作更新了用户数据 e.g. 关注用户、点赞收藏段子...，返回当前页需要更新数据
+        receiveTagLive(getString(R.string.get_user_info)) {
+            getUserInfo()
         }
         onClick()
+    }
+
+    /** 获取用户个人信息 */
+    private fun getUserInfo() {
+        scopeDialog {
+            //延迟0.5秒，转会儿圈
+            delay(500)
+            //获取用户信息数据
+            val userInfoData = Post<UserInfoModel>(UserInfoAPI).await()
+            //Glide显示头像
+            Glide.with(requireContext()).load(userInfoData.user.avatar).placeholder(R.drawable.ic_account)
+                .transition(DrawableTransitionOptions.withCrossFade(100)).into(userAvatar)
+            //显示昵称
+            userNickname.text = userInfoData.user.nickname
+            //显示签名
+            userSignature.text = userInfoData.user.signature
+            //显示关注
+            followed.text = userInfoData.info.attentionNum.toString()
+            //显示粉丝
+            follower.text = userInfoData.info.fansNum.toString()
+            //显示喜欢
+            like.text = userInfoData.info.likeNum.toString()
+            //显示经验
+            experience.text = userInfoData.info.experienceNum.toString()
+        }
     }
 
     /** 点击事件方法 */
