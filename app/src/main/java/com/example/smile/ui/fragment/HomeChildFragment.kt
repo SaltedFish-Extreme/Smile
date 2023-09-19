@@ -88,8 +88,8 @@ class HomeChildFragment : AppFragment() {
                     //设置初次创建页面为否
                     first = false
                     index += if (index == 1) { //下拉刷新
-                        //去掉视频后可能就没有数据显示了😅所以再发一次请求，获取下一次数据，这样应该就有数据了吧🤔(这里即使没有数据再次发起请求，页码也不会变，请求完成页码+1)
-                        if (data.none { it.joke.type < 3 }) {
+                        //去掉视频后可能就没有数据显示了😅所以循环发起请求，直到有除视频之外的数据返回🤔(这里即使没有数据再次发起请求，页码也不会改变，请求完成页码+1)
+                        while (data.none { it.joke.type < 3 }) {
                             data = Post<ArrayList<JokeContentModel>>(HomeRecommendAPI).await()
                         }
                         //设置数据
@@ -102,8 +102,8 @@ class HomeChildFragment : AppFragment() {
                             showContent(false)
                             return@scope
                         }
-                        if (data.none { it.joke.type < 3 }) {
-                            //如上同理(这里即使没有数据再次发起请求，页码也不会变，请求完成页码+1)
+                        while (data.none { it.joke.type < 3 }) {
+                            //如上同理
                             data = Post<ArrayList<JokeContentModel>>(HomeRecommendAPI).await()
                         }
                         //添加数据

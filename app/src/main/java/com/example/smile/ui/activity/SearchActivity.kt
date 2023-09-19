@@ -225,8 +225,9 @@ class SearchActivity : AppActivity(), SwipeBackAbility.Direction {
                     //设置初次创建页面为否
                     first = false
                     if (index == 1) { //下拉刷新
-                        //去掉视频后可能就没有数据显示了😅所以再发一次请求，获取下一次数据，这样应该就有数据了吧🤔
-                        if (data.none { it.joke.type < 3 }) {
+                        //去掉视频后可能就没有数据显示了😅所以循环发起请求，直到有除视频之外的数据返回🤔
+                        //循环条件：筛选过滤掉视频后，有无其他数据
+                        while (data.none { it.joke.type < 3 }) {
                             //先页码+1再继续发起请求
                             index += 1
                             data = Post<ArrayList<JokeContentModel>>(HomeSearchJokeAPI) {
@@ -244,7 +245,7 @@ class SearchActivity : AppActivity(), SwipeBackAbility.Direction {
                             showContent(false)
                             return@scope
                         }
-                        if (data.none { it.joke.type < 3 }) {
+                        while (data.none { it.joke.type < 3 }) {
                             //如上同理 先页码+1再继续发起请求
                             index += 1
                             data = Post<ArrayList<JokeContentModel>>(HomeSearchJokeAPI) {
