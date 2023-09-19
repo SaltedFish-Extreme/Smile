@@ -124,7 +124,7 @@ dependencies {
     //noinspection GradleDependency
     implementation 'com.squareup.okhttp3:okhttp:4.11.0'
     //网络请求 https://github.com/liangjingkanji/Net
-    implementation 'com.github.liangjingkanji:Net:3.6.1'
+    implementation 'com.github.liangjingkanji:Net:3.6.2'
     //RecyclerView https://github.com/liangjingkanji/BRV
     implementation 'com.github.liangjingkanji:BRV:1.5.2'
     //Adapter https://github.com/CymChad/BaseRecyclerViewAdapterHelper
