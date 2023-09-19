@@ -25,6 +25,7 @@ import com.example.smile.model.JokeContentModel
 import com.example.smile.util.decrypt
 import com.example.smile.util.vibration
 import com.example.smile.widget.ext.gone
+import com.example.smile.widget.ext.invisible
 import com.example.smile.widget.ext.screenWidth
 import com.example.smile.widget.ext.visible
 import com.example.smile.widget.ext.visibleOrGone
@@ -121,8 +122,13 @@ class JokeContentAdapter(private val fragment: Fragment? = null, private val act
             //是否热门
             holder.getView<ImageView>(R.id.hot).visibleOrInvisible(item.joke.hot)
             //是否关注
-            if (item.info.isAttention) holder.getView<ShapeTextView>(R.id.followed).visible()
-            else holder.getView<DrawableTextView>(R.id.concern).visible()
+            if (item.info.isAttention) {
+                holder.getView<ShapeTextView>(R.id.followed).visible()
+                holder.getView<DrawableTextView>(R.id.concern).invisible()
+            } else {
+                holder.getView<DrawableTextView>(R.id.concern).visible()
+                holder.getView<ShapeTextView>(R.id.followed).invisible()
+            }
             //段子内容(文本)
             holder.getView<SmartTextView>(R.id.joke_text).text = item.joke.content
             //段子内容(图片)
