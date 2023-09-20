@@ -23,7 +23,7 @@ import com.example.smile.http.NetApi.GetLoginCodeAPI
 import com.example.smile.http.NetApi.PasswordLoginAPI
 import com.example.smile.model.EmptyModel
 import com.example.smile.model.LoginUserInfoModel
-import com.example.smile.ui.dialog.CustomBottomDialog
+import com.example.smile.ui.dialog.CustomBottomDialogEncounterProblems
 import com.example.smile.util.InputTextManager
 import com.example.smile.widget.ext.clickNoRepeat
 import com.example.smile.widget.ext.gone
@@ -190,7 +190,7 @@ class LoginActivity : AppActivity() {
 
     //底部弹窗(BottomDialog)
     private fun showBottomDialog() {
-        val bottomDialog = CustomBottomDialog(this, true)
+        val bottomDialog = CustomBottomDialogEncounterProblems(this, true)
         DialogManager.replaceDialog(bottomDialog).setCancelable(true).setCanceledOnTouchOutside(true).setDimmedBehind(true).show()
     }
 

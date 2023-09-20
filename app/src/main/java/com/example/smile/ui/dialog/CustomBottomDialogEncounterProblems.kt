@@ -21,7 +21,7 @@ import com.hjq.toast.Toaster
  * @param context 上下文对象
  * @property visible 是否显示 忘记密码
  */
-class CustomBottomDialog(context: Context, private val visible: Boolean) :
+class CustomBottomDialogEncounterProblems(context: Context, private val visible: Boolean) :
     BottomDialog(context, R.style.AndoLoadingDialog) {
 
     private val forgotPassword: TextView by lazy { findViewById(R.id.forgot_password) }
@@ -71,5 +71,5 @@ class CustomBottomDialog(context: Context, private val visible: Boolean) :
         window.setWindowAnimations(R.style.AndoBottomDialogAnimation)
     }
 
-    override fun getLayoutId(): Int = R.layout.layout_dialog_bottom
+    override fun getLayoutId(): Int = R.layout.layout_dialog_bottom_encounter_problems
 }

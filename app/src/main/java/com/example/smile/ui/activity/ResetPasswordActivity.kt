@@ -19,7 +19,7 @@ import com.example.smile.R
 import com.example.smile.app.AppActivity
 import com.example.smile.http.NetApi
 import com.example.smile.model.EmptyModel
-import com.example.smile.ui.dialog.CustomBottomDialog
+import com.example.smile.ui.dialog.CustomBottomDialogEncounterProblems
 import com.example.smile.util.InputTextManager
 import com.example.smile.widget.ext.clickNoRepeat
 import com.example.smile.widget.ext.hideSoftKeyboard
@@ -165,7 +165,7 @@ class ResetPasswordActivity : AppActivity() {
 
     //底部弹窗(BottomDialog)
     private fun showBottomDialog() {
-        val bottomDialog = CustomBottomDialog(this, false)
+        val bottomDialog = CustomBottomDialogEncounterProblems(this, false)
         DialogManager.replaceDialog(bottomDialog).setCancelable(true)
             .setCanceledOnTouchOutside(true).setDimmedBehind(true).show()
     }
