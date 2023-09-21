@@ -91,7 +91,7 @@ class NotificationVideoActivity : AppActivity(), SwipeBackAbility.Direction {
             setOnClickListener {
                 //发起请求，点赞(取消点赞)
                 scopeNetLife {
-                    Post<EmptyModel?>(NetApi.LikeOrCancelJokeAPI) {
+                    Post<EmptyModel?>(NetApi.JokeLikeOrCancelAPI) {
                         param("id", model.jokesId)
                         param("status", isChecked)
                     }.await()
@@ -107,7 +107,7 @@ class NotificationVideoActivity : AppActivity(), SwipeBackAbility.Direction {
         //关注
         follow.clickNoRepeat {
             scopeNetLife {
-                Post<EmptyModel?>(NetApi.FocusOrCancelJokeAPI) {
+                Post<EmptyModel?>(NetApi.UserFocusOrCancelAPI) {
                     param("status", 1)
                     param("userId", model.userId)
                 }.await()
@@ -125,7 +125,7 @@ class NotificationVideoActivity : AppActivity(), SwipeBackAbility.Direction {
         //取消关注
         followed.clickNoRepeat {
             scopeNetLife {
-                Post<EmptyModel?>(NetApi.FocusOrCancelJokeAPI) {
+                Post<EmptyModel?>(NetApi.UserFocusOrCancelAPI) {
                     param("status", 0)
                     param("userId", model.userId)
                 }.await()

@@ -55,8 +55,8 @@ object NetApi {
     const val NotificationVideoAPI = "douyin/list"
 
     /** 点赞(取消点赞)段子API路径 */
-    const val LikeOrCancelJokeAPI = "jokes/like"
+    const val JokeLikeOrCancelAPI = "jokes/like"
 
     /** 关注(取消关注)用户API路径 */
-    const val FocusOrCancelJokeAPI = "user/attention"
+    const val UserFocusOrCancelAPI = "user/attention"
 }

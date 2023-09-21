@@ -59,7 +59,7 @@ class SearchActivity : AppActivity(), SwipeBackAbility.Direction {
     /** 段子内容适配器 */
     private val adapter: JokeContentAdapter by lazy { JokeContentAdapter(activity = this) }
 
-    /** 是否初次切换页面 */
+    /** 是否初次搜索数据 */
     private var first = true
 
     /** 段子内容数据集 */
@@ -219,10 +219,10 @@ class SearchActivity : AppActivity(), SwipeBackAbility.Direction {
                     param("page", index)
                 }.await()
                 if (first && data.isEmpty()) {
-                    //如果数据为空显示空缺省页
+                    //如果初次搜索数据，并且数据为空显示空缺省页
                     showEmpty()
                 } else {
-                    //设置初次创建页面为否
+                    //设置初次搜索数据为否
                     first = false
                     if (index == 1) { //下拉刷新
                         //去掉视频后可能就没有数据显示了😅所以循环发起请求，直到有除视频之外的数据返回🤔
