@@ -88,21 +88,23 @@ class NotificationVideoActivity : AppActivity(), SwipeBackAbility.Direction {
         }
         //点赞(取消点赞)
         revealLike.apply {
-            setOnClickListener {
-                //发起请求，点赞(取消点赞)
-                scopeNetLife {
-                    Post<EmptyModel?>(NetApi.JokeLikeOrCancelAPI) {
-                        param("id", model.jokesId)
-                        param("status", isChecked)
-                    }.await()
-                    //请求成功，点赞数+1/-1
-                    "${likeNum.text.toString().toInt() + if (revealLike.isChecked) 1 else -1}".also { likeNum.text = it }
-                }.catch {
-                    //请求失败，吐司错误信息，点赞操作回滚
-                    Toaster.show(it.message)
-                    setChecked(!isChecked, true)
+            setOnClickListener(object : RevealViewLikeVideo.OnClickListener {
+                override fun onClick(v: RevealViewLikeVideo) {
+                    //发起请求，点赞(取消点赞)
+                    scopeNetLife {
+                        Post<EmptyModel?>(NetApi.JokeLikeOrCancelAPI) {
+                            param("id", model.jokesId)
+                            param("status", isChecked)
+                        }.await()
+                        //请求成功，点赞数+1/-1
+                        "${likeNum.text.toString().toInt() + if (revealLike.isChecked) 1 else -1}".also { likeNum.text = it }
+                    }.catch {
+                        //请求失败，吐司错误信息，点赞操作回滚
+                        Toaster.show(it.message)
+                        setChecked(!isChecked, true)
+                    }
                 }
-            }
+            })
         }
         //关注
         follow.clickNoRepeat {
