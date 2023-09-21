@@ -1,8 +1,5 @@
 package com.example.smile.ui.adapter
 
-import android.content.ClipData
-import android.content.ClipboardManager
-import android.content.Context
 import android.view.Gravity
 import android.view.MotionEvent
 import android.view.View
@@ -23,7 +20,7 @@ import com.example.smile.R
 import com.example.smile.app.AppAdapter
 import com.example.smile.model.JokeContentModel
 import com.example.smile.util.decrypt
-import com.example.smile.util.vibration
+import com.example.smile.widget.ext.copyJoke
 import com.example.smile.widget.ext.gone
 import com.example.smile.widget.ext.invisible
 import com.example.smile.widget.ext.screenWidth
@@ -74,7 +71,7 @@ class JokeContentAdapter(private val fragment: Fragment? = null, private val act
             view.findViewById<ShapeTextView>(R.id.save_picture).apply {
                 text = context.getString(R.string.copy_joke)
                 setOnClickListener {
-                    this@JokeContentAdapter.getItem(location)?.let { copyJoke(it.joke.content) }
+                    this@JokeContentAdapter.getItem(location)?.let { context.copyJoke(it.joke.content) }
                     dismiss()
                 }
             }
@@ -192,19 +189,5 @@ class JokeContentAdapter(private val fragment: Fragment? = null, private val act
                 }
             })
         }
-    }
-
-    /**
-     * 复制文本内容
-     *
-     * @param text 要复制的字符串
-     */
-    private fun copyJoke(text: String) {
-        val clipboard: ClipboardManager = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-        val clip = ClipData.newPlainText("copy_text", text)
-        clipboard.setPrimaryClip(clip)
-        Toaster.show(R.string.copy_succeed)
-        //顺便震动一下
-        context.vibration()
     }
 }

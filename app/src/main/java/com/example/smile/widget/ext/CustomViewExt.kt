@@ -2,6 +2,8 @@ package com.example.smile.widget.ext
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.ClipData
+import android.content.ClipboardManager
 import android.content.Context
 import android.graphics.Color
 import android.text.Html
@@ -28,10 +30,12 @@ import com.example.smile.R
 import com.example.smile.app.AppConfig
 import com.example.smile.ui.adapter.UploadPictureAdapter
 import com.example.smile.util.GlideEngine
+import com.example.smile.util.vibration
 import com.example.smile.widget.viewpager.ScaleTransitionPagerTitleView
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.hjq.toast.Toaster
 import com.huantansheng.easyphotos.EasyPhotos
 import com.huantansheng.easyphotos.callback.SelectCallback
 import com.huantansheng.easyphotos.models.album.entity.Photo
@@ -405,4 +409,18 @@ fun Activity.albumUploadImage(photoList: ArrayList<Photo>, adapter: UploadPictur
                 override fun onCancel() {}
             })
     }
+}
+
+/**
+ * 复制文本内容
+ *
+ * @param text 要复制的字符串
+ */
+fun Context.copyJoke(text: String) {
+    val clipboard: ClipboardManager = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+    val clip = ClipData.newPlainText("copy_text", text)
+    clipboard.setPrimaryClip(clip)
+    Toaster.show(R.string.copy_succeed)
+    //顺便震动一下
+    vibration()
 }
