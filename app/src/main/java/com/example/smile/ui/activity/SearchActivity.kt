@@ -31,6 +31,7 @@ import com.example.smile.widget.view.PressAlphaTextView
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.gyf.immersionbar.ktx.immersionBar
+import com.hjq.toast.Toaster
 import com.huantansheng.easyphotos.ui.widget.PressedTextView
 import kotlinx.coroutines.delay
 import per.goweii.swipeback.SwipeBackAbility
@@ -84,6 +85,9 @@ class SearchActivity : AppActivity(), SwipeBackAbility.Direction {
                 hotAdapter.submitList(hotData)
                 //存储搜索热词数据
                 AppConfig.SearchHot.addAll(hotData)
+            }.catch {
+                //获取出错，吐司错误信息
+                Toaster.show(it.message)
             }
         } else {
             //存储过搜索热词直接获取设置给adapter
@@ -260,6 +264,9 @@ class SearchActivity : AppActivity(), SwipeBackAbility.Direction {
                     }
                     showContent(true)
                 }
+            }.catch {
+                //请求出错，吐司错误信息
+                Toaster.show(it.message)
             }
         }.refreshing()
     }

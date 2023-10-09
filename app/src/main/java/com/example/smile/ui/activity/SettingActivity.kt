@@ -92,6 +92,9 @@ class SettingActivity : AppActivity() {
                 openActivity<MainActivity>()
                 //关闭页面
                 finish()
+            }.catch {
+                //请求失败，吐司错误信息
+                Toaster.show(it.message)
             }
         }
         //跳转公告页，传递标题：用户服务协议

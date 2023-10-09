@@ -94,6 +94,9 @@ class ProfileFragment : AppFragment() {
             like.text = userInfoData.info.likeNum.toString()
             //显示经验
             experience.text = userInfoData.info.experienceNum.toString()
+        }.catch {
+            //获取出错，吐司错误信息
+            Toaster.show(it.message)
         }
     }
 

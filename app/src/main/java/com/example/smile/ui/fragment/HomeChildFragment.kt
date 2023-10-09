@@ -19,6 +19,7 @@ import com.example.smile.ui.adapter.JokeContentAdapter
 import com.example.smile.widget.ext.cancelFloatBtn
 import com.example.smile.widget.ext.initFloatBtn
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.hjq.toast.Toaster
 
 /** 首页子选项卡片段 */
 class HomeChildFragment : AppFragment() {
@@ -113,6 +114,9 @@ class HomeChildFragment : AppFragment() {
                     }
                     showContent(true)
                 }
+            }.catch {
+                //请求出错，吐司错误信息
+                Toaster.show(it.message)
             }
         }.refreshing()
     }

@@ -15,7 +15,7 @@ import androidx.core.view.forEach
 import androidx.navigation.fragment.NavHostFragment
 import com.airbnb.lottie.LottieDrawable
 import com.drake.net.Post
-import com.drake.net.utils.scopeNet
+import com.drake.net.utils.scopeNetLife
 import com.drake.serialize.intent.openActivity
 import com.example.smile.R
 import com.example.smile.app.AppActivity
@@ -173,7 +173,7 @@ class MainActivity : AppActivity() {
 
     /** 创建普通通知 */
     private fun createNotificationForNormal() {
-        scopeNet {
+        scopeNetLife {
             //标志位，用于判断是否再次发起请求
             var flag = false
             //段子内容数据
@@ -238,6 +238,9 @@ class MainActivity : AppActivity() {
             }.build()
             // 发起通知
             notificationManager.notify(notificationId, notification)
+        }.catch {
+            //请求出错，吐司错误信息
+            Toaster.show(it.message)
         }
     }
 }

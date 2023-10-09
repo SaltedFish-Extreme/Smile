@@ -16,6 +16,7 @@ import com.example.smile.http.NetApi.HomeRecommendFollowAPI
 import com.example.smile.model.RecommendFollowModel
 import com.example.smile.ui.adapter.RecommendFollowAdapter
 import com.example.smile.widget.view.DrawableTextView
+import com.hjq.toast.Toaster
 import com.scwang.smart.refresh.header.MaterialHeader
 
 /** 首页关注选项卡片段 */
@@ -79,6 +80,9 @@ class HomeFollowFragment : AppFragment() {
                     adapter.submitList(data)
                     return@scope
                 }
+            }.catch {
+                //请求出错，吐司错误信息
+                Toaster.show(it.message)
             }
         }.refreshing()
     }
