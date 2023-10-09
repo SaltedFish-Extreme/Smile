@@ -2,8 +2,10 @@ package com.example.smile.widget.view
 
 import android.content.Context
 import android.util.AttributeSet
+import com.drake.serialize.intent.openActivity
 import com.example.smile.R
 import com.example.smile.app.AppConfig
+import com.example.smile.ui.activity.LoginActivity
 import com.example.smile.util.vibration
 import com.hjq.toast.Toaster
 import per.goweii.reveallayout.RevealLayout
@@ -41,6 +43,7 @@ class RevealViewDislike @JvmOverloads constructor(context: Context, attrs: Attri
                 //否则弹吐司并且不能选中
                 Toaster.show(R.string.please_login)
                 isChecked = false
+                context.openActivity<LoginActivity>()
             }
         }
     }
