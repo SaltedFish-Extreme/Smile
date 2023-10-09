@@ -15,7 +15,6 @@ import com.drake.net.request.BaseRequest
 import com.drake.statelayout.StateConfig
 import com.example.smile.R
 import com.example.smile.http.NetApi.BaseURL
-import com.example.smile.http.RefreshTokenInterceptor
 import com.example.smile.http.SerializationConverter
 import com.example.smile.ui.dialog.WaitDialog
 import com.example.smile.util.DynamicTimeFormat
@@ -84,8 +83,6 @@ class AppApplication : Application() {
             setConverter(SerializationConverter("200", "code", "msg"))
             //添加日志拦截器
             if (AppConfig.isDebug()) addInterceptor(OkHttpProfilerInterceptor())
-            //添加token失效拦截器
-            addInterceptor(RefreshTokenInterceptor())
             //全局加载中对话框配置(使用自定义对话框)
             setDialogFactory {
                 WaitDialog.Builder(it).apply {

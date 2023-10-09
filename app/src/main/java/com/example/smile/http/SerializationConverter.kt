@@ -9,6 +9,10 @@ import com.drake.net.exception.RequestParamsException
 import com.drake.net.exception.ResponseException
 import com.drake.net.exception.ServerResponseException
 import com.drake.net.request.kType
+import com.drake.serialize.intent.openActivity
+import com.example.smile.app.AppApplication
+import com.example.smile.app.AppConfig
+import com.example.smile.ui.activity.LoginActivity
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.serializer
 import okhttp3.Response
@@ -51,6 +55,10 @@ class SerializationConverter(
                         val srvCode = json.getString(this.code)
                         if (srvCode == success) { // 对比后端自定义错误码
                             json.getString("data").parseBody<R>(kType)
+                        } else if (srvCode == "202" && AppConfig.token.isNotBlank()) {
+                            //登录过期，拦截重新登录
+                            AppApplication.context.openActivity<LoginActivity>()
+                            throw ResponseException(response, "登录状态已失效，请重新登录", tag = srvCode)
                         } else { // 错误码匹配失败, 开始写入错误异常
                             val errorMessage = json.optString(message, NetConfig.app.getString(com.drake.net.R.string.no_error_message))
                             throw ResponseException(response, errorMessage, tag = srvCode) // 将业务错误码作为tag传递
