@@ -107,6 +107,7 @@ dependencies {
     //AndroidX库 https://github.com/androidx/androidx
     implementation 'androidx.appcompat:appcompat:1.6.1'
     //Material库 https://github.com/material-components/material-components-android
+    //noinspection GradleDependency
     implementation 'com.google.android.material:material:1.9.0'
     //约束布局
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
@@ -114,7 +115,7 @@ dependencies {
     //noinspection GradleDependency
     implementation 'androidx.core:core-ktx:1.10.1'
     //Kotlin协程 https://github.com/Kotlin/kotlinx.coroutines
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3'
     //navigation支持
     //noinspection GradleDependency
     implementation 'androidx.navigation:navigation-fragment-ktx:2.3.5'
@@ -126,12 +127,12 @@ dependencies {
     //网络请求 https://github.com/liangjingkanji/Net
     implementation 'com.github.liangjingkanji:Net:3.6.2'
     //RecyclerView https://github.com/liangjingkanji/BRV
-    implementation 'com.github.liangjingkanji:BRV:1.5.2'
+    implementation 'com.github.liangjingkanji:BRV:1.5.3'
     //Adapter https://github.com/CymChad/BaseRecyclerViewAdapterHelper
     implementation 'io.github.cymchad:BaseRecyclerViewAdapterHelper:4.0.1'
     //智能刷新 经典刷新头&谷歌刷新头 https://github.com/scwang90/SmartRefreshLayout
-    implementation 'io.github.scwang90:refresh-header-classics:2.0.6'
-    implementation 'io.github.scwang90:refresh-header-material:2.0.6'
+    implementation 'io.github.scwang90:refresh-header-classics:2.1.0'
+    implementation 'io.github.scwang90:refresh-header-material:2.1.0'
     //序列化数据 https://github.com/liangjingkanji/Serialize
     implementation 'com.github.liangjingkanji:Serialize:3.0.1'
     //消息事件 https://github.com/liangjingkanji/Channel
@@ -153,9 +154,9 @@ dependencies {
     //标题栏 https://github.com/getActivity/TitleBar
     implementation 'com.github.getActivity:TitleBar:10.5'
     //吐司 https://github.com/getActivity/Toaster
-    implementation 'com.github.getActivity:Toaster:12.3'
+    implementation 'com.github.getActivity:Toaster:12.5'
     //权限请求 https://github.com/getActivity/XXPermissions
-    implementation 'com.github.getActivity:XXPermissions:18.3'
+    implementation 'com.github.getActivity:XXPermissions:18.5'
     //Shape https://github.com/getActivity/ShapeView
     implementation 'com.github.getActivity:ShapeView:9.0'
     //揭示效果 https://github.com/goweii/RevealLayout
@@ -173,7 +174,7 @@ dependencies {
     //网络拦截监听器 https://github.com/itkacher/OkHttpProfiler
     implementation 'com.localebro:okhttpprofiler:1.0.8'
     //kotlin JSON解析框架 https://github.com/Kotlin/kotlinx.serialization
-    implementation 'org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1'
+    implementation 'org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0'
     //仿微信朋友圈大图多图预览 https://github.com/wanggaowan/PhotoPreview
     implementation 'com.github.wanggaowan:PhotoPreview:2.4.6'
     //Dialog&DialogFragment使用框架 https://github.com/javakam/DialogManager
