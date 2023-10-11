@@ -169,8 +169,6 @@ class SearchActivity : AppActivity(), SwipeBackAbility.Direction {
         frame.visible()
         //设置搜索内容
         searchContent = str
-        //显示加载中页面
-        page.showLoading()
         //开始加载数据
         loadData()
         //初始化rv悬浮按钮扩展函数
