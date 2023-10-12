@@ -78,7 +78,7 @@ class PhotoAdapter(
         //设置动画
         itemAnimation = CustomAnimation()
         //设置图片点击事件，打开大图预览
-        setOnDebouncedItemClick { _, view, position ->
+        setOnDebouncedItemClick { _, _, position ->
             if (fragment != null) {
                 PhotoPreview.with(fragment).defaultShowPosition(position).sources(dataList)
                     .onLongClickListener { _, customViewRoot, _ ->
@@ -86,7 +86,10 @@ class PhotoAdapter(
                         //长按显示PopupWindow
                         pop.showAtLocation(customViewRoot, Gravity.CENTER, 0, 0)
                         true
-                    }.shapeTransformType(ShapeTransformType.ROUND_RECT).shapeCornerRadius(20).build().show(view) // 指定缩略图
+                    }.shapeTransformType(ShapeTransformType.ROUND_RECT).shapeCornerRadius(20).build().show { pos ->
+                        val viewByPosition: View? = recyclerView.layoutManager?.findViewByPosition(pos)
+                        return@show viewByPosition?.findViewById<View>(R.id.joke_image)
+                    }// 指定缩略图
             } else if (activity != null) {
                 PhotoPreview.with(activity).defaultShowPosition(position).sources(dataList)
                     .onLongClickListener { _, customViewRoot, _ ->
@@ -94,7 +97,10 @@ class PhotoAdapter(
                         //长按显示PopupWindow
                         pop.showAtLocation(customViewRoot, Gravity.CENTER, 0, 0)
                         true
-                    }.shapeTransformType(ShapeTransformType.ROUND_RECT).shapeCornerRadius(20).build().show(view) // 指定缩略图
+                    }.shapeTransformType(ShapeTransformType.ROUND_RECT).shapeCornerRadius(20).build().show { pos ->
+                        val viewByPosition: View? = recyclerView.layoutManager?.findViewByPosition(pos)
+                        return@show viewByPosition?.findViewById<View>(R.id.joke_image)
+                    }// 指定缩略图
             }
         }
         //长按保存图片
