@@ -8,8 +8,8 @@ import com.example.smile.widget.ext.clickNoRepeat
 import com.gyf.immersionbar.ktx.immersionBar
 import com.hjq.bar.TitleBar
 
-/** 公告页 */
-class AnnouncementActivity : AppActivity() {
+/** 公告页 (不接收广播) */
+class AnnouncementActivity : AppActivity(false) {
 
     private val titleBar: TitleBar by lazy { findViewById(R.id.titleBar) }
 

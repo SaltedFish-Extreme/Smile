@@ -12,9 +12,9 @@ import com.example.smile.R
 import com.example.smile.app.AppActivity
 import com.example.smile.app.AppConfig
 
-/** 闪屏页 */
+/** 闪屏页 (不接收广播) */
 @SuppressLint("CustomSplashScreen")
-class SplashActivity : AppActivity() {
+class SplashActivity : AppActivity(false) {
 
     private val icon: ImageView by lazy { findViewById(R.id.icon) }
     private val layoutSplash: FrameLayout by lazy { findViewById(R.id.layout_splash) }

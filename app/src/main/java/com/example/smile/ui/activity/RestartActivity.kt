@@ -15,9 +15,9 @@ import com.hjq.toast.Toaster
  *
  * time : 2020/11/29
  *
- * desc : 重启应用
+ * desc : 重启应用 (不接收广播)
  */
-class RestartActivity : AppActivity() {
+class RestartActivity : AppActivity(false) {
 
     companion object {
         fun start(context: Context) {

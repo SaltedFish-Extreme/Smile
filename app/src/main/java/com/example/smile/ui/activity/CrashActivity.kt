@@ -49,9 +49,9 @@ import kotlin.math.min
  *
  * time : 2019/06/27
  *
- * desc : 崩溃捕捉界面
+ * desc : 崩溃捕捉界面 (不接收广播)
  */
-class CrashActivity : AppActivity(), SwipeBackAbility.Direction {
+class CrashActivity : AppActivity(false), SwipeBackAbility.Direction {
 
     companion object {
 
