@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?><!--评论列表item-->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/dp_10">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/user_avatar"
+        android:layout_width="@dimen/dp_40"
+        android:layout_height="@dimen/dp_40"
+        android:scaleType="centerCrop"
+        app:shapeAppearance="@style/CircleStyle"
+        tools:srcCompat="@drawable/ic_account" />
+
+    <TextView
+        android:id="@+id/user_nickname"
+        android:layout_width="@dimen/dp_200"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/user_avatar"
+        android:layout_marginStart="@dimen/dp_10"
+        android:layout_toEndOf="@id/user_avatar"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="?android:attr/textColorSecondary"
+        android:textSize="@dimen/sp_14"
+        android:textStyle="bold"
+        tools:text="@string/me" />
+
+    <TextView
+        android:id="@+id/user_comment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/user_nickname"
+        android:layout_marginHorizontal="@dimen/dp_10"
+        android:layout_marginTop="@dimen/dp_5"
+        android:layout_toStartOf="@id/reveal_like"
+        android:layout_toEndOf="@id/user_avatar"
+        android:textColor="?android:attr/textColorPrimary"
+        android:textSize="@dimen/sp_15"
+        tools:text="@string/sign" />
+
+    <TextView
+        android:id="@+id/comment_time"
+        android:layout_width="@dimen/dp_120"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/user_comment"
+        android:layout_alignStart="@id/user_comment"
+        android:layout_marginTop="@dimen/dp_5"
+        android:textColor="@color/color_ornaments"
+        tools:text="2020/02/20 02:20" />
+
+    <TextView
+        android:id="@+id/reply"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/comment_time"
+        android:layout_alignTop="@id/comment_time"
+        android:layout_alignBottom="@id/comment_time"
+        android:layout_marginStart="@dimen/dp_10"
+        android:layout_toEndOf="@id/comment_time"
+        android:text="@string/reply"
+        android:textColor="@color/color_omitted"
+        android:textSize="@dimen/sp_15" />
+
+    <com.example.smile.widget.view.RevealViewLikeComment
+        android:id="@+id/reveal_like"
+        android:layout_width="@dimen/dp_25"
+        android:layout_height="@dimen/dp_25"
+        android:layout_alignBaseline="@id/user_nickname"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:id="@+id/like_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/reveal_like"
+        android:layout_alignStart="@id/reveal_like"
+        android:layout_alignEnd="@id/reveal_like"
+        android:gravity="center"
+        android:textColor="@color/color_navigation_bar_ripple"
+        tools:text="0" />
+
+</RelativeLayout>

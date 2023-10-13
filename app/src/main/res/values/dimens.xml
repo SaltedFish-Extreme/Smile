@@ -72,6 +72,8 @@
     <dimen name="dp_300">300dp</dimen>
     <dimen name="dp_380">380dp</dimen>
     <dimen name="dp_400">400dp</dimen>
+    <dimen name="dp_500">500dp</dimen>
+    <dimen name="dp_600">600dp</dimen>
     <dimen name="dp_999">999dp</dimen>
     <dimen name="dp_9999">9999dp</dimen>
     <dimen name="sp_9">9sp</dimen>

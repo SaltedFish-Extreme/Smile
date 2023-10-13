@@ -5,12 +5,12 @@
     <string name="crash_title">应用程序发生崩溃</string>
     <string name="crash_message">我是错误信息</string>
     <string name="details">详细信息</string>
-    <string name="common_crash_hint">应用出了点小意外，正在重新启动…</string>
+    <string name="common_crash_hint">应用出了点小意外，正在重新启动&#046;&#046;&#046;</string>
     <!--缺省页-->
     <string name="no_data">暂无数据，点击重试</string>
     <string name="no_net">网络异常，点击重试</string>
     <string name="loading">加载中，请稍候</string>
-    <string name="load">加载中…</string>
+    <string name="load">加载中&#046;&#046;&#046;</string>
     <string name="hint">提示语</string>
     <string name="wait">请稍候</string>
     <!--Dialog按钮-->
@@ -51,11 +51,15 @@
     <string name="followed">已关注</string>
     <string name="focus_on">+ 关注</string>
     <string name="me">咸鱼至尊</string>
-    <string name="sign">他正在想一个爆炸的签名…</string>
+    <string name="sign">他正在想一个爆炸的签名&#046;&#046;&#046;</string>
+    <string name="comment_title">全部评论 %d</string>
+    <string name="reply">回复</string>
+    <string name="reply_user">$s → $s</string>
+    <string name="comment_hint">留下你的精彩评论&#046;&#046;&#046;</string>
     <!--个人页-->
     <string name="log_in_register">登录/注册</string>
     <string name="signature_tip">快来开始你的创作吧~</string>
-    <string name="signature_default">他/她正在想一个爆炸的签名…</string>
+    <string name="signature_default">他/她正在想一个爆炸的签名&#046;&#046;&#046;</string>
     <string name="follow">关注</string>
     <string name="follower">粉丝</string>
     <string name="experience">经验</string>
@@ -141,7 +145,7 @@
     <string name="verification_code_format_error">验证码格式错误</string>
     <!--反馈页-->
     <string name="describe_problem">请描述具体问题</string>
-    <string name="describe_problem_hint">请详细描述你遇到的问题，方便我们排查问题…</string>
+    <string name="describe_problem_hint">请详细描述你遇到的问题，方便我们排查问题&#046;&#046;&#046;</string>
     <string name="supplementary_pictures">图片补充：（相关图片能帮助我们快速定位问题）</string>
     <string name="delete_success">删除成功</string>
     <string name="contact_info">联系方式：</string>

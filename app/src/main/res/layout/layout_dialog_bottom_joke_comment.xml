@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?><!--底部弹窗布局(段子评论)-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dp_600"
+    android:background="@drawable/rectangle_ando_dialog_bottom"
+    android:backgroundTint="@color/day_on_night"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/dp_5">
+
+    <com.example.smile.widget.view.DrawableTextView
+        android:id="@+id/comment_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_50"
+        android:drawableEnd="@drawable/ic_closure"
+        android:drawableTint="@color/color_ic_bg_tint"
+        android:gravity="center"
+        android:paddingHorizontal="@dimen/dp_20"
+        android:text="@string/comment_title"
+        android:textColor="?android:attr/textColorPrimary"
+        android:textSize="@dimen/sp_20"
+        android:textStyle="bold"
+        app:drawableHeight="@dimen/dp_20"
+        app:drawableWidth="@dimen/dp_20" />
+
+    <LinearLayout
+        android:id="@+id/ll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.drake.brv.PageRefreshLayout
+            android:id="@+id/page"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:itemCount="6"
+                tools:listitem="@layout/item_joke_comment_list" />
+        </com.drake.brv.PageRefreshLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <com.hjq.shape.view.ShapeEditText
+                android:id="@+id/input_box"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp_40"
+                android:layout_marginHorizontal="@dimen/dp_20"
+                android:layout_marginVertical="@dimen/dp_10"
+                android:layout_weight="1"
+                android:hint="@string/comment_hint"
+                android:paddingHorizontal="@dimen/dp_15"
+                android:textSize="@dimen/sp_14"
+                app:shape_radius="@dimen/dp_20"
+                app:shape_solidColor="@color/color_search_box"
+                app:shape_type="rectangle" />
+
+            <com.example.smile.widget.view.ScaleImageView
+                android:id="@+id/send"
+                android:layout_width="@dimen/dp_40"
+                android:layout_height="@dimen/dp_40"
+                android:src="@drawable/ic_send" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

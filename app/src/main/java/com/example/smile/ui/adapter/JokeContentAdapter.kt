@@ -1,5 +1,6 @@
 package com.example.smile.ui.adapter
 
+import ando.dialog.core.DialogManager
 import android.view.Gravity
 import android.view.MotionEvent
 import android.view.View
@@ -10,7 +11,6 @@ import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.chad.library.adapter.base.util.addOnDebouncedChildClick
@@ -19,6 +19,7 @@ import com.chad.library.adapter.base.viewholder.QuickViewHolder
 import com.example.smile.R
 import com.example.smile.app.AppAdapter
 import com.example.smile.model.JokeContentModel
+import com.example.smile.ui.dialog.CustomBottomDialogComment
 import com.example.smile.util.decrypt
 import com.example.smile.widget.ext.copyJoke
 import com.example.smile.widget.ext.gone
@@ -34,6 +35,7 @@ import com.example.smile.widget.view.SmartTextView
 import com.google.android.material.imageview.ShapeableImageView
 import com.hjq.shape.view.ShapeTextView
 import com.hjq.toast.Toaster
+import com.huantansheng.easyphotos.ui.widget.PressedImageView
 
 /** 段子内容适配器 */
 class JokeContentAdapter(private val fragment: Fragment? = null, private val activity: FragmentActivity? = null) :
@@ -131,7 +133,6 @@ class JokeContentAdapter(private val fragment: Fragment? = null, private val act
             //段子内容(图片)
             if (item.joke.type == 2) {
                 holder.getView<RecyclerView>(R.id.joke_picture).apply {
-                    layoutManager = GridLayoutManager(context, 3)
                     //根据是否有图片来显示隐藏列表
                     visibleOrGone(item.joke.imageUrl.split(",").isNotEmpty())
                     adapter = if (isVisible) {
@@ -188,6 +189,13 @@ class JokeContentAdapter(private val fragment: Fragment? = null, private val act
                     }
                 }
             })
+            //点击查看评论
+            holder.getView<PressedImageView>(R.id.reveal_comment).setOnClickListener {
+                //底部弹窗(BottomDialog)
+                val bottomDialog = CustomBottomDialogComment(context, fragment ?: activity!!, item.joke.jokesId.toString())
+                DialogManager.replaceDialog(bottomDialog).setCancelable(true)
+                    .setCanceledOnTouchOutside(true).setDimmedBehind(true).show()
+            }
         }
     }
 }
