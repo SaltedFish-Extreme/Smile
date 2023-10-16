@@ -54,8 +54,9 @@
     <string name="sign">他正在想一个爆炸的签名&#046;&#046;&#046;</string>
     <string name="comment_title">全部评论 %d</string>
     <string name="reply">回复</string>
-    <string name="reply_user">$s → $s</string>
+    <string name="reply_user">%s → %s</string>
     <string name="comment_hint">留下你的精彩评论&#046;&#046;&#046;</string>
+    <string name="delete">删除</string>
     <!--个人页-->
     <string name="log_in_register">登录/注册</string>
     <string name="signature_tip">快来开始你的创作吧~</string>

@@ -2,6 +2,7 @@ package com.example.smile.ui.adapter
 
 import android.widget.TextView
 import androidx.lifecycle.LifecycleOwner
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.chad.library.adapter.base.util.addOnDebouncedChildClick
 import com.chad.library.adapter.base.viewholder.QuickViewHolder
@@ -11,12 +12,13 @@ import com.example.smile.R
 import com.example.smile.app.AppAdapter
 import com.example.smile.http.NetApi
 import com.example.smile.model.EmptyModel
+import com.example.smile.model.JokeCommentChildModel
 import com.example.smile.model.JokeCommentModel
 import com.example.smile.widget.view.RevealViewLikeComment
 import com.google.android.material.imageview.ShapeableImageView
 import com.hjq.toast.Toaster
 
-/** 段子评论适配器 */
+/** 段子评论列表适配器 */
 class JokeCommentAdapter(private val lifecycleOwner: LifecycleOwner) :
     AppAdapter<JokeCommentModel.Comment>(R.layout.item_joke_comment_list) {
 
@@ -26,8 +28,11 @@ class JokeCommentAdapter(private val lifecycleOwner: LifecycleOwner) :
         addOnDebouncedChildClick(R.id.reply) { _, _, position ->
             Toaster.show("回复 $position")
         }
-        addOnDebouncedChildClick(R.id.user_avatar) { _, _, _ ->
-            Toaster.show("点击头像")
+        addOnDebouncedChildClick(R.id.user_avatar) { _, _, pos ->
+            Toaster.show("点击头像 $pos")
+        }
+        addOnDebouncedChildClick(R.id.delete) { _, _, pos ->
+            Toaster.show("删除了 $pos")
         }
     }
 
@@ -71,6 +76,19 @@ class JokeCommentAdapter(private val lifecycleOwner: LifecycleOwner) :
                         }
                     }
                 })
+            }
+            //有子评论，显示子评论列表
+            if (item.itemCommentNum > 0) {
+                lifecycleOwner.scopeNetLife {
+                    val data = Post<List<JokeCommentChildModel>>(NetApi.JokeCommentChildListAPI) {
+                        param("commentId", item.commentId)
+                    }.await()
+                    //设置列表数据适配器，装载数据
+                    holder.getView<RecyclerView>(R.id.rv).adapter = JokeCommentChildAdapter(lifecycleOwner, data)
+                }.catch {
+                    //请求失败，吐司错误信息
+                    Toaster.show(it.message)
+                }
             }
         }
     }

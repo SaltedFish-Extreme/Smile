@@ -65,4 +65,7 @@ object NetApi {
 
     /** 段子评论点赞(取消点赞)API路径 */
     const val JokeCommentLikeOrCancelAPI = "jokes/comment/like"
+
+    /** 段子评论子列表API路径 */
+    const val JokeCommentChildListAPI = "jokes/comment/list/item"
 }
