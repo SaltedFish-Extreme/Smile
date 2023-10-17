@@ -65,7 +65,7 @@ class JokeCommentAdapter(private val lifecycleOwner: LifecycleOwner) :
                         lifecycleOwner.scopeNetLife {
                             Post<EmptyModel?>(NetApi.JokeCommentLikeOrCancelAPI) {
                                 param("commentId", item.commentId)
-                                param("status", !item.isLike)
+                                param("status", isChecked)
                             }.await()
                             //请求成功，点赞数+1/-1
                             "${likeNum.text.toString().toInt() + if (isChecked) 1 else -1}".also { likeNum.text = it }
