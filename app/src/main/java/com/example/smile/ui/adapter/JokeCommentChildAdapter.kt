@@ -1,7 +1,6 @@
 package com.example.smile.ui.adapter
 
 import android.widget.TextView
-import androidx.lifecycle.LifecycleOwner
 import com.bumptech.glide.Glide
 import com.chad.library.adapter.base.util.addOnDebouncedChildClick
 import com.chad.library.adapter.base.viewholder.QuickViewHolder
@@ -12,7 +11,7 @@ import com.google.android.material.imageview.ShapeableImageView
 import com.hjq.toast.Toaster
 
 /** 段子评论子列表适配器 */
-class JokeCommentChildAdapter(private val lifecycleOwner: LifecycleOwner, dataList: List<JokeCommentChildModel>) :
+class JokeCommentChildAdapter(dataList: List<JokeCommentChildModel>) :
     AppAdapter<JokeCommentChildModel>(R.layout.item_joke_comment_child_list, dataList) {
 
     init {

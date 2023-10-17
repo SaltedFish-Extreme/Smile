@@ -84,7 +84,7 @@ class JokeCommentAdapter(private val lifecycleOwner: LifecycleOwner) :
                         param("commentId", item.commentId)
                     }.await()
                     //设置列表数据适配器，装载数据
-                    holder.getView<RecyclerView>(R.id.rv).adapter = JokeCommentChildAdapter(lifecycleOwner, data)
+                    holder.getView<RecyclerView>(R.id.rv).adapter = JokeCommentChildAdapter(data)
                 }.catch {
                     //请求失败，吐司错误信息
                     Toaster.show(it.message)

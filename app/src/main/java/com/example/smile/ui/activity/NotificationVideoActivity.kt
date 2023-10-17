@@ -1,5 +1,6 @@
 package com.example.smile.ui.activity
 
+import ando.dialog.core.DialogManager
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
@@ -13,6 +14,7 @@ import com.example.smile.app.AppActivity
 import com.example.smile.http.NetApi
 import com.example.smile.model.EmptyModel
 import com.example.smile.model.NotificationVideoModel
+import com.example.smile.ui.dialog.CustomBottomDialogComment
 import com.example.smile.util.decrypt
 import com.example.smile.widget.ext.clickNoRepeat
 import com.example.smile.widget.ext.invisible
@@ -142,8 +144,12 @@ class NotificationVideoActivity : AppActivity(), SwipeBackAbility.Direction {
                 Toaster.show(it.message)
             }
         }
+        //查看评论
         comment.clickNoRepeat {
-            Toaster.show(commentNum.text)
+            //底部弹窗(BottomDialog)
+            val bottomDialog = CustomBottomDialogComment(this, this, model.jokesId.toString())
+            DialogManager.replaceDialog(bottomDialog).setCancelable(true)
+                .setCanceledOnTouchOutside(true).setDimmedBehind(true).show()
         }
         share.clickNoRepeat {
             Toaster.show(shareNum.text)
