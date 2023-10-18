@@ -9,7 +9,6 @@ import android.widget.ImageView
 import android.widget.PopupWindow
 import android.widget.TextView
 import androidx.core.view.isVisible
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -38,8 +37,7 @@ import com.hjq.toast.Toaster
 import com.huantansheng.easyphotos.ui.widget.PressedImageView
 
 /** 段子内容适配器 */
-class JokeContentAdapter(private val fragment: Fragment? = null, private val activity: FragmentActivity? = null) :
-    AppAdapter<JokeContentModel>(R.layout.item_joke_content) {
+class JokeContentAdapter(private val activity: FragmentActivity) : AppAdapter<JokeContentModel>(R.layout.item_joke_content) {
 
     companion object {
         //当前段子位置
@@ -137,7 +135,7 @@ class JokeContentAdapter(private val fragment: Fragment? = null, private val act
                     visibleOrGone(item.joke.imageUrl.split(",").isNotEmpty())
                     adapter = if (isVisible) {
                         //将图片集合传递到图片适配器
-                        PhotoAdapter(fragment, activity, dataList = item.joke.imageUrl.split(",").map { it.decrypt() })
+                        PhotoAdapter(activity, dataList = item.joke.imageUrl.split(",").map { it.decrypt() })
                     } else {
                         //适配器设置为空
                         null
@@ -192,7 +190,7 @@ class JokeContentAdapter(private val fragment: Fragment? = null, private val act
             //点击查看评论
             holder.getView<PressedImageView>(R.id.reveal_comment).setOnClickListener {
                 //底部弹窗(BottomDialog)
-                val bottomDialog = CustomBottomDialogComment(context, fragment ?: activity!!, item.joke.jokesId.toString())
+                val bottomDialog = CustomBottomDialogComment(context, activity, item.joke.jokesId.toString())
                 DialogManager.replaceDialog(bottomDialog).setCancelable(true)
                     .setCanceledOnTouchOutside(true).setDimmedBehind(true).show()
             }

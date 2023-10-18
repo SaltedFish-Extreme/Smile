@@ -5,6 +5,7 @@ import android.app.Application
 import android.content.Context
 import android.widget.ImageView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.target.Target
 import com.drake.brv.PageRefreshLayout
 import com.drake.net.NetConfig
 import com.drake.net.interceptor.RequestInterceptor
@@ -127,7 +128,8 @@ class AppApplication : Application() {
         }
         //设置全局图片加载器
         PhotoPreview.setGlobalImageLoader { _: Int, source: Any?, imageView: ImageView ->
-            Glide.with(imageView.context).load(source as String?).into(imageView)
+            //加载原图
+            Glide.with(imageView.context).load(source as String?).override(Target.SIZE_ORIGINAL).into(imageView)
         }
         //视频播放器初始化配置
         VideoViewManager.setConfig(

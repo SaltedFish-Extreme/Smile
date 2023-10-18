@@ -40,7 +40,7 @@ class HomeChildFragment : AppFragment() {
     private var first = true
 
     /** 适配器 */
-    private val adapter: JokeContentAdapter by lazy { JokeContentAdapter(fragment = this) }
+    private val adapter: JokeContentAdapter by lazy { JokeContentAdapter(this.requireActivity()) }
 
     /** 数据集 */
     private lateinit var data: ArrayList<JokeContentModel>

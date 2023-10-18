@@ -58,7 +58,7 @@ class SearchActivity : AppActivity(), SwipeBackAbility.Direction {
     private val historyAdapter: SearchAdapter by lazy { SearchAdapter(1) }
 
     /** 段子内容适配器 */
-    private val adapter: JokeContentAdapter by lazy { JokeContentAdapter(activity = this) }
+    private val adapter: JokeContentAdapter by lazy { JokeContentAdapter(this) }
 
     /** 是否初次搜索数据 */
     private var first = true

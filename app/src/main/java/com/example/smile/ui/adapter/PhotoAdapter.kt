@@ -10,7 +10,6 @@ import android.view.ViewGroup
 import android.view.animation.DecelerateInterpolator
 import android.widget.ImageView
 import android.widget.PopupWindow
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
@@ -19,7 +18,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.chad.library.adapter.base.animation.ItemAnimator
 import com.chad.library.adapter.base.util.setOnDebouncedItemClick
 import com.chad.library.adapter.base.viewholder.QuickViewHolder
-import com.drake.net.utils.scopeLife
+import com.drake.net.utils.scopeNetLife
 import com.example.smile.R
 import com.example.smile.app.AppAdapter
 import com.example.smile.util.PhotoUtils
@@ -28,6 +27,7 @@ import com.hjq.permissions.Permission
 import com.hjq.permissions.XXPermissions
 import com.hjq.shape.view.ShapeTextView
 import com.hjq.toast.Toaster
+import com.scwang.smart.drawable.ProgressDrawable
 import com.wgw.photo.preview.PhotoPreview
 import com.wgw.photo.preview.ShapeTransformType
 import kotlinx.coroutines.Dispatchers
@@ -35,7 +35,7 @@ import kotlinx.coroutines.cancel
 
 /** 图片预览适配器 */
 class PhotoAdapter(
-    private val fragment: Fragment? = null, private val activity: FragmentActivity? = null, private val dataList: List<String>
+    private val activity: FragmentActivity, private val dataList: List<String>
 ) : AppAdapter<String>(R.layout.item_joke_picture, dataList) {
 
     companion object {
@@ -66,7 +66,7 @@ class PhotoAdapter(
                 }
                 true
             }
-            //弹窗文本点击事件
+            //弹窗文本点击事件，保存图片
             view.findViewById<ShapeTextView>(R.id.save_picture).setOnClickListener {
                 savePicture(location)
                 dismiss()
@@ -79,29 +79,19 @@ class PhotoAdapter(
         itemAnimation = CustomAnimation()
         //设置图片点击事件，打开大图预览
         setOnDebouncedItemClick { _, _, position ->
-            if (fragment != null) {
-                PhotoPreview.with(fragment).defaultShowPosition(position).sources(dataList)
-                    .onLongClickListener { _, customViewRoot, _ ->
-                        location = position
-                        //长按显示PopupWindow
-                        pop.showAtLocation(customViewRoot, Gravity.CENTER, 0, 0)
-                        true
-                    }.shapeTransformType(ShapeTransformType.ROUND_RECT).shapeCornerRadius(20).build().show { pos ->
-                        val viewByPosition: View? = recyclerView.layoutManager?.findViewByPosition(pos)
-                        return@show viewByPosition?.findViewById<View>(R.id.joke_image)
-                    }// 指定缩略图
-            } else if (activity != null) {
-                PhotoPreview.with(activity).defaultShowPosition(position).sources(dataList)
-                    .onLongClickListener { _, customViewRoot, _ ->
-                        location = position
-                        //长按显示PopupWindow
-                        pop.showAtLocation(customViewRoot, Gravity.CENTER, 0, 0)
-                        true
-                    }.shapeTransformType(ShapeTransformType.ROUND_RECT).shapeCornerRadius(20).build().show { pos ->
-                        val viewByPosition: View? = recyclerView.layoutManager?.findViewByPosition(pos)
-                        return@show viewByPosition?.findViewById<View>(R.id.joke_image)
-                    }// 指定缩略图
-            }
+            //使用加载中占位
+            PhotoPreview.with(activity).progressDrawable(ProgressDrawable()).delayShowProgressTime(0).defaultShowPosition(position)
+                .sources(dataList)
+                .onLongClickListener { _, customViewRoot, _ ->
+                    location = position
+                    //长按显示PopupWindow
+                    pop.showAtLocation(customViewRoot, Gravity.CENTER, 0, 0)
+                    true
+                }.shapeTransformType(ShapeTransformType.ROUND_RECT).shapeCornerRadius(20).build().show { pos ->
+                    val viewByPosition: View? = recyclerView.layoutManager?.findViewByPosition(pos)
+                    return@show viewByPosition?.findViewById<View>(R.id.joke_image)
+                }// 指定缩略图
+
         }
         //长按保存图片
         setOnItemLongClickListener { _, _, position ->
@@ -129,7 +119,7 @@ class PhotoAdapter(
         XXPermissions.with(context).permission(Permission.WRITE_EXTERNAL_STORAGE).request { _, all ->
             if (all) {
                 //保存图片，需在子线程
-                (fragment ?: activity)?.scopeLife(dispatcher = Dispatchers.IO) {
+                activity.scopeNetLife(dispatcher = Dispatchers.IO) {
                     val boolean = PhotoUtils.saveFile2Gallery(context, dataList[position])
                     if (boolean) Toaster.show(R.string.save_succeed) else Toaster.show(R.string.save_failed)
                     //保存完成后取消协程
