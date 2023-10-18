@@ -41,7 +41,7 @@ object Dialog {
     ): AlertDialog.Builder {
         val builder = getDialog(context)
         builder.setMessage(message)
-        builder.setPositiveButton(context.getString(R.string.sure), onClickListener)
+        builder.setPositiveButton(R.string.sure, onClickListener)
         return builder
     }
 
@@ -51,18 +51,21 @@ object Dialog {
     ): AlertDialog.Builder {
         val builder = getDialog(context)
         builder.setMessage(message)
-        builder.setPositiveButton(context.getString(R.string.sure), onClickListener)
-        builder.setNegativeButton(context.getString(R.string.cancel), null)
+        builder.setPositiveButton(R.string.sure, onClickListener)
+        builder.setNegativeButton(R.string.cancel, null)
         return builder
     }
 
     fun getConfirmDialog(
-        context: Context, message: String, onOKClickListener: DialogInterface.OnClickListener, onCancelClickListener: DialogInterface.OnClickListener
+        context: Context,
+        message: String,
+        onOKClickListener: DialogInterface.OnClickListener,
+        onCancelClickListener: DialogInterface.OnClickListener
     ): AlertDialog.Builder {
         val builder = getDialog(context)
         builder.setMessage(message)
-        builder.setPositiveButton(context.getString(R.string.sure), onOKClickListener)
-        builder.setNegativeButton(context.getString(R.string.cancel), onCancelClickListener)
+        builder.setPositiveButton(R.string.sure, onOKClickListener)
+        builder.setNegativeButton(R.string.cancel, onCancelClickListener)
         return builder
     }
 
@@ -75,7 +78,7 @@ object Dialog {
         if (!TextUtils.isEmpty(title)) {
             builder.setTitle(title)
         }
-        builder.setNegativeButton(context.getString(R.string.cancel), null)
+        builder.setNegativeButton(R.string.cancel, null)
         return builder
     }
 
@@ -100,8 +103,8 @@ object Dialog {
         if (!TextUtils.isEmpty(title)) {
             builder.setTitle(title)
         }
-        builder.setPositiveButton(context.getString(R.string.sure), onOKClickListener)
-        builder.setNegativeButton(context.getString(R.string.cancel), onCancelClickListener)
+        builder.setPositiveButton(R.string.sure, onOKClickListener)
+        builder.setNegativeButton(R.string.cancel, onCancelClickListener)
         return builder
     }
 
@@ -113,7 +116,7 @@ object Dialog {
         if (!TextUtils.isEmpty(title)) {
             builder.setTitle(title)
         }
-        builder.setPositiveButton(context.getString(R.string.cancel), null)
+        builder.setPositiveButton(R.string.cancel, null)
         return builder
     }
 
@@ -145,8 +148,8 @@ object Dialog {
         if (!TextUtils.isEmpty(title)) {
             builder.setTitle(title)
         }
-        builder.setPositiveButton(context.getString(R.string.sure), onOKClickListener)
-        builder.setNegativeButton(context.getString(R.string.cancel), onCancelClickListener)
+        builder.setPositiveButton(R.string.sure, onOKClickListener)
+        builder.setNegativeButton(R.string.cancel, onCancelClickListener)
         return builder
     }
 
