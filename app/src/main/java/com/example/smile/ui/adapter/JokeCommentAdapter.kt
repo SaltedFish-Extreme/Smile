@@ -89,6 +89,9 @@ class JokeCommentAdapter(private val lifecycleOwner: LifecycleOwner) :
                     //请求失败，吐司错误信息
                     Toaster.show(it.message)
                 }
+            } else {
+                //没有评论，设置适配器为空
+                holder.getView<RecyclerView>(R.id.rv).adapter = null
             }
         }
     }
