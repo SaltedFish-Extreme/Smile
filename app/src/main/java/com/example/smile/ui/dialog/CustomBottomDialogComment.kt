@@ -12,18 +12,23 @@ import android.widget.LinearLayout
 import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
 import com.drake.brv.PageRefreshLayout
+import com.drake.channel.receiveEventLive
 import com.drake.net.Post
 import com.drake.net.utils.scope
+import com.drake.net.utils.scopeNetLife
 import com.drake.softinput.setWindowSoftInput
+import com.drake.softinput.showSoftInput
+import com.drake.statelayout.Status
 import com.example.smile.R
+import com.example.smile.http.NetApi
 import com.example.smile.http.NetApi.JokeCommentListAPI
 import com.example.smile.model.JokeCommentModel
 import com.example.smile.ui.adapter.JokeCommentAdapter
+import com.example.smile.widget.ext.clickNoRepeat
 import com.example.smile.widget.view.DrawableTextView
 import com.example.smile.widget.view.ScaleImageView
 import com.hjq.shape.view.ShapeEditText
 import com.hjq.toast.Toaster
-
 
 /**
  * 自定义底部弹出对话框(段子评论)
@@ -61,7 +66,7 @@ class CustomBottomDialogComment(context: Context, private val lifecycleOwner: Li
         setWindowSoftInput(
             float = llInput, transition = ll, editText = inputBox, setPadding = true
         )
-        //点击标题右侧图标关闭弹窗
+        //按下标题右侧图标关闭弹窗
         commentTitle.setOnTouchListener(OnTouchListener { _, event ->
             //getCompoundDrawables()得到一个长度为4的数组，分别表示左右上下四张图片
             //如果右边没有图片，不再处理
@@ -74,6 +79,62 @@ class CustomBottomDialogComment(context: Context, private val lifecycleOwner: Li
             }
             true
         })
+        //接收消息事件，打开软键盘，设置输入框提文本
+        lifecycleOwner.receiveEventLive<String>("input_hint_enter") {
+            inputBox.showSoftInput()
+            inputBox.hint = it
+        }
+        //发送图标点击事件
+        send.clickNoRepeat {
+            if (inputBox.text.isNullOrBlank()) {
+                Toaster.show(R.string.please_input_reply)
+            } else {
+                if (inputBox.hint == context.getString(R.string.comment_hint)) {
+                    //发起请求，评论段子，一级评论
+                    lifecycleOwner.scopeNetLife {
+                        val data = Post<JokeCommentModel.Comment>(NetApi.CommentJokeAPI) {
+                            param("content", inputBox.text.toString())
+                            param("jokeId", jokeId)
+                        }.await()
+                        Toaster.show(R.string.reply_success)
+                        //清空输入框
+                        inputBox.setText("")
+                        //请求成功，添加数据，将这条回复添加到最上方
+                        adapter.add(0, data)
+                        //如果之前显示的是空页面，则显示内容页
+                        if (page.stateLayout?.status == Status.EMPTY) {
+                            page.showContent()
+                        }
+                    }.catch {
+                        //请求失败，吐司错误信息
+                        Toaster.show(it.message)
+                    }
+                }
+            }
+        }
+        //发送图标点击事件
+        /*send.clickNoRepeat {
+            if (inputBox.text.isNullOrBlank()) {
+                Toaster.show(R.string.please_input_reply)
+            } else {
+                //回复子评论
+                if (inputBox.hint.startsWith(context.getString(R.string.reply))) {
+                    //发起请求，评论段子子评论
+                    lifecycleOwner.scopeNetLife {
+                        val data = Post<List<JokeCommentChildModel>>(NetApi.ChildCommentJokeAPI) {
+                            param("commentId", commentId)
+                            param("content", inputBox.text.toString())
+                            param("isReplyChild", false)
+                        }.await()
+                        //请求成功，给评论添加子评论数据
+                        (holder.getView<RecyclerView>(R.id.rv).adapter as JokeCommentChildAdapter).addAll(0, data)
+                    }.catch {
+                        //请求失败，吐司错误信息
+                        Toaster.show(it.message)
+                    }
+                }
+            }
+        }*/
     }
 
     /** 加载段子内容数据 */

@@ -5,7 +5,9 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.chad.library.adapter.base.util.addOnDebouncedChildClick
+import com.chad.library.adapter.base.util.setOnDebouncedItemClick
 import com.chad.library.adapter.base.viewholder.QuickViewHolder
+import com.drake.channel.sendEvent
 import com.drake.net.Post
 import com.drake.net.utils.scopeNetLife
 import com.example.smile.R
@@ -25,8 +27,13 @@ class JokeCommentAdapter(private val lifecycleOwner: LifecycleOwner) :
     init {
         //设置动画效果
         setItemAnimation(AnimationType.ScaleIn)
-        addOnDebouncedChildClick(R.id.reply) { _, _, position ->
-            Toaster.show("回复 $position")
+        //点击列表范围，发送消息事件，传递默认文本
+        setOnDebouncedItemClick { _, _, _ ->
+            sendEvent(context.getString(R.string.comment_hint), "input_hint_enter")
+        }
+        //点击评论回复，发送消息事件，传递 回复：被回复人昵称
+        addOnDebouncedChildClick(R.id.reply) { _, _, pos ->
+            sendEvent(context.getString(R.string.reply_user, items[pos].commentUser.nickname), "input_hint_enter")
         }
         addOnDebouncedChildClick(R.id.user_avatar) { _, _, pos ->
             Toaster.show("点击头像 $pos")

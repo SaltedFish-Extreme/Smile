@@ -54,18 +54,24 @@ object NetApi {
     /** 首页推送视频API路径 */
     const val NotificationVideoAPI = "douyin/list"
 
-    /** 点赞(取消点赞)段子API路径 */
+    /** 段子点赞(取消点赞)API路径 */
     const val JokeLikeOrCancelAPI = "jokes/like"
 
-    /** 关注(取消关注)用户API路径 */
+    /** 用户关注(取消关注)API路径 */
     const val UserFocusOrCancelAPI = "user/attention"
 
     /** 段子评论列表API路径 */
     const val JokeCommentListAPI = "jokes/comment/list"
 
-    /** 段子评论点赞(取消点赞)API路径 */
+    /** 评论点赞(取消点赞)API路径 */
     const val JokeCommentLikeOrCancelAPI = "jokes/comment/like"
 
     /** 段子评论子列表API路径 */
     const val JokeCommentChildListAPI = "jokes/comment/list/item"
+
+    /** 评论段子API路径 */
+    const val CommentJokeAPI = "jokes/comment"
+
+    /** 评论段子子评论API路径 */
+    const val ChildCommentJokeAPI = "jokes/comment/item"
 }

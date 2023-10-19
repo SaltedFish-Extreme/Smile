@@ -4,7 +4,7 @@ package com.example.smile.model
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
-/** 段子评论子数据模型 */
+/** 段子子评论数据模型 */
 @Serializable
 data class JokeCommentChildModel(
     @SerialName("commentItemId")
