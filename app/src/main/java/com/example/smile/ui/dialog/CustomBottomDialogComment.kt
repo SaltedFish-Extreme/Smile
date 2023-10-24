@@ -13,6 +13,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
 import com.drake.brv.PageRefreshLayout
 import com.drake.channel.receiveEventLive
+import com.drake.channel.sendEvent
 import com.drake.net.Post
 import com.drake.net.utils.scope
 import com.drake.net.utils.scopeNetLife
@@ -22,6 +23,7 @@ import com.drake.statelayout.Status
 import com.example.smile.R
 import com.example.smile.http.NetApi
 import com.example.smile.http.NetApi.JokeCommentListAPI
+import com.example.smile.model.JokeCommentChildModel
 import com.example.smile.model.JokeCommentModel
 import com.example.smile.ui.adapter.JokeCommentAdapter
 import com.example.smile.widget.ext.clickNoRepeat
@@ -57,6 +59,14 @@ class CustomBottomDialogComment(context: Context, private val lifecycleOwner: Li
     /** 是否初次加载数据 */
     private var first = true
 
+    companion object {
+        /** 要回复的评论ID */
+        private var commentId = ""
+
+        /** 是否是回复子评论 */
+        private var isReplyChild = "false"
+    }
+
     @SuppressLint("ClickableViewAccessibility")
     override fun initView() {
         rv.adapter = adapter
@@ -79,16 +89,22 @@ class CustomBottomDialogComment(context: Context, private val lifecycleOwner: Li
             }
             true
         })
-        //接收消息事件，打开软键盘，设置输入框提文本
+        //接收消息事件，打开软键盘，设置输入框提示文本
         lifecycleOwner.receiveEventLive<String>("input_hint_enter") {
             inputBox.showSoftInput()
             inputBox.hint = it
+        }
+        //接收消息事件，设置被回复段子ID，是否回复子评论
+        lifecycleOwner.receiveEventLive<String>("comment_reply_info") {
+            commentId = it.substringBefore(";")
+            isReplyChild = it.substringAfter(";")
         }
         //发送图标点击事件
         send.clickNoRepeat {
             if (inputBox.text.isNullOrBlank()) {
                 Toaster.show(R.string.please_input_reply)
             } else {
+                //输入框提示文本为默认，则说明是评论段子
                 if (inputBox.hint == context.getString(R.string.comment_hint)) {
                     //发起请求，评论段子，一级评论
                     lifecycleOwner.scopeNetLife {
@@ -110,31 +126,27 @@ class CustomBottomDialogComment(context: Context, private val lifecycleOwner: Li
                         Toaster.show(it.message)
                     }
                 }
-            }
-        }
-        //发送图标点击事件
-        /*send.clickNoRepeat {
-            if (inputBox.text.isNullOrBlank()) {
-                Toaster.show(R.string.please_input_reply)
-            } else {
-                //回复子评论
-                if (inputBox.hint.startsWith(context.getString(R.string.reply))) {
+                //输入框提示文本以“回复：”开头，则说明是评论段子子评论
+                else if (inputBox.hint.startsWith(context.getString(R.string.reply_sub_string_before))) {
                     //发起请求，评论段子子评论
                     lifecycleOwner.scopeNetLife {
-                        val data = Post<List<JokeCommentChildModel>>(NetApi.ChildCommentJokeAPI) {
+                        val data = Post<JokeCommentChildModel>(NetApi.ChildCommentJokeAPI) {
                             param("commentId", commentId)
                             param("content", inputBox.text.toString())
-                            param("isReplyChild", false)
+                            param("isReplyChild", isReplyChild)
                         }.await()
-                        //请求成功，给评论添加子评论数据
-                        (holder.getView<RecyclerView>(R.id.rv).adapter as JokeCommentChildAdapter).addAll(0, data)
+                        Toaster.show(R.string.reply_success)
+                        //清空输入框
+                        inputBox.setText("")
+                        //请求成功，发送消息事件，传递添加数据
+                        sendEvent(data, "reply_child_comment")
                     }.catch {
                         //请求失败，吐司错误信息
                         Toaster.show(it.message)
                     }
                 }
             }
-        }*/
+        }
     }
 
     /** 加载段子内容数据 */

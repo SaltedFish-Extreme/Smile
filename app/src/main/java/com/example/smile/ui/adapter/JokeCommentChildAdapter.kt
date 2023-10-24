@@ -1,10 +1,12 @@
 package com.example.smile.ui.adapter
 
 import android.widget.TextView
+import androidx.lifecycle.LifecycleOwner
 import com.bumptech.glide.Glide
 import com.chad.library.adapter.base.util.addOnDebouncedChildClick
 import com.chad.library.adapter.base.util.setOnDebouncedItemClick
 import com.chad.library.adapter.base.viewholder.QuickViewHolder
+import com.drake.channel.receiveEventLive
 import com.drake.channel.sendEvent
 import com.example.smile.R
 import com.example.smile.app.AppAdapter
@@ -13,7 +15,7 @@ import com.google.android.material.imageview.ShapeableImageView
 import com.hjq.toast.Toaster
 
 /** 段子评论子列表适配器 */
-class JokeCommentChildAdapter(dataList: List<JokeCommentChildModel>) :
+class JokeCommentChildAdapter(dataList: List<JokeCommentChildModel>, commentId: Int, lifecycleOwner: LifecycleOwner) :
     AppAdapter<JokeCommentChildModel>(R.layout.item_joke_comment_child_list, dataList) {
 
     init {
@@ -23,15 +25,24 @@ class JokeCommentChildAdapter(dataList: List<JokeCommentChildModel>) :
         setOnDebouncedItemClick { _, _, _ ->
             sendEvent(context.getString(R.string.comment_hint), "input_hint_enter")
         }
-        //点击评论回复，发送消息事件，传递 回复：被回复人昵称
+        //点击评论回复，发送消息事件
         addOnDebouncedChildClick(R.id.reply) { _, _, pos ->
+            //传递 回复：被回复人昵称
             sendEvent(context.getString(R.string.reply_user, items[pos].commentUser.nickname), "input_hint_enter")
+            //传递 被回复评论ID;是(回复子评论)
+            sendEvent("${items[pos].commentItemId};${true}", "comment_reply_info")
         }
         addOnDebouncedChildClick(R.id.user_avatar) { _, _, pos ->
             Toaster.show("点击头像 $pos")
         }
         addOnDebouncedChildClick(R.id.delete) { _, _, pos ->
             Toaster.show("删除了 $pos")
+        }
+        //接收消息事件，更新子评论列表添加数据
+        lifecycleOwner.receiveEventLive<JokeCommentChildModel>("reply_child_comment") {
+            if (it.commentParentId == commentId) {
+                this@JokeCommentChildAdapter.add(0, it)
+            }
         }
     }
 

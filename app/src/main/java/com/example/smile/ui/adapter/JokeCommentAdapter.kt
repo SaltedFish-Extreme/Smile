@@ -31,9 +31,12 @@ class JokeCommentAdapter(private val lifecycleOwner: LifecycleOwner) :
         setOnDebouncedItemClick { _, _, _ ->
             sendEvent(context.getString(R.string.comment_hint), "input_hint_enter")
         }
-        //点击评论回复，发送消息事件，传递 回复：被回复人昵称
+        //点击评论回复，发送消息事件
         addOnDebouncedChildClick(R.id.reply) { _, _, pos ->
+            //传递 回复：被回复人昵称
             sendEvent(context.getString(R.string.reply_user, items[pos].commentUser.nickname), "input_hint_enter")
+            //传递 被回复评论ID;否(不是回复子评论)
+            sendEvent("${items[pos].commentId};${false}", "comment_reply_info")
         }
         addOnDebouncedChildClick(R.id.user_avatar) { _, _, pos ->
             Toaster.show("点击头像 $pos")
@@ -90,15 +93,15 @@ class JokeCommentAdapter(private val lifecycleOwner: LifecycleOwner) :
                     val data = Post<List<JokeCommentChildModel>>(NetApi.JokeCommentChildListAPI) {
                         param("commentId", item.commentId)
                     }.await()
-                    //设置列表数据适配器，装载数据
-                    holder.getView<RecyclerView>(R.id.rv).adapter = JokeCommentChildAdapter(data)
+                    //设置列表数据适配器，装载数据，传递评论ID和生命周期对象
+                    holder.getView<RecyclerView>(R.id.rv).adapter = JokeCommentChildAdapter(data, item.commentId, lifecycleOwner)
                 }.catch {
                     //请求失败，吐司错误信息
                     Toaster.show(it.message)
                 }
             } else {
-                //没有评论，设置适配器为空
-                holder.getView<RecyclerView>(R.id.rv).adapter = null
+                //没有评论，设置适配器数据为空集合，传递评论ID和生命周期对象
+                holder.getView<RecyclerView>(R.id.rv).adapter = JokeCommentChildAdapter(listOf(), item.commentId, lifecycleOwner)
             }
         }
     }
