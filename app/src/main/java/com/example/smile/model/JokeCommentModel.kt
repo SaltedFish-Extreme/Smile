@@ -17,13 +17,13 @@ data class JokeCommentModel(
         @SerialName("commentId")
         val commentId: Int = 0,
         @SerialName("commentUser")
-        val commentUser: CommentUser = CommentUser(),
+        val commentUser: JokeCommentChildModel.CommentUser = JokeCommentChildModel.CommentUser(),
         @SerialName("content")
         val content: String = "",
         @SerialName("isLike")
         val isLike: Boolean = false,
         @SerialName("itemCommentList")
-        val itemCommentList: List<ItemComment> = listOf(),
+        val itemCommentList: List<JokeCommentChildModel> = listOf(),
         @SerialName("itemCommentNum")
         val itemCommentNum: Int = 0,
         @SerialName("jokeId")
@@ -34,47 +34,5 @@ data class JokeCommentModel(
         val likeNum: Int = 0,
         @SerialName("timeStr")
         val timeStr: String = ""
-    ) {
-        @Serializable
-        data class CommentUser(
-            @SerialName("nickname")
-            val nickname: String = "",
-            @SerialName("userAvatar")
-            val userAvatar: String = "",
-            @SerialName("userId")
-            val userId: Int = 0
-        )
-
-        @Serializable
-        data class ItemComment(
-            @SerialName("commentItemId")
-            val commentItemId: Int = 0,
-            @SerialName("commentParentId")
-            val commentParentId: Int = 0,
-            @SerialName("commentUser")
-            val commentUser: CommentUser = CommentUser(),
-            @SerialName("commentedNickname")
-            val commentedNickname: String = "",
-            @SerialName("commentedUserId")
-            val commentedUserId: Int = 0,
-            @SerialName("content")
-            val content: String = "",
-            @SerialName("isReplyChild")
-            val isReplyChild: Boolean = false,
-            @SerialName("jokeId")
-            val jokeId: Int = 0,
-            @SerialName("timeStr")
-            val timeStr: String = ""
-        ) {
-            @Serializable
-            data class CommentUser(
-                @SerialName("nickname")
-                val nickname: String = "",
-                @SerialName("userAvatar")
-                val userAvatar: String = "",
-                @SerialName("userId")
-                val userId: Int = 0
-            )
-        }
-    }
+    )
 }
