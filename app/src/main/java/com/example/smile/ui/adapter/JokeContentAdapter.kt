@@ -15,8 +15,12 @@ import com.bumptech.glide.Glide
 import com.chad.library.adapter.base.util.addOnDebouncedChildClick
 import com.chad.library.adapter.base.util.setOnDebouncedItemClick
 import com.chad.library.adapter.base.viewholder.QuickViewHolder
+import com.drake.net.Post
+import com.drake.net.utils.scopeNetLife
 import com.example.smile.R
 import com.example.smile.app.AppAdapter
+import com.example.smile.http.NetApi
+import com.example.smile.model.EmptyModel
 import com.example.smile.model.JokeContentModel
 import com.example.smile.ui.dialog.CustomBottomDialogComment
 import com.example.smile.util.decrypt
@@ -28,8 +32,8 @@ import com.example.smile.widget.ext.visible
 import com.example.smile.widget.ext.visibleOrGone
 import com.example.smile.widget.ext.visibleOrInvisible
 import com.example.smile.widget.view.DrawableTextView
-import com.example.smile.widget.view.RevealViewDislike
 import com.example.smile.widget.view.RevealViewLike
+import com.example.smile.widget.view.RevealViewUnlike
 import com.example.smile.widget.view.SmartTextView
 import com.google.android.material.imageview.ShapeableImageView
 import com.hjq.shape.view.ShapeTextView
@@ -150,11 +154,13 @@ class JokeContentAdapter(private val activity: FragmentActivity) : AppAdapter<Jo
             //是否👍
             holder.getView<RevealViewLike>(R.id.reveal_like).isChecked = item.info.isLike
             //是否👎
-            holder.getView<RevealViewDislike>(R.id.reveal_dislike).isChecked = item.info.isUnlike
+            holder.getView<RevealViewUnlike>(R.id.reveal_unlike).isChecked = item.info.isUnlike
             //👍的数量
-            holder.getView<TextView>(R.id.like_num).text = item.info.likeNum.toString()
+            val likeNum = holder.getView<TextView>(R.id.like_num)
+            likeNum.text = item.info.likeNum.toString()
             //👎的数量
-            holder.getView<TextView>(R.id.dislike_num).text = item.info.disLikeNum.toString()
+            val unlikeNum = holder.getView<TextView>(R.id.unlike_num)
+            unlikeNum.text = item.info.disLikeNum.toString()
             //💬的数量
             holder.getView<TextView>(R.id.comment_num).text = item.info.commentNum.toString()
             //分享数量
@@ -163,27 +169,37 @@ class JokeContentAdapter(private val activity: FragmentActivity) : AppAdapter<Jo
             holder.getView<RevealViewLike>(R.id.reveal_like).setOnClickListener(object : RevealViewLike.OnClickListener {
                 //喜欢控件点击事件回调
                 override fun onClick(v: RevealViewLike) {
-                    if (v.isChecked) {
-                        //喜欢
-                        Toaster.show("喜欢！${holder.layoutPosition}")
-                        holder.getView<RevealViewDislike>(R.id.reveal_dislike).isChecked = false
-                    } else {
-                        //取消喜欢
-                        Toaster.show("取消喜欢！${holder.layoutPosition}")
+                    //发起请求，喜欢(取消喜欢)
+                    activity.scopeNetLife {
+                        Post<EmptyModel?>(NetApi.JokeLikeOrCancelAPI) {
+                            param("id", item.joke.jokesId)
+                            param("status", v.isChecked)
+                        }.await()
+                        //请求成功，点👍数+1/-1
+                        "${likeNum.text.toString().toInt() + if (v.isChecked) 1 else -1}".also { likeNum.text = it }
+                    }.catch {
+                        //请求失败，吐司错误信息，点赞操作回滚
+                        Toaster.show(it.message)
+                        v.setChecked(!v.isChecked, true)
                     }
                 }
             })
             //👎操作
-            holder.getView<RevealViewDislike>(R.id.reveal_dislike).setOnClickListener(object : RevealViewDislike.OnClickListener {
+            holder.getView<RevealViewUnlike>(R.id.reveal_unlike).setOnClickListener(object : RevealViewUnlike.OnClickListener {
                 //不喜欢控件点击事件回调
-                override fun onClick(v: RevealViewDislike) {
-                    if (v.isChecked) {
-                        //不喜欢
-                        Toaster.show("不喜欢！${holder.layoutPosition}")
-                        holder.getView<RevealViewLike>(R.id.reveal_like).isChecked = false
-                    } else {
-                        //取消不喜欢
-                        Toaster.show("取消不喜欢！${holder.layoutPosition}")
+                override fun onClick(v: RevealViewUnlike) {
+                    //发起请求，喜欢(取消喜欢)
+                    activity.scopeNetLife {
+                        Post<EmptyModel?>(NetApi.JokeUnLikeOrCancelAPI) {
+                            param("id", item.joke.jokesId)
+                            param("status", v.isChecked)
+                        }.await()
+                        //请求成功，点👎数+1/-1
+                        "${unlikeNum.text.toString().toInt() + if (v.isChecked) 1 else -1}".also { unlikeNum.text = it }
+                    }.catch {
+                        //请求失败，吐司错误信息，点赞操作回滚
+                        Toaster.show(it.message)
+                        v.setChecked(!v.isChecked, true)
                     }
                 }
             })

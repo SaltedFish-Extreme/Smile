@@ -57,6 +57,9 @@ object NetApi {
     /** 段子点赞(取消点赞)API路径 */
     const val JokeLikeOrCancelAPI = "jokes/like"
 
+    /** 段子点踩(取消点踩)API路径 */
+    const val JokeUnLikeOrCancelAPI = "jokes/unlike"
+
     /** 用户关注(取消关注)API路径 */
     const val UserFocusOrCancelAPI = "user/attention"
 

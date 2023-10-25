@@ -15,7 +15,7 @@ import per.goweii.reveallayout.RevealLayout
  *
  * desc: 揭示视图(不喜欢)
  */
-class RevealViewDislike @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) :
+class RevealViewUnlike @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) :
     RevealLayout(context, attrs, defStyleAttr) {
 
     private lateinit var mOnClickListener: OnClickListener
@@ -28,16 +28,16 @@ class RevealViewDislike @JvmOverloads constructor(context: Context, attrs: Attri
         setAllowRevert(false)
     }
 
-    override fun getCheckedLayoutId() = R.layout.view_reveal_dislike_checked
+    override fun getCheckedLayoutId() = R.layout.view_reveal_unlike_checked
 
-    override fun getUncheckedLayoutId() = R.layout.view_reveal_dislike_unchecked
+    override fun getUncheckedLayoutId() = R.layout.view_reveal_unlike_unchecked
 
     fun setOnClickListener(onClickListener: OnClickListener) {
         mOnClickListener = onClickListener
         setOnClickListener {
             if (AppConfig.token.isNotEmpty()) {
                 //登陆过直接走点击事件回调
-                mOnClickListener.onClick(this@RevealViewDislike)
+                mOnClickListener.onClick(this@RevealViewUnlike)
                 context.vibration() //震动一下
             } else {
                 //否则弹吐司并且不能选中
@@ -49,6 +49,6 @@ class RevealViewDislike @JvmOverloads constructor(context: Context, attrs: Attri
     }
 
     interface OnClickListener {
-        fun onClick(v: RevealViewDislike)
+        fun onClick(v: RevealViewUnlike)
     }
 }

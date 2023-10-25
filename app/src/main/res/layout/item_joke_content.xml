@@ -171,13 +171,13 @@
                 android:text="0"
                 android:textSize="@dimen/sp_20" />
 
-            <com.example.smile.widget.view.RevealViewDislike
-                android:id="@+id/reveal_dislike"
+            <com.example.smile.widget.view.RevealViewUnlike
+                android:id="@+id/reveal_unlike"
                 android:layout_width="@dimen/dp_25"
                 android:layout_height="@dimen/dp_25" />
 
             <TextView
-                android:id="@+id/dislike_num"
+                android:id="@+id/unlike_num"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dp_10"
