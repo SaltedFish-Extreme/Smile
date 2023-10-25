@@ -74,4 +74,10 @@ object NetApi {
 
     /** 评论段子子评论API路径 */
     const val ChildCommentJokeAPI = "jokes/comment/item"
+
+    /** 删除主评论API路径 */
+    const val DeleteMainCommentAPI = "jokes/comment/delete"
+
+    /** 删除子评论API路径 */
+    const val DeleteChildCommentAPI = "jokes/comment/item/delete"
 }

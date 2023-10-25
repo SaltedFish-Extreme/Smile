@@ -8,9 +8,13 @@ import com.chad.library.adapter.base.util.setOnDebouncedItemClick
 import com.chad.library.adapter.base.viewholder.QuickViewHolder
 import com.drake.channel.receiveEventLive
 import com.drake.channel.sendEvent
+import com.drake.net.Post
+import com.drake.net.utils.scopeNetLife
 import com.example.smile.R
 import com.example.smile.app.AppAdapter
 import com.example.smile.app.AppConfig
+import com.example.smile.http.NetApi
+import com.example.smile.model.EmptyModel
 import com.example.smile.model.JokeCommentChildModel
 import com.example.smile.widget.ext.visibleOrInvisible
 import com.google.android.material.imageview.ShapeableImageView
@@ -28,7 +32,7 @@ class JokeCommentChildAdapter(dataList: List<JokeCommentChildModel>, commentId: 
         setOnDebouncedItemClick { _, _, _ ->
             sendEvent(context.getString(R.string.comment_hint), "input_hint_enter")
         }
-        //点击评论回复，发送消息事件
+        //点击子评论回复，发送消息事件
         addOnDebouncedChildClick(R.id.reply) { _, _, pos ->
             //传递 回复：被回复人昵称
             sendEvent(context.getString(R.string.reply_user, items[pos].commentUser.nickname), "input_hint_enter")
@@ -38,8 +42,17 @@ class JokeCommentChildAdapter(dataList: List<JokeCommentChildModel>, commentId: 
         addOnDebouncedChildClick(R.id.user_avatar) { _, _, pos ->
             Toaster.show("点击头像 $pos")
         }
+        //点击删除子评论
         addOnDebouncedChildClick(R.id.delete) { _, _, pos ->
-            Toaster.show("删除了 $pos")
+            lifecycleOwner.scopeNetLife {
+                Post<EmptyModel?>(NetApi.DeleteChildCommentAPI) { param("commentId", items[pos].commentItemId) }.await()
+                //删除成功，更新列表
+                Toaster.show(R.string.delete_success)
+                removeAt(pos)
+            }.catch {
+                //请求失败，吐司错误信息
+                Toaster.show(it.message)
+            }
         }
         //接收消息事件，更新子评论列表添加数据
         lifecycleOwner.receiveEventLive<JokeCommentChildModel>("reply_child_comment") {
