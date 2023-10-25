@@ -16,12 +16,18 @@
     <!--Dialog按钮-->
     <string name="sure">确定</string>
     <string name="cancel">取消</string>
+    <!--消息事件传递标签-->
+    <string name="channel_tag_click_search_block">channel_tag_click_search_block</string>
+    <string name="channel_tag_comment_reply_info">channel_tag_comment_reply_info</string>
+    <string name="channel_tag_input_hint_enter">channel_tag_input_hint_enter</string>
+    <string name="channel_tag_reply_child_comment">channel_tag_reply_child_comment</string>
     <!--主页-->
     <string name="home_fragment">首页</string>
     <string name="evenly_fragment">划一划</string>
     <string name="release_fragment">发布</string>
     <string name="information_fragment">消息</string>
     <string name="profile_fragment">我的</string>
+    <string name="wifi_ok">当前网络连接可用</string>
     <string name="no_wifi">当前没有网络连接，请确保已经打开网络</string>
     <string name="save_picture">保存图片</string>
     <string name="save_succeed">保存成功</string>
@@ -354,6 +360,8 @@
     \n\n &#160;&#160;&#160;&#160;&#160;&#160; 7. 对于因不可抗力或因黑客攻击、通讯线路中断等《开口笑》不能控制的原因造成的网络服务中断或其他缺陷， 导致用户不能正常使用《开口笑》，《开口笑》不承担任何责任，但将尽力减少因此给用户造成的损失或影响。
     \n\n &#160;&#160;&#160;&#160;&#160;&#160; 8. 本声明未涉及的问题请参见国家有关法律法规，当本声明与国家有关法律法规冲突时，以国家法律法规为准。
     \n\n &#160;&#160;&#160;&#160;&#160;&#160; 9. 本软件上会发布广告，也会为您提供一些资讯、移动应用。\n\n </string>
+    <string name="follow_success">关注成功</string>
+    <string name="follow_cancel">取消关注</string>
     <!--主页底部导航栏item标题列表-->
     <string-array name="bottom_navigation_title">
         <item>首页</item>

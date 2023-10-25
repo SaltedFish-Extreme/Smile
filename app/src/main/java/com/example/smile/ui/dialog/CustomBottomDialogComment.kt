@@ -90,12 +90,12 @@ class CustomBottomDialogComment(context: Context, private val lifecycleOwner: Li
             true
         })
         //接收消息事件，打开软键盘，设置输入框提示文本
-        lifecycleOwner.receiveEventLive<String>("input_hint_enter") {
+        lifecycleOwner.receiveEventLive<String>(context.getString(R.string.channel_tag_input_hint_enter)) {
             inputBox.showSoftInput()
             inputBox.hint = it
         }
         //接收消息事件，设置被回复段子ID，是否回复子评论
-        lifecycleOwner.receiveEventLive<String>("comment_reply_info") {
+        lifecycleOwner.receiveEventLive<String>(context.getString(R.string.channel_tag_comment_reply_info)) {
             commentId = it.substringBefore(";")
             isReplyChild = it.substringAfter(";")
         }
@@ -139,7 +139,7 @@ class CustomBottomDialogComment(context: Context, private val lifecycleOwner: Li
                         //清空输入框
                         inputBox.setText("")
                         //请求成功，发送消息事件，传递添加数据
-                        sendEvent(data, "reply_child_comment")
+                        sendEvent(data, context.getString(R.string.channel_tag_reply_child_comment))
                     }.catch {
                         //请求失败，吐司错误信息
                         Toaster.show(it.message)

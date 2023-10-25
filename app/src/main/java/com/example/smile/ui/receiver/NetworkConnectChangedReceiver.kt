@@ -28,7 +28,7 @@ class NetworkConnectChangedReceiver : BroadcastReceiver() {
                 //连接可用
                 /*override fun onAvailable(network: Network) {
                     super.onAvailable(network)
-                    Toaster.show("当前网络连接可用")
+                    Toaster.show(R.string.wifi_ok)
                 }*/
 
                 //连接不可用

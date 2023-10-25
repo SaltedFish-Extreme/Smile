@@ -30,14 +30,17 @@ class JokeCommentChildAdapter(dataList: List<JokeCommentChildModel>, commentId: 
         setItemAnimation(AnimationType.ScaleIn)
         //点击列表范围，发送消息事件，传递默认文本
         setOnDebouncedItemClick { _, _, _ ->
-            sendEvent(context.getString(R.string.comment_hint), "input_hint_enter")
+            sendEvent(context.getString(R.string.comment_hint), context.getString(R.string.channel_tag_input_hint_enter))
         }
         //点击子评论回复，发送消息事件
         addOnDebouncedChildClick(R.id.reply) { _, _, pos ->
             //传递 回复：被回复人昵称
-            sendEvent(context.getString(R.string.reply_user, items[pos].commentUser.nickname), "input_hint_enter")
+            sendEvent(
+                context.getString(R.string.reply_user, items[pos].commentUser.nickname),
+                context.getString(R.string.channel_tag_input_hint_enter)
+            )
             //传递 被回复评论ID;是(回复子评论)
-            sendEvent("${items[pos].commentItemId};${true}", "comment_reply_info")
+            sendEvent("${items[pos].commentItemId};${true}", context.getString(R.string.channel_tag_comment_reply_info))
         }
         addOnDebouncedChildClick(R.id.user_avatar) { _, _, pos ->
             Toaster.show("点击头像 $pos")
@@ -54,8 +57,8 @@ class JokeCommentChildAdapter(dataList: List<JokeCommentChildModel>, commentId: 
                 Toaster.show(it.message)
             }
         }
-        //接收消息事件，更新子评论列表添加数据
-        lifecycleOwner.receiveEventLive<JokeCommentChildModel>("reply_child_comment") {
+        //接收消息事件，更新子评论列表添加数据(需和strings.xml中定义的一致)
+        lifecycleOwner.receiveEventLive<JokeCommentChildModel>("channel_tag_reply_child_comment") {
             if (it.commentParentId == commentId) {
                 this@JokeCommentChildAdapter.add(0, it)
             }

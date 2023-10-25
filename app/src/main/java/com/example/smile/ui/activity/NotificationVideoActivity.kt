@@ -116,7 +116,7 @@ class NotificationVideoActivity : AppActivity(), SwipeBackAbility.Direction {
                     param("userId", model.userId)
                 }.await()
                 //请求成功，显示已关注
-                Toaster.show("关注成功")
+                Toaster.show(R.string.follow_success)
                 followed.visible()
                 follow.invisible()
                 //发送消息标签，当回到用户页时，刷新数据
@@ -134,7 +134,7 @@ class NotificationVideoActivity : AppActivity(), SwipeBackAbility.Direction {
                     param("userId", model.userId)
                 }.await()
                 //请求成功，显示关注
-                Toaster.show("取消关注")
+                Toaster.show(R.string.follow_cancel)
                 follow.visible()
                 followed.invisible()
                 //发送消息标签，当回到用户页时，刷新数据

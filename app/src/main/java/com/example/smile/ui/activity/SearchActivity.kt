@@ -150,7 +150,7 @@ class SearchActivity : AppActivity(), SwipeBackAbility.Direction {
         //设置段子内容列表适配器
         rv.adapter = adapter
         //接收消息事件，将传递的搜索内容设置到搜索框上，会自动调用监听输入完成事件，进行搜索
-        receiveEventLive<String>("click_search_block") {
+        receiveEventLive<String>(getString(R.string.channel_tag_click_search_block)) {
             searchBox.setText(it)
         }
     }

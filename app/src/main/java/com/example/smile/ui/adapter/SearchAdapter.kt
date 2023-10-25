@@ -27,7 +27,7 @@ class SearchAdapter(private val type: Int) : AppAdapter<String>(R.layout.item_se
         setItemAnimation(AnimationType.AlphaIn)
         //item点击事件，发送事件，传递点击项内容
         setOnDebouncedItemClick { _, _, position ->
-            sendEvent(items[position], "click_search_block")
+            sendEvent(items[position], context.getString(R.string.channel_tag_click_search_block))
         }
         //历史搜索
         if (type == 1) {
