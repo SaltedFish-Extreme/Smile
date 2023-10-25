@@ -207,6 +207,8 @@ class LoginActivity : AppActivity() {
         showSucceed()
         //设置全局token
         AppConfig.token = data.token
+        //保存当前登录用户ID
+        AppConfig.userId = data.userInfo.userId.toString()
         //销毁主页
         ActivityManager.getInstance().finishActivity(MainActivity::class.java)
         //延迟一秒

@@ -74,6 +74,8 @@ class SettingActivity : AppActivity() {
         logout.clickNoRepeat {
             //清除token
             AppConfig.token = ""
+            //清除用户ID
+            AppConfig.userId = ""
             //因为要对加载中对话框进行隐藏显示操作，不使用scopeDialog作用域
             scopeNetLife {
                 //显示加载中对话框
