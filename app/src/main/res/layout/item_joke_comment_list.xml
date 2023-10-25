@@ -51,27 +51,27 @@
         android:textColor="@color/color_ornaments"
         tools:text="2020/02/20 02:20" />
 
-    <TextView
+    <com.huantansheng.easyphotos.ui.widget.PressedTextView
         android:id="@+id/reply"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@id/comment_time"
         android:layout_alignTop="@id/comment_time"
         android:layout_alignBottom="@id/comment_time"
-        android:layout_marginStart="@dimen/dp_10"
+        android:layout_marginStart="@dimen/dp_15"
         android:layout_toEndOf="@id/comment_time"
         android:text="@string/reply"
         android:textColor="@color/color_omitted"
         android:textSize="@dimen/sp_15" />
 
-    <TextView
+    <com.huantansheng.easyphotos.ui.widget.PressedTextView
         android:id="@+id/delete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@id/comment_time"
         android:layout_alignTop="@id/comment_time"
         android:layout_alignBottom="@id/comment_time"
-        android:layout_marginStart="@dimen/dp_20"
+        android:layout_marginStart="@dimen/dp_15"
         android:layout_toEndOf="@id/reply"
         android:text="@string/delete"
         android:textColor="@color/color_concern"
