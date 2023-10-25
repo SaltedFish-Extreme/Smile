@@ -10,9 +10,12 @@ import com.drake.channel.receiveEventLive
 import com.drake.channel.sendEvent
 import com.example.smile.R
 import com.example.smile.app.AppAdapter
+import com.example.smile.app.AppConfig
 import com.example.smile.model.JokeCommentChildModel
+import com.example.smile.widget.ext.visibleOrInvisible
 import com.google.android.material.imageview.ShapeableImageView
 import com.hjq.toast.Toaster
+import com.huantansheng.easyphotos.ui.widget.PressedTextView
 
 /** 段子评论子列表适配器 */
 class JokeCommentChildAdapter(dataList: List<JokeCommentChildModel>, commentId: Int, lifecycleOwner: LifecycleOwner) :
@@ -69,6 +72,8 @@ class JokeCommentChildAdapter(dataList: List<JokeCommentChildModel>, commentId: 
             holder.getView<TextView>(R.id.user_comment).text = item.content
             //评论时间
             holder.getView<TextView>(R.id.comment_time).text = item.timeStr
+            //显示删除按钮
+            holder.getView<PressedTextView>(R.id.delete).visibleOrInvisible(item.commentUser.userId.toString() == AppConfig.userId)
         }
     }
 }

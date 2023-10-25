@@ -12,13 +12,16 @@ import com.drake.net.Post
 import com.drake.net.utils.scopeNetLife
 import com.example.smile.R
 import com.example.smile.app.AppAdapter
+import com.example.smile.app.AppConfig
 import com.example.smile.http.NetApi
 import com.example.smile.model.EmptyModel
 import com.example.smile.model.JokeCommentChildModel
 import com.example.smile.model.JokeCommentModel
+import com.example.smile.widget.ext.visibleOrInvisible
 import com.example.smile.widget.view.RevealViewLikeComment
 import com.google.android.material.imageview.ShapeableImageView
 import com.hjq.toast.Toaster
+import com.huantansheng.easyphotos.ui.widget.PressedTextView
 
 /** 段子评论列表适配器 */
 class JokeCommentAdapter(private val lifecycleOwner: LifecycleOwner) :
@@ -67,6 +70,8 @@ class JokeCommentAdapter(private val lifecycleOwner: LifecycleOwner) :
             //❤数量
             val likeNum = holder.getView<TextView>(R.id.like_num)
             likeNum.text = item.likeNum.toString()
+            //显示删除按钮
+            holder.getView<PressedTextView>(R.id.delete).visibleOrInvisible(item.commentUser.userId.toString() == AppConfig.userId)
             //👍评论
             holder.getView<RevealViewLikeComment>(R.id.reveal_like).apply {
                 setOnClickListener(object : RevealViewLikeComment.OnClickListener {
