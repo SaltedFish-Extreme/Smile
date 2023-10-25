@@ -188,7 +188,7 @@ class JokeContentAdapter(private val activity: FragmentActivity) : AppAdapter<Jo
             holder.getView<RevealViewUnlike>(R.id.reveal_unlike).setOnClickListener(object : RevealViewUnlike.OnClickListener {
                 //不喜欢控件点击事件回调
                 override fun onClick(v: RevealViewUnlike) {
-                    //发起请求，喜欢(取消喜欢)
+                    //发起请求，不喜欢(取消不喜欢)
                     activity.scopeNetLife {
                         Post<EmptyModel?>(NetApi.JokeUnLikeOrCancelAPI) {
                             param("id", item.joke.jokesId)
@@ -197,7 +197,7 @@ class JokeContentAdapter(private val activity: FragmentActivity) : AppAdapter<Jo
                         //请求成功，点👎数+1/-1
                         "${unlikeNum.text.toString().toInt() + if (v.isChecked) 1 else -1}".also { unlikeNum.text = it }
                     }.catch {
-                        //请求失败，吐司错误信息，点赞操作回滚
+                        //请求失败，吐司错误信息，点踩操作回滚
                         Toaster.show(it.message)
                         v.setChecked(!v.isChecked, true)
                     }
