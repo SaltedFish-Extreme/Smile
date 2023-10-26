@@ -93,6 +93,36 @@ class JokeContentAdapter(private val activity: FragmentActivity) : AppAdapter<Jo
         addOnDebouncedChildClick(R.id.omitted) { _, _, position ->
             Toaster.show("$position")
         }
+        //点击关注文本，关注用户
+        addOnDebouncedChildClick(R.id.concern) { _, view, position ->
+            activity.scopeNetLife {
+                Post<EmptyModel?>(NetApi.UserFocusOrCancelAPI) {
+                    param("status", 1)
+                    param("userId", items[position].user.userId)
+                }.await()
+                //请求成功，显示已关注
+                view.invisible()
+                recyclerView.layoutManager?.findViewByPosition(position)?.findViewById<ShapeTextView>(R.id.followed)?.visible()
+            }.catch {
+                //请求失败，吐司错误信息
+                Toaster.show(it.message)
+            }
+        }
+        //点击已关注文本，取消关注用户
+        addOnDebouncedChildClick(R.id.followed) { _, view, position ->
+            activity.scopeNetLife {
+                Post<EmptyModel?>(NetApi.UserFocusOrCancelAPI) {
+                    param("status", 0)
+                    param("userId", items[position].user.userId)
+                }.await()
+                //请求成功，显示关注
+                view.invisible()
+                recyclerView.layoutManager?.findViewByPosition(position)?.findViewById<DrawableTextView>(R.id.concern)?.visible()
+            }.catch {
+                //请求失败，吐司错误信息
+                Toaster.show(it.message)
+            }
+        }
         //长按段子内容，显示PopupWindow
         addOnItemChildLongClickListener(R.id.joke_text) { _, view, position ->
             //设置当前段子位置
