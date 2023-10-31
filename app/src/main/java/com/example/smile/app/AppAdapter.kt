@@ -13,7 +13,8 @@ import com.chad.library.adapter.base.viewholder.QuickViewHolder
  *
  * 默认实现onCreateViewHolder，使用时需传递数据源泛型和布局资源id参数，数据集合可传可不传，需重写onBindViewHolder设置item数据，布局资源id不传必须重写onCreateViewHolder方法
  */
-abstract class AppAdapter<T>(@LayoutRes private val layoutResId: Int = 0, data: List<T> = emptyList()) : BaseQuickAdapter<T, QuickViewHolder>(data) {
+abstract class AppAdapter<T : Any>(@LayoutRes private val layoutResId: Int = 0, data: List<T> = emptyList()) :
+    BaseQuickAdapter<T, QuickViewHolder>(data) {
     override fun onCreateViewHolder(context: Context, parent: ViewGroup, viewType: Int): QuickViewHolder {
         return QuickViewHolder(layoutResId, parent)
     }
