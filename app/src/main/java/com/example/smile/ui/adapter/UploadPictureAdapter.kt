@@ -13,6 +13,7 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.example.smile.R
 import com.example.smile.ui.adapter.UploadPictureAdapter.MainVH
+import com.example.smile.widget.ext.clickNoRepeat
 import com.hjq.toast.Toaster
 import com.huantansheng.easyphotos.models.album.entity.Photo
 import com.wgw.photo.preview.PhotoPreview
@@ -55,7 +56,7 @@ class UploadPictureAdapter(activity: FragmentActivity, private val dataList: Arr
             true
         }
         //单击图片预览
-        holder.ivPhoto.setOnClickListener {
+        holder.ivPhoto.clickNoRepeat {
             PhotoPreview.with(mActivity).defaultShowPosition(position).sources(dataList.map { it.path })
                 .shapeTransformType(ShapeTransformType.ROUND_RECT).shapeCornerRadius(10).build().show(it)
         }

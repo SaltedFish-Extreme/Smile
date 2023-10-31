@@ -28,6 +28,7 @@ import com.example.smile.util.LottieAnimationUtil.getLottieAnimationList
 import com.example.smile.util.LottieAnimationUtil.getLottieDrawable
 import com.example.smile.util.decrypt
 import com.example.smile.util.vibration
+import com.example.smile.widget.ext.clickNoRepeat
 import com.google.android.material.bottomnavigation.BottomNavigationItemView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -78,7 +79,7 @@ class MainActivity : AppActivity() {
         setContentView(R.layout.activity_main)
         //初始化底部导航栏
         initBottomNavigationView()
-        fab.setOnClickListener {
+        fab.clickNoRepeat {
             //震动一下
             vibration()
             openActivity<ReleaseActivity>()

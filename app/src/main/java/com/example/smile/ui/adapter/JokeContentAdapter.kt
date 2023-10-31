@@ -24,6 +24,7 @@ import com.example.smile.model.EmptyModel
 import com.example.smile.model.JokeContentModel
 import com.example.smile.ui.dialog.CustomBottomDialogComment
 import com.example.smile.util.decrypt
+import com.example.smile.widget.ext.clickNoRepeat
 import com.example.smile.widget.ext.copyJoke
 import com.example.smile.widget.ext.gone
 import com.example.smile.widget.ext.invisible
@@ -74,7 +75,7 @@ class JokeContentAdapter(private val activity: FragmentActivity) : AppAdapter<Jo
             //弹窗文本点击事件
             view.findViewById<ShapeTextView>(R.id.save_picture).apply {
                 text = context.getString(R.string.copy_joke)
-                setOnClickListener {
+                clickNoRepeat {
                     this@JokeContentAdapter.getItem(location)?.let { context.copyJoke(it.joke.content) }
                     dismiss()
                 }

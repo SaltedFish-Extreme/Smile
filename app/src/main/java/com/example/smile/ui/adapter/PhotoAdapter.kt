@@ -23,6 +23,7 @@ import com.example.smile.R
 import com.example.smile.app.AppAdapter
 import com.example.smile.util.PhotoUtils
 import com.example.smile.util.vibration
+import com.example.smile.widget.ext.clickNoRepeat
 import com.hjq.permissions.Permission
 import com.hjq.permissions.XXPermissions
 import com.hjq.shape.view.ShapeTextView
@@ -67,7 +68,7 @@ class PhotoAdapter(
                 true
             }
             //弹窗文本点击事件，保存图片
-            view.findViewById<ShapeTextView>(R.id.save_picture).setOnClickListener {
+            view.findViewById<ShapeTextView>(R.id.save_picture).clickNoRepeat {
                 savePicture(location)
                 dismiss()
             }

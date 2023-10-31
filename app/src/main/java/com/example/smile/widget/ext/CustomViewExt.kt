@@ -203,7 +203,7 @@ fun MagicIndicator.bindViewPager2(
                 //未选中颜色
                 normalColor = resources.getColor(R.color.color_viewpager_unselected, null)
                 //点击事件
-                setOnClickListener {
+                clickNoRepeat {
                     viewPager.currentItem = index
                     action.invoke(index)
                 }
@@ -292,7 +292,7 @@ fun RecyclerView.initFloatBtn(floatBtn: FloatingActionButton) {
             }
         }
     })
-    floatBtn.setOnClickListener {
+    floatBtn.clickNoRepeat {
         val layoutManager = layoutManager as LinearLayoutManager
         //如果当前rv的最后一个视图位置的索引大于等于20，则迅速返回顶部，否则带有滚动动画效果返回到顶部
         if (layoutManager.findLastVisibleItemPosition() >= 20) {
@@ -335,7 +335,7 @@ fun NestedScrollView.initFloatBtn(floatBtn: FloatingActionButton) {
             floatBtn.visibility = View.INVISIBLE
         }
     }
-    floatBtn.setOnClickListener {
+    floatBtn.clickNoRepeat {
         //将NestedScrollView平滑滚动到顶部500毫秒
         smoothScrollTo(0, 0, 500)
     }

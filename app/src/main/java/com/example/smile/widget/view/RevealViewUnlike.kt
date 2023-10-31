@@ -7,6 +7,7 @@ import com.example.smile.R
 import com.example.smile.app.AppConfig
 import com.example.smile.ui.activity.LoginActivity
 import com.example.smile.util.vibration
+import com.example.smile.widget.ext.clickNoRepeat
 import com.hjq.toast.Toaster
 import per.goweii.reveallayout.RevealLayout
 
@@ -34,7 +35,7 @@ class RevealViewUnlike @JvmOverloads constructor(context: Context, attrs: Attrib
 
     fun setOnClickListener(onClickListener: OnClickListener) {
         mOnClickListener = onClickListener
-        setOnClickListener {
+        clickNoRepeat {
             if (AppConfig.token.isNotEmpty()) {
                 //登陆过直接走点击事件回调
                 mOnClickListener.onClick(this@RevealViewUnlike)

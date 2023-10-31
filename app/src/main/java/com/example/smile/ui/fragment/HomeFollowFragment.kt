@@ -15,6 +15,7 @@ import com.example.smile.app.AppFragment
 import com.example.smile.http.NetApi.HomeRecommendFollowAPI
 import com.example.smile.model.RecommendFollowModel
 import com.example.smile.ui.adapter.RecommendFollowAdapter
+import com.example.smile.widget.ext.clickNoRepeat
 import com.example.smile.widget.view.DrawableTextView
 import com.hjq.toast.Toaster
 import com.scwang.smart.refresh.header.MaterialHeader
@@ -44,7 +45,7 @@ class HomeFollowFragment : AppFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //点击刷新按钮执行刷新操作(未登录时可用)
-        if (AppConfig.token.isEmpty()) refresh.setOnClickListener { pageRecommendUser.refresh() }
+        if (AppConfig.token.isEmpty()) refresh.clickNoRepeat { pageRecommendUser.refresh() }
         //设置刷新头为标准样式
         pageRecommendUser.setRefreshHeader(MaterialHeader(context))
     }

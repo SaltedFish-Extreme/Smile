@@ -66,7 +66,7 @@ class FeedbackActivity : AppActivity() {
         //添加脚布局
         feedbackImage.addFooterView<View>(R.layout.item_add_image)
         //脚布局点击监听，跳转相册图片选择器，上传图片
-        feedbackImage.getFooterViews().forEach { it?.setOnClickListener { albumUploadImage(photoList, adapter, feedbackImage) } }
+        feedbackImage.getFooterViews().forEach { it?.clickNoRepeat { albumUploadImage(photoList, adapter, feedbackImage) } }
         //点击提交按钮，上传反馈信息
         feedbackBtn.clickNoRepeat {
             scopeNetLife {
