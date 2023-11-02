@@ -29,7 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end"
         android:visibility="invisible"
-        app:srcCompat="@drawable/ic_close"
+        app:srcCompat="@drawable/ic_delete"
         app:tint="@color/color_ic_bg_tint"
         tools:visibility="visible" />
 </FrameLayout>
