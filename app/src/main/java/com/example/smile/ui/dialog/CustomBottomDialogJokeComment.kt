@@ -39,7 +39,7 @@ import com.hjq.toast.Toaster
  * @property lifecycleOwner 生命周期管理器
  * @property jokeId 段子ID
  */
-class CustomBottomDialogComment(context: Context, private val lifecycleOwner: LifecycleOwner, private val jokeId: String) :
+class CustomBottomDialogJokeComment(context: Context, private val lifecycleOwner: LifecycleOwner, private val jokeId: String) :
     BottomDialog(context, R.style.AndoLoadingDialog) {
 
     private val ll: LinearLayout by lazy { findViewById(R.id.ll) }

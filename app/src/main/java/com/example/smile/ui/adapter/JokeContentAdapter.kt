@@ -22,7 +22,7 @@ import com.example.smile.app.AppAdapter
 import com.example.smile.http.NetApi
 import com.example.smile.model.EmptyModel
 import com.example.smile.model.JokeContentModel
-import com.example.smile.ui.dialog.CustomBottomDialogComment
+import com.example.smile.ui.dialog.CustomBottomDialogJokeComment
 import com.example.smile.util.decrypt
 import com.example.smile.widget.ext.clickNoRepeat
 import com.example.smile.widget.ext.copyJoke
@@ -237,7 +237,7 @@ class JokeContentAdapter(private val activity: FragmentActivity) : AppAdapter<Jo
             //点击查看评论
             holder.getView<PressedImageView>(R.id.reveal_comment).setOnClickListener {
                 //底部弹窗(BottomDialog)
-                val bottomDialog = CustomBottomDialogComment(context, activity, item.joke.jokesId.toString())
+                val bottomDialog = CustomBottomDialogJokeComment(context, activity, item.joke.jokesId.toString())
                 DialogManager.replaceDialog(bottomDialog).setCancelable(true)
                     .setCanceledOnTouchOutside(true).setDimmedBehind(true).show()
             }

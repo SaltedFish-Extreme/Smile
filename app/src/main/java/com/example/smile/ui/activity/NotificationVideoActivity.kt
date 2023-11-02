@@ -14,7 +14,7 @@ import com.example.smile.app.AppActivity
 import com.example.smile.http.NetApi
 import com.example.smile.model.EmptyModel
 import com.example.smile.model.NotificationVideoModel
-import com.example.smile.ui.dialog.CustomBottomDialogComment
+import com.example.smile.ui.dialog.CustomBottomDialogJokeComment
 import com.example.smile.util.decrypt
 import com.example.smile.widget.ext.clickNoRepeat
 import com.example.smile.widget.ext.invisible
@@ -147,7 +147,7 @@ class NotificationVideoActivity : AppActivity(), SwipeBackAbility.Direction {
         //查看评论
         comment.clickNoRepeat {
             //底部弹窗(BottomDialog)
-            val bottomDialog = CustomBottomDialogComment(this, this, model.jokesId.toString())
+            val bottomDialog = CustomBottomDialogJokeComment(this, this, model.jokesId.toString())
             DialogManager.replaceDialog(bottomDialog).setCancelable(true)
                 .setCanceledOnTouchOutside(true).setDimmedBehind(true).show()
         }
