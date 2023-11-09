@@ -51,7 +51,7 @@ class NotificationVideoActivity : AppActivity(), SwipeBackAbility.Direction {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_notification_video)
         //Glide显示头像
-        Glide.with(this).load(model.avatar).placeholder(R.drawable.ic_account).into(userAvatar)
+        Glide.with(this).load(model.avatar).placeholder(R.drawable.account).into(userAvatar)
         //设置关注图标
         if (model.isAttention) {
             followed.visible()

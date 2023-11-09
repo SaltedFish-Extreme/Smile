@@ -70,9 +70,9 @@ class JokeCommentChildAdapter(dataList: List<JokeCommentChildModel>, commentId: 
             //用户头像
             holder.getView<ShapeableImageView>(R.id.user_avatar).apply {
                 if (item.commentUser.userAvatar.isNotEmpty()) {
-                    Glide.with(context).load(item.commentUser.userAvatar).placeholder(R.drawable.ic_account).into(this)
+                    Glide.with(context).load(item.commentUser.userAvatar).placeholder(R.drawable.account).into(this)
                 } else {
-                    Glide.with(context).load(R.drawable.ic_account).into(this)
+                    Glide.with(context).load(R.drawable.account).into(this)
                 }
             }
             //用户昵称

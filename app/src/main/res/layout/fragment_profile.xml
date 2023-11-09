@@ -26,7 +26,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:shapeAppearance="@style/CircleStyle"
-                app:srcCompat="@drawable/ic_account" />
+                app:srcCompat="@drawable/account" />
 
             <TextView
                 android:id="@+id/user_nickname"
@@ -173,25 +173,25 @@
                 <com.example.smile.widget.view.DrawableTextView
                     android:id="@+id/post"
                     style="@style/ProfileOrderIconStyle"
-                    android:drawableTop="@drawable/ic_post"
+                    android:drawableTop="@drawable/icon_post"
                     android:text="@string/post" />
 
                 <com.example.smile.widget.view.DrawableTextView
                     android:id="@+id/comment"
                     style="@style/ProfileOrderIconStyle"
-                    android:drawableTop="@drawable/ic_comment"
+                    android:drawableTop="@drawable/icon_comment"
                     android:text="@string/comment" />
 
                 <com.example.smile.widget.view.DrawableTextView
                     android:id="@+id/thumbs_up"
                     style="@style/ProfileOrderIconStyle"
-                    android:drawableTop="@drawable/ic_like"
+                    android:drawableTop="@drawable/icon_like"
                     android:text="@string/thumbs_up" />
 
                 <com.example.smile.widget.view.DrawableTextView
                     android:id="@+id/collect"
                     style="@style/ProfileOrderIconStyle"
-                    android:drawableTop="@drawable/ic_collect"
+                    android:drawableTop="@drawable/icon_collect"
                     android:text="@string/collect" />
 
             </LinearLayout>

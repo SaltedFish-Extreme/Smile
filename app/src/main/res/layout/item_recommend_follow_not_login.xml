@@ -13,7 +13,7 @@
         android:layout_height="@dimen/dp_50"
         android:scaleType="centerCrop"
         app:shapeAppearance="@style/CircleStyle"
-        tools:srcCompat="@drawable/ic_account" />
+        tools:srcCompat="@drawable/account" />
 
     <TextView
         android:id="@+id/user_nickname"

@@ -142,9 +142,9 @@ class JokeContentAdapter(private val activity: FragmentActivity) : AppAdapter<Jo
             //用户头像
             holder.getView<ShapeableImageView>(R.id.user_avatar).run {
                 if (item.user.avatar.isNotEmpty()) {
-                    Glide.with(context).load(item.user.avatar).placeholder(R.drawable.ic_account).into(this)
+                    Glide.with(context).load(item.user.avatar).placeholder(R.drawable.account).into(this)
                 } else {
-                    Glide.with(context).load(R.drawable.ic_account).into(this)
+                    Glide.with(context).load(R.drawable.account).into(this)
                 }
             }
             //用户昵称
