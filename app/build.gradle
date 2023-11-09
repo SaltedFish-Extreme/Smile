@@ -80,7 +80,7 @@ android {
 
     // kotlin解释器版本
     kotlinOptions {
-        jvmTarget = '17'
+        jvmTarget = JavaVersion.VERSION_17
     }
 
     // 设置存放 so 文件的目录
@@ -129,7 +129,7 @@ dependencies {
     //RecyclerView https://github.com/liangjingkanji/BRV
     implementation 'com.github.liangjingkanji:BRV:1.5.4'
     //Adapter https://github.com/CymChad/BaseRecyclerViewAdapterHelper
-    implementation 'io.github.cymchad:BaseRecyclerViewAdapterHelper:4.0.2'
+    implementation 'io.github.cymchad:BaseRecyclerViewAdapterHelper:4.0.3'
     //智能刷新 经典刷新头&谷歌刷新头 https://github.com/scwang90/SmartRefreshLayout
     implementation 'io.github.scwang90:refresh-header-classics:2.1.0'
     implementation 'io.github.scwang90:refresh-header-material:2.1.0'
