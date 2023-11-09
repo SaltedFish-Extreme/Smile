@@ -23,6 +23,7 @@ import com.example.smile.http.NetApi
 import com.example.smile.model.EmptyModel
 import com.example.smile.model.JokeContentModel
 import com.example.smile.ui.dialog.CustomBottomDialogJokeComment
+import com.example.smile.ui.dialog.CustomBottomDialogJokeShare
 import com.example.smile.util.decrypt
 import com.example.smile.widget.ext.clickNoRepeat
 import com.example.smile.widget.ext.copyJoke
@@ -238,6 +239,19 @@ class JokeContentAdapter(private val activity: FragmentActivity) : AppAdapter<Jo
             holder.getView<PressedImageView>(R.id.reveal_comment).clickNoRepeat {
                 //底部弹窗(BottomDialog)
                 val bottomDialog = CustomBottomDialogJokeComment(context, activity, item.joke.jokesId.toString())
+                DialogManager.replaceDialog(bottomDialog).setCancelable(true)
+                    .setCanceledOnTouchOutside(true).setDimmedBehind(true).show()
+            }
+            //点击分享段子
+            holder.getView<PressedImageView>(R.id.reveal_share).clickNoRepeat {
+                //底部弹窗(BottomDialog)
+                val bottomDialog = if (item.joke.type == 2) {
+                    //图片段子
+                    CustomBottomDialogJokeShare(context, activity, item.joke.jokesId.toString(), 1, item.joke.content, item.joke.imageUrl)
+                } else {
+                    //文本段子
+                    CustomBottomDialogJokeShare(context, activity, item.joke.jokesId.toString(), 0, item.joke.content)
+                }
                 DialogManager.replaceDialog(bottomDialog).setCancelable(true)
                     .setCanceledOnTouchOutside(true).setDimmedBehind(true).show()
             }

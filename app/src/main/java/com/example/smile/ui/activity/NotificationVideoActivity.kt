@@ -15,6 +15,7 @@ import com.example.smile.http.NetApi
 import com.example.smile.model.EmptyModel
 import com.example.smile.model.NotificationVideoModel
 import com.example.smile.ui.dialog.CustomBottomDialogJokeComment
+import com.example.smile.ui.dialog.CustomBottomDialogJokeShare
 import com.example.smile.util.decrypt
 import com.example.smile.widget.ext.clickNoRepeat
 import com.example.smile.widget.ext.invisible
@@ -151,8 +152,13 @@ class NotificationVideoActivity : AppActivity(), SwipeBackAbility.Direction {
             DialogManager.replaceDialog(bottomDialog).setCancelable(true)
                 .setCanceledOnTouchOutside(true).setDimmedBehind(true).show()
         }
+        //分享段子
         share.clickNoRepeat {
-            Toaster.show(shareNum.text)
+            //底部弹窗(BottomDialog)
+            //视频段子
+            val bottomDialog = CustomBottomDialogJokeShare(this, this, model.jokesId.toString(), 2, model.content, model.videoUrl)
+            DialogManager.replaceDialog(bottomDialog).setCancelable(true)
+                .setCanceledOnTouchOutside(true).setDimmedBehind(true).show()
         }
     }
 

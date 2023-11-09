@@ -21,4 +21,5 @@
     <!--隐私政策提醒颜色--><color name="privacy_policy_reminder_colors">@color/dark_orange</color>
     <!--服务协议提醒颜色--><color name="service_agreement_reminder_color">@color/lime</color>
     <!--登陆辅助颜色--><color name="color_login_auxiliary">@color/medium_purple</color>
+    <!--白黑颜色--><color name="color_white_black">@color/black</color>
 </resources>
