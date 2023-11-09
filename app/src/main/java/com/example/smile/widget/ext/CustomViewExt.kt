@@ -1,19 +1,23 @@
 package com.example.smile.widget.ext
 
+import ando.dialog.core.DialogManager.dismiss
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.graphics.Color
+import android.graphics.drawable.Drawable
 import android.text.Html
 import android.text.Spanned
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AccelerateInterpolator
 import android.view.animation.DecelerateInterpolator
 import android.view.inputmethod.InputMethodManager
+import android.widget.TextView
 import androidx.annotation.ColorInt
 import androidx.annotation.FloatRange
 import androidx.annotation.IntRange
@@ -418,9 +422,27 @@ fun Activity.albumUploadImage(photoList: ArrayList<Photo>, adapter: UploadPictur
  */
 fun Context.copyJoke(text: String) {
     val clipboard: ClipboardManager = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-    val clip = ClipData.newPlainText("copy_text", text)
+    val clip = ClipData.newPlainText(getString(R.string.tag_copy_joke_content), text)
     clipboard.setPrimaryClip(clip)
     Toaster.show(R.string.copy_succeed)
     //顺便震动一下
     vibration()
+}
+
+/** TextView点击标题右侧图标关闭弹窗 */
+@SuppressLint("ClickableViewAccessibility")
+fun TextView.pressRightClose() {
+    //按下标题右侧图标关闭弹窗
+    setOnTouchListener(View.OnTouchListener { _, event ->
+        //getCompoundDrawables()得到一个长度为4的数组，分别表示左右上下四张图片
+        //如果右边没有图片，不再处理
+        val drawable: Drawable = compoundDrawables[2] ?: return@OnTouchListener false
+        //如果不是按下事件，不再处理
+        if (event.action != MotionEvent.ACTION_DOWN) return@OnTouchListener false
+        //取右侧drawable位置
+        if (event.x > (width - (drawable.intrinsicWidth / 3 * 2))) {
+            dismiss()
+        }
+        true
+    })
 }

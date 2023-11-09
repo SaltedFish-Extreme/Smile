@@ -38,6 +38,7 @@
     <string name="app_notification_title">开口笑推送段子</string>
     <string name="look">去看看</string>
     <string name="at">\&#064;%s</string>
+    <string name="tag_copy_joke_content">smile_copy_joke_text</string>
     <string name="get_user_info">getUserInfo</string>
     <!--首页-->
     <string name="concern">关注</string>
@@ -67,6 +68,13 @@
     <string name="please_input_reply">请输入回复内容</string>
     <string name="reply_success">回复成功</string>
     <string name="reply_sub_string_before">回复：</string>
+    <string name="follow_success">关注成功</string>
+    <string name="follow_cancel">取消关注</string>
+    <string name="share_joke">分享段子</string>
+    <string name="copy">复制</string>
+    <string name="save">保存</string>
+    <string name="report">举报</string>
+    <string name="detail">详情</string>
     <!--个人页-->
     <string name="log_in_register">登录/注册</string>
     <string name="signature_tip">快来开始你的创作吧~</string>
@@ -360,8 +368,6 @@
     \n\n &#160;&#160;&#160;&#160;&#160;&#160; 7. 对于因不可抗力或因黑客攻击、通讯线路中断等《开口笑》不能控制的原因造成的网络服务中断或其他缺陷， 导致用户不能正常使用《开口笑》，《开口笑》不承担任何责任，但将尽力减少因此给用户造成的损失或影响。
     \n\n &#160;&#160;&#160;&#160;&#160;&#160; 8. 本声明未涉及的问题请参见国家有关法律法规，当本声明与国家有关法律法规冲突时，以国家法律法规为准。
     \n\n &#160;&#160;&#160;&#160;&#160;&#160; 9. 本软件上会发布广告，也会为您提供一些资讯、移动应用。\n\n </string>
-    <string name="follow_success">关注成功</string>
-    <string name="follow_cancel">取消关注</string>
     <!--主页底部导航栏item标题列表-->
     <string-array name="bottom_navigation_title">
         <item>首页</item>

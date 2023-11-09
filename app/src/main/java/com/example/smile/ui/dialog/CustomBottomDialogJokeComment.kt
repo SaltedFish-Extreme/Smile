@@ -3,10 +3,7 @@ package com.example.smile.ui.dialog
 import ando.dialog.usage.BottomDialog
 import android.annotation.SuppressLint
 import android.content.Context
-import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.view.MotionEvent
-import android.view.View.OnTouchListener
 import android.view.Window
 import android.widget.LinearLayout
 import androidx.lifecycle.LifecycleOwner
@@ -27,6 +24,7 @@ import com.example.smile.model.JokeCommentChildModel
 import com.example.smile.model.JokeCommentModel
 import com.example.smile.ui.adapter.JokeCommentAdapter
 import com.example.smile.widget.ext.clickNoRepeat
+import com.example.smile.widget.ext.pressRightClose
 import com.example.smile.widget.view.DrawableTextView
 import com.example.smile.widget.view.ScaleImageView
 import com.hjq.shape.view.ShapeEditText
@@ -77,18 +75,7 @@ class CustomBottomDialogJokeComment(context: Context, private val lifecycleOwner
             float = llInput, transition = ll, editText = inputBox, setPadding = true
         )
         //按下标题右侧图标关闭弹窗
-        commentTitle.setOnTouchListener(OnTouchListener { _, event ->
-            //getCompoundDrawables()得到一个长度为4的数组，分别表示左右上下四张图片
-            //如果右边没有图片，不再处理
-            val drawable: Drawable = commentTitle.compoundDrawables[2] ?: return@OnTouchListener false
-            //如果不是按下事件，不再处理
-            if (event.action != MotionEvent.ACTION_DOWN) return@OnTouchListener false
-            //取右侧drawable位置
-            if (event.x > (commentTitle.width - (drawable.intrinsicWidth / 3 * 2))) {
-                dismiss()
-            }
-            true
-        })
+        commentTitle.pressRightClose()
         //接收消息事件，打开软键盘，设置输入框提示文本
         lifecycleOwner.receiveEventLive<String>(context.getString(R.string.channel_tag_input_hint_enter)) {
             inputBox.showSoftInput()

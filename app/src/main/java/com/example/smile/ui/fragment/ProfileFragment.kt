@@ -80,7 +80,7 @@ class ProfileFragment : AppFragment() {
             //获取用户信息数据
             val userInfoData = Post<UserInfoModel>(UserInfoAPI).await()
             //Glide显示头像
-            Glide.with(requireContext()).load(userInfoData.user.avatar).placeholder(R.drawable.ic_account)
+            Glide.with(requireContext()).load(userInfoData.user.avatar).placeholder(R.drawable.account)
                 .transition(DrawableTransitionOptions.withCrossFade(100)).into(userAvatar)
             //显示昵称
             userNickname.text = userInfoData.user.nickname

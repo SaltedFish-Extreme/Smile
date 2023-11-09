@@ -235,7 +235,7 @@ class JokeContentAdapter(private val activity: FragmentActivity) : AppAdapter<Jo
                 }
             })
             //点击查看评论
-            holder.getView<PressedImageView>(R.id.reveal_comment).setOnClickListener {
+            holder.getView<PressedImageView>(R.id.reveal_comment).clickNoRepeat {
                 //底部弹窗(BottomDialog)
                 val bottomDialog = CustomBottomDialogJokeComment(context, activity, item.joke.jokesId.toString())
                 DialogManager.replaceDialog(bottomDialog).setCancelable(true)
