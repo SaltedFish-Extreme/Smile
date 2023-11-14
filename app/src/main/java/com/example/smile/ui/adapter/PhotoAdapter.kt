@@ -92,12 +92,6 @@ class PhotoAdapter(
                     val viewByPosition: View? = recyclerView.layoutManager?.findViewByPosition(pos)
                     return@show viewByPosition?.findViewById<View>(R.id.joke_image)
                 }// 指定缩略图
-
-        }
-        //长按保存图片
-        setOnItemLongClickListener { _, _, position ->
-            savePicture(position)
-            true
         }
     }
 

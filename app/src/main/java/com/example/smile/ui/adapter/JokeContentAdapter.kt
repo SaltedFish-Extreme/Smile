@@ -1,12 +1,7 @@
 package com.example.smile.ui.adapter
 
 import ando.dialog.core.DialogManager
-import android.view.Gravity
-import android.view.MotionEvent
-import android.view.View
-import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.PopupWindow
 import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.fragment.app.FragmentActivity
@@ -26,10 +21,8 @@ import com.example.smile.ui.dialog.CustomBottomDialogJokeComment
 import com.example.smile.ui.dialog.CustomBottomDialogJokeShare
 import com.example.smile.util.decrypt
 import com.example.smile.widget.ext.clickNoRepeat
-import com.example.smile.widget.ext.copyJoke
 import com.example.smile.widget.ext.gone
 import com.example.smile.widget.ext.invisible
-import com.example.smile.widget.ext.screenWidth
 import com.example.smile.widget.ext.visible
 import com.example.smile.widget.ext.visibleOrGone
 import com.example.smile.widget.ext.visibleOrInvisible
@@ -44,45 +37,6 @@ import com.huantansheng.easyphotos.ui.widget.PressedImageView
 
 /** 段子内容适配器 */
 class JokeContentAdapter(private val activity: FragmentActivity) : AppAdapter<JokeContentModel>(R.layout.item_joke_content) {
-
-    companion object {
-        //当前段子位置
-        private var location: Int = 0
-    }
-
-    /** 弹窗 */
-    private val pop by lazy {
-        //填充视图
-        val view = View.inflate(context, R.layout.item_save_picture, null)
-        //初始化
-        PopupWindow(view, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, true).apply {
-            //动画效果
-            animationStyle = R.style.PopupWindowAnim
-            //接收点击外侧事件，点击关闭弹窗
-            isOutsideTouchable = true
-            View.OnTouchListener { v, event ->
-                when (event.action) {
-                    MotionEvent.ACTION_DOWN -> {
-                        if (isShowing) {
-                            dismiss()
-                        }
-                    }
-
-                    MotionEvent.ACTION_UP -> v.performClick()
-                    else -> {}
-                }
-                true
-            }
-            //弹窗文本点击事件
-            view.findViewById<ShapeTextView>(R.id.save_picture).apply {
-                text = context.getString(R.string.copy_joke)
-                clickNoRepeat {
-                    this@JokeContentAdapter.getItem(location)?.let { context.copyJoke(it.joke.content) }
-                    dismiss()
-                }
-            }
-        }
-    }
 
     init {
         //设置动画效果
@@ -124,17 +78,6 @@ class JokeContentAdapter(private val activity: FragmentActivity) : AppAdapter<Jo
                 //请求失败，吐司错误信息
                 Toaster.show(it.message)
             }
-        }
-        //长按段子内容，显示PopupWindow
-        addOnItemChildLongClickListener(R.id.joke_text) { _, view, position ->
-            //设置当前段子位置
-            location = position
-            //获取当前view左上角坐标
-            val coordinate = IntArray(2)
-            view.getLocationOnScreen(coordinate)
-            //显示pop，设置显示位置，段子内容居中偏上位置
-            pop.showAtLocation(view, Gravity.NO_GRAVITY, coordinate[0] + context.screenWidth / 3, coordinate[1])
-            true
         }
     }
 
