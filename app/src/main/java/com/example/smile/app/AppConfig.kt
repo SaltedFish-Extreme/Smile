@@ -55,7 +55,7 @@ object AppConfig {
 
     //region 段子乐API接口相关参数
     /** 段子乐开放API接口调用凭证 */
-    const val project_token = "E02280DFDD9044B9B24871AC7E938533"
+    const val project_token = "AA86D41D05804918A54E1F3202BDC8D4"
 
     /** 用户登录成功后返回的token */
     var token by serialLazy("")
