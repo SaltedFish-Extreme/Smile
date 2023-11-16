@@ -8,6 +8,7 @@ import android.content.ClipboardManager
 import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.Drawable
+import android.os.Environment
 import android.text.Html
 import android.text.Spanned
 import android.view.LayoutInflater
@@ -445,4 +446,13 @@ fun TextView.pressRightClose() {
         }
         true
     })
+}
+
+/**
+ * 获取外部存储器上的公共视频目录
+ *
+ * desc : 这将返回类似于“/storage/emulated/0/Movies”的路径
+ */
+fun getVideoDirectory(): String {
+    return Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MOVIES).absolutePath
 }

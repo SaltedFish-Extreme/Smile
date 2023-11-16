@@ -3,12 +3,11 @@ package com.example.smile.ui.dialog
 import ando.dialog.usage.BottomDialog
 import android.content.Context
 import android.os.Bundle
-import android.os.Environment
 import android.view.Window
 import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.lifecycle.LifecycleOwner
-import com.drake.net.Post
+import com.drake.net.Get
 import com.drake.net.utils.scopeNet
 import com.example.smile.R
 import com.example.smile.util.PhotoUtils
@@ -16,6 +15,7 @@ import com.example.smile.util.decrypt
 import com.example.smile.util.vibration
 import com.example.smile.widget.ext.clickNoRepeat
 import com.example.smile.widget.ext.copyJoke
+import com.example.smile.widget.ext.getVideoDirectory
 import com.example.smile.widget.ext.gone
 import com.example.smile.widget.ext.pressRightClose
 import com.example.smile.widget.view.DrawableTextView
@@ -60,14 +60,6 @@ class CustomBottomDialogJokeShare(
     /** 等待加载框 */
     private val waitDialog by lazy { WaitDialog.Builder(context).setMessage(R.string.wait) }
 
-    /** 完成提示框 */
-    private val finishDialog by lazy { TipsDialog.Builder(context).setIcon(TipsDialog.ICON_FINISH).setMessage(R.string.save_succeed) }
-
-    /** 错误提示框 */
-    private val errorDialog by lazy {
-        TipsDialog.Builder(context).setIcon(TipsDialog.ICON_ERROR).setMessage(R.string.save_failed).setDuration(2000)
-    }
-
     override fun initView() {
         //按下标题右侧图标关闭弹窗
         commentTitle.pressRightClose()
@@ -104,34 +96,30 @@ class CustomBottomDialogJokeShare(
                 }
             } else if (type == 2) {
                 //请求权限
-                XXPermissions.with(context).permission(Permission.WRITE_EXTERNAL_STORAGE).request { _, all ->
+                XXPermissions.with(context).permission(Permission.MANAGE_EXTERNAL_STORAGE).request { _, all ->
                     if (all) {
                         //显示加载中对话框
                         waitDialog.show()
+                        //保存视频，需在子线程
                         scopeNet(dispatcher = Dispatchers.IO) {
-                            val file = Post<File>(url.decrypt()) {
-                                //生成的中间文件名称（标题_当前时间.mp4）
-                                setDownloadFileName("${text}_${System.currentTimeMillis()}.mp4")
-                                //存储路径
-                                context.getExternalFilesDir(Environment.DIRECTORY_MOVIES)?.let { setDownloadDir(it) }
-                                    ?: setDownloadDir(context.filesDir)
+                            Get<File>(url.decrypt()) {
+                                //设置存储路径
+                                setDownloadDir(getVideoDirectory())
+                                //context.getExternalFilesDir(DIRECTORY_MOVIES)?.let { setDownloadDir(it) } ?: setDownloadDir(context.filesDir)
                                 setDownloadMd5Verify()
                                 setDownloadFileNameDecode()
                                 setDownloadTempFile()
                             }.await()
-                            Toaster.show(file.path)
                             //请求完成后关闭等待加载框
                             waitDialog.dismiss()
-                            //显示完成对话框
-                            finishDialog.show()
+                            Toaster.show(R.string.save_succeed)
                             //下载完成后取消协程
                             cancel()
                         }.catch {
                             //请求完成后关闭等待加载框
                             waitDialog.dismiss()
-                            //请求失败，吐司错误信息，显示错误对话框
-                            Toaster.show(it.message)
-                            errorDialog.show()
+                            //请求失败，吐司错误信息
+                            Toaster.show(it.localizedMessage)
                         }
                         //顺便震动一下
                         context.vibration()
