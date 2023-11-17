@@ -69,9 +69,15 @@ class CustomBottomDialogJokeShare(
             tvSave.gone()
         }
         //todo 收藏段子
-        collect.clickNoRepeat { Toaster.show(jokeId) }
+        collect.clickNoRepeat {
+            Toaster.show(jokeId)
+            dismiss()
+        }
         //复制段子文本内容
-        copy.clickNoRepeat { context.copyJoke(text) }
+        copy.clickNoRepeat {
+            context.copyJoke(text)
+            dismiss()
+        }
         //保存段子图片/视频
         save.clickNoRepeat {
             if (type == 1) {
@@ -126,9 +132,10 @@ class CustomBottomDialogJokeShare(
                     }
                 }
             }
-            //关闭弹窗
-            cancel.clickNoRepeat { dismiss() }
+            dismiss()
         }
+        //关闭弹窗
+        cancel.clickNoRepeat { dismiss() }
     }
 
     override fun initConfig(savedInstanceState: Bundle?) {
