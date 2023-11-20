@@ -8,8 +8,12 @@ import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.lifecycle.LifecycleOwner
 import com.drake.net.Get
+import com.drake.net.Post
 import com.drake.net.utils.scopeNet
 import com.example.smile.R
+import com.example.smile.http.NetApi
+import com.example.smile.model.EmptyModel
+import com.example.smile.model.JokeCollectStateModel
 import com.example.smile.util.PhotoUtils
 import com.example.smile.util.decrypt
 import com.example.smile.util.vibration
@@ -19,12 +23,12 @@ import com.example.smile.widget.ext.getVideoDirectory
 import com.example.smile.widget.ext.gone
 import com.example.smile.widget.ext.pressRightClose
 import com.example.smile.widget.view.DrawableTextView
+import com.example.smile.widget.view.RevealViewCollect
 import com.google.android.material.imageview.ShapeableImageView
 import com.hjq.permissions.Permission
 import com.hjq.permissions.XXPermissions
 import com.hjq.toast.Toaster
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.cancel
 import java.io.File
 
 /**
@@ -48,12 +52,13 @@ class CustomBottomDialogJokeShare(
     BottomDialog(context, R.style.AndoLoadingDialog) {
 
     private val commentTitle: DrawableTextView by lazy { findViewById(R.id.comment_title) }
-    private val collect: ShapeableImageView by lazy { findViewById(R.id.collect) }
+    private val ivCollect: RevealViewCollect by lazy { findViewById(R.id.iv_collect) }
     private val copy: ShapeableImageView by lazy { findViewById(R.id.copy) }
     private val flSave: FrameLayout by lazy { findViewById(R.id.fl_save) }
     private val save: ShapeableImageView by lazy { findViewById(R.id.save) }
     private val report: ShapeableImageView by lazy { findViewById(R.id.report) }
     private val detail: ShapeableImageView by lazy { findViewById(R.id.detail) }
+    private val tvCollect: TextView by lazy { findViewById(R.id.tv_collect) }
     private val tvSave: TextView by lazy { findViewById(R.id.tv_save) }
     private val cancel: TextView by lazy { findViewById(R.id.cancel) }
 
@@ -68,15 +73,49 @@ class CustomBottomDialogJokeShare(
             flSave.gone()
             tvSave.gone()
         }
-        //todo 收藏段子
-        collect.clickNoRepeat {
-            Toaster.show(jokeId)
-            dismiss()
+        //获取段子收藏状态
+        scopeNet {
+            val data = Post<JokeCollectStateModel>(NetApi.JokeCollectStateAPI) { param("jokeId", jokeId) }.await()
+            data.isCollect.apply {
+                //设置收藏控件选中状态
+                ivCollect.setChecked(this, false)
+                //设置是否收藏文本
+                tvCollect.text = if (this) context.getString(R.string.collected) else context.getString(R.string.collect)
+            }
+        }.catch {
+            //请求失败，吐司错误信息
+            Toaster.show(it.message)
+        }.finally {
+            //完成后取消协程
+            cancel()
         }
+        //设置收藏控件选中监听
+        ivCollect.setOnClickListener(object : RevealViewCollect.OnClickListener {
+            override fun onClick(v: RevealViewCollect) {
+                scopeNet {
+                    Post<EmptyModel?>(NetApi.JokeCollectOrCancelAPI) {
+                        param("jokeId", jokeId)
+                        param("status", v.isChecked)
+                    }.await()
+                    if (v.isChecked) {
+                        tvCollect.text = context.getString(R.string.collected)
+                        Toaster.show(R.string.collect_success)
+                    } else {
+                        tvCollect.text = context.getString(R.string.collect)
+                        Toaster.show(R.string.collect_cancel)
+                    }
+                }.catch {
+                    //请求失败，吐司错误信息
+                    Toaster.show(it.message)
+                }.finally {
+                    //完成后取消协程
+                    cancel()
+                }
+            }
+        })
         //复制段子文本内容
         copy.clickNoRepeat {
             context.copyJoke(text)
-            dismiss()
         }
         //保存段子图片/视频
         save.clickNoRepeat {
@@ -93,7 +132,8 @@ class CustomBottomDialogJokeShare(
                                     Toaster.show(R.string.save_failed)
                                 }
                             }
-                            //保存完成后取消协程
+                        }.finally {
+                            //完成后取消协程
                             cancel()
                         }
                         //顺便震动一下
@@ -116,23 +156,21 @@ class CustomBottomDialogJokeShare(
                                 setDownloadFileNameDecode()
                                 setDownloadTempFile()
                             }.await()
-                            //请求完成后关闭等待加载框
-                            waitDialog.dismiss()
                             Toaster.show(R.string.save_succeed)
-                            //下载完成后取消协程
-                            cancel()
                         }.catch {
+                            //请求失败，吐司错误信息
+                            Toaster.show(it.message)
+                        }.finally {
                             //请求完成后关闭等待加载框
                             waitDialog.dismiss()
-                            //请求失败，吐司错误信息
-                            Toaster.show(it.localizedMessage)
+                            //完成后取消协程
+                            cancel()
                         }
                         //顺便震动一下
                         context.vibration()
                     }
                 }
             }
-            dismiss()
         }
         //关闭弹窗
         cancel.clickNoRepeat { dismiss() }

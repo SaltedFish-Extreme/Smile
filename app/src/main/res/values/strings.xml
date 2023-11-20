@@ -75,6 +75,9 @@
     <string name="save">保存</string>
     <string name="report">举报</string>
     <string name="detail">详情</string>
+    <string name="collected">已收藏</string>
+    <string name="collect_success">收藏成功</string>
+    <string name="collect_cancel">取消收藏</string>
     <!--个人页-->
     <string name="log_in_register">登录/注册</string>
     <string name="signature_tip">快来开始你的创作吧~</string>

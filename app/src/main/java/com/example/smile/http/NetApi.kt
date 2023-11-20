@@ -83,4 +83,10 @@ object NetApi {
 
     /** 删除子评论API路径 */
     const val DeleteChildCommentAPI = "jokes/comment/item/delete"
+
+    /** 获取段子收藏状态API路径 */
+    const val JokeCollectStateAPI = "jokes/is_collect"
+
+    /** 段子收藏(取消收藏)API路径 */
+    const val JokeCollectOrCancelAPI = "jokes/collect"
 }

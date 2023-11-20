@@ -35,20 +35,18 @@
             android:layout_weight="1">
 
             <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/collect"
                 android:layout_width="@dimen/dp_45"
                 android:layout_height="@dimen/dp_45"
                 android:layout_gravity="center"
                 android:background="@color/color_white_black"
                 app:shapeAppearance="@style/CircleStyle" />
 
-            <ImageView
+            <com.example.smile.widget.view.RevealViewCollect
                 android:id="@+id/iv_collect"
-                android:layout_width="@dimen/dp_25"
-                android:layout_height="@dimen/dp_25"
+                android:layout_width="@dimen/dp_45"
+                android:layout_height="@dimen/dp_45"
                 android:layout_gravity="center"
-                android:scaleType="centerCrop"
-                app:srcCompat="@drawable/ic_collect" />
+                android:padding="@dimen/dp_11" />
         </FrameLayout>
 
         <FrameLayout
