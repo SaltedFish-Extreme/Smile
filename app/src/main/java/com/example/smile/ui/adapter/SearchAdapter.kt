@@ -2,9 +2,9 @@ package com.example.smile.ui.adapter
 
 import android.graphics.Color
 import androidx.core.view.isVisible
-import com.chad.library.adapter.base.util.addOnDebouncedChildClick
-import com.chad.library.adapter.base.util.setOnDebouncedItemClick
-import com.chad.library.adapter.base.viewholder.QuickViewHolder
+import com.chad.library.adapter4.util.addOnDebouncedChildClick
+import com.chad.library.adapter4.util.setOnDebouncedItemClick
+import com.chad.library.adapter4.viewholder.QuickViewHolder
 import com.drake.channel.sendEvent
 import com.example.smile.R
 import com.example.smile.app.AppAdapter

@@ -7,9 +7,9 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.chad.library.adapter.base.util.addOnDebouncedChildClick
-import com.chad.library.adapter.base.util.setOnDebouncedItemClick
-import com.chad.library.adapter.base.viewholder.QuickViewHolder
+import com.chad.library.adapter4.util.addOnDebouncedChildClick
+import com.chad.library.adapter4.util.setOnDebouncedItemClick
+import com.chad.library.adapter4.viewholder.QuickViewHolder
 import com.drake.net.Post
 import com.drake.net.utils.scopeNetLife
 import com.example.smile.R

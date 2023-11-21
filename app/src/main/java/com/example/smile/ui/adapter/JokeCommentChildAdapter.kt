@@ -3,9 +3,9 @@ package com.example.smile.ui.adapter
 import android.widget.TextView
 import androidx.lifecycle.LifecycleOwner
 import com.bumptech.glide.Glide
-import com.chad.library.adapter.base.util.addOnDebouncedChildClick
-import com.chad.library.adapter.base.util.setOnDebouncedItemClick
-import com.chad.library.adapter.base.viewholder.QuickViewHolder
+import com.chad.library.adapter4.util.addOnDebouncedChildClick
+import com.chad.library.adapter4.util.setOnDebouncedItemClick
+import com.chad.library.adapter4.viewholder.QuickViewHolder
 import com.drake.channel.receiveEventLive
 import com.drake.channel.sendEvent
 import com.drake.net.Post

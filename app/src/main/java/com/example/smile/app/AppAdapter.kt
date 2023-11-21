@@ -3,8 +3,8 @@ package com.example.smile.app
 import android.content.Context
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
-import com.chad.library.adapter.base.BaseQuickAdapter
-import com.chad.library.adapter.base.viewholder.QuickViewHolder
+import com.chad.library.adapter4.BaseQuickAdapter
+import com.chad.library.adapter4.viewholder.QuickViewHolder
 
 /**
  * Created by 咸鱼至尊 on 2023/5/15
