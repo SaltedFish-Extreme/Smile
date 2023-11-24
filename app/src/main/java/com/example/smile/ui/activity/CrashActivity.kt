@@ -288,10 +288,12 @@ class CrashActivity : AppActivity(false), SwipeBackAbility.Direction {
     }
 
     @Deprecated("Deprecated in Java")
+    @Suppress("DEPRECATION")
     override fun onBackPressed() {
         // 重启应用
         RestartActivity.restart(this)
         finish()
+        super.onBackPressed()
     }
 
     /** 判断当前设备是否是平板 */
