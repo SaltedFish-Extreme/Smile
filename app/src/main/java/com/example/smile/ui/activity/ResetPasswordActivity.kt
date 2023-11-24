@@ -176,12 +176,14 @@ class ResetPasswordActivity : AppActivity() {
         immersionBar { titleBarMarginTop(close) }
     }
 
+    @Suppress("DEPRECATION")
     override fun startActivity(intent: Intent?) {
         super.startActivity(intent)
         //转场动画效果(启动新Activity时淡入)
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
     }
 
+    @Suppress("DEPRECATION")
     override fun finish() {
         super.finish()
         //转场动画效果(结束当前Activity时淡出)

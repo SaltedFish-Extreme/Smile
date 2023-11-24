@@ -86,6 +86,7 @@ open class AppActivity(private val receive: Boolean = true) : AppCompatActivity(
         overridePendingTransition(R.anim.bottom_in, R.anim.bottom_silent)
     }
 
+    @Suppress("DEPRECATION")
     override fun finish() {
         super.finish()
         //转场动画效果

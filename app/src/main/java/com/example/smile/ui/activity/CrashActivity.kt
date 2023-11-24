@@ -115,7 +115,6 @@ class CrashActivity : AppActivity(false), SwipeBackAbility.Direction {
         initData()
     }
 
-    @Suppress("DEPRECATION")
     private fun initData() {
         val throwable: Throwable = getSerializable(INTENT_KEY_IN_THROWABLE) ?: return
         titleView?.text = throwable.javaClass.simpleName

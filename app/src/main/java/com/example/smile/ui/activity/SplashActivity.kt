@@ -48,6 +48,7 @@ class SplashActivity : AppActivity(false) {
         layoutSplash.startAnimation(alphaAnimation)
     }
 
+    @Suppress("DEPRECATION")
     override fun finish() {
         super.finish()
         //转场结束动画效果

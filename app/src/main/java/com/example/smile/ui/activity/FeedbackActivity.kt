@@ -101,6 +101,7 @@ class FeedbackActivity : AppActivity() {
         immersionBar { titleBar(titleBar) }
     }
 
+    @Suppress("DEPRECATION")
     override fun finish() {
         super.finish()
         //转场动画效果(结束当前Activity时淡出)

@@ -225,6 +225,7 @@ class LoginActivity : AppActivity() {
         immersionBar { titleBarMarginTop(close) }
     }
 
+    @Suppress("DEPRECATION")
     override fun startActivity(intent: Intent?) {
         super.startActivity(intent)
         //转场动画效果(启动新Activity时淡入)
