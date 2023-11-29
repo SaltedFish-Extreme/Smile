@@ -4,8 +4,8 @@ import android.app.Activity
 import android.app.Application
 import android.app.Application.ActivityLifecycleCallbacks
 import android.os.Bundle
-import android.util.Log
 import androidx.collection.ArrayMap
+import com.example.smile.util.KLog
 import java.util.*
 
 /**
@@ -135,39 +135,39 @@ class ActivityManager private constructor() : ActivityLifecycleCallbacks {
     }
 
     override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
-        Log.i("%s - onCreate", activity.javaClass.simpleName)
+        KLog.i("%s - onCreate", activity.javaClass.simpleName)
         if (activitySet.size == 0) {
             for (callback: ApplicationLifecycleCallback? in lifecycleCallbacks) {
                 callback?.onApplicationCreate(activity)
             }
-            Log.i("%s - onApplicationCreate", activity.javaClass.simpleName)
+            KLog.i("%s - onApplicationCreate", activity.javaClass.simpleName)
         }
         activitySet[getObjectTag(activity)] = activity
         topActivity = activity
     }
 
     override fun onActivityStarted(activity: Activity) {
-        Log.i("%s - onStart", activity.javaClass.simpleName)
+        KLog.i("%s - onStart", activity.javaClass.simpleName)
     }
 
     override fun onActivityResumed(activity: Activity) {
-        Log.i("%s - onResume", activity.javaClass.simpleName)
+        KLog.i("%s - onResume", activity.javaClass.simpleName)
         if (topActivity === activity && resumedActivity == null) {
             for (callback: ApplicationLifecycleCallback in lifecycleCallbacks) {
                 callback.onApplicationForeground(activity)
             }
-            Log.i("%s - onApplicationForeground", activity.javaClass.simpleName)
+            KLog.i("%s - onApplicationForeground", activity.javaClass.simpleName)
         }
         topActivity = activity
         resumedActivity = activity
     }
 
     override fun onActivityPaused(activity: Activity) {
-        Log.i("%s - onPause", activity.javaClass.simpleName)
+        KLog.i("%s - onPause", activity.javaClass.simpleName)
     }
 
     override fun onActivityStopped(activity: Activity) {
-        Log.i("%s - onStop", activity.javaClass.simpleName)
+        KLog.i("%s - onStop", activity.javaClass.simpleName)
         if (resumedActivity === activity) {
             resumedActivity = null
         }
@@ -175,16 +175,16 @@ class ActivityManager private constructor() : ActivityLifecycleCallbacks {
             for (callback: ApplicationLifecycleCallback in lifecycleCallbacks) {
                 callback.onApplicationBackground(activity)
             }
-            Log.i("%s - onApplicationBackground", activity.javaClass.simpleName)
+            KLog.i("%s - onApplicationBackground", activity.javaClass.simpleName)
         }
     }
 
     override fun onActivitySaveInstanceState(activity: Activity, outState: Bundle) {
-        Log.i("%s - onSaveInstanceState", activity.javaClass.simpleName)
+        KLog.i("%s - onSaveInstanceState", activity.javaClass.simpleName)
     }
 
     override fun onActivityDestroyed(activity: Activity) {
-        Log.i("%s - onDestroy", activity.javaClass.simpleName)
+        KLog.i("%s - onDestroy", activity.javaClass.simpleName)
         activitySet.remove(getObjectTag(activity))
         if (topActivity === activity) {
             topActivity = null
@@ -193,7 +193,7 @@ class ActivityManager private constructor() : ActivityLifecycleCallbacks {
             for (callback: ApplicationLifecycleCallback in lifecycleCallbacks) {
                 callback.onApplicationDestroy(activity)
             }
-            Log.i("%s - onApplicationDestroy", activity.javaClass.simpleName)
+            KLog.i("%s - onApplicationDestroy", activity.javaClass.simpleName)
         }
     }
 
