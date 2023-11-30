@@ -215,7 +215,8 @@
                 android:id="@+id/customer_service"
                 style="@style/SettingBarStyle"
                 app:bar_leftDrawable="@drawable/icon_customer_service"
-                app:bar_leftText="@string/customer_service" />
+                app:bar_leftText="@string/customer_service"
+                app:bar_lineVisible="false" />
 
             <com.example.smile.widget.settingbar.SettingBar
                 android:id="@+id/under_review"
@@ -228,7 +229,8 @@
                 android:id="@+id/audit_failure"
                 style="@style/SettingBarStyle"
                 app:bar_leftDrawable="@drawable/icon_audit_failure"
-                app:bar_leftText="@string/audit_failure" />
+                app:bar_leftText="@string/audit_failure"
+                app:bar_lineVisible="false" />
 
             <com.example.smile.widget.settingbar.SettingBar
                 android:id="@+id/share_friends"
@@ -253,7 +255,8 @@
                 android:id="@+id/setup"
                 style="@style/SettingBarStyle"
                 app:bar_leftDrawable="@drawable/icon_setup"
-                app:bar_leftText="@string/setup" />
+                app:bar_leftText="@string/setup"
+                app:bar_lineVisible="false" />
 
         </LinearLayout>
 

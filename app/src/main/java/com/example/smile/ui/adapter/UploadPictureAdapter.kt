@@ -46,7 +46,7 @@ class UploadPictureAdapter(activity: FragmentActivity, private val dataList: Arr
         val photo = dataList[position].path
         //加载显示图片
         mGlide.load(photo).apply(RequestOptions().transform(CenterCrop(), RoundedCorners(10)))
-            .placeholder(R.drawable.load_picture).into(holder.ivPhoto)
+            .placeholder(R.drawable.ic_loading).error(R.drawable.ic_load_error).into(holder.ivPhoto)
         //长按图片删除
         holder.ivPhoto.setOnLongClickListener {
             Toaster.show(R.string.delete_success)

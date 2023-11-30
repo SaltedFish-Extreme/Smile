@@ -33,7 +33,8 @@
             <com.example.smile.widget.settingbar.SettingBar
                 android:id="@+id/account_security"
                 style="@style/SettingBarStyle"
-                app:bar_leftText="@string/account_security" />
+                app:bar_leftText="@string/account_security"
+                app:bar_lineVisible="false" />
         </LinearLayout>
 
         <LinearLayout
@@ -50,7 +51,7 @@
                 android:id="@+id/push_switch"
                 style="@style/SettingBarStyle"
                 app:bar_leftText="@string/push_switch"
-                app:bar_rightText="@string/turned_off" />
+                app:bar_rightText="@string/turned_on" />
 
             <FrameLayout
                 android:layout_width="match_parent"
@@ -58,22 +59,43 @@
 
                 <com.example.smile.widget.settingbar.SettingBar
                     style="@style/SettingBarStyle"
-                    app:bar_leftText="@string/traffic_loading_pictures"
+                    app:bar_leftText="@string/vibration_switch"
                     app:bar_rightDrawable="@null" />
 
                 <com.example.smile.widget.view.SwitchButton
-                    android:id="@+id/traffic_loading_pictures"
+                    android:id="@+id/vibration_switch"
                     android:layout_width="@dimen/dp_60"
                     android:layout_height="@dimen/dp_25"
                     android:layout_gravity="end|center_vertical"
-                    android:layout_marginEnd="@dimen/dp_25" />
+                    android:layout_marginEnd="@dimen/dp_25"
+                    android:checked="true" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.example.smile.widget.settingbar.SettingBar
+                    style="@style/SettingBarStyle"
+                    app:bar_leftText="@string/mobile_net_loading_pictures"
+                    app:bar_rightDrawable="@null" />
+
+                <com.example.smile.widget.view.SwitchButton
+                    android:id="@+id/mobile_net_switch"
+                    android:layout_width="@dimen/dp_60"
+                    android:layout_height="@dimen/dp_25"
+                    android:layout_gravity="end|center_vertical"
+                    android:layout_marginEnd="@dimen/dp_25"
+                    android:checked="true" />
             </FrameLayout>
 
             <com.example.smile.widget.settingbar.SettingBar
                 android:id="@+id/clear_cache"
                 style="@style/SettingBarStyle"
                 app:bar_leftText="@string/clear_cache"
+                app:bar_lineVisible="false"
                 app:bar_rightText="@string/cache" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -110,7 +132,9 @@
             <com.example.smile.widget.settingbar.SettingBar
                 android:id="@+id/about_us"
                 style="@style/SettingBarStyle"
-                app:bar_leftText="@string/about_us" />
+                app:bar_leftText="@string/about_us"
+                app:bar_lineVisible="false" />
+
         </LinearLayout>
 
         <TextView

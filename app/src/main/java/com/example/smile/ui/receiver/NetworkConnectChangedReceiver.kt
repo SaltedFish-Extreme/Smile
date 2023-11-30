@@ -4,9 +4,12 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.net.ConnectivityManager
+import android.net.Network
 import android.net.NetworkRequest
 import android.os.Build
 import com.example.smile.R
+import com.example.smile.app.AppConfig.mobileNetUsing
+import com.example.smile.util.NetworkUtils
 import com.hjq.toast.Toaster
 
 /**
@@ -26,10 +29,11 @@ class NetworkConnectChangedReceiver : BroadcastReceiver() {
             manager.requestNetwork(NetworkRequest.Builder().build(), object : ConnectivityManager.NetworkCallback() {
 
                 //连接可用
-                /*override fun onAvailable(network: Network) {
+                override fun onAvailable(network: Network) {
                     super.onAvailable(network)
-                    Toaster.show(R.string.wifi_ok)
-                }*/
+                    //获取当前使用的是否是数据流量，保存到全局变量中
+                    mobileNetUsing = NetworkUtils.isMobileNetwork(context)
+                }
 
                 //连接不可用
                 override fun onUnavailable() {

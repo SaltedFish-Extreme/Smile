@@ -13,6 +13,7 @@ import com.example.smile.app.AppConfig
 import com.example.smile.ui.dialog.TipsDialog
 import com.example.smile.ui.dialog.WaitDialog
 import com.example.smile.util.CacheDataUtil
+import com.example.smile.util.vibration
 import com.example.smile.widget.ext.clickNoRepeat
 import com.example.smile.widget.ext.gone
 import com.example.smile.widget.settingbar.SettingBar
@@ -30,7 +31,8 @@ class SettingActivity : AppActivity() {
     private val userInfo: SettingBar by lazy { findViewById(R.id.user_info) }
     private val accountSecurity: SettingBar by lazy { findViewById(R.id.account_security) }
     private val pushSwitch: SettingBar by lazy { findViewById(R.id.push_switch) }
-    private val trafficLoadingPictures: SwitchButton by lazy { findViewById(R.id.traffic_loading_pictures) }
+    private val vibrationSwitch: SwitchButton by lazy { findViewById(R.id.vibration_switch) }
+    private val mobileNetSwitch: SwitchButton by lazy { findViewById(R.id.mobile_net_switch) }
     private val clearCache: SettingBar by lazy { findViewById(R.id.clear_cache) }
     private val score: SettingBar by lazy { findViewById(R.id.score) }
     private val checkUpdate: SettingBar by lazy { findViewById(R.id.check_update) }
@@ -70,6 +72,28 @@ class SettingActivity : AppActivity() {
         }
         //显示版本号
         checkUpdate.setRightText(getString(R.string.version_name, AppConfig.getVersionName()))
+        //设置震动开关选中状态
+        vibrationSwitch.setChecked(AppConfig.vibrationOrNo)
+        //震动开关切换监听
+        vibrationSwitch.setOnCheckedChangeListener(object : SwitchButton.OnCheckedChangeListener {
+            override fun onCheckedChanged(button: SwitchButton, checked: Boolean) {
+                //保存震动开关切换状态
+                AppConfig.vibrationOrNo = checked
+                //如果选中，震动提示一下
+                if (checked) vibration()
+            }
+        })
+        //设置流量开关选中状态
+        mobileNetSwitch.setChecked(AppConfig.mobileNetLoadingPicturesOrNo)
+        //流量开关切换监听
+        mobileNetSwitch.setOnCheckedChangeListener(object : SwitchButton.OnCheckedChangeListener {
+            override fun onCheckedChanged(button: SwitchButton, checked: Boolean) {
+                //保存流量开关切换状态
+                AppConfig.mobileNetLoadingPicturesOrNo = checked
+                //如果选中，震动提示一下
+                if (checked) vibration()
+            }
+        })
         //点击退出登录
         logout.clickNoRepeat {
             //清除token

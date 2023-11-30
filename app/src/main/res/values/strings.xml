@@ -107,9 +107,10 @@
     <string name="account_security">账号与安全</string>
     <string name="universal">通用</string>
     <string name="push_switch">推送开关</string>
+    <string name="vibration_switch">震动开关</string>
     <string name="turned_on">已开启</string>
     <string name="turned_off">未开启</string>
-    <string name="traffic_loading_pictures">数据网络加载图片</string>
+    <string name="mobile_net_loading_pictures">数据流量加载图片</string>
     <string name="clear_cache">清除缓存</string>
     <string name="other_settings">其他设置</string>
     <string name="score">给我评分</string>

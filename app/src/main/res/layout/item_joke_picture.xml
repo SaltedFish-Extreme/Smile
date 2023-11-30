@@ -6,4 +6,4 @@
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/dp_3"
     android:scaleType="centerCrop"
-    tools:srcCompat="@drawable/load_picture" />
+    tools:srcCompat="@drawable/ic_load_picture" />
