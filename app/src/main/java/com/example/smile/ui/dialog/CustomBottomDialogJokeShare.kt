@@ -18,8 +18,8 @@ import com.example.smile.util.PhotoUtils
 import com.example.smile.util.decrypt
 import com.example.smile.util.vibration
 import com.example.smile.widget.ext.clickNoRepeat
-import com.example.smile.widget.ext.copyJoke
-import com.example.smile.widget.ext.getVideoDirectory
+import com.example.smile.util.copyJoke
+import com.example.smile.util.getVideoDirectory
 import com.example.smile.widget.ext.gone
 import com.example.smile.widget.ext.pressRightClose
 import com.example.smile.widget.view.DrawableTextView

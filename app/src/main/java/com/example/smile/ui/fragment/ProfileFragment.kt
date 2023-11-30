@@ -23,7 +23,7 @@ import com.example.smile.ui.activity.AnnouncementActivity
 import com.example.smile.ui.activity.FeedbackActivity
 import com.example.smile.ui.activity.SettingActivity
 import com.example.smile.widget.ext.clickNoRepeat
-import com.example.smile.widget.ext.judgeLoginOperation
+import com.example.smile.util.judgeLoginOperation
 import com.example.smile.widget.settingbar.SettingBar
 import com.example.smile.widget.view.DrawableTextView
 import com.google.android.material.imageview.ShapeableImageView

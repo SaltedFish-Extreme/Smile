@@ -1,20 +1,12 @@
 package com.example.smile.widget.ext
 
-import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
 import android.view.View
-import android.view.animation.Animation
-import android.view.animation.AnimationUtils
+import android.view.ViewGroup
 import android.widget.ImageView
-import androidx.annotation.AnimRes
-import com.drake.serialize.intent.openActivity
-import com.example.smile.R
-import com.example.smile.app.AppConfig
-import com.example.smile.ui.activity.LoginActivity
-import com.hjq.toast.Toaster
 
 /** view扩展函数 */
 
@@ -88,6 +80,23 @@ fun createBitmapSafely(width: Int, height: Int, config: Bitmap.Config, retryCoun
     }
 }
 
+/**
+ * 视图扩展函数,设置边距
+ *
+ * @param l 左
+ * @param t 上
+ * @param r 右
+ * @param b 下
+ * @param v 视图
+ */
+fun View.margin(l: Int, t: Int, r: Int, b: Int, v: View = this) {
+    if (v.layoutParams is ViewGroup.MarginLayoutParams) {
+        val p = v.layoutParams as ViewGroup.MarginLayoutParams
+        p.setMargins(l, t, r, b)
+        v.requestLayout()
+    }
+}
+
 var lastClickTime = 0L
 
 /**
@@ -107,14 +116,6 @@ fun View.clickNoRepeat(interval: Long = 500, action: (view: View) -> Unit) {
     }
 }
 
-fun Any?.notNull(notNullAction: (value: Any) -> Unit, nullAction1: () -> Unit) {
-    if (this != null) {
-        notNullAction.invoke(this)
-    } else {
-        nullAction1.invoke()
-    }
-}
-
 /**
  * 设置防止重复点击事件
  *
@@ -127,26 +128,5 @@ fun setOnclickNoRepeat(vararg views: View?, interval: Long = 500, onClick: (View
         it?.clickNoRepeat(interval = interval) { view ->
             onClick.invoke(view)
         }
-    }
-}
-
-/**
- * 加载动画
- *
- * @param anim 要加载的动画效果资源
- */
-fun Context.loadAnimation(@AnimRes anim: Int): Animation = AnimationUtils.loadAnimation(this, anim)
-
-/**
- * 判断登录状态，未登录吐司提示登录，跳转登录页面，否则执行后续逻辑操作
- *
- * @param invoke 已登录状态要执行的操作
- */
-fun Context.judgeLoginOperation(invoke: () -> Unit) {
-    if (AppConfig.token.isBlank()) {
-        Toaster.show(R.string.please_login)
-        openActivity<LoginActivity>()
-    } else {
-        invoke()
     }
 }

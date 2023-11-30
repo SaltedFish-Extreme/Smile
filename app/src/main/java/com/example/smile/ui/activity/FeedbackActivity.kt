@@ -15,7 +15,7 @@ import com.example.smile.http.NetApi.FeedbackAPI
 import com.example.smile.model.EmptyModel
 import com.example.smile.ui.adapter.UploadPictureAdapter
 import com.example.smile.util.InputTextManager
-import com.example.smile.widget.ext.albumUploadImage
+import com.example.smile.util.albumUploadImage
 import com.example.smile.widget.ext.clickNoRepeat
 import com.example.smile.widget.ext.hideSoftKeyboard
 import com.example.smile.widget.recycler.WrapRecyclerView
