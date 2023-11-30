@@ -13,6 +13,8 @@ import com.example.smile.app.AppConfig
 import com.example.smile.ui.dialog.TipsDialog
 import com.example.smile.ui.dialog.WaitDialog
 import com.example.smile.util.CacheDataUtil
+import com.example.smile.util.isNotificationEnabled
+import com.example.smile.util.jumpNotificationSettings
 import com.example.smile.util.vibration
 import com.example.smile.widget.ext.clickNoRepeat
 import com.example.smile.widget.ext.gone
@@ -72,6 +74,8 @@ class SettingActivity : AppActivity() {
         }
         //显示版本号
         checkUpdate.setRightText(getString(R.string.version_name, AppConfig.getVersionName()))
+        //点击推送开关跳转通知设置
+        pushSwitch.clickNoRepeat { jumpNotificationSettings() }
         //设置震动开关选中状态
         vibrationSwitch.setChecked(AppConfig.vibrationOrNo)
         //震动开关切换监听
@@ -137,5 +141,13 @@ class SettingActivity : AppActivity() {
         super.onResume()
         //使标题栏和状态栏不重叠
         immersionBar { titleBar(titleBar) }
+        //设置是否开启通知推送
+        pushSwitch.setRightText(
+            if (isNotificationEnabled()) {
+                R.string.turned_on
+            } else {
+                R.string.turned_off
+            }
+        )
     }
 }

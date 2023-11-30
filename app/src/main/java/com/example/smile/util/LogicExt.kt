@@ -5,7 +5,11 @@ import android.app.Activity
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
+import android.os.Build
 import android.os.Environment
+import androidx.core.app.NotificationManagerCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.drake.serialize.intent.openActivity
 import com.example.smile.R
@@ -97,4 +101,30 @@ fun Context.judgeLoginOperation(invoke: () -> Unit) {
     } else {
         invoke()
     }
+}
+
+/** 是否允许程序使用通知 */
+fun Context.isNotificationEnabled(): Boolean {
+    return try {
+        NotificationManagerCompat.from(this).areNotificationsEnabled()
+    } catch (e: Exception) {
+        e.printStackTrace()
+        false
+    }
+}
+
+/** 跳转通知设置 */
+fun Context.jumpNotificationSettings() {
+    val intent = Intent()
+    if (Build.VERSION.SDK_INT >= 26) {
+        // android 8.0引导
+        intent.action = "android.settings.APP_NOTIFICATION_SETTINGS"
+        intent.putExtra("android.provider.extra.APP_PACKAGE", packageName)
+    } else {
+        // 其他
+        intent.action = "android.settings.APPLICATION_DETAILS_SETTINGS"
+        intent.data = Uri.fromParts("package", packageName, null)
+    }
+    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+    startActivity(intent)
 }

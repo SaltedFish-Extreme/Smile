@@ -97,8 +97,6 @@ fun View.margin(l: Int, t: Int, r: Int, b: Int, v: View = this) {
     }
 }
 
-var lastClickTime = 0L
-
 /**
  * 防止重复点击事件 默认0.5秒内不可重复点击
  *
@@ -106,6 +104,7 @@ var lastClickTime = 0L
  * @param action 执行方法
  */
 fun View.clickNoRepeat(interval: Long = 500, action: (view: View) -> Unit) {
+    var lastClickTime = 0L
     setOnClickListener {
         val currentTime = System.currentTimeMillis()
         if (lastClickTime != 0L && (currentTime - lastClickTime < interval)) {
