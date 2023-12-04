@@ -113,7 +113,7 @@
     <string name="mobile_net_loading_pictures">数据流量加载图片</string>
     <string name="clear_cache">清除缓存</string>
     <string name="other_settings">其他设置</string>
-    <string name="score">给我评分</string>
+    <string name="project_address">项目地址</string>
     <string name="check_update">检查更新</string>
     <string name="version_name">v%s</string>
     <string name="about_us">关于我们</string>

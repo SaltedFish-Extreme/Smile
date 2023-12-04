@@ -109,9 +109,9 @@
                 android:text="@string/other_settings" />
 
             <com.example.smile.widget.settingbar.SettingBar
-                android:id="@+id/score"
+                android:id="@+id/project_address"
                 style="@style/SettingBarStyle"
-                app:bar_leftText="@string/score" />
+                app:bar_leftText="@string/project_address" />
 
             <com.example.smile.widget.settingbar.SettingBar
                 android:id="@+id/check_update"

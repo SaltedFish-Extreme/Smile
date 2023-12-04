@@ -40,7 +40,7 @@ class SettingActivity : AppActivity() {
     private val vibrationSwitch: SwitchButton by lazy { findViewById(R.id.vibration_switch) }
     private val mobileNetSwitch: SwitchButton by lazy { findViewById(R.id.mobile_net_switch) }
     private val clearCache: SettingBar by lazy { findViewById(R.id.clear_cache) }
-    private val score: SettingBar by lazy { findViewById(R.id.score) }
+    private val projectAddress: SettingBar by lazy { findViewById(R.id.project_address) }
     private val checkUpdate: SettingBar by lazy { findViewById(R.id.check_update) }
     private val servicesAgreement: SettingBar by lazy { findViewById(R.id.services_agreement) }
     private val privacyPolicy: SettingBar by lazy { findViewById(R.id.privacy_policy) }
@@ -75,6 +75,10 @@ class SettingActivity : AppActivity() {
             Toaster.show(R.string.clear_cache_success)
             CacheDataUtil.clearAllCache(this)
             clearCache.setRightText(CacheDataUtil.getTotalCacheSize(this))
+        }
+        //跳转项目地址
+        projectAddress.clickNoRepeat {
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.project_repository))))
         }
         //显示版本号
         checkUpdate.setRightText(getString(R.string.version_name, AppConfig.getVersionName()))
