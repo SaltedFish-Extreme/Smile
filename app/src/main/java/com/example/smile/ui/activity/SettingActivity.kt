@@ -1,9 +1,12 @@
 package com.example.smile.ui.activity
 
+import ando.dialog.core.DialogManager
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.widget.LinearLayout
 import android.widget.TextView
-import com.drake.net.utils.scopeNetLife
+import com.drake.net.utils.scopeLife
 import com.drake.serialize.intent.bundle
 import com.drake.serialize.intent.openActivity
 import com.example.smile.R
@@ -19,6 +22,7 @@ import com.example.smile.util.vibration
 import com.example.smile.widget.ext.clickNoRepeat
 import com.example.smile.widget.ext.gone
 import com.example.smile.widget.settingbar.SettingBar
+import com.example.smile.widget.view.PressAlphaTextView
 import com.example.smile.widget.view.SwitchButton
 import com.gyf.immersionbar.ktx.immersionBar
 import com.hjq.bar.TitleBar
@@ -105,7 +109,7 @@ class SettingActivity : AppActivity() {
             //清除用户ID
             AppConfig.userId = ""
             //因为要对加载中对话框进行隐藏显示操作，不使用scopeDialog作用域
-            scopeNetLife {
+            scopeLife {
                 //显示加载中对话框
                 waitDialog.show()
                 //销毁主页
@@ -123,7 +127,7 @@ class SettingActivity : AppActivity() {
                 //关闭页面
                 finish()
             }.catch {
-                //请求失败，吐司错误信息
+                //操作失败，吐司错误信息
                 Toaster.show(it.message)
             }
         }
@@ -134,6 +138,16 @@ class SettingActivity : AppActivity() {
         //跳转公告页，传递标题：隐私政策
         privacyPolicy.clickNoRepeat {
             openActivity<AnnouncementActivity>("title" to getString(R.string.privacy_policy_title))
+        }
+        //打开关于我们弹窗片段
+        aboutUs.clickNoRepeat {
+            DialogManager.with(this, R.style.TransparentBgDialog).useDialogFragment().setContentView(R.layout.fragment_dialog_about).show()
+                .apply {
+                    //点击链接，打开浏览器跳转网页
+                    contentView?.findViewById<PressAlphaTextView>(R.id.tv_link)?.clickNoRepeat {
+                        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://${(it as PressAlphaTextView).text}")))
+                    }
+                }
         }
     }
 
