@@ -21,8 +21,8 @@ import com.chad.library.adapter4.viewholder.QuickViewHolder
 import com.drake.net.utils.scopeNetLife
 import com.example.smile.R
 import com.example.smile.app.AppAdapter
-import com.example.smile.app.AppConfig.mobileNetLoadingPicturesOrNo
-import com.example.smile.app.AppConfig.mobileNetUsing
+import com.example.smile.app.AppConfig.MobileNetLoadingPicturesOrNo
+import com.example.smile.app.AppConfig.MobileNetUsing
 import com.example.smile.util.PhotoUtils
 import com.example.smile.util.vibration
 import com.example.smile.widget.ext.clickNoRepeat
@@ -99,7 +99,7 @@ class PhotoAdapter(
 
     override fun onBindViewHolder(holder: QuickViewHolder, position: Int, item: String?) {
         holder.getView<ImageView>(R.id.joke_image).apply {
-            if (!mobileNetUsing || mobileNetLoadingPicturesOrNo) {
+            if (!MobileNetUsing || MobileNetLoadingPicturesOrNo) {
                 //如果当前使用的是wifi网络或者开启了数据流量加载图片开关，则正常显示图片
                 Glide.with(context).load(item).placeholder(R.drawable.ic_loading).error(R.drawable.ic_load_error)
                     .apply(RequestOptions().transform(CenterCrop(), RoundedCorners(20)))

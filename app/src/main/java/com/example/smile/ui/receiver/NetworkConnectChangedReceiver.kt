@@ -8,7 +8,7 @@ import android.net.Network
 import android.net.NetworkRequest
 import android.os.Build
 import com.example.smile.R
-import com.example.smile.app.AppConfig.mobileNetUsing
+import com.example.smile.app.AppConfig.MobileNetUsing
 import com.example.smile.util.NetworkUtils
 import com.hjq.toast.Toaster
 
@@ -32,7 +32,7 @@ class NetworkConnectChangedReceiver : BroadcastReceiver() {
                 override fun onAvailable(network: Network) {
                     super.onAvailable(network)
                     //获取当前使用的是否是数据流量，保存到全局变量中
-                    mobileNetUsing = NetworkUtils.isMobileNetwork(context)
+                    MobileNetUsing = NetworkUtils.isMobileNetwork(context)
                 }
 
                 //连接不可用

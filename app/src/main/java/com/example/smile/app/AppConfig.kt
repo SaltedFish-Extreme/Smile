@@ -85,15 +85,12 @@ object AppConfig {
     /** 当前登录用户ID */
     var userId: String by serialLazy("")
 
-    /** 根据昵称生成头像API密钥 (https://api.multiavatar.com) */
-    const val apikey = "a6YniOPf1dbrSc"
-
     /** 是否开启震动 */
-    var vibrationOrNo: Boolean by serialLazy(true) //懒加载
+    var VibrationOrNo: Boolean by serialLazy(true) //懒加载
 
     /** 是否开启数据流量加载图片 */
-    var mobileNetLoadingPicturesOrNo: Boolean by serialLazy(true) //懒加载
+    var MobileNetLoadingPicturesOrNo: Boolean by serialLazy(true) //懒加载
 
     /** 当前是否正在使用数据流量 */
-    var mobileNetUsing: Boolean = false
+    var MobileNetUsing: Boolean = false
 }

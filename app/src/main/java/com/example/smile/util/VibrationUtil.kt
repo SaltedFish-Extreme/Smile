@@ -2,7 +2,7 @@ package com.example.smile.util
 
 import android.content.Context
 import android.os.*
-import com.example.smile.app.AppConfig.vibrationOrNo
+import com.example.smile.app.AppConfig.VibrationOrNo
 
 /**
  * Created by 咸鱼至尊 on 2022/1/21
@@ -11,7 +11,7 @@ import com.example.smile.app.AppConfig.vibrationOrNo
  */
 @Suppress("DEPRECATION")
 fun Context.vibration() {
-    if (vibrationOrNo) {
+    if (VibrationOrNo) {
         when {
             Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
                 val vibrator = getSystemService(Context.VIBRATOR_MANAGER_SERVICE) as VibratorManager

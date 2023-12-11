@@ -85,23 +85,23 @@ class SettingActivity : AppActivity() {
         //点击推送开关跳转通知设置
         pushSwitch.clickNoRepeat { jumpNotificationSettings() }
         //设置震动开关选中状态
-        vibrationSwitch.setChecked(AppConfig.vibrationOrNo)
+        vibrationSwitch.setChecked(AppConfig.VibrationOrNo)
         //震动开关切换监听
         vibrationSwitch.setOnCheckedChangeListener(object : SwitchButton.OnCheckedChangeListener {
             override fun onCheckedChanged(button: SwitchButton, checked: Boolean) {
                 //保存震动开关切换状态
-                AppConfig.vibrationOrNo = checked
+                AppConfig.VibrationOrNo = checked
                 //如果选中，震动提示一下
                 if (checked) vibration()
             }
         })
         //设置流量开关选中状态
-        mobileNetSwitch.setChecked(AppConfig.mobileNetLoadingPicturesOrNo)
+        mobileNetSwitch.setChecked(AppConfig.MobileNetLoadingPicturesOrNo)
         //流量开关切换监听
         mobileNetSwitch.setOnCheckedChangeListener(object : SwitchButton.OnCheckedChangeListener {
             override fun onCheckedChanged(button: SwitchButton, checked: Boolean) {
                 //保存流量开关切换状态
-                AppConfig.mobileNetLoadingPicturesOrNo = checked
+                AppConfig.MobileNetLoadingPicturesOrNo = checked
                 //如果选中，震动提示一下
                 if (checked) vibration()
             }
