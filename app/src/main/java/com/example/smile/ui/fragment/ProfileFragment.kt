@@ -10,7 +10,7 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
-import com.drake.channel.receiveTagLive
+import com.drake.brv.PageRefreshLayout
 import com.drake.net.Post
 import com.drake.net.utils.scopeDialog
 import com.drake.serialize.intent.openActivity
@@ -22,8 +22,8 @@ import com.example.smile.model.UserInfoModel
 import com.example.smile.ui.activity.AnnouncementActivity
 import com.example.smile.ui.activity.FeedbackActivity
 import com.example.smile.ui.activity.SettingActivity
-import com.example.smile.widget.ext.clickNoRepeat
 import com.example.smile.util.judgeLoginOperation
+import com.example.smile.widget.ext.clickNoRepeat
 import com.example.smile.widget.settingbar.SettingBar
 import com.example.smile.widget.view.DrawableTextView
 import com.google.android.material.imageview.ShapeableImageView
@@ -34,6 +34,7 @@ import kotlinx.coroutines.delay
 /** 个人页 */
 class ProfileFragment : AppFragment() {
 
+    private val page: PageRefreshLayout by lazy { requireView().findViewById(R.id.page) }
     private val topBar: ConstraintLayout by lazy { requireView().findViewById(R.id.top_bar) }
     private val userAvatar: ShapeableImageView by lazy { requireView().findViewById(R.id.user_avatar) }
     private val userNickname: TextView by lazy { requireView().findViewById(R.id.user_nickname) }
@@ -65,8 +66,8 @@ class ProfileFragment : AppFragment() {
             //初次创建页面，如果存在token，说明用户已登录，请求用户信息
             getUserInfo()
         }
-        //接收消息标签，再次请求用户信息，如一些操作更新了用户数据 e.g. 关注用户、点赞收藏段子...，返回当前页需要更新数据
-        receiveTagLive(getString(R.string.get_user_info)) {
+        //下拉页面，刷新用户信息
+        page.onRefresh {
             getUserInfo()
         }
         onClick()
@@ -95,8 +96,11 @@ class ProfileFragment : AppFragment() {
             //显示经验
             experience.text = userInfoData.info.experienceNum.toString()
         }.catch {
-            //获取出错，吐司错误信息
+            //获取数据出错，吐司错误信息(用户登录状态过期或者未登录会跳转登录页面吐司自定义错误信息)
             Toaster.show(it.message)
+        }.finally {
+            //刷新完成
+            page.finishRefresh()
         }
     }
 
