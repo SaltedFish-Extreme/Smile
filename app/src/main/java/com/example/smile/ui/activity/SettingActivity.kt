@@ -13,6 +13,7 @@ import com.example.smile.R
 import com.example.smile.app.ActivityManager
 import com.example.smile.app.AppActivity
 import com.example.smile.app.AppConfig
+import com.example.smile.model.UserInfoModel
 import com.example.smile.ui.dialog.TipsDialog
 import com.example.smile.ui.dialog.WaitDialog
 import com.example.smile.util.CacheDataUtil
@@ -68,6 +69,10 @@ class SettingActivity : AppActivity() {
             userRelated.gone()
             logout.gone()
         }
+        //跳转用户信息页面
+        userInfo.clickNoRepeat { openActivity<UserInfoActivity>() }
+        //todo 跳转账户安全页面
+        accountSecurity.clickNoRepeat { }
         //显示缓存大小
         clearCache.setRightText(CacheDataUtil.getTotalCacheSize(this))
         //点击清除缓存
@@ -82,6 +87,8 @@ class SettingActivity : AppActivity() {
         }
         //显示版本号
         checkUpdate.setRightText(getString(R.string.version_name, AppConfig.getVersionName()))
+        //todo 打开网页跳转app下载链接
+        checkUpdate.clickNoRepeat { }
         //点击推送开关跳转通知设置
         pushSwitch.clickNoRepeat { jumpNotificationSettings() }
         //设置震动开关选中状态
@@ -118,6 +125,8 @@ class SettingActivity : AppActivity() {
                 waitDialog.show()
                 //销毁主页
                 ActivityManager.getInstance().finishActivity(MainActivity::class.java)
+                //清除用户个人信息数据
+                AppConfig.UserPersonalInformationModel = UserInfoModel.User()
                 //延迟1s
                 delay(1000)
                 //关闭加载中对话框

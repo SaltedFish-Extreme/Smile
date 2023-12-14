@@ -27,7 +27,7 @@ data class UserInfoModel(
         @SerialName("avatar") var avatar: String = "",
         @SerialName("birthday") var birthday: String = "",
         @SerialName("inviteCode") var inviteCode: String = "",
-        @SerialName("invitedCode") var invitedCode: String = "",
+        @SerialName("invitedCode") var invitedCode: String? = "",
         @SerialName("nickname") var nickname: String = "",
         @SerialName("sex") var sex: String = "",
         @SerialName("signature") var signature: String = "",

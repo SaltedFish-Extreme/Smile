@@ -122,12 +122,26 @@
     <string name="exit_confirm">确定退出登录吗？</string>
     <string name="exit_succeed">退出登录成功</string>
     <string name="clear_cache_success">缓存清除成功</string>
+    <string name="update_address">https://wwka.lanzouy.com/b033a4fyf</string>
     <string name="project_repository">https://github.com/SaltedFish-Extreme/Smile</string>
     <string name="copyright_content">本APP所使用的所有API均由 段子乐 后台提供，仅供学习交流，不可用于任何商业用途。</string>
     <string name="qq">1738099872</string>
     <string name="email">1738099872@qq.com</string>
     <string name="github">github.com/SaltedFish-Extreme</string>
     <string name="link">saltedfish-extreme.github.io</string>
+    <!--用户信息页-->
+    <string name="avatar">头像</string>
+    <string name="nickname">昵称</string>
+    <string name="signature">签名</string>
+    <string name="gender">性别</string>
+    <string name="man">男</string>
+    <string name="woman">女</string>
+    <string name="birthday">生日</string>
+    <string name="my_invitation_code">我的邀请码</string>
+    <string name="bind_invitation_code">绑定邀请码</string>
+    <string name="not_bind">未绑定</string>
+    <string name="bound">已绑定</string>
+    <string name="bind_hint">每个用户只能绑定一个邀请码，绑定成功之后，双方都会获得相应的积分奖励</string>
     <!--搜索页-->
     <string name="search_tip">输入关键字搜索</string>
     <string name="search_hot">热门搜索</string>

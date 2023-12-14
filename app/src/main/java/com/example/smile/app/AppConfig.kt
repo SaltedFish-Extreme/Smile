@@ -6,6 +6,7 @@ import android.provider.Settings
 import com.drake.serialize.serialize.annotation.SerializeConfig
 import com.drake.serialize.serialize.serialLazy
 import com.example.smile.BuildConfig
+import com.example.smile.model.UserInfoModel
 import java.util.UUID
 
 /**
@@ -93,4 +94,7 @@ object AppConfig {
 
     /** 当前是否正在使用数据流量 */
     var MobileNetUsing: Boolean = false
+
+    /** 用户个人信息数据模型 只用来在用户个人信息页面展示，不作为永久变量保存磁盘 */
+    var UserPersonalInformationModel = UserInfoModel.User()
 }

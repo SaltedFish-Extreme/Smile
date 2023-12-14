@@ -95,6 +95,8 @@ class ProfileFragment : AppFragment() {
             like.text = userInfoData.info.likeNum.toString()
             //显示经验
             experience.text = userInfoData.info.experienceNum.toString()
+            //保存用户个人信息数据
+            AppConfig.UserPersonalInformationModel = userInfoData.user
         }.catch {
             //获取数据出错，吐司错误信息(用户登录状态过期或者未登录会跳转登录页面吐司自定义错误信息)
             Toaster.show(it.message)

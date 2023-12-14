@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?><!--用户信息页-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_navigation_bar"
+    android:orientation="vertical">
+
+    <com.hjq.bar.TitleBar
+        android:id="@+id/titleBar"
+        style="@style/TitleBar" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.example.smile.widget.settingbar.SettingBar
+                android:id="@+id/user_avatar"
+                style="@style/SettingBarStyle"
+                app:bar_leftText="@string/avatar" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/avatar"
+                android:layout_width="@dimen/dp_30"
+                android:layout_height="@dimen/dp_30"
+                android:layout_gravity="end|center_vertical"
+                android:layout_marginEnd="@dimen/dp_50"
+                android:scaleType="centerCrop"
+                app:shapeAppearance="@style/CircleStyle"
+                tools:srcCompat="@drawable/account" />
+        </FrameLayout>
+
+        <com.example.smile.widget.settingbar.SettingBar
+            android:id="@+id/user_nickname"
+            style="@style/SettingBarStyle"
+            app:bar_leftText="@string/nickname"
+            app:bar_rightText="@string/me" />
+
+        <com.example.smile.widget.settingbar.SettingBar
+            android:id="@+id/user_sign"
+            style="@style/SettingBarStyle"
+            app:bar_leftText="@string/signature"
+            app:bar_lineVisible="false"
+            app:bar_rightText="@string/sign" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10"
+        android:orientation="vertical">
+
+        <com.example.smile.widget.settingbar.SettingBar
+            android:id="@+id/user_gender"
+            style="@style/SettingBarStyle"
+            app:bar_leftText="@string/gender"
+            app:bar_rightText="@string/man" />
+
+        <com.example.smile.widget.settingbar.SettingBar
+            android:id="@+id/user_birthday"
+            style="@style/SettingBarStyle"
+            app:bar_leftText="@string/birthday"
+            app:bar_lineVisible="false" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10"
+        android:orientation="vertical">
+
+        <com.example.smile.widget.settingbar.SettingBar
+            android:id="@+id/my_invitation_code"
+            style="@style/SettingBarStyle"
+            app:bar_leftText="@string/my_invitation_code" />
+
+        <com.example.smile.widget.settingbar.SettingBar
+            android:id="@+id/bind_invitation_code"
+            style="@style/SettingBarStyle"
+            app:bar_leftText="@string/bind_invitation_code"
+            app:bar_lineVisible="false"
+            app:bar_rightText="@string/not_bind" />
+    </LinearLayout>
+
+</LinearLayout>
