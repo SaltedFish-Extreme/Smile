@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><!--保存图片显示框-->
+<?xml version="1.0" encoding="utf-8"?><!--保存图片-->
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
@@ -12,9 +12,9 @@
         android:text="@string/save_picture"
         android:textColor="?android:attr/textColorPrimary"
         android:textSize="@dimen/sp_18"
-        app:shape_type="rectangle"
         app:shape_radius="@dimen/dp_5"
         app:shape_solidColor="@color/day_on_night"
         app:shape_strokeColor="?android:attr/textColorSecondary"
-        app:shape_strokeSize="@dimen/dp_1" />
+        app:shape_strokeSize="@dimen/dp_1"
+        app:shape_type="rectangle" />
 </FrameLayout>

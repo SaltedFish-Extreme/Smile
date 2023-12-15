@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><!--适配器(已登录)推荐关注列表-->
+<?xml version="1.0" encoding="utf-8"?><!--推荐关注列表项(已登录)-->
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -37,8 +37,8 @@
             android:textStyle="bold"
             tools:text="@string/me" />
 
-        <View
-            android:id="@+id/view"
+        <Space
+            android:id="@+id/space"
             android:layout_width="@dimen/dp_10"
             android:layout_height="@dimen/dp_20"
             android:layout_below="@id/user_nickname"
@@ -49,9 +49,9 @@
             android:id="@+id/user_release_num"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@id/view"
+            android:layout_alignTop="@id/space"
             android:layout_alignParentStart="true"
-            android:layout_toStartOf="@id/view"
+            android:layout_toStartOf="@id/space"
             android:gravity="end"
             android:textColor="@color/color_omitted"
             android:textSize="@dimen/sp_12"
@@ -62,9 +62,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/user_nickname"
-            android:layout_alignTop="@id/view"
+            android:layout_alignTop="@id/space"
             android:layout_alignParentEnd="true"
-            android:layout_toEndOf="@id/view"
+            android:layout_toEndOf="@id/space"
             android:gravity="start"
             android:textColor="@color/color_omitted"
             android:textSize="@dimen/sp_12"
@@ -74,7 +74,7 @@
             android:id="@+id/follow"
             android:layout_width="@dimen/dp_110"
             android:layout_height="wrap_content"
-            android:layout_below="@id/view"
+            android:layout_below="@id/space"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/dp_5"
             android:gravity="center"
@@ -90,7 +90,7 @@
             android:id="@+id/followed"
             android:layout_width="@dimen/dp_110"
             android:layout_height="wrap_content"
-            android:layout_below="@id/view"
+            android:layout_below="@id/space"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/dp_5"
             android:gravity="center"

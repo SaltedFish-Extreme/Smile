@@ -36,7 +36,7 @@ import com.hjq.toast.Toaster
 import com.huantansheng.easyphotos.ui.widget.PressedImageView
 
 /** 段子内容适配器 */
-class JokeContentAdapter(private val activity: FragmentActivity) : AppAdapter<JokeContentModel>(R.layout.item_joke_content) {
+class JokeContentAdapter(private val activity: FragmentActivity) : AppAdapter<JokeContentModel>(R.layout.item_joke_content_list) {
 
     init {
         //设置动画效果

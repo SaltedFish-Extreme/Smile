@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/item_joke_content" />
+            tools:listitem="@layout/item_joke_content_list" />
     </com.drake.brv.PageRefreshLayout>
 
     <!--悬浮按钮-->

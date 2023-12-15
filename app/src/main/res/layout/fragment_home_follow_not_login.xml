@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><!--(未登录状态)首页关注选项卡片段-->
+<?xml version="1.0" encoding="utf-8"?><!--首页推荐关注选项卡片段(未登录)-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -34,7 +34,7 @@
             android:layout_height="match_parent"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:itemCount="6"
-            tools:listitem="@layout/item_recommend_follow_not_login" />
+            tools:listitem="@layout/item_recommend_follow_not_login_list" />
 
     </com.drake.brv.PageRefreshLayout>
 

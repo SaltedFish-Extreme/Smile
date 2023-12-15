@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><!--适配器(未登录)推荐关注列表-->
+<?xml version="1.0" encoding="utf-8"?><!--推荐关注列表项(未登录)-->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"

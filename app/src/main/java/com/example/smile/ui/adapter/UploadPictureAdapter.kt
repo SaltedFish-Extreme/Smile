@@ -38,7 +38,7 @@ class UploadPictureAdapter(activity: FragmentActivity, private val dataList: Arr
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainVH {
-        val ivPhoto = mInflater.inflate(R.layout.item_add_image, parent, false)
+        val ivPhoto = mInflater.inflate(R.layout.item_add_picture, parent, false)
         return MainVH(ivPhoto)
     }
 

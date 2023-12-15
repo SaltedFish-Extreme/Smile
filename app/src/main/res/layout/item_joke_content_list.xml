@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><!--适配器段子内容列表-->
+<?xml version="1.0" encoding="utf-8"?><!--段子内容列表项-->
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -135,7 +135,7 @@
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:spanCount="3"
             tools:itemCount="3"
-            tools:listitem="@layout/item_joke_picture" />
+            tools:listitem="@layout/item_load_picture" />
 
         <com.example.smile.widget.view.SmartTextView
             android:id="@+id/release_time"

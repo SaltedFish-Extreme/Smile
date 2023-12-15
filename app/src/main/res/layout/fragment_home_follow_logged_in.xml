@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><!--(已登录状态)首页关注选项卡片段-->
+<?xml version="1.0" encoding="utf-8"?><!--首页推荐关注选项卡片段(已登录)-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -32,7 +32,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:itemCount="1"
-            tools:listitem="@layout/item_recommend_follow_logged_in" />
+            tools:listitem="@layout/item_recommend_follow_logged_in_list" />
     </com.drake.brv.PageRefreshLayout>
 
 </LinearLayout>

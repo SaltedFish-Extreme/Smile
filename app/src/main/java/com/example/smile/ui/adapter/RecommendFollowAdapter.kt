@@ -63,7 +63,7 @@ class RecommendFollowAdapter : AppAdapter<RecommendFollowModel>() {
 
     override fun onCreateViewHolder(context: Context, parent: ViewGroup, viewType: Int): QuickViewHolder {
         //重写方法，多布局对应登录状态
-        return if (AppConfig.token.isEmpty()) QuickViewHolder(R.layout.item_recommend_follow_not_login, parent)
-        else QuickViewHolder(R.layout.item_recommend_follow_logged_in, parent)
+        return if (AppConfig.token.isEmpty()) QuickViewHolder(R.layout.item_recommend_follow_not_login_list, parent)
+        else QuickViewHolder(R.layout.item_recommend_follow_logged_in_list, parent)
     }
 }

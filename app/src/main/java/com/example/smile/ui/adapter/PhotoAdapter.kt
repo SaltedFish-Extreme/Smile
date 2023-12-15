@@ -39,7 +39,7 @@ import kotlinx.coroutines.cancel
 /** 图片预览适配器 */
 class PhotoAdapter(
     private val activity: FragmentActivity, private val dataList: List<String>
-) : AppAdapter<String>(R.layout.item_joke_picture, dataList) {
+) : AppAdapter<String>(R.layout.item_load_picture, dataList) {
 
     companion object {
         //当前图片位置
