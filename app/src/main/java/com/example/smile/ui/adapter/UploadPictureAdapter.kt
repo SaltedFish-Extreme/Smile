@@ -30,11 +30,18 @@ class UploadPictureAdapter(activity: FragmentActivity, private val dataList: Arr
     private val mInflater: LayoutInflater
     private val mGlide: RequestManager
     private val mActivity: FragmentActivity
+    private lateinit var rv: RecyclerView
 
     init {
         mInflater = LayoutInflater.from(activity)
         mGlide = Glide.with(activity)
         mActivity = activity
+    }
+
+    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
+        super.onAttachedToRecyclerView(recyclerView)
+        //赋值rv
+        rv = recyclerView
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainVH {
@@ -58,7 +65,10 @@ class UploadPictureAdapter(activity: FragmentActivity, private val dataList: Arr
         //单击图片预览
         holder.ivPhoto.clickNoRepeat {
             PhotoPreview.with(mActivity).defaultShowPosition(position).sources(dataList.map { it.path })
-                .shapeTransformType(ShapeTransformType.ROUND_RECT).shapeCornerRadius(10).build().show(it)
+                .shapeTransformType(ShapeTransformType.ROUND_RECT).shapeCornerRadius(10).build().show { pos ->
+                    val viewByPosition: View? = rv.layoutManager?.findViewByPosition(pos)
+                    return@show viewByPosition?.findViewById<View>(R.id.upload_image)
+                }// 指定缩略图
         }
     }
 
