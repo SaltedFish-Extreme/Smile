@@ -1,5 +1,6 @@
 package com.example.smile.app
 
+import ando.dialog.core.DialogManager
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.IntentFilter
@@ -16,7 +17,7 @@ import com.hjq.toast.style.WhiteToastStyle
 /**
  * Created by 咸鱼至尊 on 2021/12/9
  *
- * desc: Activity基类 目前只用来监听网络状态变化|状态栏沉浸|转场动画效果
+ * desc: Activity基类
  *
  * @property receive 是否接收广播(默认接收)
  */
@@ -92,4 +93,11 @@ open class AppActivity(private val receive: Boolean = true) : AppCompatActivity(
         //转场动画效果
         overridePendingTransition(R.anim.bottom_silent, R.anim.bottom_out)
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        //页面销毁，关闭所有弹窗
+        DialogManager.dismiss()
+    }
+
 }
