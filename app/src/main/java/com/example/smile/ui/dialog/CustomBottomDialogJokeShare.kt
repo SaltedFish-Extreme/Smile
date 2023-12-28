@@ -15,11 +15,11 @@ import com.example.smile.http.NetApi
 import com.example.smile.model.EmptyModel
 import com.example.smile.model.JokeCollectStateModel
 import com.example.smile.util.PhotoUtils
+import com.example.smile.util.copyText
 import com.example.smile.util.decrypt
+import com.example.smile.util.getVideoDirectory
 import com.example.smile.util.vibration
 import com.example.smile.widget.ext.clickNoRepeat
-import com.example.smile.util.copyJoke
-import com.example.smile.util.getVideoDirectory
 import com.example.smile.widget.ext.gone
 import com.example.smile.widget.ext.pressRightClose
 import com.example.smile.widget.view.DrawableTextView
@@ -115,7 +115,7 @@ class CustomBottomDialogJokeShare(
         })
         //复制段子文本内容
         copy.clickNoRepeat {
-            context.copyJoke(text)
+            context.copyText(text)
         }
         //保存段子图片/视频
         save.clickNoRepeat {

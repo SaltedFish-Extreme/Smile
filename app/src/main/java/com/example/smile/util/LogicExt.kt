@@ -63,7 +63,7 @@ fun Activity.albumUploadImage(photoList: ArrayList<Photo>, adapter: UploadPictur
  *
  * @param text 要复制的字符串
  */
-fun Context.copyJoke(text: String) {
+fun Context.copyText(text: String) {
     val clipboard: ClipboardManager = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
     val clip = ClipData.newPlainText(getString(R.string.tag_copy_joke_content), text)
     clipboard.setPrimaryClip(clip)
