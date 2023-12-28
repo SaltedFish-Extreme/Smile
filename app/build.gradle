@@ -176,10 +176,10 @@ dependencies {
     //仿微信朋友圈大图多图预览 https://github.com/wanggaowan/PhotoPreview
     implementation 'com.github.wanggaowan:PhotoPreview:2.4.7'
     //Dialog&DialogFragment使用框架 https://github.com/javakam/DialogManager
-    implementation 'com.github.javakam:dialog.core:7.0.0@aar'  //核心库, 2个类
-    implementation 'com.github.javakam:dialog.usage:7.0.0@aar' //常用样式(如: 加载中弹窗)
-    implementation 'com.github.javakam:dialog.bottomsheet:7.0.0@aar' //底部弹窗(必需下面的 widget.optionview 框架)
-    implementation 'com.github.javakam:widget.optionview:7.0.0@aar'  //单选/多选的RecyclerView,基于EasyAdapter实现
+    implementation 'com.github.javakam:dialog.core:7.6.0@aar'  //核心库, 2个类
+    implementation 'com.github.javakam:dialog.usage:7.6.0@aar' //常用样式(如: 加载中弹窗)
+    implementation 'com.github.javakam:dialog.bottomsheet:7.6.0@aar' //底部弹窗(必需下面的 widget.optionview 框架)
+    implementation 'com.github.javakam:widget.optionview:7.6.0@aar'  //单选/多选的RecyclerView,基于EasyAdapter实现
     //安卓视频播放器 https://github.com/Doikki/DKVideoPlayer
     implementation 'xyz.doikki.android.dkplayer:dkplayer-java:3.3.7' //必选，内部默认使用系统mediaplayer进行解码
     implementation 'xyz.doikki.android.dkplayer:dkplayer-ui:3.3.7' //可选，包含StandardVideoController的实现
