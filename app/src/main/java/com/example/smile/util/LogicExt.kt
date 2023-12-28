@@ -10,25 +10,25 @@ import android.net.Uri
 import android.os.Build
 import android.os.Environment
 import androidx.core.app.NotificationManagerCompat
-import androidx.recyclerview.widget.RecyclerView
 import com.drake.serialize.intent.openActivity
 import com.example.smile.R
 import com.example.smile.app.AppConfig
 import com.example.smile.ui.activity.LoginActivity
 import com.example.smile.ui.adapter.UploadPictureAdapter
+import com.example.smile.widget.recycler.WrapRecyclerView
 import com.hjq.toast.Toaster
 import com.huantansheng.easyphotos.EasyPhotos
 import com.huantansheng.easyphotos.callback.SelectCallback
 import com.huantansheng.easyphotos.models.album.entity.Photo
 
 /**
- * 相册上传图片
+ * 相册上传图片(九宫格)
  *
  * @param photoList 照片对象集合
  * @param adapter 数据适配器
  * @param rv rv对象
  */
-fun Activity.albumUploadImage(photoList: ArrayList<Photo>, adapter: UploadPictureAdapter, rv: RecyclerView) {
+fun Activity.albumUploadImage(photoList: ArrayList<Photo>, adapter: UploadPictureAdapter, rv: WrapRecyclerView) {
     GlideEngine.instance?.let {
         //参数说明：上下文，是否显示相机按钮，是否使用宽高数据（false时宽高数据为0，扫描速度更快），[配置Glide为图片加载引擎]
         EasyPhotos.createAlbum(this, true, false, it)
@@ -45,12 +45,20 @@ fun Activity.albumUploadImage(photoList: ArrayList<Photo>, adapter: UploadPictur
                 //photos:返回对象集合：如果你需要了解图片的宽、高、大小、用户是否选中原图选项等信息，可以用这个
                 @SuppressLint("NotifyDataSetChanged")
                 override fun onResult(photos: ArrayList<Photo>, isOriginal: Boolean) {
-                    //将图片对象集合重新添加,刷新数据列表
+                    //将图片对象集合重新添加，刷新数据列表
                     photoList.clear()
                     photoList.addAll(photos)
                     adapter.notifyDataSetChanged()
-                    //列表滚动到最后面(因为有脚布局，所以不用-1，否则需要-1)
-                    rv.scrollToPosition(adapter.itemCount)
+                    //图片未全部添加完
+                    if (photoList.size < 9) {
+                        //列表滚动到最后面(因为有脚布局，所以不用-1，否则需要-1)
+                        rv.scrollToPosition(adapter.itemCount)
+                    } else {
+                        //添加完所有图片后，移除脚布局
+                        rv.removeAllFooterViews()
+                        //列表滚动到最后面(此时没有脚布局，位置-1)
+                        rv.scrollToPosition(adapter.itemCount - 1)
+                    }
                 }
 
                 override fun onCancel() {}

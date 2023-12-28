@@ -39,6 +39,7 @@
     <string name="look">去看看</string>
     <string name="at">\&#064;%s</string>
     <string name="tag_copy_joke_content">smile_copy_joke_text</string>
+    <string name="tag_remove_photo">tag_remove_photo</string>
     <!--首页-->
     <string name="concern">关注</string>
     <string name="follow_title_tip">优秀的人值得关注</string>

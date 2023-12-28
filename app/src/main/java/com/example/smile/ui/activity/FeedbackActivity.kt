@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.LinearLayout
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.drake.channel.receiveTagLive
 import com.drake.net.Post
 import com.drake.net.utils.scopeNetLife
 import com.drake.softinput.setWindowSoftInput
@@ -65,6 +66,14 @@ class FeedbackActivity : AppActivity() {
         feedbackImage.adapter = adapter
         //添加脚布局
         feedbackImage.addFooterView<View>(R.layout.item_add_picture)
+        //接收消息标签，删除图片
+        receiveTagLive(getString(R.string.tag_remove_photo)) {
+            //如果没有脚布局存在(添加完成所有图片后脚布局被移除)
+            if (feedbackImage.getFooterViewsCount() == 0) {
+                //则添加脚布局占位图(删除图片后，需要显示脚布局可以继续添加图片)
+                feedbackImage.addFooterView<View>(R.layout.item_add_picture)
+            }
+        }
         //脚布局点击监听，跳转相册图片选择器，上传图片
         feedbackImage.getFooterViews().forEach { it?.clickNoRepeat { albumUploadImage(photoList, adapter, feedbackImage) } }
         //点击提交按钮，上传反馈信息

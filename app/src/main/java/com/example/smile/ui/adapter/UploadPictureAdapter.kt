@@ -11,6 +11,7 @@ import com.bumptech.glide.RequestManager
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
+import com.drake.channel.sendTag
 import com.example.smile.R
 import com.example.smile.ui.adapter.UploadPictureAdapter.MainVH
 import com.example.smile.widget.ext.clickNoRepeat
@@ -60,6 +61,7 @@ class UploadPictureAdapter(activity: FragmentActivity, private val dataList: Arr
             dataList.removeAt(position) //从数据源删除
             notifyItemRemoved(position) //通知移除item
             notifyItemRangeChanged(position, itemCount - position) //刷新数据（不加偶尔会删除 item 的位置错误）
+            sendTag(mActivity.getString(R.string.tag_remove_photo)) //发送消息标签，删除图片
             true
         }
         //单击图片预览
