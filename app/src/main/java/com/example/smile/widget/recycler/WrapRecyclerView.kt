@@ -61,6 +61,11 @@ class WrapRecyclerView @JvmOverloads constructor(
         wrapAdapter.removeHeaderView(view)
     }
 
+    /** 移除所有头部View */
+    fun removeAllHeaderViews() {
+        wrapAdapter.removeAllHeaderViews()
+    }
+
     /** 添加底部View */
     fun addFooterView(view: View) {
         wrapAdapter.addFooterView(view)
@@ -76,6 +81,11 @@ class WrapRecyclerView @JvmOverloads constructor(
     /** 移除底部View */
     fun removeFooterView(view: View) {
         wrapAdapter.removeFooterView(view)
+    }
+
+    /** 移除所有底部View */
+    fun removeAllFooterViews() {
+        wrapAdapter.removeAllFooterViews()
     }
 
     /** 获取头部View总数 */
@@ -296,6 +306,12 @@ class WrapRecyclerView @JvmOverloads constructor(
             }
         }
 
+        /** 移除所有头部View */
+        fun removeAllHeaderViews() {
+            headerViews.clear()
+            notifyDataSetChanged()
+        }
+
         /** 添加底部View */
         fun addFooterView(view: View) {
             // 不能添加同一个View对象，否则会导致RecyclerView复用异常
@@ -310,6 +326,12 @@ class WrapRecyclerView @JvmOverloads constructor(
             if (footerViews.remove(view)) {
                 notifyDataSetChanged()
             }
+        }
+
+        /** 移除所有底部View */
+        fun removeAllFooterViews() {
+            footerViews.clear()
+            notifyDataSetChanged()
         }
 
         /** 获取头部View总数 */
