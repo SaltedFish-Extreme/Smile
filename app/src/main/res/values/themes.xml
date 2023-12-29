@@ -176,4 +176,19 @@
         <item name="android:foreground">?attr/selectableItemBackground</item>
     </style>
 
+    <!--输入栏弹窗样式-->
+    <style name="EditTextDialogStyle" parent="AndoDialog">
+        <item name="android:windowNoTitle">false</item>
+        <item name="android:backgroundDimAmount">0.6</item>
+        <item name="android:windowBackground">@drawable/rectangle_dialog_bg</item>
+        <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
+    </style>
+
+    <!--弹窗中间放大弹出动画效果-->
+    <!--系统默认为 @android:style/Animation.Dialog   @style/AndoBottomDialogAnimation -->
+    <style name="DialogAnimCenter" parent="@android:style/Animation">
+        <item name="android:windowEnterAnimation">@anim/dialog_center_in</item>
+        <item name="android:windowExitAnimation">@anim/dialog_center_out</item>
+    </style>
+
 </resources>

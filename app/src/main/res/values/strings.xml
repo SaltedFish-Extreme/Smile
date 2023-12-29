@@ -141,8 +141,12 @@
     <string name="my_invitation_code">我的邀请码</string>
     <string name="bind_invitation_code">绑定邀请码</string>
     <string name="not_bind">未绑定</string>
-    <string name="bound">已绑定</string>
+    <string name="bound">您已绑定邀请码</string>
     <string name="bind_hint">每个用户只能绑定一个邀请码，绑定成功之后，双方都会获得相应的积分奖励</string>
+    <string name="edit_dialog_update_hint">请输入更新内容</string>
+    <string name="edit_dialog_title_nickname">修改昵称</string>
+    <string name="edit_dialog_title_signature">修改签名</string>
+    <string name="select_gender">选择性别</string>
     <!--搜索页-->
     <string name="search_tip">输入关键字搜索</string>
     <string name="search_hot">热门搜索</string>

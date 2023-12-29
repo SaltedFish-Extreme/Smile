@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?><!--单选/多选选择器弹窗布局-->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ando.widget.option.list.OptionView
+        android:id="@+id/optionView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:overScrollMode="never"
+        android:scrollbars="none"
+        app:fastScrollEnabled="false"
+        tools:listitem="@layout/item_option_horizontal_list" />
+</FrameLayout>

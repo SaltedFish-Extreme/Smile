@@ -67,6 +67,33 @@ fun Activity.albumUploadImage(photoList: ArrayList<Photo>, adapter: UploadPictur
 }
 
 /**
+ * 相册上传图片(单张)
+ *
+ * @param invoke 选择图片后要执行的操作
+ */
+fun Activity.albumUploadPicture(invoke: (photos: ArrayList<Photo>) -> Unit) {
+    GlideEngine.instance?.let {
+        //参数说明：上下文，是否显示相机按钮，是否使用宽高数据（false时宽高数据为0，扫描速度更快），[配置Glide为图片加载引擎]
+        EasyPhotos.createAlbum(this, true, false, it)
+            //参数说明：见下方`FileProvider的配置`
+            .setFileProviderAuthority("${AppConfig.getPackageName()}.provider")
+            //无拼图功能
+            .setPuzzleMenu(false)
+            //相册回调
+            .start(object : SelectCallback() {
+                //photos:返回对象集合：如果你需要了解图片的宽、高、大小、用户是否选中原图选项等信息，可以用这个
+                @SuppressLint("NotifyDataSetChanged")
+                override fun onResult(photos: ArrayList<Photo>, isOriginal: Boolean) {
+                    //将图片集合(单张)作为参数传递给要执行的操作中
+                    invoke(photos)
+                }
+
+                override fun onCancel() {}
+            })
+    }
+}
+
+/**
  * 复制文本内容
  *
  * @param text 要复制的字符串

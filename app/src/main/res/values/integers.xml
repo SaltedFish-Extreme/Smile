@@ -5,4 +5,7 @@
 
     <!-- 短信验证码的长度 -->
     <integer name="sms_code_length">4</integer>
+
+    <!-- 弹窗动画过渡时间 -->
+    <integer name="dialog_anim_duration">2000</integer>
 </resources>

@@ -89,4 +89,10 @@ object NetApi {
 
     /** 段子收藏(取消收藏)API路径 */
     const val JokeCollectOrCancelAPI = "jokes/collect"
+
+    /** 更新用户信息API路径 */
+    const val UpdateUserInfoAPI = "user/info/update"
+
+    /** 绑定邀请码API路径 */
+    const val BindInvitationCodeAPI = "user/bind/invite"
 }
