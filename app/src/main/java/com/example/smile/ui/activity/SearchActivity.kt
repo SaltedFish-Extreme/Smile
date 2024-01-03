@@ -14,7 +14,8 @@ import com.drake.net.utils.scope
 import com.drake.net.utils.scopeDialog
 import com.example.smile.R
 import com.example.smile.app.AppActivity
-import com.example.smile.app.AppConfig
+import com.example.smile.app.AppConfig.SearchHistory
+import com.example.smile.app.AppConfig.SearchHot
 import com.example.smile.http.NetApi.HomeHotSearchAPI
 import com.example.smile.http.NetApi.HomeSearchJokeAPI
 import com.example.smile.model.JokeContentModel
@@ -75,7 +76,7 @@ class SearchActivity : AppActivity(), SwipeBackAbility.Direction {
         //默认隐藏段子内容页面
         frame.gone()
         //没有存储过搜索热词就发起请求
-        if (AppConfig.SearchHot.isEmpty()) {
+        if (SearchHot.isEmpty()) {
             scopeDialog {
                 //延迟0.5秒，转会儿圈
                 delay(500)
@@ -84,17 +85,17 @@ class SearchActivity : AppActivity(), SwipeBackAbility.Direction {
                 //给adapter设置数据
                 hotAdapter.submitList(hotData)
                 //存储搜索热词数据
-                AppConfig.SearchHot.addAll(hotData)
+                SearchHot.addAll(hotData)
             }.catch {
                 //获取出错，吐司错误信息
                 Toaster.show(it.message)
             }
         } else {
             //存储过搜索热词直接获取设置给adapter
-            hotAdapter.submitList(AppConfig.SearchHot)
+            hotAdapter.submitList(SearchHot)
         }
         //设置搜索历史数据
-        historyAdapter.submitList(AppConfig.SearchHistory)
+        historyAdapter.submitList(SearchHistory)
         //初始化热门搜索RecyclerView
         rvHot.run {
             //使用横向线性布局
@@ -117,7 +118,7 @@ class SearchActivity : AppActivity(), SwipeBackAbility.Direction {
         clearHistory.clickNoRepeat {
             if (historyAdapter.items.isNotEmpty()) {
                 historyAdapter.submitList(emptyList())
-                AppConfig.SearchHistory = arrayListOf()
+                SearchHistory = arrayListOf()
             }
         }
         //取消按钮点击关闭当前页面
@@ -209,7 +210,7 @@ class SearchActivity : AppActivity(), SwipeBackAbility.Direction {
             //添加新数据到第一条
             add(0, keyStr)
             //重新赋值序列化对象
-            AppConfig.SearchHistory = items
+            SearchHistory = items
         }
     }
 

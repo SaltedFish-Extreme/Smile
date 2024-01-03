@@ -12,10 +12,9 @@ import com.drake.serialize.intent.openActivity
 import com.example.smile.R
 import com.example.smile.app.ActivityManager
 import com.example.smile.app.AppActivity
-import com.example.smile.app.AppConfig
-import com.example.smile.model.UserInfoModel
-import com.example.smile.ui.dialog.TipsDialog
-import com.example.smile.ui.dialog.WaitDialog
+import com.example.smile.app.AppConfig.MobileNetLoadingPicturesOrNo
+import com.example.smile.app.AppConfig.VibrationOrNo
+import com.example.smile.app.AppConfig.getVersionName
 import com.example.smile.util.CacheDataUtil
 import com.example.smile.util.isNotificationEnabled
 import com.example.smile.util.jumpNotificationSettings
@@ -86,29 +85,29 @@ class SettingActivity : AppActivity() {
             startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.project_repository))))
         }
         //显示版本号
-        checkUpdate.setRightText(getString(R.string.version_name, AppConfig.getVersionName()))
+        checkUpdate.setRightText(getString(R.string.version_name, getVersionName()))
         //todo 打开网页跳转app下载链接
         checkUpdate.clickNoRepeat { }
         //点击推送开关跳转通知设置
         pushSwitch.clickNoRepeat { jumpNotificationSettings() }
         //设置震动开关选中状态
-        vibrationSwitch.setChecked(AppConfig.VibrationOrNo)
+        vibrationSwitch.setChecked(VibrationOrNo)
         //震动开关切换监听
         vibrationSwitch.setOnCheckedChangeListener(object : SwitchButton.OnCheckedChangeListener {
             override fun onCheckedChanged(button: SwitchButton, checked: Boolean) {
                 //保存震动开关切换状态
-                AppConfig.VibrationOrNo = checked
+                VibrationOrNo = checked
                 //如果选中，震动提示一下
                 if (checked) vibration()
             }
         })
         //设置流量开关选中状态
-        mobileNetSwitch.setChecked(AppConfig.MobileNetLoadingPicturesOrNo)
+        mobileNetSwitch.setChecked(MobileNetLoadingPicturesOrNo)
         //流量开关切换监听
         mobileNetSwitch.setOnCheckedChangeListener(object : SwitchButton.OnCheckedChangeListener {
             override fun onCheckedChanged(button: SwitchButton, checked: Boolean) {
                 //保存流量开关切换状态
-                AppConfig.MobileNetLoadingPicturesOrNo = checked
+                MobileNetLoadingPicturesOrNo = checked
                 //如果选中，震动提示一下
                 if (checked) vibration()
             }

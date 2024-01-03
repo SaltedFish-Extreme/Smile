@@ -10,7 +10,7 @@ import com.drake.brv.PageRefreshLayout
 import com.drake.net.Post
 import com.drake.net.utils.scope
 import com.example.smile.R
-import com.example.smile.app.AppConfig
+import com.example.smile.app.AppConfig.token
 import com.example.smile.app.AppFragment
 import com.example.smile.http.NetApi.HomeRecommendFollowAPI
 import com.example.smile.model.RecommendFollowModel
@@ -38,14 +38,14 @@ class HomeFollowFragment : AppFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         //填充视图(未登录状态/已登录状态)
-        return if (AppConfig.token.isEmpty()) inflater.inflate(R.layout.fragment_home_follow_not_login, container, false)
+        return if (token.isEmpty()) inflater.inflate(R.layout.fragment_home_follow_not_login, container, false)
         else inflater.inflate(R.layout.fragment_home_follow_logged_in, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //点击刷新按钮执行刷新操作(未登录时可用)
-        if (AppConfig.token.isEmpty()) refresh.clickNoRepeat { pageRecommendUser.refresh() }
+        if (token.isEmpty()) refresh.clickNoRepeat { pageRecommendUser.refresh() }
         //设置刷新头为标准样式
         pageRecommendUser.setRefreshHeader(MaterialHeader(context))
     }
@@ -54,7 +54,7 @@ class HomeFollowFragment : AppFragment() {
         //第一次切换
         if (first) {
             //设置RecycleView的布局管理器(未登录状态不需要处理)
-            if (AppConfig.token.isNotEmpty()) {
+            if (token.isNotEmpty()) {
                 rvRecommendUser.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             }
             //设置RecycleView的Adapter

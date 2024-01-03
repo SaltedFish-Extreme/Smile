@@ -10,7 +10,8 @@ import com.drake.net.utils.scopeNetLife
 import com.drake.serialize.intent.bundle
 import com.example.smile.R
 import com.example.smile.app.AppActivity
-import com.example.smile.http.NetApi
+import com.example.smile.http.NetApi.JokeLikeOrCancelAPI
+import com.example.smile.http.NetApi.UserFocusOrCancelAPI
 import com.example.smile.model.EmptyModel
 import com.example.smile.model.NotificationVideoModel
 import com.example.smile.ui.dialog.CustomBottomDialogJokeComment
@@ -94,7 +95,7 @@ class NotificationVideoActivity : AppActivity(), SwipeBackAbility.Direction {
                 override fun onClick(v: RevealViewLikeVideo) {
                     //发起请求，点赞(取消点赞)
                     scopeNetLife {
-                        Post<EmptyModel?>(NetApi.JokeLikeOrCancelAPI) {
+                        Post<EmptyModel?>(JokeLikeOrCancelAPI) {
                             param("id", model.jokesId)
                             param("status", isChecked)
                         }.await()
@@ -111,7 +112,7 @@ class NotificationVideoActivity : AppActivity(), SwipeBackAbility.Direction {
         //关注
         follow.clickNoRepeat {
             scopeNetLife {
-                Post<EmptyModel?>(NetApi.UserFocusOrCancelAPI) {
+                Post<EmptyModel?>(UserFocusOrCancelAPI) {
                     param("status", 1)
                     param("userId", model.userId)
                 }.await()
@@ -127,7 +128,7 @@ class NotificationVideoActivity : AppActivity(), SwipeBackAbility.Direction {
         //取消关注
         followed.clickNoRepeat {
             scopeNetLife {
-                Post<EmptyModel?>(NetApi.UserFocusOrCancelAPI) {
+                Post<EmptyModel?>(UserFocusOrCancelAPI) {
                     param("status", 0)
                     param("userId", model.userId)
                 }.await()

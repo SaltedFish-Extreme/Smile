@@ -12,8 +12,8 @@ import com.drake.net.Post
 import com.drake.net.utils.scopeNetLife
 import com.example.smile.R
 import com.example.smile.app.AppAdapter
-import com.example.smile.app.AppConfig
-import com.example.smile.http.NetApi
+import com.example.smile.app.AppConfig.userId
+import com.example.smile.http.NetApi.DeleteChildCommentAPI
 import com.example.smile.model.EmptyModel
 import com.example.smile.model.JokeCommentChildModel
 import com.example.smile.widget.ext.visibleOrInvisible
@@ -48,7 +48,7 @@ class JokeCommentChildAdapter(dataList: List<JokeCommentChildModel>, commentId: 
         //点击删除子评论
         addOnDebouncedChildClick(R.id.delete) { _, _, pos ->
             lifecycleOwner.scopeNetLife {
-                Post<EmptyModel?>(NetApi.DeleteChildCommentAPI) { param("commentId", items[pos].commentItemId) }.await()
+                Post<EmptyModel?>(DeleteChildCommentAPI) { param("commentId", items[pos].commentItemId) }.await()
                 //删除成功，更新列表
                 Toaster.show(R.string.delete_success)
                 removeAt(pos)
@@ -89,7 +89,7 @@ class JokeCommentChildAdapter(dataList: List<JokeCommentChildModel>, commentId: 
             //评论时间
             holder.getView<TextView>(R.id.comment_time).text = item.timeStr
             //显示删除按钮
-            holder.getView<PressedTextView>(R.id.delete).visibleOrInvisible(item.commentUser.userId.toString() == AppConfig.userId)
+            holder.getView<PressedTextView>(R.id.delete).visibleOrInvisible(item.commentUser.userId.toString() == userId)
         }
     }
 }

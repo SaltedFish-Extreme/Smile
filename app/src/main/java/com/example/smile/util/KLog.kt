@@ -2,7 +2,7 @@ package com.example.smile.util
 
 import android.text.TextUtils
 import android.util.Log
-import com.example.smile.app.AppConfig
+import com.example.smile.app.AppConfig.isDebug
 import com.example.smile.util.KLogHelper.wrapMessage
 
 /**
@@ -22,7 +22,7 @@ object KLog {
     }
 
     //判断是否是Debug模式，是就打印日志信息，否则不打印日志信息
-    private var isDebugMode = AppConfig.isDebug()
+    private var isDebugMode = isDebug()
 
     fun setDebugMode(debugMode: Boolean) {
         isDebugMode = debugMode

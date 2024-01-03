@@ -10,7 +10,7 @@ import com.chad.library.adapter4.util.setOnDebouncedItemClick
 import com.chad.library.adapter4.viewholder.QuickViewHolder
 import com.example.smile.R
 import com.example.smile.app.AppAdapter
-import com.example.smile.app.AppConfig
+import com.example.smile.app.AppConfig.token
 import com.example.smile.model.RecommendFollowModel
 import com.example.smile.widget.ext.visibleOrInvisible
 import com.google.android.material.imageview.ShapeableImageView
@@ -54,7 +54,7 @@ class RecommendFollowAdapter : AppAdapter<RecommendFollowModel>() {
             //粉丝数
             holder.getView<TextView>(R.id.user_follower_num).text = context.getString(R.string.follower_num, item.fansNum)
             //登录状态是否关注用户(未登录不需要处理)
-            if (AppConfig.token.isNotEmpty()) {
+            if (token.isNotEmpty()) {
                 holder.getView<ShapeTextView>(R.id.follow).visibleOrInvisible(!item.isAttention)
                 holder.getView<ShapeTextView>(R.id.followed).visibleOrInvisible(item.isAttention)
             }
@@ -63,7 +63,7 @@ class RecommendFollowAdapter : AppAdapter<RecommendFollowModel>() {
 
     override fun onCreateViewHolder(context: Context, parent: ViewGroup, viewType: Int): QuickViewHolder {
         //重写方法，多布局对应登录状态
-        return if (AppConfig.token.isEmpty()) QuickViewHolder(R.layout.item_recommend_follow_not_login_list, parent)
+        return if (token.isEmpty()) QuickViewHolder(R.layout.item_recommend_follow_not_login_list, parent)
         else QuickViewHolder(R.layout.item_recommend_follow_logged_in_list, parent)
     }
 }

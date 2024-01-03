@@ -17,7 +17,8 @@ import com.drake.spannable.replaceSpanLast
 import com.drake.spannable.span.HighlightSpan
 import com.example.smile.R
 import com.example.smile.app.AppActivity
-import com.example.smile.http.NetApi
+import com.example.smile.http.NetApi.GetResetCodeAPI
+import com.example.smile.http.NetApi.ResetPasswordAPI
 import com.example.smile.model.EmptyModel
 import com.example.smile.ui.dialog.CustomBottomDialogEncounterProblems
 import com.example.smile.util.InputTextManager
@@ -69,7 +70,7 @@ class ResetPasswordActivity : AppActivity() {
         sendVerificationCode.clickNoRepeat {
             scopeNetLife {
                 //返回数据为null，验证码在小程序查看
-                Post<EmptyModel?>(NetApi.GetResetCodeAPI) { param("phone", inputPhone.text.toString()) }.await()
+                Post<EmptyModel?>(GetResetCodeAPI) { param("phone", inputPhone.text.toString()) }.await()
                 //发送成功，验证码倒计时开始
                 Toaster.show(R.string.verification_code_sent_success)
                 sendVerificationCode.start()
@@ -139,7 +140,7 @@ class ResetPasswordActivity : AppActivity() {
                     //延迟一秒，增强用户体验
                     delay(1000)
                     //重置密码
-                    Post<EmptyModel?>(NetApi.ResetPasswordAPI) {
+                    Post<EmptyModel?>(ResetPasswordAPI) {
                         param("phone", inputPhone.text.toString())
                         param("password", inputPassword.text.toString())
                         param("code", inputVerificationCode.text.toString())

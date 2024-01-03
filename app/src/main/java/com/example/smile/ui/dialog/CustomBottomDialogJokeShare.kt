@@ -11,7 +11,8 @@ import com.drake.net.Get
 import com.drake.net.Post
 import com.drake.net.utils.scopeNet
 import com.example.smile.R
-import com.example.smile.http.NetApi
+import com.example.smile.http.NetApi.JokeCollectOrCancelAPI
+import com.example.smile.http.NetApi.JokeCollectStateAPI
 import com.example.smile.model.EmptyModel
 import com.example.smile.model.JokeCollectStateModel
 import com.example.smile.util.PhotoUtils
@@ -63,7 +64,7 @@ class CustomBottomDialogJokeShare(
     private val cancel: TextView by lazy { findViewById(R.id.cancel) }
 
     /** 等待加载框 */
-    private val waitDialog by lazy { WaitDialog.Builder(context).setMessage(R.string.wait) }
+    private val waitDialog by lazy { WaitDialog.Builder(context) }
 
     override fun initView() {
         //按下标题右侧图标关闭弹窗
@@ -75,7 +76,7 @@ class CustomBottomDialogJokeShare(
         }
         //获取段子收藏状态
         scopeNet {
-            val data = Post<JokeCollectStateModel>(NetApi.JokeCollectStateAPI) { param("jokeId", jokeId) }.await()
+            val data = Post<JokeCollectStateModel>(JokeCollectStateAPI) { param("jokeId", jokeId) }.await()
             data.isCollect.apply {
                 //设置收藏控件选中状态
                 ivCollect.setChecked(this, false)
@@ -93,7 +94,7 @@ class CustomBottomDialogJokeShare(
         ivCollect.setOnClickListener(object : RevealViewCollect.OnClickListener {
             override fun onClick(v: RevealViewCollect) {
                 scopeNet {
-                    Post<EmptyModel?>(NetApi.JokeCollectOrCancelAPI) {
+                    Post<EmptyModel?>(JokeCollectOrCancelAPI) {
                         param("jokeId", jokeId)
                         param("status", v.isChecked)
                     }.await()

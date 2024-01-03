@@ -10,7 +10,7 @@ import androidx.core.content.res.ResourcesCompat
 import com.drake.serialize.intent.openActivity
 import com.example.smile.R
 import com.example.smile.app.AppActivity
-import com.example.smile.app.AppConfig
+import com.example.smile.app.AppConfig.DarkTheme
 
 /** 闪屏页 (不接收广播) */
 @SuppressLint("CustomSplashScreen")
@@ -23,7 +23,7 @@ class SplashActivity : AppActivity(false) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
-        if (AppConfig.DarkTheme) {
+        if (DarkTheme) {
             icon.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.ic_launcher_night, null))
         } else {
             icon.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.ic_launcher_day, null))

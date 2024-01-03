@@ -12,9 +12,10 @@ import com.drake.net.Post
 import com.drake.net.utils.scopeNetLife
 import com.example.smile.R
 import com.example.smile.app.AppAdapter
-import com.example.smile.app.AppConfig
-import com.example.smile.http.NetApi
+import com.example.smile.app.AppConfig.userId
 import com.example.smile.http.NetApi.DeleteMainCommentAPI
+import com.example.smile.http.NetApi.JokeCommentChildListAPI
+import com.example.smile.http.NetApi.JokeCommentLikeOrCancelAPI
 import com.example.smile.model.EmptyModel
 import com.example.smile.model.JokeCommentChildModel
 import com.example.smile.model.JokeCommentModel
@@ -84,14 +85,14 @@ class JokeCommentAdapter(private val lifecycleOwner: LifecycleOwner) :
             val likeNum = holder.getView<TextView>(R.id.like_num)
             likeNum.text = item.likeNum.toString()
             //显示删除按钮
-            holder.getView<PressedTextView>(R.id.delete).visibleOrInvisible(item.commentUser.userId.toString() == AppConfig.userId)
+            holder.getView<PressedTextView>(R.id.delete).visibleOrInvisible(item.commentUser.userId.toString() == userId)
             //👍评论
             holder.getView<RevealViewLikeComment>(R.id.reveal_like).apply {
                 setOnClickListener(object : RevealViewLikeComment.OnClickListener {
                     override fun onClick(v: RevealViewLikeComment) {
                         //发起请求，点赞(取消点赞)
                         lifecycleOwner.scopeNetLife {
-                            Post<EmptyModel?>(NetApi.JokeCommentLikeOrCancelAPI) {
+                            Post<EmptyModel?>(JokeCommentLikeOrCancelAPI) {
                                 param("commentId", item.commentId)
                                 param("status", isChecked)
                             }.await()
@@ -108,7 +109,7 @@ class JokeCommentAdapter(private val lifecycleOwner: LifecycleOwner) :
             //有子评论，显示子评论列表
             if (item.itemCommentNum > 0) {
                 lifecycleOwner.scopeNetLife {
-                    val data = Post<List<JokeCommentChildModel>>(NetApi.JokeCommentChildListAPI) {
+                    val data = Post<List<JokeCommentChildModel>>(JokeCommentChildListAPI) {
                         param("commentId", item.commentId)
                     }.await()
                     //设置列表数据适配器，装载数据，传递评论ID和生命周期对象

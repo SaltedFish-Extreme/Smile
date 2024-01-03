@@ -21,7 +21,8 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.lifecycleScope
 import com.example.smile.R
 import com.example.smile.app.AppActivity
-import com.example.smile.app.AppConfig
+import com.example.smile.app.AppConfig.getVersionCode
+import com.example.smile.app.AppConfig.getVersionName
 import com.example.smile.util.KLog
 import com.example.smile.widget.ext.setOnclickNoRepeat
 import com.gyf.immersionbar.ImmersionBar
@@ -206,7 +207,7 @@ class CrashActivity : AppActivity(false), SwipeBackAbility.Direction {
             .append("\nCPU 架构：\t")
             .append(Build.SUPPORTED_ABIS[0])
 
-        builder.append("\n应用版本：\t").append(AppConfig.getVersionName()).append("\n版本代码：\t").append(AppConfig.getVersionCode())
+        builder.append("\n应用版本：\t").append(getVersionName()).append("\n版本代码：\t").append(getVersionCode())
 
         try {
             val dateFormat = SimpleDateFormat("MM-dd HH:mm", Locale.getDefault())

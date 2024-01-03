@@ -15,7 +15,8 @@ import com.drake.net.Post
 import com.drake.net.utils.scopeDialog
 import com.drake.serialize.intent.openActivity
 import com.example.smile.R
-import com.example.smile.app.AppConfig
+import com.example.smile.app.AppConfig.UserPersonalInformationModel
+import com.example.smile.app.AppConfig.token
 import com.example.smile.app.AppFragment
 import com.example.smile.http.NetApi.UserInfoAPI
 import com.example.smile.model.UserInfoModel
@@ -62,7 +63,7 @@ class ProfileFragment : AppFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        if (AppConfig.token.isNotBlank()) {
+        if (token.isNotBlank()) {
             //初次创建页面，如果存在token，说明用户已登录，请求用户信息
             getUserInfo()
         }
@@ -96,7 +97,7 @@ class ProfileFragment : AppFragment() {
             //显示经验
             experience.text = userInfoData.info.experienceNum.toString()
             //保存用户个人信息数据
-            AppConfig.UserPersonalInformationModel = userInfoData.user
+            UserPersonalInformationModel = userInfoData.user
         }.catch {
             //获取数据出错，吐司错误信息(用户登录状态过期或者未登录会跳转登录页面吐司自定义错误信息)
             Toaster.show(it.message)
@@ -203,7 +204,7 @@ class ProfileFragment : AppFragment() {
         //点击设置
         setup.clickNoRepeat {
             //跳转设置页，传递是否登录
-            openActivity<SettingActivity>("loginOrNo" to AppConfig.token.isNotBlank())
+            openActivity<SettingActivity>("loginOrNo" to token.isNotBlank())
         }
     }
 

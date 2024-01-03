@@ -18,7 +18,8 @@ import com.drake.softinput.setWindowSoftInput
 import com.drake.softinput.showSoftInput
 import com.drake.statelayout.Status
 import com.example.smile.R
-import com.example.smile.http.NetApi
+import com.example.smile.http.NetApi.ChildCommentJokeAPI
+import com.example.smile.http.NetApi.CommentJokeAPI
 import com.example.smile.http.NetApi.JokeCommentListAPI
 import com.example.smile.model.JokeCommentChildModel
 import com.example.smile.model.JokeCommentModel
@@ -95,7 +96,7 @@ class CustomBottomDialogJokeComment(context: Context, private val lifecycleOwner
                 if (inputBox.hint == context.getString(R.string.comment_hint)) {
                     //发起请求，评论段子，一级评论
                     lifecycleOwner.scopeNetLife {
-                        val data = Post<JokeCommentModel.Comment>(NetApi.CommentJokeAPI) {
+                        val data = Post<JokeCommentModel.Comment>(CommentJokeAPI) {
                             param("content", inputBox.text.toString())
                             param("jokeId", jokeId)
                         }.await()
@@ -117,7 +118,7 @@ class CustomBottomDialogJokeComment(context: Context, private val lifecycleOwner
                 else if (inputBox.hint.startsWith(context.getString(R.string.reply_sub_string_before))) {
                     //发起请求，评论段子子评论
                     lifecycleOwner.scopeNetLife {
-                        val data = Post<JokeCommentChildModel>(NetApi.ChildCommentJokeAPI) {
+                        val data = Post<JokeCommentChildModel>(ChildCommentJokeAPI) {
                             param("commentId", commentId)
                             param("content", inputBox.text.toString())
                             param("isReplyChild", isReplyChild)

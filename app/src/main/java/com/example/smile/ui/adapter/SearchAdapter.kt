@@ -8,7 +8,8 @@ import com.chad.library.adapter4.viewholder.QuickViewHolder
 import com.drake.channel.sendEvent
 import com.example.smile.R
 import com.example.smile.app.AppAdapter
-import com.example.smile.app.AppConfig
+import com.example.smile.app.AppConfig.DarkTheme
+import com.example.smile.app.AppConfig.SearchHistory
 import com.example.smile.widget.ext.invisible
 import com.example.smile.widget.ext.randomColor
 import com.example.smile.widget.ext.visibleOrInvisible
@@ -41,7 +42,7 @@ class SearchAdapter(private val type: Int) : AppAdapter<String>(R.layout.item_se
             //删除按钮点击事件，删除该item，同步更新存储数据
             addOnDebouncedChildClick(R.id.search_block_image) { _, _, position ->
                 removeAt(position)
-                AppConfig.SearchHistory = items
+                SearchHistory = items
             }
         }
     }
@@ -54,7 +55,7 @@ class SearchAdapter(private val type: Int) : AppAdapter<String>(R.layout.item_se
                 //动态修改边框默认颜色及按下时颜色
                 shapeDrawableBuilder.apply {
                     strokeColor = randomColor()
-                    strokePressedColor = if (AppConfig.DarkTheme) Color.WHITE else Color.BLACK
+                    strokePressedColor = if (DarkTheme) Color.WHITE else Color.BLACK
                     intoBackground()
                 }
                 //默认隐藏删除按钮

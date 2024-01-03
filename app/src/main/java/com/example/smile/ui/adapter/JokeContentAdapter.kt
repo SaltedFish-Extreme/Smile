@@ -14,7 +14,9 @@ import com.drake.net.Post
 import com.drake.net.utils.scopeNetLife
 import com.example.smile.R
 import com.example.smile.app.AppAdapter
-import com.example.smile.http.NetApi
+import com.example.smile.http.NetApi.JokeLikeOrCancelAPI
+import com.example.smile.http.NetApi.JokeUnLikeOrCancelAPI
+import com.example.smile.http.NetApi.UserFocusOrCancelAPI
 import com.example.smile.model.EmptyModel
 import com.example.smile.model.JokeContentModel
 import com.example.smile.ui.dialog.CustomBottomDialogJokeComment
@@ -52,7 +54,7 @@ class JokeContentAdapter(private val activity: FragmentActivity) : AppAdapter<Jo
         //点击关注文本，关注用户
         addOnDebouncedChildClick(R.id.concern) { _, view, position ->
             activity.scopeNetLife {
-                Post<EmptyModel?>(NetApi.UserFocusOrCancelAPI) {
+                Post<EmptyModel?>(UserFocusOrCancelAPI) {
                     param("status", 1)
                     param("userId", items[position].user.userId)
                 }.await()
@@ -67,7 +69,7 @@ class JokeContentAdapter(private val activity: FragmentActivity) : AppAdapter<Jo
         //点击已关注文本，取消关注用户
         addOnDebouncedChildClick(R.id.followed) { _, view, position ->
             activity.scopeNetLife {
-                Post<EmptyModel?>(NetApi.UserFocusOrCancelAPI) {
+                Post<EmptyModel?>(UserFocusOrCancelAPI) {
                     param("status", 0)
                     param("userId", items[position].user.userId)
                 }.await()
@@ -146,7 +148,7 @@ class JokeContentAdapter(private val activity: FragmentActivity) : AppAdapter<Jo
                 override fun onClick(v: RevealViewLike) {
                     //发起请求，喜欢(取消喜欢)
                     activity.scopeNetLife {
-                        Post<EmptyModel?>(NetApi.JokeLikeOrCancelAPI) {
+                        Post<EmptyModel?>(JokeLikeOrCancelAPI) {
                             param("id", item.joke.jokesId)
                             param("status", v.isChecked)
                         }.await()
@@ -165,7 +167,7 @@ class JokeContentAdapter(private val activity: FragmentActivity) : AppAdapter<Jo
                 override fun onClick(v: RevealViewUnlike) {
                     //发起请求，不喜欢(取消不喜欢)
                     activity.scopeNetLife {
-                        Post<EmptyModel?>(NetApi.JokeUnLikeOrCancelAPI) {
+                        Post<EmptyModel?>(JokeUnLikeOrCancelAPI) {
                             param("id", item.joke.jokesId)
                             param("status", v.isChecked)
                         }.await()

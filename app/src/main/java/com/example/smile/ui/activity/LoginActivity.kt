@@ -17,7 +17,8 @@ import com.drake.spannable.span.HighlightSpan
 import com.example.smile.R
 import com.example.smile.app.ActivityManager
 import com.example.smile.app.AppActivity
-import com.example.smile.app.AppConfig
+import com.example.smile.app.AppConfig.token
+import com.example.smile.app.AppConfig.userId
 import com.example.smile.http.NetApi.CodeLoginAPI
 import com.example.smile.http.NetApi.GetLoginCodeAPI
 import com.example.smile.http.NetApi.PasswordLoginAPI
@@ -206,9 +207,9 @@ class LoginActivity : AppActivity() {
         Toaster.show(R.string.login_succeed)
         showSucceed()
         //设置全局token
-        AppConfig.token = data.token
+        token = data.token
         //保存当前登录用户ID
-        AppConfig.userId = data.userInfo.userId.toString()
+        userId = data.userInfo.userId.toString()
         //销毁主页
         ActivityManager.getInstance().finishActivity(MainActivity::class.java)
         //延迟一秒

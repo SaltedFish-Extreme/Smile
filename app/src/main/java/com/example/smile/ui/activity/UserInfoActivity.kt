@@ -22,9 +22,9 @@ import com.drake.net.utils.scopeNetLife
 import com.example.smile.R
 import com.example.smile.app.AppActivity
 import com.example.smile.app.AppConfig.UserPersonalInformationModel
-import com.example.smile.http.NetApi
 import com.example.smile.http.NetApi.BindInvitationCodeAPI
 import com.example.smile.http.NetApi.UpdateUserInfoAPI
+import com.example.smile.http.NetApi.UserInfoAPI
 import com.example.smile.model.EmptyModel
 import com.example.smile.model.UserInfoModel
 import com.example.smile.ui.dialog.CustomDateTimePickerDialog
@@ -227,7 +227,7 @@ class UserInfoActivity : AppActivity() {
             Toaster.show(R.string.save_succeed)
             scopeNetLife {
                 //获取用户信息数据
-                val userInfoData = Post<UserInfoModel>(NetApi.UserInfoAPI).await()
+                val userInfoData = Post<UserInfoModel>(UserInfoAPI).await()
                 //保存用户个人信息数据
                 UserPersonalInformationModel = userInfoData.user
                 //重新展示页面数据
