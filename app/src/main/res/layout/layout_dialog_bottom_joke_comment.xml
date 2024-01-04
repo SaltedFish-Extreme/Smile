@@ -60,7 +60,9 @@
                 android:layout_marginVertical="@dimen/dp_10"
                 android:layout_weight="1"
                 android:hint="@string/comment_hint"
+                android:maxLines="1"
                 android:paddingHorizontal="@dimen/dp_15"
+                android:singleLine="true"
                 android:textSize="@dimen/sp_14"
                 app:shape_radius="@dimen/dp_20"
                 app:shape_solidColor="@color/color_search_box"
@@ -72,6 +74,7 @@
                 android:layout_height="@dimen/dp_40"
                 android:src="@drawable/ic_send" />
         </LinearLayout>
+
     </LinearLayout>
 
 </LinearLayout>

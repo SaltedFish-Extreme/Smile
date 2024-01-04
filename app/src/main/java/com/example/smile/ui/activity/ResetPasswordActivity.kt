@@ -64,8 +64,8 @@ class ResetPasswordActivity : AppActivity() {
         close.clickNoRepeat { finish() }
         //监听手机号输入框输入完成事件(使发送验证码可用)
         inputPhone.addTextChangedListener { sendVerificationCode.isEnabled = !it.isNullOrBlank() && it.length == 11 }
-        //使软键盘不遮挡输入框(监听密码重复输入框，使重置按钮悬浮在软键盘上面)
-        setWindowSoftInput(float = btnReset, editText = inputPassword)
+        //使软键盘不遮挡输入框(监听所有输入框，使重置按钮悬浮在软键盘上面)
+        setWindowSoftInput(float = btnReset)
         //发送验证码
         sendVerificationCode.clickNoRepeat {
             scopeNetLife {
@@ -102,9 +102,9 @@ class ResetPasswordActivity : AppActivity() {
             }
         //点击重置按钮
         btnReset.run {
-            //联动重置按钮和手机号/验证码/密码/重复密码输入框
-            InputTextManager.with(this@ResetPasswordActivity).addView(inputPhone)
-                .addView(inputVerificationCode).addView(inputPassword).addView(inputPasswordAgain)
+            //联动重置按钮和手机号/验证码/密码/密码重复输入框
+            InputTextManager.with(this@ResetPasswordActivity)
+                .addView(inputPhone).addView(inputVerificationCode).addView(inputPassword).addView(inputPasswordAgain)
                 .setMain(this).build()
             this.clickNoRepeat {
                 //校验手机号长度
