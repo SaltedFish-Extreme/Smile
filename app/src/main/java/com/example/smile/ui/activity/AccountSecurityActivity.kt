@@ -66,11 +66,11 @@ class AccountSecurityActivity : AppActivity() {
                 btnLogout.run {
                     //联动注销按钮和密码输入框
                     InputTextManager.with(this@AccountSecurityActivity).addView(inputBox).setMain(this).build()
-                    //注销账户
                     clickNoRepeat {
                         scopeNetLife {
                             //延迟一秒，增强用户体验
                             delay(1000)
+                            //注销账户
                             Post<EmptyModel?>(NetApi.LogoutAccountAPI) { param("psw", inputBox.text.toString()) }.await()
                             hideSoftKeyboard(this@AccountSecurityActivity)
                             //注销成功

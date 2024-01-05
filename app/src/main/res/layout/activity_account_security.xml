@@ -20,6 +20,7 @@
             android:id="@+id/user_phone"
             style="@style/SettingBarStyle"
             app:bar_leftText="@string/bind_phone"
+            app:bar_lineVisible="false"
             app:bar_rightDrawable="@null" />
     </LinearLayout>
 
@@ -51,6 +52,7 @@
             android:id="@+id/logout_account"
             style="@style/SettingBarStyle"
             app:bar_leftText="@string/logout_account"
+            app:bar_lineVisible="false"
             app:bar_rightText="@string/logout_account_hint"
             app:bar_rightTextColor="@color/color_concern" />
     </LinearLayout>
