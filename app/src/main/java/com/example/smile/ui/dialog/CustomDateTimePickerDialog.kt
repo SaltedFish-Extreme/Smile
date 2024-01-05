@@ -14,6 +14,7 @@ import android.widget.DatePicker
 import android.widget.LinearLayout
 import android.widget.TimePicker
 import com.example.smile.R
+import com.example.smile.widget.ext.clickNoRepeat
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
@@ -97,9 +98,9 @@ class CustomDateTimePickerDialog : BaseDialogFragment() {
 
         mBtnCancel = view.findViewById(R.id.bt_ando_cancel)
         mBtnCertain = view.findViewById(R.id.bt_ando_certain)
-        mBtnCancel.setOnClickListener { dismiss() }
+        mBtnCancel.clickNoRepeat { dismiss() }
 
-        mBtnCertain.setOnClickListener {
+        mBtnCertain.clickNoRepeat {
             val calendar = Calendar.getInstance()
             //Date
             val year = mTpDate.year
@@ -191,5 +192,4 @@ class CustomDateTimePickerDialog : BaseDialogFragment() {
             return SimpleDateFormat(format, Locale.getDefault()).format(date)
         }
     }
-
 }

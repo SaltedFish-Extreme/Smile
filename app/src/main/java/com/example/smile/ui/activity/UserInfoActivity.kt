@@ -118,11 +118,11 @@ class UserInfoActivity : AppActivity() {
                 val edtDialog: EditText = v.findViewById(R.id.edt_dialog)
                 val btCancel: Button = v.findViewById(R.id.bt_dialog_cancel)
                 val btConfirm: Button = v.findViewById(R.id.bt_dialog_confirm)
-                btCancel.setOnClickListener { DialogManager.dismiss() }
-                btConfirm.setOnClickListener {
+                btCancel.clickNoRepeat { DialogManager.dismiss() }
+                btConfirm.clickNoRepeat {
                     if (edtDialog.text.toString().isBlank()) {
                         Toaster.show(getString(R.string.edit_dialog_update_hint))
-                        return@setOnClickListener
+                        return@clickNoRepeat
                     }
                     when (title) {
                         getString(R.string.edit_dialog_title_nickname) -> {
@@ -253,8 +253,8 @@ class UserInfoActivity : AppActivity() {
                 val cancel: TextView = v.findViewById(R.id.dialog_cancel)
                 val sure: TextView = v.findViewById(R.id.dialog_sure)
                 tv.text = getString(R.string.bind_hint)
-                cancel.setOnClickListener { DialogManager.dismiss() }
-                sure.setOnClickListener {
+                cancel.clickNoRepeat { DialogManager.dismiss() }
+                sure.clickNoRepeat {
                     showEditTextDialog(getString(R.string.bind_invitation_code))
                 }
             }
