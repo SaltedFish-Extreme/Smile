@@ -13,8 +13,14 @@ import com.example.smile.R
 import com.example.smile.app.ActivityManager
 import com.example.smile.app.AppActivity
 import com.example.smile.app.AppConfig.MobileNetLoadingPicturesOrNo
+import com.example.smile.app.AppConfig.UserPersonalInformationModel
 import com.example.smile.app.AppConfig.VibrationOrNo
 import com.example.smile.app.AppConfig.getVersionName
+import com.example.smile.app.AppConfig.token
+import com.example.smile.app.AppConfig.userId
+import com.example.smile.model.UserInfoModel
+import com.example.smile.ui.dialog.TipsDialog
+import com.example.smile.ui.dialog.WaitDialog
 import com.example.smile.util.CacheDataUtil
 import com.example.smile.util.isNotificationEnabled
 import com.example.smile.util.jumpNotificationSettings
@@ -54,7 +60,7 @@ class SettingActivity : AppActivity() {
     private val waitDialog by lazy { WaitDialog.Builder(this).setMessage(R.string.wait) }
 
     /** 完成提示框 */
-    private val finishDialog by lazy { TipsDialog.Builder(this).setIcon(TipsDialog.ICON_FINISH).setMessage(R.string.exit_succeed) }
+    private val finishDialog by lazy { TipsDialog.Builder(this).setIcon(TipsDialog.ICON_FINISH).setMessage(R.string.logged_out) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -115,9 +121,9 @@ class SettingActivity : AppActivity() {
         //点击退出登录
         logout.clickNoRepeat {
             //清除token
-            AppConfig.token = ""
+            token = ""
             //清除用户ID
-            AppConfig.userId = ""
+            userId = ""
             //因为要对加载中对话框进行隐藏显示操作，不使用scopeDialog作用域
             scopeLife {
                 //显示加载中对话框
@@ -125,7 +131,7 @@ class SettingActivity : AppActivity() {
                 //销毁主页
                 ActivityManager.getInstance().finishActivity(MainActivity::class.java)
                 //清除用户个人信息数据
-                AppConfig.UserPersonalInformationModel = UserInfoModel.User()
+                UserPersonalInformationModel = UserInfoModel.User()
                 //延迟1s
                 delay(1000)
                 //关闭加载中对话框

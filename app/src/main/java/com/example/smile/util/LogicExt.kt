@@ -10,16 +10,22 @@ import android.net.Uri
 import android.os.Build
 import android.os.Environment
 import androidx.core.app.NotificationManagerCompat
+import com.drake.net.utils.scopeDialog
 import com.drake.serialize.intent.openActivity
 import com.example.smile.R
+import com.example.smile.app.ActivityManager
+import com.example.smile.app.AppActivity
 import com.example.smile.app.AppConfig
+import com.example.smile.model.UserInfoModel
 import com.example.smile.ui.activity.LoginActivity
+import com.example.smile.ui.activity.MainActivity
 import com.example.smile.ui.adapter.UploadPictureAdapter
 import com.example.smile.widget.recycler.WrapRecyclerView
 import com.hjq.toast.Toaster
 import com.huantansheng.easyphotos.EasyPhotos
 import com.huantansheng.easyphotos.callback.SelectCallback
 import com.huantansheng.easyphotos.models.album.entity.Photo
+import kotlinx.coroutines.delay
 
 /**
  * 相册上传图片(九宫格)
@@ -162,4 +168,27 @@ fun Context.jumpNotificationSettings() {
     }
     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
     startActivity(intent)
+}
+
+/** 退出登录操作 */
+fun AppActivity.logout() {
+    //清除token
+    AppConfig.token = ""
+    //清除用户ID
+    AppConfig.userId = ""
+    scopeDialog {
+        //销毁主页
+        ActivityManager.getInstance().finishActivity(MainActivity::class.java)
+        //清除用户个人信息数据
+        AppConfig.UserPersonalInformationModel = UserInfoModel.User()
+        //延迟1s
+        delay(1000)
+        //跳转主页
+        openActivity<MainActivity>()
+        //关闭页面
+        finish()
+    }.catch {
+        //操作失败，吐司错误信息
+        Toaster.show(it.message)
+    }
 }

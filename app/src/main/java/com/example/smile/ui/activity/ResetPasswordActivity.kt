@@ -132,7 +132,7 @@ class ResetPasswordActivity : AppActivity() {
                 if (inputPassword.text.toString() != inputPasswordAgain.text.toString()) {
                     inputPassword.startAnimation(loadAnimation(R.anim.shake_anim))
                     inputPasswordAgain.startAnimation(loadAnimation(R.anim.shake_anim))
-                    btnReset.showError(2000)
+                    showError(2000)
                     Toaster.show(R.string.re_enter_password)
                     return@clickNoRepeat
                 }
@@ -148,9 +148,8 @@ class ResetPasswordActivity : AppActivity() {
                     //重置成功
                     Toaster.show(R.string.reset_success)
                     showSucceed()
-                    //延迟一秒关闭页面
-                    delay(1000)
-                    finish()
+                    //退出登录
+                    logout()
                 }.catch {
                     //重置失败，显示错误，吐司错误信息
                     showError(2000)
