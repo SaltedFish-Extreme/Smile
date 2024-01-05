@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?><!--账号安全页-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_navigation_bar"
+    android:orientation="vertical">
+
+    <com.hjq.bar.TitleBar
+        android:id="@+id/titleBar"
+        style="@style/TitleBar" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10"
+        android:orientation="vertical">
+
+        <com.example.smile.widget.settingbar.SettingBar
+            android:id="@+id/user_phone"
+            style="@style/SettingBarStyle"
+            app:bar_leftText="@string/bind_phone"
+            app:bar_rightDrawable="@null" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10"
+        android:orientation="vertical">
+
+        <com.example.smile.widget.settingbar.SettingBar
+            android:id="@+id/reset_password"
+            style="@style/SettingBarStyle"
+            app:bar_leftText="@string/reset_password" />
+
+        <com.example.smile.widget.settingbar.SettingBar
+            android:id="@+id/modify_password"
+            style="@style/SettingBarStyle"
+            app:bar_leftText="@string/modify_password"
+            app:bar_lineVisible="false" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10"
+        android:orientation="vertical">
+
+        <com.example.smile.widget.settingbar.SettingBar
+            android:id="@+id/logout_account"
+            style="@style/SettingBarStyle"
+            app:bar_leftText="@string/logout_account"
+            app:bar_rightText="@string/logout_account_hint"
+            app:bar_rightTextColor="@color/color_concern" />
+    </LinearLayout>
+
+</LinearLayout>

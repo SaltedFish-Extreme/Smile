@@ -101,6 +101,11 @@
     <string name="customer_service_link">mqqwpa://im/chat?chat_type=wpa&#38;uin=%s</string>
     <string name="customer_service_number">1738099872</string>
     <string name="qq_exist">请检查是否已经安装QQ</string>
+    <!--搜索页-->
+    <string name="search_tip">输入关键字搜索</string>
+    <string name="search_hot">热门搜索</string>
+    <string name="search_history">历史搜索</string>
+    <string name="clear">清空历史</string>
     <!--设置页-->
     <string name="user_related">用户相关</string>
     <string name="user_info">用户信息</string>
@@ -148,11 +153,16 @@
     <string name="edit_dialog_title_nickname">修改昵称</string>
     <string name="edit_dialog_title_signature">修改签名</string>
     <string name="select_gender">选择性别</string>
-    <!--搜索页-->
-    <string name="search_tip">输入关键字搜索</string>
-    <string name="search_hot">热门搜索</string>
-    <string name="search_history">历史搜索</string>
-    <string name="clear">清空历史</string>
+    <!--账号安全页-->
+    <string name="bind_phone">当前绑定手机号</string>
+    <string name="modify_password">修改密码</string>
+    <string name="logout_account">注销账号</string>
+    <string name="cancel_account">注销账户</string>
+    <string name="logout_account_hint">注销后无法恢复，请谨慎操作</string>
+    <string name="logout_account_dialog_warn">警告: 账户一旦被注销，将无法再使用此账号进行登录与注册，且此账号下的所有数据将会变成僵尸数据，无法找回，您只能使用新的账号进行注册使用! 请谨慎操作~</string>
+    <string name="logout_account_dialog_hint">请输入当前登录账号的密码</string>
+    <string name="logout_account_dialog_confirm">考虑好了，注销~</string>
+    <string name="logout_success">注销成功</string>
     <!--登录页-->
     <string name="login">登录</string>
     <string name="verification_code_login">验证码登录</string>
@@ -185,6 +195,10 @@
     <string name="phone_format_error">手机号格式错误</string>
     <string name="password_format_error">密码格式错误</string>
     <string name="verification_code_format_error">验证码格式错误</string>
+    <string name="input_old_password">请输入旧密码</string>
+    <string name="input_new_password_confirm">请确认新密码</string>
+    <string name="modify_confirm">确认修改</string>
+    <string name="modify_success">修改成功</string>
     <!--反馈页-->
     <string name="describe_problem">请描述具体问题</string>
     <string name="describe_problem_hint">请详细描述你遇到的问题，方便我们排查问题&#046;&#046;&#046;</string>

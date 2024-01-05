@@ -105,7 +105,7 @@ class UserInfoActivity : AppActivity() {
                 showConfirmDialog()
             } else {
                 //否则吐司提示已绑定
-                Toaster.show(getString(R.string.bound))
+                Toaster.show(R.string.bound)
             }
         }
     }
@@ -121,7 +121,7 @@ class UserInfoActivity : AppActivity() {
                 btCancel.clickNoRepeat { DialogManager.dismiss() }
                 btConfirm.clickNoRepeat {
                     if (edtDialog.text.toString().isBlank()) {
-                        Toaster.show(getString(R.string.edit_dialog_update_hint))
+                        Toaster.show(R.string.edit_dialog_update_hint)
                         return@clickNoRepeat
                     }
                     when (title) {

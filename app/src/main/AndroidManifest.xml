@@ -98,6 +98,10 @@
             android:value="true" />
 
         <activity
+            android:name=".ui.activity.AccountSecurityActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".ui.activity.UserInfoActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
@@ -116,6 +120,10 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activity.AnnouncementActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.ModifyPasswordActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity

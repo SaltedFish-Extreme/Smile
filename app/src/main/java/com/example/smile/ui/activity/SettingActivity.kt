@@ -76,8 +76,8 @@ class SettingActivity : AppActivity() {
         }
         //跳转用户信息页面
         userInfo.clickNoRepeat { openActivity<UserInfoActivity>() }
-        //todo 跳转账户安全页面
-        accountSecurity.clickNoRepeat { }
+        //跳转账户安全页面
+        accountSecurity.clickNoRepeat { openActivity<AccountSecurityActivity>() }
         //显示缓存大小
         clearCache.setRightText(CacheDataUtil.getTotalCacheSize(this))
         //点击清除缓存

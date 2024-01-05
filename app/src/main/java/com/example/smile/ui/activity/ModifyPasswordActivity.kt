@@ -6,10 +6,8 @@ import android.os.Bundle
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
-import androidx.core.widget.addTextChangedListener
 import com.drake.net.Post
 import com.drake.net.utils.scopeNetLife
-import com.drake.serialize.intent.bundle
 import com.drake.serialize.intent.openActivity
 import com.drake.softinput.setWindowSoftInput
 import com.drake.spannable.movement.ClickableMovementMethod
@@ -18,73 +16,47 @@ import com.drake.spannable.replaceSpanLast
 import com.drake.spannable.span.HighlightSpan
 import com.example.smile.R
 import com.example.smile.app.AppActivity
-import com.example.smile.http.NetApi.GetResetCodeAPI
-import com.example.smile.http.NetApi.ResetPasswordAPI
+import com.example.smile.http.NetApi.ModifyPasswordAPI
 import com.example.smile.model.EmptyModel
 import com.example.smile.ui.dialog.CustomBottomDialogEncounterProblems
 import com.example.smile.util.InputTextManager
 import com.example.smile.util.logout
 import com.example.smile.widget.ext.clickNoRepeat
-import com.example.smile.widget.ext.gone
 import com.example.smile.widget.ext.hideSoftKeyboard
 import com.example.smile.widget.ext.loadAnimation
 import com.example.smile.widget.view.ClearEditText
-import com.example.smile.widget.view.CountdownView
 import com.example.smile.widget.view.PasswordEditText
-import com.example.smile.widget.view.RegexEditText
 import com.example.smile.widget.view.SubmitButton
 import com.gyf.immersionbar.ktx.immersionBar
 import com.hjq.toast.Toaster
 import kotlinx.coroutines.delay
 
-/** 重置密码页 */
-class ResetPasswordActivity : AppActivity() {
+/** 修改密码页 */
+class ModifyPasswordActivity : AppActivity() {
 
     private val blankPage: RelativeLayout by lazy { findViewById(R.id.blank_page) }
     private val close: ImageView by lazy { findViewById(R.id.close) }
-    private val inputPhone: ClearEditText by lazy { findViewById(R.id.input_phone) }
-    private val inputVerificationCode: RegexEditText by lazy { findViewById(R.id.input_verification_code) }
-    private val sendVerificationCode: CountdownView by lazy { findViewById(R.id.send_verification_code) }
-    private val inputPassword: PasswordEditText by lazy { findViewById(R.id.input_password) }
-    private val inputPasswordAgain: PasswordEditText by lazy { findViewById(R.id.input_password_again) }
-    private val btnReset: SubmitButton by lazy { findViewById(R.id.btn_reset) }
-    private val toLogin: TextView by lazy { findViewById(R.id.to_login) }
+    private val inputOldPassword: ClearEditText by lazy { findViewById(R.id.input_old_password) }
+    private val inputNewPassword: PasswordEditText by lazy { findViewById(R.id.input_new_password) }
+    private val inputNewPasswordAgain: PasswordEditText by lazy { findViewById(R.id.input_new_password_again) }
+    private val btnModify: SubmitButton by lazy { findViewById(R.id.btn_modify) }
     private val encounterProblems: TextView by lazy { findViewById(R.id.encounter_problems) }
     private val loginProtocolReminder: TextView by lazy { findViewById(R.id.login_protocol_reminder) }
 
-    /** Serialize界面传递参数: 是否已登录(默认未登录) */
-    private val loggedIn: Boolean by bundle(false)
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_reset_password)
+        setContentView(R.layout.activity_modify_password)
         //点击空白处隐藏输入法并清除输入框焦点
         blankPage.clickNoRepeat {
             hideSoftKeyboard(this)
-            inputPhone.clearFocus()
-            inputVerificationCode.clearFocus()
-            inputPassword.clearFocus()
-            inputPasswordAgain.clearFocus()
+            inputOldPassword.clearFocus()
+            inputNewPassword.clearFocus()
+            inputNewPasswordAgain.clearFocus()
         }
         //关闭按钮关闭当前页面
         close.clickNoRepeat { finish() }
-        //监听手机号输入框输入完成事件(使发送验证码可用)
-        inputPhone.addTextChangedListener { sendVerificationCode.isEnabled = !it.isNullOrBlank() && it.length == 11 }
-        //使软键盘不遮挡输入框(监听所有输入框，使重置按钮悬浮在软键盘上面)
-        setWindowSoftInput(float = btnReset)
-        //发送验证码
-        sendVerificationCode.clickNoRepeat {
-            scopeNetLife {
-                //返回数据为null，验证码在小程序查看
-                Post<EmptyModel?>(GetResetCodeAPI) { param("phone", inputPhone.text.toString()) }.await()
-                //发送成功，验证码倒计时开始
-                Toaster.show(R.string.verification_code_sent_success)
-                sendVerificationCode.start()
-            }.catch {
-                //吐司错误信息
-                Toaster.show(it.message)
-            }
-        }
+        //使软键盘不遮挡输入框(监听所有输入框，使修改按钮悬浮在软键盘上面)
+        setWindowSoftInput(float = btnModify)
         //登录协议Spannable文本
         loginProtocolReminder.movementMethod = ClickableMovementMethod.getInstance() // 保证没有点击背景色
         loginProtocolReminder.text = getString(R.string.login_protocol_reminder)
@@ -106,38 +78,31 @@ class ResetPasswordActivity : AppActivity() {
                     )
                 }
             }
-        //点击重置按钮
-        btnReset.run {
-            //联动重置按钮和手机号/验证码/密码/密码重复输入框
-            InputTextManager.with(this@ResetPasswordActivity)
-                .addView(inputPhone).addView(inputVerificationCode).addView(inputPassword).addView(inputPasswordAgain)
+        //点击修改按钮
+        btnModify.run {
+            //联动修改按钮和旧密码/新密码/新密码重复输入框
+            InputTextManager.with(this@ModifyPasswordActivity)
+                .addView(inputOldPassword).addView(inputNewPassword).addView(inputNewPasswordAgain)
                 .setMain(this).build()
             this.clickNoRepeat {
-                //校验手机号长度
-                if (inputPhone.text!!.length != 11) {
-                    inputPhone.startAnimation(loadAnimation(R.anim.shake_anim))
-                    showError(2000)
-                    Toaster.show(R.string.phone_format_error)
-                    return@clickNoRepeat
-                }
-                //校验验证码长度
-                if (inputVerificationCode.text!!.length != 6) {
-                    inputVerificationCode.startAnimation(loadAnimation(R.anim.shake_anim))
-                    showError(2000)
-                    Toaster.show(R.string.verification_code_format_error)
-                    return@clickNoRepeat
-                }
-                //校验密码长度
-                if (inputPassword.text!!.length !in 6..18) {
-                    inputPassword.startAnimation(loadAnimation(R.anim.shake_anim))
+                //校验旧密码长度
+                if (inputOldPassword.text!!.length !in 6..18) {
+                    inputOldPassword.startAnimation(loadAnimation(R.anim.shake_anim))
                     showError(2000)
                     Toaster.show(R.string.password_format_error)
                     return@clickNoRepeat
                 }
-                //校验两次密码是否一致
-                if (inputPassword.text.toString() != inputPasswordAgain.text.toString()) {
-                    inputPassword.startAnimation(loadAnimation(R.anim.shake_anim))
-                    inputPasswordAgain.startAnimation(loadAnimation(R.anim.shake_anim))
+                //校验新密码长度
+                if (inputNewPassword.text!!.length !in 6..18) {
+                    inputNewPassword.startAnimation(loadAnimation(R.anim.shake_anim))
+                    showError(2000)
+                    Toaster.show(R.string.password_format_error)
+                    return@clickNoRepeat
+                }
+                //校验两次新密码是否一致
+                if (inputNewPassword.text.toString() != inputNewPasswordAgain.text.toString()) {
+                    inputNewPassword.startAnimation(loadAnimation(R.anim.shake_anim))
+                    inputNewPasswordAgain.startAnimation(loadAnimation(R.anim.shake_anim))
                     showError(2000)
                     Toaster.show(R.string.re_enter_password)
                     return@clickNoRepeat
@@ -145,31 +110,25 @@ class ResetPasswordActivity : AppActivity() {
                 scopeNetLife {
                     //延迟一秒，增强用户体验
                     delay(1000)
-                    //重置密码
-                    Post<EmptyModel?>(ResetPasswordAPI) {
-                        param("phone", inputPhone.text.toString())
-                        param("password", inputPassword.text.toString())
-                        param("code", inputVerificationCode.text.toString())
+                    //修改密码
+                    Post<EmptyModel?>(ModifyPasswordAPI) {
+                        param("old_psw", inputOldPassword.text.toString())
+                        param("password", inputNewPassword.text.toString())
+                        param("new_psw", inputNewPasswordAgain.text.toString())
                     }.await()
-                    //重置成功
-                    Toaster.show(R.string.reset_success)
+                    //修改成功
+                    Toaster.show(R.string.modify_success)
                     showSucceed()
                     //退出登录
                     logout()
                 }.catch {
-                    //重置失败，显示错误，吐司错误信息
+                    //修改失败，显示错误，吐司错误信息
                     showError(2000)
                     Toaster.show(it.message)
                 }
             }
         }
-        if (loggedIn) {
-            //已登录状态进入该页面，则不显示去登录
-            toLogin.gone()
-        } else {
-            //点击去登陆文本，跳转登陆页面
-            toLogin.clickNoRepeat { openActivity<LoginActivity>() }
-        }
+
         //点击遇到问题显示底部弹窗
         encounterProblems.clickNoRepeat { showBottomDialog() }
     }

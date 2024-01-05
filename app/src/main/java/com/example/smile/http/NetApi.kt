@@ -51,6 +51,9 @@ object NetApi {
     /** 重置密码API路径 */
     const val ResetPasswordAPI = "user/psw/reset"
 
+    /** 重置密码API路径 */
+    const val ModifyPasswordAPI = "user/psw/change"
+
     /** 首页推送视频API路径 */
     const val NotificationVideoAPI = "douyin/list"
 
@@ -95,4 +98,7 @@ object NetApi {
 
     /** 绑定邀请码API路径 */
     const val BindInvitationCodeAPI = "user/bind/invite"
+
+    /** 注销账户API路径 */
+    const val LogoutAccountAPI = "user/close_account"
 }
