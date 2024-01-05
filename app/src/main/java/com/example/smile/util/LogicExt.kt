@@ -9,12 +9,12 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.os.Environment
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationManagerCompat
 import com.drake.net.utils.scopeDialog
 import com.drake.serialize.intent.openActivity
 import com.example.smile.R
 import com.example.smile.app.ActivityManager
-import com.example.smile.app.AppActivity
 import com.example.smile.app.AppConfig
 import com.example.smile.model.UserInfoModel
 import com.example.smile.ui.activity.LoginActivity
@@ -170,15 +170,15 @@ fun Context.jumpNotificationSettings() {
     startActivity(intent)
 }
 
-/** 退出登录操作 */
-fun AppActivity.logout() {
+/** 退出登录执行操作 */
+fun AppCompatActivity.logout() {
     //清除token
     AppConfig.token = ""
     //清除用户ID
     AppConfig.userId = ""
     scopeDialog {
-        //销毁主页
-        ActivityManager.getInstance().finishActivity(MainActivity::class.java)
+        //销毁除当前页面外的所有Activity
+        ActivityManager.getInstance().finishAllActivities(this@logout::class.java)
         //清除用户个人信息数据
         AppConfig.UserPersonalInformationModel = UserInfoModel.User()
         //延迟1s

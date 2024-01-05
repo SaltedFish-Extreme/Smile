@@ -210,8 +210,8 @@ class LoginActivity : AppActivity() {
         token = data.token
         //保存当前登录用户ID
         userId = data.userInfo.userId.toString()
-        //销毁主页
-        ActivityManager.getInstance().finishActivity(MainActivity::class.java)
+        //销毁除当前页面外的所有Activity
+        ActivityManager.getInstance().finishAllActivities(this@LoginActivity::class.java)
         //延迟一秒
         delay(1000)
         //跳转主页
