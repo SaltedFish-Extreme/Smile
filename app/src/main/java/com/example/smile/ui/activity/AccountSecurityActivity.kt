@@ -62,10 +62,10 @@ class AccountSecurityActivity : AppActivity() {
                 val btnLogout: SubmitButton = v.findViewById(R.id.btn_logout)
                 //按下标题右侧图标关闭弹窗
                 logoutTitle.pressRightClose()
-                //点击注销按钮
                 btnLogout.run {
                     //联动注销按钮和密码输入框
                     InputTextManager.with(this@AccountSecurityActivity).addView(inputBox).setMain(this).build()
+                    //点击注销按钮
                     clickNoRepeat {
                         scopeNetLife {
                             //延迟一秒，增强用户体验

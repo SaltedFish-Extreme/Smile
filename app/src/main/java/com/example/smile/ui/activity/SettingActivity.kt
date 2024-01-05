@@ -118,7 +118,7 @@ class SettingActivity : AppActivity() {
                 if (checked) vibration()
             }
         })
-        //点击退出登录
+        //点击退出登录(因为底部只剩主页了，就不使用logout方法了，还能使用两个dialog，增强用户体验)
         logout.clickNoRepeat {
             //清除token
             token = ""

@@ -13,9 +13,6 @@ import com.drake.serialize.intent.bundle
 import com.drake.serialize.intent.openActivity
 import com.drake.softinput.setWindowSoftInput
 import com.drake.spannable.movement.ClickableMovementMethod
-import com.drake.spannable.replaceSpanFirst
-import com.drake.spannable.replaceSpanLast
-import com.drake.spannable.span.HighlightSpan
 import com.example.smile.R
 import com.example.smile.app.AppActivity
 import com.example.smile.http.NetApi.GetResetCodeAPI
@@ -24,6 +21,7 @@ import com.example.smile.model.EmptyModel
 import com.example.smile.ui.dialog.CustomBottomDialogEncounterProblems
 import com.example.smile.util.InputTextManager
 import com.example.smile.util.logout
+import com.example.smile.util.spannableText
 import com.example.smile.widget.ext.clickNoRepeat
 import com.example.smile.widget.ext.gone
 import com.example.smile.widget.ext.hideSoftKeyboard
@@ -87,31 +85,13 @@ class ResetPasswordActivity : AppActivity() {
         }
         //登录协议Spannable文本
         loginProtocolReminder.movementMethod = ClickableMovementMethod.getInstance() // 保证没有点击背景色
-        loginProtocolReminder.text = getString(R.string.login_protocol_reminder)
-            //隐私政策
-            .replaceSpanFirst("《(?<=《)[^》]+》".toRegex()) { matchResult ->
-                HighlightSpan(resources.getColor(R.color.privacy_policy_reminder_colors, null)) {
-                    //跳转公告页，传递标题：隐私政策(去掉前后的《》)
-                    openActivity<AnnouncementActivity>(
-                        "title" to matchResult.value.removePrefix("《").removeSuffix("》")
-                    )
-                }
-            }
-            //用户服务协议
-            .replaceSpanLast("《(?<=《)[^》]+》".toRegex()) { matchResult ->
-                HighlightSpan(resources.getColor(R.color.service_agreement_reminder_color, null)) {
-                    //跳转公告页，传递标题：用户服务协议(去掉前后的《》)
-                    openActivity<AnnouncementActivity>(
-                        "title" to matchResult.value.removePrefix("《").removeSuffix("》")
-                    )
-                }
-            }
-        //点击重置按钮
+        loginProtocolReminder.text = spannableText()
         btnReset.run {
             //联动重置按钮和手机号/验证码/密码/密码重复输入框
             InputTextManager.with(this@ResetPasswordActivity)
                 .addView(inputPhone).addView(inputVerificationCode).addView(inputPassword).addView(inputPasswordAgain)
                 .setMain(this).build()
+            //点击重置按钮
             this.clickNoRepeat {
                 //校验手机号长度
                 if (inputPhone.text!!.length != 11) {

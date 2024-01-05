@@ -132,7 +132,7 @@ class MainActivity : AppActivity() {
         }
         //默认选中第一个菜单项
         bottomNavigationView.selectedItemId = menuItemIdList[0]
-        //不启用第二个菜单项功能，用悬浮按钮代替
+        //不启用第三个菜单项功能，用悬浮按钮代替
         bottomNavigationView.menu.findItem(R.id.release_page).isEnabled = false
         //处理长按 MenuItem 提示 TooltipText
         bottomNavigationView.menu.forEach { item ->
