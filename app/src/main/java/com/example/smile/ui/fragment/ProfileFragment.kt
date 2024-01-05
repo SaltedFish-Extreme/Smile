@@ -30,6 +30,8 @@ import com.example.smile.widget.view.DrawableTextView
 import com.google.android.material.imageview.ShapeableImageView
 import com.gyf.immersionbar.ktx.immersionBar
 import com.hjq.toast.Toaster
+import com.wgw.photo.preview.PhotoPreview
+import com.wgw.photo.preview.ShapeTransformType
 import kotlinx.coroutines.delay
 
 /** 个人页 */
@@ -109,6 +111,13 @@ class ProfileFragment : AppFragment() {
 
     /** 点击事件方法 */
     private fun onClick() {
+        //点击头像
+        userAvatar.clickNoRepeat {
+            requireContext().judgeLoginOperation {
+                PhotoPreview.with(this).sources(UserPersonalInformationModel.avatar)
+                    .shapeTransformType(ShapeTransformType.CIRCLE).shapeCornerRadius(10).build().show(userAvatar)
+            }
+        }
         //todo 点击顶部个人栏
         topBar.clickNoRepeat {
             requireContext().judgeLoginOperation {
