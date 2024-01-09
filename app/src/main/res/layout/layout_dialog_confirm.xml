@@ -5,6 +5,7 @@
     android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:background="@drawable/rectangle_dialog_bg"
+    android:gravity="center"
     android:orientation="vertical">
 
     <TextView
@@ -54,7 +55,6 @@
             android:text="@string/sure"
             android:textColor="?colorAccent"
             android:textSize="@dimen/sp_16" />
-
     </LinearLayout>
 
 </LinearLayout>

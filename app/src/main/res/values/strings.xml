@@ -136,6 +136,7 @@
     <string name="email">1738099872@qq.com</string>
     <string name="github">github.com/SaltedFish-Extreme</string>
     <string name="link">saltedfish-extreme.github.io</string>
+    <string name="download_address">确认将跳转下载链接地址 \n密码是：%s</string>
     <!--用户信息页-->
     <string name="avatar">头像</string>
     <string name="nickname">昵称</string>
