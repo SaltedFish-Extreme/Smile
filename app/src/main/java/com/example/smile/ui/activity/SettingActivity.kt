@@ -94,9 +94,7 @@ class SettingActivity : AppActivity() {
         //显示版本号
         checkUpdate.setRightText(getString(R.string.version_name, getVersionName()))
         //打开网页跳转app下载链接
-        checkUpdate.clickNoRepeat {
-            showConfirmDialog()
-        }
+        checkUpdate.clickNoRepeat { showConfirmDialog() }
         //点击推送开关跳转通知设置
         pushSwitch.clickNoRepeat { jumpNotificationSettings() }
         //设置震动开关选中状态

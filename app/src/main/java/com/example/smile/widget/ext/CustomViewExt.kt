@@ -365,7 +365,9 @@ fun TextView.pressRightClose() {
         //如果不是按下事件，不再处理
         if (event.action != MotionEvent.ACTION_DOWN) return@OnTouchListener false
         //取右侧drawable位置
-        if (event.x > (width - (drawable.intrinsicWidth / 3 * 2))) {
+        if (event.x > (width - (drawable.intrinsicWidth / 3 * 2)) && event.x < width - (drawable.intrinsicWidth / 3) &&
+            event.y > height / 4 && event.y < height / 3 * 2
+        ) {
             dismiss()
         }
         true
