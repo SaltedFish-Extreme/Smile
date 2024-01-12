@@ -87,7 +87,7 @@ class AppApplication : Application() {
             //全局加载中对话框配置(使用自定义对话框)
             setDialogFactory {
                 WaitDialog.Builder(it).apply {
-                    setMessage(getString(R.string.wait))
+                    setMessage(getString(R.string.load))
                 }
             }
             //设置请求拦截器

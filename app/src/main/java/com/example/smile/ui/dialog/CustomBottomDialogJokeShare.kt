@@ -32,6 +32,7 @@ import com.hjq.permissions.Permission
 import com.hjq.permissions.XXPermissions
 import com.hjq.toast.Toaster
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import java.io.File
 
 /**
@@ -66,7 +67,7 @@ class CustomBottomDialogJokeShare(
     private val cancel: TextView by lazy { findViewById(R.id.cancel) }
 
     /** 等待加载框 */
-    private val waitDialog by lazy { WaitDialog.Builder(context) }
+    private val waitDialog by lazy { WaitDialog.Builder(context).setMessage(R.string.saving) }
 
     override fun initView() {
         //按下标题右侧图标关闭弹窗
@@ -126,8 +127,12 @@ class CustomBottomDialogJokeShare(
                 //请求权限
                 XXPermissions.with(context).permission(Permission.WRITE_EXTERNAL_STORAGE).request { _, all ->
                     if (all) {
+                        //显示加载中对话框
+                        waitDialog.show()
                         //保存图片，需在子线程
                         scopeNet(dispatcher = Dispatchers.IO) {
+                            //延迟一秒，增强用户体验
+                            delay(1000)
                             url.split(",").map { it.decrypt() }.forEach {
                                 if (PhotoUtils.saveFile2Gallery(context, it)) {
                                     Toaster.show(R.string.save_succeed)
@@ -136,6 +141,8 @@ class CustomBottomDialogJokeShare(
                                 }
                             }
                         }.finally {
+                            //请求完成后关闭等待加载框
+                            waitDialog.dismiss()
                             //完成后取消协程
                             cancel()
                         }
