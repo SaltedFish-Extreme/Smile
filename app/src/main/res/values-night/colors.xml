@@ -22,4 +22,5 @@
     <!--服务协议提醒颜色--><color name="service_agreement_reminder_color">@color/lime</color>
     <!--登陆辅助颜色--><color name="color_login_auxiliary">@color/medium_purple</color>
     <!--白黑颜色--><color name="color_white_black">@color/black</color>
+    <!--底部弹窗底边空白颜色--><color name="color_bottom_sheet_blank">@color/black_translucent</color>
 </resources>

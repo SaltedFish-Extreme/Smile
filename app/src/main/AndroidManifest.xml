@@ -98,6 +98,10 @@
             android:value="true" />
 
         <activity
+            android:name=".ui.activity.ReportActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".ui.activity.AccountSecurityActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
@@ -183,6 +187,7 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
+
     </application>
 
 </manifest>

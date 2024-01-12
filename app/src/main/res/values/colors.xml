@@ -196,4 +196,5 @@
     <!--服务协议提醒颜色--><color name="service_agreement_reminder_color">@color/lime_green</color>
     <!--登陆辅助颜色--><color name="color_login_auxiliary">@color/dodger_blue</color>
     <!--白黑颜色--><color name="color_white_black">@color/white</color>
+    <!--底部弹窗底边空白颜色--><color name="color_bottom_sheet_blank">@color/pale_off_white</color>
 </resources>

@@ -10,6 +10,7 @@ import com.bumptech.glide.Glide
 import com.chad.library.adapter4.util.addOnDebouncedChildClick
 import com.chad.library.adapter4.util.setOnDebouncedItemClick
 import com.chad.library.adapter4.viewholder.QuickViewHolder
+import com.drake.channel.receiveEventLive
 import com.drake.net.Post
 import com.drake.net.utils.scopeNetLife
 import com.example.smile.R
@@ -21,6 +22,7 @@ import com.example.smile.model.EmptyModel
 import com.example.smile.model.JokeContentModel
 import com.example.smile.ui.dialog.CustomBottomDialogJokeComment
 import com.example.smile.ui.dialog.CustomBottomDialogJokeShare
+import com.example.smile.ui.dialog.CustomBottomDialogReportContent
 import com.example.smile.util.decrypt
 import com.example.smile.widget.ext.clickNoRepeat
 import com.example.smile.widget.ext.gone
@@ -47,9 +49,9 @@ class JokeContentAdapter(private val activity: FragmentActivity) : AppAdapter<Jo
         setOnDebouncedItemClick { _, _, position ->
             Toaster.show("我被点击了！ $position")
         }
-        //子控件点击事件
+        //子控件点击事件(显示底部举报弹窗)
         addOnDebouncedChildClick(R.id.omitted) { _, _, position ->
-            Toaster.show("$position")
+            showBottomDialog(items[position].joke.jokesId, items[position].user.userId, position)
         }
         //点击关注文本，关注用户
         addOnDebouncedChildClick(R.id.concern) { _, view, position ->
@@ -58,6 +60,7 @@ class JokeContentAdapter(private val activity: FragmentActivity) : AppAdapter<Jo
                     param("status", 1)
                     param("userId", items[position].user.userId)
                 }.await()
+                Toaster.show(R.string.follow_success)
                 //请求成功，显示已关注
                 view.invisible()
                 recyclerView.layoutManager?.findViewByPosition(position)?.findViewById<ShapeTextView>(R.id.followed)?.visible()
@@ -73,6 +76,7 @@ class JokeContentAdapter(private val activity: FragmentActivity) : AppAdapter<Jo
                     param("status", 0)
                     param("userId", items[position].user.userId)
                 }.await()
+                Toaster.show(R.string.follow_cancel)
                 //请求成功，显示关注
                 view.invisible()
                 recyclerView.layoutManager?.findViewByPosition(position)?.findViewById<DrawableTextView>(R.id.concern)?.visible()
@@ -80,6 +84,11 @@ class JokeContentAdapter(private val activity: FragmentActivity) : AppAdapter<Jo
                 //请求失败，吐司错误信息
                 Toaster.show(it.message)
             }
+        }
+        //接收消息事件，移除指定位置的段子
+        activity.receiveEventLive<Int>("channel_tag_not_interested_joke") {
+            removeAt(it)
+            DialogManager.dismiss()
         }
     }
 
@@ -201,5 +210,18 @@ class JokeContentAdapter(private val activity: FragmentActivity) : AppAdapter<Jo
                     .setCanceledOnTouchOutside(true).setDimmedBehind(true).show()
             }
         }
+    }
+
+    /**
+     * 底部弹窗(BottomDialog)
+     *
+     * @param jokeId 段子ID
+     * @param userId 用户ID
+     * @param position 段子位置
+     */
+    private fun showBottomDialog(jokeId: Int, userId: Int, position: Int) {
+        val bottomDialog = CustomBottomDialogReportContent(context, jokeId.toString(), userId.toString(), 0, position)
+        DialogManager.replaceDialog(bottomDialog).setCancelable(true)
+            .setCanceledOnTouchOutside(true).setDimmedBehind(true).show()
     }
 }

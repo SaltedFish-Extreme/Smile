@@ -101,4 +101,7 @@ object NetApi {
 
     /** 注销账户API路径 */
     const val LogoutAccountAPI = "user/close_account"
+
+    /** 举报内容(用户/段子)API路径 */
+    const val ReportUserOrJokeAPI = "helper/report"
 }

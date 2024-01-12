@@ -10,7 +10,7 @@ import com.drake.serialize.intent.openActivity
 import com.example.smile.R
 import com.example.smile.app.AppActivity
 import com.example.smile.app.AppConfig.UserPersonalInformationModel
-import com.example.smile.http.NetApi
+import com.example.smile.http.NetApi.LogoutAccountAPI
 import com.example.smile.model.EmptyModel
 import com.example.smile.util.InputTextManager
 import com.example.smile.util.logout
@@ -71,7 +71,7 @@ class AccountSecurityActivity : AppActivity() {
                             //延迟一秒，增强用户体验
                             delay(1000)
                             //注销账户
-                            Post<EmptyModel?>(NetApi.LogoutAccountAPI) { param("psw", inputBox.text.toString()) }.await()
+                            Post<EmptyModel?>(LogoutAccountAPI) { param("psw", inputBox.text.toString()) }.await()
                             hideSoftKeyboard(this@AccountSecurityActivity)
                             //注销成功
                             Toaster.show(R.string.logout_success)

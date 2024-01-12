@@ -21,6 +21,7 @@
     <string name="channel_tag_comment_reply_info">channel_tag_comment_reply_info</string>
     <string name="channel_tag_input_hint_enter">channel_tag_input_hint_enter</string>
     <string name="channel_tag_reply_child_comment">channel_tag_reply_child_comment</string>
+    <string name="channel_tag_not_interested_joke">channel_tag_not_interested_joke</string>
     <!--主页-->
     <string name="home_fragment">首页</string>
     <string name="evenly_fragment">划一划</string>
@@ -78,6 +79,18 @@
     <string name="collected">已收藏</string>
     <string name="collect_success">收藏成功</string>
     <string name="collect_cancel">取消收藏</string>
+    <string name="report_publisher">举报发布者</string>
+    <string name="report_content">举报此内容</string>
+    <string name="not_interested">对此不感兴趣</string>
+    <string name="select_report_type">请选择举报类型</string>
+    <string name="report_type">举报类型</string>
+    <string name="report_detail">举报详情</string>
+    <string name="input_report_content">请输入举报内容</string>
+    <string name="report_success">举报成功</string>
+    <string name="report_failed">举报失败</string>
+    <!--用户页-->
+    <string name="select_action_option">请选择操作选项</string>
+    <string name="report_user">举报该用户</string>
     <!--个人页-->
     <string name="log_in_register">登录/注册</string>
     <string name="signature_tip">快来开始你的创作吧~</string>
@@ -413,5 +426,25 @@
         <item>发布</item>
         <item>消息</item>
         <item>我的</item>
+    </string-array>
+    <!--举报用户item类型列表-->
+    <string-array name="report_type_user">
+        <item>淫秽头像</item>
+        <item>反动昵称</item>
+        <item>人身攻击</item>
+        <item>消息骚扰</item>
+        <item>泄露隐私</item>
+        <item>垃圾营销</item>
+    </string-array>
+    <!--举报段子item类型列表-->
+    <string-array name="report_type_joke">
+        <item>广告欺诈</item>
+        <item>淫秽色情</item>
+        <item>骚扰谩骂</item>
+        <item>反动政治</item>
+        <item>感官不适</item>
+        <item>违法行为</item>
+        <item>性别对立</item>
+        <item>其他原因</item>
     </string-array>
 </resources>

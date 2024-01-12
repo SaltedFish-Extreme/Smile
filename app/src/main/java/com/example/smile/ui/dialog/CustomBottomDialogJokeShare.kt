@@ -10,11 +10,13 @@ import androidx.lifecycle.LifecycleOwner
 import com.drake.net.Get
 import com.drake.net.Post
 import com.drake.net.utils.scopeNet
+import com.drake.serialize.intent.openActivity
 import com.example.smile.R
 import com.example.smile.http.NetApi.JokeCollectOrCancelAPI
 import com.example.smile.http.NetApi.JokeCollectStateAPI
 import com.example.smile.model.EmptyModel
 import com.example.smile.model.JokeCollectStateModel
+import com.example.smile.ui.activity.ReportActivity
 import com.example.smile.util.PhotoUtils
 import com.example.smile.util.copyText
 import com.example.smile.util.decrypt
@@ -173,6 +175,8 @@ class CustomBottomDialogJokeShare(
                 }
             }
         }
+        //举报段子内容
+        report.clickNoRepeat { context.openActivity<ReportActivity>("type" to 0, "id" to jokeId) }
         //关闭弹窗
         cancel.clickNoRepeat { dismiss() }
     }

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?><!--举报页-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.hjq.bar.TitleBar
+        android:id="@+id/titleBar"
+        style="@style/TitleBar" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp_20"
+        android:text="@string/report_type"
+        android:textColor="?android:attr/textColorPrimary"
+        android:textSize="@dimen/sp_18"
+        android:textStyle="bold" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/dp_20"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:spanCount="3"
+        tools:listitem="@layout/item_report_block" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp_20"
+        android:text="@string/report_detail"
+        android:textColor="?android:attr/textColorPrimary"
+        android:textSize="@dimen/sp_18"
+        android:textStyle="bold" />
+
+    <com.hjq.shape.view.ShapeEditText
+        android:id="@+id/input_report"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_150"
+        android:layout_marginHorizontal="@dimen/dp_20"
+        android:gravity="top|start"
+        android:hint="@string/input_report_content"
+        android:padding="@dimen/dp_10"
+        android:textSize="@dimen/sp_18"
+        app:shape_radius="@dimen/dp_5"
+        app:shape_strokeColor="@color/color_ornaments"
+        app:shape_strokeSize="@dimen/dp_1"
+        app:shape_type="rectangle" />
+
+    <com.example.smile.widget.view.SubmitButton
+        android:id="@+id/btn_report"
+        style="@style/LoginButtonStyle"
+        android:layout_margin="@dimen/dp_20"
+        android:text="@string/report" />
+
+</LinearLayout>
