@@ -108,6 +108,8 @@ class CustomBottomDialogJokeShare(
                         tvCollect.text = context.getString(R.string.collect)
                         Toaster.show(R.string.collect_cancel)
                     }
+                    //关闭弹窗
+                    dismiss()
                 }.catch {
                     //请求失败，吐司错误信息
                     Toaster.show(it.message)
@@ -120,6 +122,8 @@ class CustomBottomDialogJokeShare(
         //复制段子文本内容
         copy.clickNoRepeat {
             context.copyText(text)
+            //关闭弹窗
+            dismiss()
         }
         //保存段子图片/视频
         save.clickNoRepeat {
@@ -140,6 +144,8 @@ class CustomBottomDialogJokeShare(
                                     Toaster.show(R.string.save_failed)
                                 }
                             }
+                            //关闭弹窗
+                            dismiss()
                         }.finally {
                             //请求完成后关闭等待加载框
                             waitDialog.dismiss()
@@ -167,6 +173,8 @@ class CustomBottomDialogJokeShare(
                                 setDownloadTempFile()
                             }.await()
                             Toaster.show(R.string.save_succeed)
+                            //关闭弹窗
+                            dismiss()
                         }.catch {
                             //请求失败，吐司错误信息
                             Toaster.show(it.message)
