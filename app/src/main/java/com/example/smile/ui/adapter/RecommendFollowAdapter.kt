@@ -8,10 +8,18 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.chad.library.adapter4.util.addOnDebouncedChildClick
 import com.chad.library.adapter4.util.setOnDebouncedItemClick
 import com.chad.library.adapter4.viewholder.QuickViewHolder
+import com.drake.net.Post
+import com.drake.net.utils.scopeNet
+import com.drake.serialize.intent.openActivity
 import com.example.smile.R
 import com.example.smile.app.AppAdapter
 import com.example.smile.app.AppConfig.token
+import com.example.smile.http.NetApi
+import com.example.smile.model.EmptyModel
 import com.example.smile.model.RecommendFollowModel
+import com.example.smile.ui.activity.LoginActivity
+import com.example.smile.widget.ext.invisible
+import com.example.smile.widget.ext.visible
 import com.example.smile.widget.ext.visibleOrInvisible
 import com.google.android.material.imageview.ShapeableImageView
 import com.hjq.shape.view.ShapeTextView
@@ -28,11 +36,44 @@ class RecommendFollowAdapter : AppAdapter<RecommendFollowModel>() {
             Toaster.show("我被点击了！ $position")
         }
         //子控件点击事件
-        addOnDebouncedChildClick(R.id.follow) { _, _, position ->
-            Toaster.show("$position")
+        addOnDebouncedChildClick(R.id.follow) { _, view, position ->
+            //已登录状态
+            if (token.isNotEmpty()) {
+                //点击关注文本，关注用户
+                scopeNet {
+                    Post<EmptyModel?>(NetApi.UserFocusOrCancelAPI) {
+                        param("status", 1)
+                        param("userId", items[position].userId)
+                    }.await()
+                    Toaster.show(R.string.follow_success)
+                    //请求成功，显示已关注
+                    view.invisible()
+                    recyclerView.layoutManager?.findViewByPosition(position)?.findViewById<ShapeTextView>(R.id.followed)?.visible()
+                }.catch {
+                    //请求失败，吐司错误信息
+                    Toaster.show(it.message)
+                }
+            } else {
+                //未登录状态，跳转登录页面
+                Toaster.show(R.string.please_login)
+                context.openActivity<LoginActivity>()
+            }
         }
-        addOnDebouncedChildClick(R.id.followed) { _, _, position ->
-            Toaster.show("$position")
+        addOnDebouncedChildClick(R.id.followed) { _, view, position ->
+            //点击已关注文本，取消关注用户
+            scopeNet {
+                Post<EmptyModel?>(NetApi.UserFocusOrCancelAPI) {
+                    param("status", 0)
+                    param("userId", items[position].userId)
+                }.await()
+                Toaster.show(R.string.follow_cancel)
+                //请求成功，显示关注
+                view.invisible()
+                recyclerView.layoutManager?.findViewByPosition(position)?.findViewById<ShapeTextView>(R.id.follow)?.visible()
+            }.catch {
+                //请求失败，吐司错误信息
+                Toaster.show(it.message)
+            }
         }
     }
 
