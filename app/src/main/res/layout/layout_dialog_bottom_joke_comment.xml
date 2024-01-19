@@ -45,35 +45,7 @@
                 tools:listitem="@layout/item_joke_comment_list" />
         </com.drake.brv.PageRefreshLayout>
 
-        <LinearLayout
-            android:id="@+id/ll_input"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <com.hjq.shape.view.ShapeEditText
-                android:id="@+id/input_box"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/dp_40"
-                android:layout_marginHorizontal="@dimen/dp_20"
-                android:layout_marginVertical="@dimen/dp_10"
-                android:layout_weight="1"
-                android:hint="@string/comment_hint"
-                android:maxLines="1"
-                android:paddingHorizontal="@dimen/dp_15"
-                android:singleLine="true"
-                android:textSize="@dimen/sp_14"
-                app:shape_radius="@dimen/dp_20"
-                app:shape_solidColor="@color/color_search_box"
-                app:shape_type="rectangle" />
-
-            <com.example.smile.widget.view.ScaleImageView
-                android:id="@+id/send"
-                android:layout_width="@dimen/dp_40"
-                android:layout_height="@dimen/dp_40"
-                android:src="@drawable/ic_send" />
-        </LinearLayout>
+        <include layout="@layout/include_input_comment" />
 
     </LinearLayout>
 
