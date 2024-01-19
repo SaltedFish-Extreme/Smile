@@ -81,6 +81,12 @@ class CustomBottomDialogJokeComment(context: Context, private val lifecycleOwner
         lifecycleOwner.receiveEventLive<String>(context.getString(R.string.channel_tag_input_hint_enter)) {
             inputBox.showSoftInput()
             inputBox.hint = it
+            //判断传递过来的提示文本，吐司提示当前是评论还是回复
+            if (it == context.getString(R.string.comment_hint)) {
+                Toaster.show(R.string.comment_hint_comment)
+            } else {
+                Toaster.show(R.string.comment_hint_reply)
+            }
         }
         //接收消息事件，设置被回复段子ID，是否回复子评论
         lifecycleOwner.receiveEventLive<String>(context.getString(R.string.channel_tag_comment_reply_info)) {
