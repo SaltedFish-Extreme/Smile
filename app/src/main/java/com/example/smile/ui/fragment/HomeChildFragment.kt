@@ -28,7 +28,7 @@ class HomeChildFragment : AppFragment() {
     private val rv: RecyclerView by lazy { requireView().findViewById(R.id.rv) }
     private val fab: FloatingActionButton by lazy { requireView().findViewById(R.id.fab) }
 
-    /** 页面类型，从上个页面传递 */
+    /** Serialize界面传递参数: 页面类型 */
     private val type: Int by bundle()
 
     companion object {

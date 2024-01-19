@@ -54,7 +54,7 @@ class SettingActivity : AppActivity() {
     private val aboutUs: SettingBar by lazy { findViewById(R.id.about_us) }
     private val logout: TextView by lazy { findViewById(R.id.logout) }
 
-    /** Serialize界面传递参数: loginOrNo */
+    /** Serialize界面传递参数: 是否登录 */
     private val loginOrNo: Boolean by bundle()
 
     /** 等待加载框 */

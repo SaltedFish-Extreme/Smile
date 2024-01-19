@@ -13,7 +13,7 @@ class AnnouncementActivity : AppActivity(false) {
 
     private val titleBar: TitleBar by lazy { findViewById(R.id.titleBar) }
 
-    /** Serialize界面传递参数: title */
+    /** Serialize界面传递参数: 页面标题 */
     private val title: String by bundle()
 
     override fun onCreate(savedInstanceState: Bundle?) {

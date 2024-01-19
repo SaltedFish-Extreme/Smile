@@ -2,7 +2,6 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/card"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="@dimen/dp_10"
@@ -131,7 +130,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/dp_5"
-            android:contentDescription="@android:string/unknownName"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:spanCount="3"
             tools:itemCount="3"
@@ -166,8 +164,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dp_10"
                 android:layout_weight="1"
-                android:text="0"
-                android:textSize="@dimen/sp_20" />
+                android:textSize="@dimen/sp_20"
+                tools:text="0" />
 
             <com.example.smile.widget.view.RevealViewUnlike
                 android:id="@+id/reveal_unlike"
@@ -180,8 +178,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dp_10"
                 android:layout_weight="1"
-                android:text="0"
-                android:textSize="@dimen/sp_20" />
+                android:textSize="@dimen/sp_20"
+                tools:text="0" />
 
             <com.huantansheng.easyphotos.ui.widget.PressedImageView
                 android:id="@+id/reveal_comment"
@@ -196,8 +194,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dp_10"
                 android:layout_weight="1"
-                android:text="0"
-                android:textSize="@dimen/sp_20" />
+                android:textSize="@dimen/sp_20"
+                tools:text="0" />
 
             <com.huantansheng.easyphotos.ui.widget.PressedImageView
                 android:id="@+id/reveal_share"
@@ -212,8 +210,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dp_10"
                 android:layout_weight="1"
-                android:text="0"
-                android:textSize="@dimen/sp_20" />
+                android:textSize="@dimen/sp_20"
+                tools:text="0" />
 
         </LinearLayout>
 
