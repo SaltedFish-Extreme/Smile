@@ -4,7 +4,6 @@ import ando.dialog.core.DialogManager
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.drake.net.utils.scopeLife
@@ -28,6 +27,7 @@ import com.example.smile.util.jumpNotificationSettings
 import com.example.smile.util.vibration
 import com.example.smile.widget.ext.clickNoRepeat
 import com.example.smile.widget.ext.gone
+import com.example.smile.widget.ext.showConfirmDialog
 import com.example.smile.widget.settingbar.SettingBar
 import com.example.smile.widget.view.PressAlphaTextView
 import com.example.smile.widget.view.SwitchButton
@@ -94,7 +94,11 @@ class SettingActivity : AppActivity() {
         //显示版本号
         checkUpdate.setRightText(getString(R.string.version_name, getVersionName()))
         //打开网页跳转app下载链接
-        checkUpdate.clickNoRepeat { showConfirmDialog() }
+        checkUpdate.clickNoRepeat {
+            showConfirmDialog(getString(R.string.download_address, getString(R.string.app_name))) {
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.update_address))))
+            }
+        }
         //点击推送开关跳转通知设置
         pushSwitch.clickNoRepeat { jumpNotificationSettings() }
         //设置震动开关选中状态
@@ -168,24 +172,6 @@ class SettingActivity : AppActivity() {
                     }
                 }
         }
-    }
-
-    /** 显示确认弹窗 */
-    private fun showConfirmDialog() {
-        DialogManager.with(this, R.style.TransparentBgDialog)
-            .useDialog()
-            .setContentView(R.layout.layout_dialog_confirm) { v: View ->
-                val tv: TextView = v.findViewById(R.id.dialog_tv)
-                val cancel: TextView = v.findViewById(R.id.dialog_cancel)
-                val sure: TextView = v.findViewById(R.id.dialog_sure)
-                tv.text = getString(R.string.download_address, getString(R.string.app_name))
-                cancel.clickNoRepeat { DialogManager.dismiss() }
-                sure.clickNoRepeat {
-                    startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.update_address))))
-                }
-            }
-            .setCanceledOnTouchOutside(false)
-            .show()
     }
 
     override fun onResume() {

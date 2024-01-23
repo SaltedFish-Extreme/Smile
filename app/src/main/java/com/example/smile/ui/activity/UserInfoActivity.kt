@@ -11,7 +11,6 @@ import android.view.View
 import android.widget.Button
 import android.widget.DatePicker
 import android.widget.EditText
-import android.widget.TextView
 import android.widget.TimePicker
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
@@ -31,6 +30,7 @@ import com.example.smile.ui.dialog.CustomDateTimePickerDialog
 import com.example.smile.util.albumUploadPicture
 import com.example.smile.util.copyText
 import com.example.smile.widget.ext.clickNoRepeat
+import com.example.smile.widget.ext.showConfirmDialog
 import com.example.smile.widget.settingbar.SettingBar
 import com.google.android.material.imageview.ShapeableImageView
 import com.gyf.immersionbar.ktx.immersionBar
@@ -102,7 +102,7 @@ class UserInfoActivity : AppActivity() {
         bindInvitationCode.clickNoRepeat {
             if (bindInvitationCode.getRightText() == getString(R.string.not_bind)) {
                 //未绑定邀请码则显示绑定邀请码弹窗
-                showConfirmDialog()
+                showConfirmDialog(getString(R.string.bind_hint)) { showEditTextDialog(getString(R.string.bind_invitation_code)) }
             } else {
                 //否则吐司提示已绑定
                 Toaster.show(R.string.bound)
@@ -242,24 +242,6 @@ class UserInfoActivity : AppActivity() {
             //请求失败，吐司错误信息
             Toaster.show(it.message)
         }
-    }
-
-    /** 显示确认弹窗 */
-    private fun showConfirmDialog() {
-        DialogManager.with(this, R.style.TransparentBgDialog)
-            .useDialog()
-            .setContentView(R.layout.layout_dialog_confirm) { v: View ->
-                val tv: TextView = v.findViewById(R.id.dialog_tv)
-                val cancel: TextView = v.findViewById(R.id.dialog_cancel)
-                val sure: TextView = v.findViewById(R.id.dialog_sure)
-                tv.text = getString(R.string.bind_hint)
-                cancel.clickNoRepeat { DialogManager.dismiss() }
-                sure.clickNoRepeat {
-                    showEditTextDialog(getString(R.string.bind_invitation_code))
-                }
-            }
-            .setCanceledOnTouchOutside(false)
-            .show()
     }
 
     override fun onResume() {

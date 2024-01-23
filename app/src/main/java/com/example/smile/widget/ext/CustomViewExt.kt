@@ -1,5 +1,6 @@
 package com.example.smile.widget.ext
 
+import ando.dialog.core.DialogManager
 import ando.dialog.core.DialogManager.dismiss
 import android.annotation.SuppressLint
 import android.app.Activity
@@ -372,6 +373,29 @@ fun TextView.pressRightClose() {
         }
         true
     })
+}
+
+/**
+ * 显示自定义确认弹窗
+ *
+ * @param text 弹窗文本
+ * @param invoke 确认选项执行方法
+ */
+fun Context.showConfirmDialog(text: String, invoke: () -> Unit) {
+    DialogManager.with(this, R.style.TransparentBgDialog)
+        .useDialog()
+        .setContentView(R.layout.layout_dialog_confirm) { v: View ->
+            val tv: TextView = v.findViewById(R.id.dialog_tv)
+            val cancel: TextView = v.findViewById(R.id.dialog_cancel)
+            val sure: TextView = v.findViewById(R.id.dialog_sure)
+            tv.text = text
+            cancel.clickNoRepeat { dismiss() }
+            sure.clickNoRepeat {
+                invoke()
+            }
+        }
+        .setCanceledOnTouchOutside(false)
+        .show()
 }
 
 /**
