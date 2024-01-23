@@ -23,6 +23,8 @@
     <string name="channel_tag_input_hint_enter">channel_tag_input_hint_enter</string>
     <string name="channel_tag_reply_child_comment">channel_tag_reply_child_comment</string>
     <string name="channel_tag_not_interested_joke">channel_tag_not_interested_joke</string>
+    <string name="channel_tag_remove_photo">channel_tag_remove_photo</string>
+    <string name="channel_tag_delete_comment">channel_tag_delete_comment</string>
     <!--主页-->
     <string name="home_fragment">首页</string>
     <string name="evenly_fragment">划一划</string>
@@ -41,7 +43,6 @@
     <string name="look">去看看</string>
     <string name="at">\&#064;%s</string>
     <string name="tag_copy_joke_content">smile_copy_joke_text</string>
-    <string name="tag_remove_photo">tag_remove_photo</string>
     <!--首页-->
     <string name="concern">关注</string>
     <string name="follow_title_tip">优秀的人值得关注</string>

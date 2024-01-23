@@ -61,7 +61,7 @@ class UploadPictureAdapter(activity: FragmentActivity, private val dataList: Arr
             dataList.removeAt(position) //从数据源删除
             notifyItemRemoved(position) //通知移除item
             notifyItemRangeChanged(position, itemCount - position) //刷新数据（不加偶尔会删除 item 的位置错误）
-            sendTag(mActivity.getString(R.string.tag_remove_photo)) //发送消息标签，删除图片
+            sendTag(mActivity.getString(R.string.channel_tag_remove_photo)) //发送消息标签，删除图片
             true
         }
         //单击图片预览

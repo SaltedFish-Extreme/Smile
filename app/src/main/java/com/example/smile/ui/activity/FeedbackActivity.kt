@@ -68,7 +68,7 @@ class FeedbackActivity : AppActivity() {
         //添加脚布局
         feedbackImage.addFooterView<View>(R.layout.item_add_picture)
         //接收消息标签，删除图片
-        receiveTagLive(getString(R.string.tag_remove_photo)) {
+        receiveTagLive(getString(R.string.channel_tag_remove_photo)) {
             //如果没有脚布局存在(添加完成所有图片后脚布局被移除)
             if (feedbackImage.getFooterViewsCount() == 0) {
                 //则添加脚布局占位图(删除图片后，需要显示脚布局可以继续添加图片)
