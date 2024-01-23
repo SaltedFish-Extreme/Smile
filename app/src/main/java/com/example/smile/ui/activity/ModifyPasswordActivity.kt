@@ -8,6 +8,7 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import com.drake.net.Post
 import com.drake.net.utils.scopeNetLife
+import com.drake.softinput.hideSoftInput
 import com.drake.softinput.setWindowSoftInput
 import com.drake.spannable.movement.ClickableMovementMethod
 import com.example.smile.R
@@ -19,7 +20,6 @@ import com.example.smile.util.InputTextManager
 import com.example.smile.util.logout
 import com.example.smile.util.spannableText
 import com.example.smile.widget.ext.clickNoRepeat
-import com.example.smile.widget.ext.hideSoftKeyboard
 import com.example.smile.widget.ext.loadAnimation
 import com.example.smile.widget.view.ClearEditText
 import com.example.smile.widget.view.PasswordEditText
@@ -45,7 +45,7 @@ class ModifyPasswordActivity : AppActivity() {
         setContentView(R.layout.activity_modify_password)
         //点击空白处隐藏输入法并清除输入框焦点
         blankPage.clickNoRepeat {
-            hideSoftKeyboard(this)
+            hideSoftInput()
             inputOldPassword.clearFocus()
             inputNewPassword.clearFocus()
             inputNewPasswordAgain.clearFocus()

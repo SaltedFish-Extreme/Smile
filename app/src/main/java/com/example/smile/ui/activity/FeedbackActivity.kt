@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.drake.channel.receiveTagLive
 import com.drake.net.Post
 import com.drake.net.utils.scopeNetLife
+import com.drake.softinput.hideSoftInput
 import com.drake.softinput.setWindowSoftInput
 import com.example.smile.R
 import com.example.smile.app.AppActivity
@@ -19,7 +20,6 @@ import com.example.smile.ui.adapter.UploadPictureAdapter
 import com.example.smile.util.InputTextManager
 import com.example.smile.util.albumUploadImage
 import com.example.smile.widget.ext.clickNoRepeat
-import com.example.smile.widget.ext.hideSoftKeyboard
 import com.example.smile.widget.recycler.WrapRecyclerView
 import com.example.smile.widget.view.SubmitButton
 import com.gyf.immersionbar.ktx.immersionBar
@@ -54,7 +54,7 @@ class FeedbackActivity : AppActivity() {
         titleBar.leftView.clickNoRepeat { finish() }
         //点击空白处隐藏输入法并清除输入框焦点
         blankPage.clickNoRepeat {
-            hideSoftKeyboard(this)
+            hideSoftInput()
             feedbackText.clearFocus()
             feedbackContactInfo.clearFocus()
         }

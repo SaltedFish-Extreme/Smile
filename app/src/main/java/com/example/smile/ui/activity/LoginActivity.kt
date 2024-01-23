@@ -10,6 +10,7 @@ import androidx.core.widget.addTextChangedListener
 import com.drake.net.Post
 import com.drake.net.utils.scopeNetLife
 import com.drake.serialize.intent.openActivity
+import com.drake.softinput.hideSoftInput
 import com.drake.spannable.movement.ClickableMovementMethod
 import com.example.smile.R
 import com.example.smile.app.ActivityManager
@@ -26,7 +27,6 @@ import com.example.smile.util.InputTextManager
 import com.example.smile.util.spannableText
 import com.example.smile.widget.ext.clickNoRepeat
 import com.example.smile.widget.ext.gone
-import com.example.smile.widget.ext.hideSoftKeyboard
 import com.example.smile.widget.ext.loadAnimation
 import com.example.smile.widget.ext.visible
 import com.example.smile.widget.view.ClearEditText
@@ -59,7 +59,7 @@ class LoginActivity : AppActivity() {
         setContentView(R.layout.activity_login)
         //点击空白处隐藏输入法并清除输入框焦点
         blankPage.clickNoRepeat {
-            hideSoftKeyboard(this)
+            hideSoftInput()
             inputPhone.clearFocus()
             inputVerificationCode.clearFocus()
             inputPassword.clearFocus()
@@ -182,7 +182,7 @@ class LoginActivity : AppActivity() {
      */
     private suspend fun SubmitButton.loginSuccess(data: LoginUserInfoModel) {
         //隐藏软键盘
-        hideSoftKeyboard(this@LoginActivity)
+        hideSoftInput()
         //登录按钮显示成功
         Toaster.show(R.string.login_succeed)
         showSucceed()

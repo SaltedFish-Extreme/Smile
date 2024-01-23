@@ -12,6 +12,7 @@ import com.drake.channel.receiveEventLive
 import com.drake.net.Post
 import com.drake.net.utils.scope
 import com.drake.net.utils.scopeDialog
+import com.drake.softinput.hideSoftInput
 import com.example.smile.R
 import com.example.smile.app.AppActivity
 import com.example.smile.app.AppConfig.SearchHistory
@@ -24,7 +25,6 @@ import com.example.smile.ui.adapter.SearchAdapter
 import com.example.smile.widget.ext.cancelFloatBtn
 import com.example.smile.widget.ext.clickNoRepeat
 import com.example.smile.widget.ext.gone
-import com.example.smile.widget.ext.hideSoftKeyboard
 import com.example.smile.widget.ext.initFloatBtn
 import com.example.smile.widget.ext.visible
 import com.example.smile.widget.view.ClearEditText
@@ -185,7 +185,7 @@ class SearchActivity : AppActivity(), SwipeBackAbility.Direction {
         //取消搜索重置首次标识
         first = true
         //隐藏输入法
-        hideSoftKeyboard(this)
+        hideSoftInput()
         //清除输入框焦点
         searchBox.clearFocus()
         //取消悬浮按钮

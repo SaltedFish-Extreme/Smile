@@ -7,6 +7,7 @@ import android.view.View
 import com.drake.net.Post
 import com.drake.net.utils.scopeNetLife
 import com.drake.serialize.intent.openActivity
+import com.drake.softinput.hideSoftInput
 import com.example.smile.R
 import com.example.smile.app.AppActivity
 import com.example.smile.app.AppConfig.UserPersonalInformationModel
@@ -15,7 +16,6 @@ import com.example.smile.model.EmptyModel
 import com.example.smile.util.InputTextManager
 import com.example.smile.util.logout
 import com.example.smile.widget.ext.clickNoRepeat
-import com.example.smile.widget.ext.hideSoftKeyboard
 import com.example.smile.widget.ext.pressRightClose
 import com.example.smile.widget.settingbar.SettingBar
 import com.example.smile.widget.view.DrawableTextView
@@ -72,7 +72,7 @@ class AccountSecurityActivity : AppActivity() {
                             delay(1000)
                             //注销账户
                             Post<EmptyModel?>(LogoutAccountAPI) { param("psw", inputBox.text.toString()) }.await()
-                            hideSoftKeyboard(this@AccountSecurityActivity)
+                            hideSoftInput()
                             //注销成功
                             Toaster.show(R.string.logout_success)
                             showSucceed()

@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.drake.net.Post
 import com.drake.net.utils.scopeNetLife
 import com.drake.serialize.intent.bundle
+import com.drake.softinput.hideSoftInput
 import com.drake.softinput.setWindowSoftInput
 import com.example.smile.R
 import com.example.smile.app.AppActivity
@@ -13,7 +14,6 @@ import com.example.smile.model.EmptyModel
 import com.example.smile.ui.adapter.ReportAdapter
 import com.example.smile.util.InputTextManager
 import com.example.smile.widget.ext.clickNoRepeat
-import com.example.smile.widget.ext.hideSoftKeyboard
 import com.example.smile.widget.view.SubmitButton
 import com.gyf.immersionbar.ktx.immersionBar
 import com.hjq.bar.TitleBar
@@ -83,7 +83,7 @@ class ReportActivity : AppActivity() {
                         param("type", type.toString())
                     }.await()
                     //隐藏输入法
-                    hideSoftKeyboard(this@ReportActivity)
+                    hideSoftInput()
                     //举报按钮显示成功，延迟一秒，关闭页面
                     Toaster.show(R.string.report_success)
                     btnReport.showSucceed()
