@@ -11,10 +11,12 @@ import com.drake.serialize.intent.openActivity
 import com.example.smile.R
 import com.example.smile.app.AppActivity
 import com.example.smile.app.AppConfig.DarkTheme
+import per.goweii.swipeback.SwipeBackAbility
+import per.goweii.swipeback.SwipeBackDirection
 
 /** 闪屏页 (不接收广播) */
 @SuppressLint("CustomSplashScreen")
-class SplashActivity : AppActivity(false) {
+class SplashActivity : AppActivity(false), SwipeBackAbility.Direction {
 
     private val icon: ImageView by lazy { findViewById(R.id.icon) }
     private val layoutSplash: FrameLayout by lazy { findViewById(R.id.layout_splash) }
@@ -54,4 +56,7 @@ class SplashActivity : AppActivity(false) {
         //转场结束动画效果
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
     }
+
+    /** 当前页禁用侧滑 */
+    override fun swipeBackDirection() = SwipeBackDirection.NONE
 }

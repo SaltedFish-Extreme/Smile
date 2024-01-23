@@ -7,6 +7,8 @@ import android.os.Bundle
 import com.example.smile.R
 import com.example.smile.app.AppActivity
 import com.hjq.toast.Toaster
+import per.goweii.swipeback.SwipeBackAbility
+import per.goweii.swipeback.SwipeBackDirection
 
 /**
  * author : Android 轮子哥
@@ -17,7 +19,7 @@ import com.hjq.toast.Toaster
  *
  * desc : 重启应用 (不接收广播)
  */
-class RestartActivity : AppActivity(false) {
+class RestartActivity : AppActivity(false), SwipeBackAbility.Direction {
 
     companion object {
         fun start(context: Context) {
@@ -43,4 +45,8 @@ class RestartActivity : AppActivity(false) {
         finish()
         Toaster.show(R.string.common_crash_hint)
     }
+
+    /** 当前页禁用侧滑 */
+    override fun swipeBackDirection() = SwipeBackDirection.NONE
+
 }
