@@ -85,7 +85,7 @@ class JokeContentAdapter(private val activity: FragmentActivity) : AppAdapter<Jo
                 Toaster.show(it.message)
             }
         }
-        //接收消息事件，移除指定位置的段子
+        //接收消息事件，移除指定位置的段子(此处获取context对象会报错，所以直接使用标签字符串，需和strings.xml中定义的一致)
         activity.receiveEventLive<Int>("channel_tag_not_interested_joke") {
             removeAt(it)
             DialogManager.dismiss()

@@ -10,6 +10,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
 import com.drake.brv.PageRefreshLayout
 import com.drake.channel.receiveEventLive
+import com.drake.channel.receiveTagLive
 import com.drake.channel.sendEvent
 import com.drake.net.Post
 import com.drake.net.utils.scope
@@ -66,8 +67,8 @@ class CustomBottomDialogJokeComment(context: Context, private val lifecycleOwner
         private var isReplyChild = "false"
     }
 
-    @SuppressLint("ClickableViewAccessibility")
     override fun initView() {
+        //设置数据适配器
         rv.adapter = adapter
         //加载数据
         loadData()
@@ -77,22 +78,6 @@ class CustomBottomDialogJokeComment(context: Context, private val lifecycleOwner
         )
         //按下标题右侧图标关闭弹窗
         commentTitle.pressRightClose()
-        //接收消息事件，打开软键盘，设置输入框提示文本
-        lifecycleOwner.receiveEventLive<String>(context.getString(R.string.channel_tag_input_hint_enter)) {
-            inputBox.showSoftInput()
-            inputBox.hint = it
-            //判断传递过来的提示文本，吐司提示当前是评论还是回复
-            if (it == context.getString(R.string.comment_hint)) {
-                Toaster.show(R.string.comment_hint_comment)
-            } else {
-                Toaster.show(R.string.comment_hint_reply)
-            }
-        }
-        //接收消息事件，设置被回复段子ID，是否回复子评论
-        lifecycleOwner.receiveEventLive<String>(context.getString(R.string.channel_tag_comment_reply_info)) {
-            commentId = it.substringBefore(";")
-            isReplyChild = it.substringAfter(";")
-        }
         //发送图标点击事件
         send.clickNoRepeat {
             if (inputBox.text.isNullOrBlank()) {
@@ -111,10 +96,15 @@ class CustomBottomDialogJokeComment(context: Context, private val lifecycleOwner
                         inputBox.setText("")
                         //请求成功，添加数据，将这条回复添加到最上方
                         adapter.add(0, data)
+                        //评论列表滚动至顶部
+                        rv.scrollToPosition(0)
                         //如果之前显示的是空页面，则显示内容页
                         if (page.stateLayout?.status == Status.EMPTY) {
                             page.showContent()
                         }
+                        //添加评论后，动态改变标题
+                        commentTitle.text =
+                            context.getString(R.string.comment_title, commentTitle.text.filter { it.isDigit() }.toString().toInt() + 1)
                     }.catch {
                         //请求失败，吐司错误信息
                         Toaster.show(it.message)
@@ -141,6 +131,8 @@ class CustomBottomDialogJokeComment(context: Context, private val lifecycleOwner
                 }
             }
         }
+        //消息事件监听方法
+        receiveEventChannelEvent()
     }
 
     /** 加载段子内容数据 */
@@ -185,6 +177,39 @@ class CustomBottomDialogJokeComment(context: Context, private val lifecycleOwner
         }.refreshing()
     }
 
+    /** 接收消息事件监听 */
+    @SuppressLint("NotifyDataSetChanged")
+    private fun receiveEventChannelEvent() {
+        //接收消息事件，打开软键盘，设置输入框提示文本
+        lifecycleOwner.receiveEventLive<String>(context.getString(R.string.channel_tag_input_hint_enter)) {
+            inputBox.hint = it
+            //判断传递过来的提示文本，吐司提示当前是评论还是回复
+            if (it == context.getString(R.string.comment_hint)) {
+                Toaster.show(R.string.comment_hint_comment)
+            } else {
+                Toaster.show(R.string.comment_hint_reply)
+                inputBox.showSoftInput()
+            }
+        }
+        //接收消息事件，设置被回复段子ID，是否回复子评论
+        lifecycleOwner.receiveEventLive<String>(context.getString(R.string.channel_tag_comment_reply_info)) {
+            commentId = it.substringBefore(";")
+            isReplyChild = it.substringAfter(";")
+        }
+        //接收消息标签，删除主评论
+        lifecycleOwner.receiveTagLive(context.getString(R.string.channel_tag_delete_comment)) {
+            //更新弹窗标题文本
+            commentTitle.text =
+                context.getString(R.string.comment_title, commentTitle.text.filter { it.isDigit() }.toString().toInt() - 1)
+            //如果评论全部被删除，则显示空页面，刷新数据适配器，还原输入框默认提示文本
+            if (adapter.items.isEmpty()) {
+                page.showEmpty()
+                adapter.notifyDataSetChanged()
+                inputBox.hint = context.getString(R.string.comment_hint)
+            }
+        }
+    }
+
     override fun initConfig(savedInstanceState: Bundle?) {
         super.initConfig(savedInstanceState)
     }
@@ -196,4 +221,5 @@ class CustomBottomDialogJokeComment(context: Context, private val lifecycleOwner
     }
 
     override fun getLayoutId(): Int = R.layout.layout_dialog_bottom_joke_comment
+
 }

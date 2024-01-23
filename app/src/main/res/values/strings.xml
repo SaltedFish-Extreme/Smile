@@ -66,6 +66,8 @@
     <string name="reply">回复</string>
     <string name="child_user">%s → %s</string>
     <string name="comment_hint">留下你的精彩评论&#046;&#046;&#046;</string>
+    <string name="comment_hint_comment">当前为评论段子</string>
+    <string name="comment_hint_reply">当前为回复评论</string>
     <string name="delete">删除</string>
     <string name="reply_user">回复：%s</string>
     <string name="please_input_reply">请输入回复内容</string>

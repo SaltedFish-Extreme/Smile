@@ -57,7 +57,7 @@ class JokeCommentChildAdapter(dataList: List<JokeCommentChildModel>, commentId: 
                 Toaster.show(it.message)
             }
         }
-        //接收消息事件，更新子评论列表添加数据(需和strings.xml中定义的一致)
+        //接收消息事件，更新子评论列表添加数据(此处获取context对象会报错，所以直接使用标签字符串，需和strings.xml中定义的一致)
         lifecycleOwner.receiveEventLive<JokeCommentChildModel>("channel_tag_reply_child_comment") {
             if (it.commentParentId == commentId) {
                 this@JokeCommentChildAdapter.add(0, it)

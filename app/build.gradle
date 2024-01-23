@@ -145,8 +145,6 @@ dependencies {
     implementation 'com.github.hackware1993:MagicIndicator:1.7.0'
     //图片加载 https://github.com/bumptech/glide
     implementation 'com.github.bumptech.glide:glide:5.0.0-rc01'
-    //轮播图 https://github.com/youth5201314/banner
-    implementation 'io.github.youth5201314:banner:2.2.2'
     //相机相册 https://github.com/HuanTanSheng/EasyPhotos
     implementation 'com.github.HuanTanSheng:EasyPhotos:3.1.5'
     //标题栏 https://github.com/getActivity/TitleBar
@@ -168,7 +166,7 @@ dependencies {
     //kotlin扩展（可选）
     implementation 'com.geyifeng.immersionbar:immersionbar-ktx:3.2.2'
     //动画解析库 https://github.com/airbnb/lottie-android
-    implementation 'com.airbnb.android:lottie:6.2.0'
+    implementation 'com.airbnb.android:lottie:6.3.0'
     //网络拦截监听器 https://github.com/itkacher/OkHttpProfiler
     implementation 'com.localebro:okhttpprofiler:1.0.8'
     //kotlin JSON解析框架 https://github.com/Kotlin/kotlinx.serialization

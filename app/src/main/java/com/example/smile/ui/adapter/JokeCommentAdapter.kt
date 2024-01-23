@@ -8,6 +8,7 @@ import com.chad.library.adapter4.util.addOnDebouncedChildClick
 import com.chad.library.adapter4.util.setOnDebouncedItemClick
 import com.chad.library.adapter4.viewholder.QuickViewHolder
 import com.drake.channel.sendEvent
+import com.drake.channel.sendTag
 import com.drake.net.Post
 import com.drake.net.utils.scopeNetLife
 import com.example.smile.R
@@ -56,6 +57,8 @@ class JokeCommentAdapter(private val lifecycleOwner: LifecycleOwner) :
                 //删除成功，更新列表
                 Toaster.show(R.string.delete_success)
                 removeAt(pos)
+                //发送消息标签，删除主评论
+                sendTag(context.getString(R.string.channel_tag_delete_comment))
             }.catch {
                 //请求失败，吐司错误信息
                 Toaster.show(it.message)
