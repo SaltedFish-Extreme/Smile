@@ -6,12 +6,11 @@
     android:layout_height="match_parent">
 
     <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/lav"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
-        app:lottie_rawRes="@raw/nodata" />
+        app:lottie_rawRes="@raw/no_data" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guide_line"
