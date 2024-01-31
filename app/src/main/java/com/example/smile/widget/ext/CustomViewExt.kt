@@ -32,6 +32,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
+import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.example.smile.R
 import com.example.smile.widget.viewpager.ScaleTransitionPagerTitleView
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView
@@ -168,6 +169,10 @@ fun ViewPager2.init(activity: FragmentActivity, fragments: ArrayList<Fragment>, 
         override fun createFragment(position: Int) = fragments[position]
         override fun getItemCount() = fragments.size
     }
+    //fix：ViewPager2高度无法跟随fragment自适应问题
+    viewTreeObserver.addOnGlobalLayoutListener {
+        updatePagerHeightForChild(fragments[this.currentItem].view, this@init)
+    }
     return this
 }
 
@@ -225,7 +230,7 @@ fun MagicIndicator.bindViewPager2(
     }
     navigator = commonNavigator
 
-    viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+    viewPager.registerOnPageChangeCallback(object : OnPageChangeCallback() {
         override fun onPageSelected(position: Int) {
             super.onPageSelected(position)
             this@bindViewPager2.onPageSelected(position)
@@ -396,6 +401,25 @@ fun Context.showConfirmDialog(text: String, invoke: () -> Unit) {
         }
         .setCanceledOnTouchOutside(false)
         .show()
+}
+
+/**
+ * 计算fragment的高度并设置给viewPager
+ *
+ * @param view fragment对应的视图
+ * @param pager ViewPager对象
+ */
+private fun updatePagerHeightForChild(view: View?, pager: ViewPager2) {
+    view?.post {
+        val wMeasureSpec = View.MeasureSpec.makeMeasureSpec(view.width, View.MeasureSpec.EXACTLY)
+        val hMeasureSpec = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
+        view.measure(wMeasureSpec, hMeasureSpec)
+        if (pager.layoutParams.height != view.measuredHeight) {
+            pager.layoutParams = pager.layoutParams.also { lp ->
+                lp.height = view.measuredHeight
+            }
+        }
+    }
 }
 
 /**

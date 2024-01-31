@@ -115,6 +115,7 @@
         </FrameLayout>
 
         <FrameLayout
+            android:id="@+id/fl_detail"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1">
@@ -134,6 +135,7 @@
                 android:scaleType="centerCrop"
                 app:srcCompat="@drawable/ic_detail" />
         </FrameLayout>
+
     </LinearLayout>
 
     <LinearLayout
@@ -174,11 +176,13 @@
             android:text="@string/report" />
 
         <TextView
+            android:id="@+id/tv_detail"
             android:layout_width="@dimen/dp_0"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
             android:text="@string/detail" />
+
     </LinearLayout>
 
     <TextView

@@ -16,6 +16,7 @@ import com.example.smile.http.NetApi.JokeCollectOrCancelAPI
 import com.example.smile.http.NetApi.JokeCollectStateAPI
 import com.example.smile.model.EmptyModel
 import com.example.smile.model.JokeCollectStateModel
+import com.example.smile.ui.activity.JokeDetailActivity
 import com.example.smile.ui.activity.ReportActivity
 import com.example.smile.util.PhotoUtils
 import com.example.smile.util.copyText
@@ -52,18 +53,19 @@ class CustomBottomDialogJokeShare(
     private val type: Int = 0,
     private val text: String,
     private val url: String = "",
-) :
-    BottomDialog(context, R.style.AndoLoadingDialog) {
+) : BottomDialog(context, R.style.AndoLoadingDialog) {
 
     private val commentTitle: DrawableTextView by lazy { findViewById(R.id.comment_title) }
     private val ivCollect: RevealViewCollect by lazy { findViewById(R.id.iv_collect) }
     private val copy: ShapeableImageView by lazy { findViewById(R.id.copy) }
     private val flSave: FrameLayout by lazy { findViewById(R.id.fl_save) }
+    private val flDetail: FrameLayout by lazy { findViewById(R.id.fl_detail) }
     private val save: ShapeableImageView by lazy { findViewById(R.id.save) }
     private val report: ShapeableImageView by lazy { findViewById(R.id.report) }
     private val detail: ShapeableImageView by lazy { findViewById(R.id.detail) }
     private val tvCollect: TextView by lazy { findViewById(R.id.tv_collect) }
     private val tvSave: TextView by lazy { findViewById(R.id.tv_save) }
+    private val tvDetail: TextView by lazy { findViewById(R.id.tv_detail) }
     private val cancel: TextView by lazy { findViewById(R.id.cancel) }
 
     /** 等待加载框 */
@@ -76,6 +78,11 @@ class CustomBottomDialogJokeShare(
         if (type == 0) {
             flSave.gone()
             tvSave.gone()
+        }
+        //如果是视频段子，则隐藏详情选项
+        if (type == 2) {
+            flDetail.gone()
+            tvDetail.gone()
         }
         //获取段子收藏状态
         scopeNet {
@@ -192,6 +199,8 @@ class CustomBottomDialogJokeShare(
         }
         //举报段子内容
         report.clickNoRepeat { context.openActivity<ReportActivity>("type" to 0, "id" to jokeId) }
+        //查看段子详情
+        detail.clickNoRepeat { context.openActivity<JokeDetailActivity>("jokeId" to jokeId) }
         //关闭弹窗
         cancel.clickNoRepeat { dismiss() }
     }
@@ -207,4 +216,5 @@ class CustomBottomDialogJokeShare(
     }
 
     override fun getLayoutId(): Int = R.layout.layout_dialog_bottom_joke_share
+
 }

@@ -27,9 +27,8 @@ class CustomBottomDialogReportContent(
     private val jokeId: String = "",
     private val userId: String = "",
     private val type: Int,
-    private val position: Int = 0
-) :
-    BottomDialog(context, R.style.AndoLoadingDialog) {
+    private val position: Int? = null
+) : BottomDialog(context, R.style.AndoLoadingDialog) {
 
     private val reportPerson: LinearLayout by lazy { findViewById(R.id.report_person) }
     private val reportUser: TextView by lazy { findViewById(R.id.report_user) }
@@ -43,6 +42,8 @@ class CustomBottomDialogReportContent(
         //根据举报类型显示隐藏选项
         reportJoke.visibleOrGone(type == 0)
         reportPerson.visibleOrGone(type == 1)
+        //根据有无传递位置显示隐藏选项
+        notInterested.visibleOrGone(position != null)
         //举报用户
         reportUser.clickNoRepeat { context.openActivity<ReportActivity>("type" to 1, "id" to userId) }
         //举报用户
@@ -50,7 +51,9 @@ class CustomBottomDialogReportContent(
         //举报段子
         reportContent.clickNoRepeat { context.openActivity<ReportActivity>("type" to 0, "id" to jokeId) }
         //不感兴趣，发送消息事件，传递段子位置
-        notInterested.clickNoRepeat { sendEvent(position, context.getString(R.string.channel_tag_not_interested_joke)) }
+        if (position != null) {
+            notInterested.clickNoRepeat { sendEvent(position, context.getString(R.string.channel_tag_not_interested_joke)) }
+        }
         //关闭弹窗
         cancel.clickNoRepeat { dismiss() }
     }

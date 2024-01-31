@@ -98,6 +98,11 @@
             android:value="true" />
 
         <activity
+            android:name=".ui.activity.JokeDetailActivity"
+            android:exported="false"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".ui.activity.ReportActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
@@ -113,7 +118,7 @@
             android:name=".ui.activity.NotificationVideoActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait" /> <!-- or android:screenOrientation="landscape"-->
+            android:screenOrientation="portrait" /> <!-- or android:screenOrientation="landscape" -->
         <activity
             android:name=".ui.activity.SettingActivity"
             android:exported="false"

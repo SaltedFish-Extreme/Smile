@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?><!--段子详情点赞列表项-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/user_avatar"
+        android:layout_width="@dimen/dp_50"
+        android:layout_height="@dimen/dp_50"
+        android:layout_marginVertical="@dimen/dp_15"
+        android:layout_marginStart="@dimen/dp_25"
+        android:layout_marginEnd="@dimen/dp_15"
+        android:scaleType="centerCrop"
+        app:shapeAppearance="@style/CircleStyle"
+        app:srcCompat="@drawable/account" />
+
+    <TextView
+        android:id="@+id/user_nickname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:text="@string/app_name"
+        android:textColor="?android:attr/textColorPrimary"
+        tools:textSize="@dimen/sp_20" />
+
+</LinearLayout>

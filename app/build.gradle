@@ -152,7 +152,7 @@ dependencies {
     //吐司 https://github.com/getActivity/Toaster
     implementation 'com.github.getActivity:Toaster:12.6'
     //权限请求 https://github.com/getActivity/XXPermissions
-    implementation 'com.github.getActivity:XXPermissions:18.5'
+    implementation 'com.github.getActivity:XXPermissions:18.6'
     //Shape https://github.com/getActivity/ShapeView
     implementation 'com.github.getActivity:ShapeView:9.0'
     //揭示效果 https://github.com/goweii/RevealLayout

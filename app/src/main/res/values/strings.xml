@@ -123,6 +123,10 @@
     <string name="search_hot">热门搜索</string>
     <string name="search_history">历史搜索</string>
     <string name="clear">清空历史</string>
+    <!--段子详情页-->
+    <string name="post_detail">帖子详情</string>
+    <string name="comment_num">评论 %d</string>
+    <string name="like_num">点赞 %d</string>
     <!--设置页-->
     <string name="user_related">用户相关</string>
     <string name="user_info">用户信息</string>

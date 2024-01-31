@@ -13,6 +13,7 @@ import com.chad.library.adapter4.viewholder.QuickViewHolder
 import com.drake.channel.receiveEventLive
 import com.drake.net.Post
 import com.drake.net.utils.scopeNetLife
+import com.drake.serialize.intent.openActivity
 import com.example.smile.R
 import com.example.smile.app.AppAdapter
 import com.example.smile.http.NetApi.JokeLikeOrCancelAPI
@@ -20,6 +21,7 @@ import com.example.smile.http.NetApi.JokeUnLikeOrCancelAPI
 import com.example.smile.http.NetApi.UserFocusOrCancelAPI
 import com.example.smile.model.EmptyModel
 import com.example.smile.model.JokeContentModel
+import com.example.smile.ui.activity.JokeDetailActivity
 import com.example.smile.ui.dialog.CustomBottomDialogJokeComment
 import com.example.smile.ui.dialog.CustomBottomDialogJokeShare
 import com.example.smile.ui.dialog.CustomBottomDialogReportContent
@@ -45,9 +47,9 @@ class JokeContentAdapter(private val activity: FragmentActivity) : AppAdapter<Jo
     init {
         //设置动画效果
         setItemAnimation(AnimationType.SlideInBottom)
-        //item点击事件
+        //item点击事件，跳转段子详情页
         setOnDebouncedItemClick { _, _, position ->
-            Toaster.show("我被点击了！ $position")
+            context.openActivity<JokeDetailActivity>("jokeId" to "${items[position].joke.jokesId}")
         }
         //子控件点击事件(显示底部举报弹窗)
         addOnDebouncedChildClick(R.id.omitted) { _, _, position ->

@@ -104,4 +104,10 @@ object NetApi {
 
     /** 举报内容(用户/段子)API路径 */
     const val ReportUserOrJokeAPI = "helper/report"
+
+    /** 获取指定ID段子API路径 */
+    const val JokeForIdAPI = "jokes/target"
+
+    /** 获取指定ID段子点赞列表API路径 */
+    const val JokeLikeListForIdAPI = "jokes/like/list"
 }
